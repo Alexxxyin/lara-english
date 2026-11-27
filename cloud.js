@@ -14,7 +14,7 @@
     get state() { return state; },
     get meta() { return cloudMeta; },
     onChange(f) { listeners.push(f); },
-    init, dirty, flush, refresh, syncWishes, deleteWish, markRedeemed, fetchBackup
+    init, dirty, flush, refresh, syncWishes, deleteWish, markRedeemed, fetchBackup, notify
   };
   function set(s) { state = s; listeners.forEach(f => { try { f(s); } catch (e) {} }); }
   const ts = () => firebase.firestore.FieldValue.serverTimestamp();
@@ -61,6 +61,7 @@
     }
     set('ok');
     await syncWishes();
+    flushOutbox();
     await fetchMeta();
     dirty(3000);
   }
@@ -68,7 +69,7 @@
   async function refresh() {
     if (busy || !db || !uid) return;
     busy = true;
-    try { if (state === 'waiting' || state === 'error') await check(); else if (state === 'ok') await syncWishes(); }
+    try { if (state === 'waiting' || state === 'error') await check(); else if (state === 'ok') { await syncWishes(); flushOutbox(); } }
     finally { busy = false; }
   }
 
@@ -78,7 +79,7 @@
     const S = H.get(); const list = S.wishes || []; let changed = false;
     for (const w of list) {
       if (w.up || w.status !== 'pending') continue;
-      try { await db.doc(FAM + '/wishes/' + w.id).set({ name: w.name, cost: w.cost, status: 'pending', at: ts(), by: uid }); w.up = 1; changed = true; } catch (e) {}
+      try { await db.doc(FAM + '/wishes/' + w.id).set({ name: w.name, cost: w.cost, status: 'pending', at: ts(), by: uid }); w.up = 1; changed = true; notify({ type: 'wish', name: w.name, cost: w.cost }); } catch (e) {}
     }
     const news = [];
     try {
@@ -96,6 +97,29 @@
   }
   function deleteWish(id) { if (state === 'ok') db.doc(FAM + '/wishes/' + id).delete().catch(() => {}); }
   function markRedeemed(id) { if (state === 'ok') db.doc(FAM + '/wishes/' + id).update({ redeemedAt: ts() }).catch(() => {}); }
+
+  // ---- 寄 email 通知 Alex（許願、兌換）----
+  // 先放進 S.outbox，只有 Alex 允許過的手機（state ok）才寄；沒網路寄不出去就留著，下次連上再寄
+  let sending = false;
+  // S0：網站剛打開、雲端還沒準備好（H 還沒設定）時，由網站把存檔物件傳進來，通知照樣排進去
+  function notify(msg, S0) {
+    const S = S0 || (H && H.get()); if (!S) return;
+    S.outbox = (S.outbox || []).concat([msg]).slice(-10);
+    if (H) { H.save(); flushOutbox(); }
+  }
+  async function flushOutbox() {
+    if (sending || state !== 'ok' || !window.NOTIFY_URL) return;
+    const S = H.get(); if (!(S.outbox || []).length) return;
+    sending = true;
+    try {
+      while ((S.outbox || []).length) {
+        const m = S.outbox[0];
+        try { await fetch(window.NOTIFY_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(m), keepalive: true }); }
+        catch (e) { break; } // 沒網路：留著下次再寄
+        S.outbox.shift(); H.save();
+      }
+    } finally { sending = false; }
+  }
 
   // ---- 自動備份 ----
   const knownOf = S => Object.values(S.words || {}).filter(w => w && w.known).length;

@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 45;
+  const APP_VERSION = 46;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -987,6 +987,7 @@
       if (!it || S.fish < it.cost) return;
       if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定兌換？'; return; }
       S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today(), img: it.img || it.id });
+      if (window.LaraCloud) LaraCloud.notify({ type: 'redeem', name: it.name, cost: it.cost }, S);
       if (it.own) { S.wishes = S.wishes.filter(w => w.id !== it.id); if (S.goal === it.id) S.goal = ''; if (window.LaraCloud) LaraCloud.markRedeemed(it.id); }
       save();
       done();
@@ -1293,6 +1294,9 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 19, date: '11/27', items: [
+      '妳許願或兌換兌換券的時候，Alex 會馬上收到通知，不用再特地跟他說喔！'
+    ] },
     { id: 18, date: '11/27', items: [
       '按「記住了」「還不熟」、答對答錯的音效，不會再被單字的聲音蓋掉了。',
       '首頁貓咪說的話往上移了一點。'
