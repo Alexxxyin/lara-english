@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 36;
+  const APP_VERSION = 38;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -351,13 +351,13 @@
     const due = dueList().length, st = streakNow();
     const fillName = isDlg(u) ? '情境對話' : '例句填空';
     render(`
-      <div class="hello">
-        <div><h1>${greet()}，Lara</h1><p class="muted" style="font-size:14px">今天也來學一點英文</p></div>
-        <div class="badges">
-          ${st >= 1 ? `<span class="pill warm" data-streak>連續 ${st} 天</span>` : ''}
-          <span class="pill purple fish-pill" data-fish><img src="img/fish/fish.webp" alt="">小魚乾 <span data-count="${S.fish}">${S.fish}</span></span>
-          <a href="#settings" class="set-link">設定${hasNewLog() ? '<span class="bang">!</span>' : ''}</a>
-        </div>
+      <div class="hello2">
+        <h1>${greet()}，Lara</h1><p class="muted" style="font-size:14px">今天也來學一點英文</p>
+      </div>
+      <div class="home-chips">
+        <button class="chip-btn streak" data-streak id="streakBtn"><b>${st}</b><span>連續天數</span></button>
+        <button class="chip-btn fish" data-fish data-go="#collect/bowl"><span class="chip-top"><img src="img/fish/fish.webp" alt=""><b data-count="${S.fish}">${S.fish}</b></span><span>小魚乾</span></button>
+        <button class="chip-btn set" data-go="#settings">${hasNewLog() ? '<span class="bang">!</span>' : ''}<b>設定</b><span>${hasNewLog() ? '有新的更新' : '聲音、備份'}</span></button>
       </div>
       <div class="hero">
         <div class="txt">
@@ -366,7 +366,7 @@
           <span class="s">${esc(u.en)}・${n} 個單字</span>
           <button class="go" data-go="#flash/${u.id}">繼續學習</button>
         </div>
-        <div class="cat" id="heroCat"></div>
+        <div class="cat" id="heroCat"><div class="cat-say" id="catSay"></div></div>
       </div>
       <div class="card prog">
         <div class="ring">${ringSvg(k, n)}<div class="c"><b>${k}<small>/${n}</small></b><span>這個單元</span></div></div>
@@ -396,9 +396,26 @@
     `, 'home');
     bindGo();
     addCat(view.querySelector('#heroCat'));
+    const sb = view.querySelector('#streakBtn'); if (sb) sb.onclick = () => toast(st ? `已經連續學習 ${st} 天了，好棒！` : '今天學一點，就會開始累積天數喔');
+    // 點貓咪：頭上出現手寫小字（iPhone 剛打開時要點幾下才會喵，先告訴 Lara）
+    const catCv = view.querySelector('#heroCat canvas'), bubble = view.querySelector('#catSay');
+    if (catCv && bubble) catCv.addEventListener('click', () => {
+      catTaps++;
+      if (catTaps <= CAT_HINTS.length) bubble.textContent = CAT_HINTS[catTaps - 1];
+      else { let j; do { j = Math.floor(Math.random() * CAT_LINES.length); } while (j === lastLine && CAT_LINES.length > 1); lastLine = j; bubble.textContent = CAT_LINES[j]; }
+      bubble.classList.remove('show'); void bubble.offsetWidth; bubble.classList.add('show');
+      clearTimeout(bubble.__t); bubble.__t = setTimeout(() => bubble.classList.remove('show'), 2400);
+    });
     const bn = view.querySelector('#bkNow'); if (bn) bn.onclick = async () => { if (await backupNow()) pageHome(); };
     const bl = view.querySelector('#bkLater'); if (bl) bl.onclick = () => { S.backupSnooze = Date.now() + 1 * DAY; save(); pageHome(); };
   }
+  // 首頁貓咪頭上的話（前 5 下是提示，之後隨機）；index.html 的手寫字型只下載這些字，改了文字要一起更新
+  // 字體、顏色在 app.css 的 .cat-say；index.html 的字型網址只下載這些字，改了文字要一起更新
+  // Alex 2026-11-27 打的句子：前 3 句是提示句（依序出現），之後隨機（不連續重複同一句）
+  const CAT_HINTS = ["多點我幾下才會有聲音喔～", "多點我幾下才會有聲音喔～", "再點一下下就會喵喵叫囉～"];
+  const CAT_LINES = ["喵～今天也要加油喔！", "摸摸頭好舒服～", "學完一輪，給我小魚乾好嗎？", "我在這裡陪妳背單字喔～", "妳今天好認真！", "要適當休息ㄛ～", "今天喝水了咪？", "有摸摸雪寶咪？", "想尿尿就去尿哦！", "今天也棒棒der ^ ^", "累了就睡一下ㄅ", "偶爾也要走出房間看看Alex喔"];
+  let lastLine = -1;
+  let catTaps = 0;
   function bindGo() { view.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go)); }
 
   // ---------- 單元清單 ----------
@@ -799,10 +816,36 @@
       </div>`; }).join('')}</div>`;
   }
   function redeemedHtml() {
-    return `<div class="card"><b style="font-weight:900">我兌換過的</b>
-      ${S.redeemed.length ? `<div class="list" style="margin-top:10px">${S.redeemed.slice().reverse().map(r => { const it = REWARDS.find(x => x.name === r.name); return `
-        <div class="redeemed">${it ? `<img src="img/reward/${it.id}.webp" alt="">` : ''}<span><b>${esc(r.name)}</b><small>${esc(r.date)}・用了 ${r.cost} 隻</small></span></div>`; }).join('')}</div>`
+    return `<div class="card" id="redeemedList"><b style="font-weight:900">我兌換過的</b><p class="muted" style="font-size:12px;margin-top:2px">點一張可以再打開兌換券</p>
+      ${S.redeemed.length ? `<div class="list" style="margin-top:10px">${S.redeemed.map((r, k) => ({ r, k })).reverse().map(({ r, k }) => { const it = REWARDS.find(x => x.name === r.name); return `
+        <button class="redeemed" data-ticket="${k}">${it ? `<img src="img/reward/${it.id}.webp" alt="">` : ''}<span><b>${esc(r.name)}</b><small>${esc(r.date)}・用了 ${r.cost} 隻</small></span></button>`; }).join('')}</div>`
       : '<p class="muted" style="font-size:13px;margin-top:6px">還沒有兌換過，存夠小魚乾就可以換囉。</p>'}</div>`;
+  }
+  // 兌換券卡片：剛兌換時（fresh）有慶祝並提醒截圖給 Alex；之後在「我兌換過的」點開可以再看
+  function ticketCard(k, fresh, done) {
+    const r = S.redeemed[k]; if (!r) return;
+    const it = REWARDS.find(x => x.name === r.name) || {};
+    const m = document.createElement('div'); m.className = 'fx-modal ticket-modal';
+    m.innerHTML = `<div class="ticket ${r.used ? 'is-used' : ''}">
+      ${fresh ? '<div class="ticket-title">兌換成功！</div>' : ''}
+      <div class="ticket-body">
+        <div class="ticket-cat"></div>
+        <img class="ticket-ico" src="img/reward/${it.id || 'wish'}.webp" alt="">
+        <b class="ticket-name">${esc(r.name)}</b>
+        <span class="ticket-meta">No. ${String(k + 1).padStart(3, '0')}・${esc(r.date)} 兌換・用了 ${r.cost} 隻小魚乾</span>
+        <p class="ticket-tip">請截圖這個畫面，然後跟 Alex 兌換喔！</p>
+      </div>
+      <div class="ticket-btns">
+        <button class="btn" data-t="ok" style="min-width:140px">好</button>
+      </div>
+    </div>`;
+    let cat = null;
+    const close = () => { if (cat) cat.stop(); m.remove(); if (done) done(); if (fresh) setTimeout(() => { const el = document.getElementById('redeemedList'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80); };
+    m.onclick = e => { if (e.target === m) close(); };
+    m.querySelector('[data-t="ok"]').onclick = close;
+    document.body.appendChild(m);
+    if (window.CatPlayer) cat = CatPlayer(m.querySelector('.ticket-cat'), { actions: fresh ? ['pawsup', 'roll', 'belly', 'wave'] : ['wave', 'tilt'] });
+    if (fresh) { snd('complete'); setTimeout(() => snd('fish'), 800); setTimeout(() => hearts(m.querySelector('.ticket-ico')), 200); }
   }
   // 綁定兌換券按鈕；done 是兌換或換目標後要重畫的頁面
   function bindRewards(done) {
@@ -812,8 +855,10 @@
       if (S.fish < it.cost) return;
       if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定兌換？'; return; }
       S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today() }); save();
-      snd('complete'); toast('兌換好了：' + it.name); done();
+      done();
+      ticketCard(S.redeemed.length - 1, true, done);
     });
+    view.querySelectorAll('[data-ticket]').forEach(b => b.onclick = () => ticketCard(+b.dataset.ticket, false, done));
   }
   function nextGoal(fish) {
     const list = REWARDS.filter(x => x.cost > fish).sort((a, b) => a.cost - b.cost);
@@ -1089,6 +1134,12 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 13, date: '11/27', items: [
+      '首頁「今天也來學一點英文」下面多了三顆按鈕：連續天數、小魚乾、設定，比較好按。',
+      '最下面的「首頁、單元、錯題本、收藏、獎勵」換成可愛的小圖。',
+      '點首頁的三花貓，牠頭上會跟妳說話喔，多點幾下看看～',
+      '兌換獎勵時會跳出一張可愛的兌換券，請截圖給 Alex 就可以兌換囉！'
+    ] },
     { id: 12, date: '11/27', items: [
       '主畫面的圖示換成「三花貓從書本後面探頭」，名字改成「Lara努力學習」。桌面上的舊圖示不會自己換，想換新圖示的話，請照 Alex 給妳的步驟做（要先備份，不然進度會不見）。'
     ] },

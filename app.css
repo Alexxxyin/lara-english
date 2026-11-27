@@ -17,7 +17,7 @@
   --bad: #9B2C20; --bad-bg: #FDE7E4;
   --warm: #8A4200; --warm-bg: #FFEBD6;
   --shadow: 0 4px 14px rgba(214, 80, 127, 0.08);
-  --nav-h: 64px;
+  --nav-h: 70px;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; background: var(--bg); color: var(--ink); }
@@ -40,8 +40,12 @@ img { display: block; }
 /* 底部導覽 */
 nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: #FFFFFF; border-top: 1px solid var(--line); border-radius: 22px 22px 0 0; box-shadow: 0 -4px 16px rgba(214, 80, 127, 0.06); padding-bottom: env(safe-area-inset-bottom); }
 nav.tabs .in { max-width: 480px; margin: 0 auto; height: var(--nav-h); display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; padding: 0 6px; }
-nav.tabs a { justify-self: center; font-size: 14px; font-weight: 800; color: var(--muted); padding: 10px 10px; white-space: nowrap; border-radius: 999px; text-decoration: none; }
-nav.tabs a.on { color: var(--primary-ink); background: var(--primary-soft); font-weight: 900; }
+/* 底部導覽：ChatGPT 畫的小圖＋文字，選中的放大浮起來 */
+nav.tabs a { justify-self: center; display: flex; flex-direction: column; align-items: center; gap: 1px; font-size: 12px; font-weight: 800; color: var(--muted); white-space: nowrap; text-decoration: none; padding: 2px 4px; }
+nav.tabs a img { width: 38px; height: 38px; object-fit: contain; transition: transform 0.2s cubic-bezier(.2,1.6,.4,1); }
+nav.tabs a:active img { transform: scale(0.9); }
+nav.tabs a.on img { transform: translateY(-4px) scale(1.15); background: var(--primary-soft); border-radius: 50%; padding: 3px; }
+nav.tabs a.on span { color: var(--primary-ink); font-weight: 900; }
 
 /* 共用 */
 h1, h2, h3, p { margin: 0; }
@@ -394,3 +398,47 @@ h1, h2, h3, p { margin: 0; }
 .log-item li { font-size: 14px; line-height: 1.6; }
 
 .backup-card p b.hl { font-size: 12px; color: #06A04A; }
+
+/* 首頁：問候下面三顆按鈕 */
+.hello2 h1 { font-size: 26px; font-weight: 900; }
+.home-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.chip-btn { position: relative; background: #FFFFFF; border: 2px solid var(--line); border-radius: 18px; padding: 8px 6px; display: flex; flex-direction: column; align-items: center; gap: 1px; box-shadow: 0 3px 0 #F3DCE5; }
+.chip-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #F3DCE5; }
+.chip-btn b { font-size: 20px; font-weight: 900; line-height: 1.2; }
+.chip-btn > span:last-child { font-size: 11px; font-weight: 800; color: var(--muted); }
+.chip-btn.streak { background: #FFF3E3; border-color: #FFE0B8; box-shadow: 0 3px 0 #F7D9B0; }
+.chip-btn.streak b { color: #B4600A; }
+.chip-btn.fish { background: #FFF0F5; border-color: var(--primary-soft); }
+.chip-btn.fish b { color: var(--primary-ink); }
+.chip-top { display: flex; align-items: center; gap: 4px; }
+.chip-top img { width: 24px; height: 24px; }
+.chip-btn.set { background: #F3EEFF; border-color: #E3D9FF; box-shadow: 0 3px 0 #DDD2F7; }
+.chip-btn.set b { color: #6A4FB8; font-size: 17px; line-height: 1.4; }
+.chip-btn .bang { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; font-size: 14px; border: 2px solid #FFFFFF; }
+/* 貓咪頭上的小字：沒有對話框，直接放字，白色外光讓字在粉紅底上看得清楚 */
+.hero .cat { position: relative; }
+.cat-say { position: absolute; right: 0; bottom: 82%; transform-origin: 80% 100%; transform: translateY(6px) scale(0.7); opacity: 0; pointer-events: none; white-space: nowrap; font-family: 'Huninn', 'Noto Sans TC', sans-serif; font-weight: 400; font-size: 12px; color: #C2185B; text-shadow: 0 0 3px #FFFFFF, 0 0 3px #FFFFFF, 0 0 6px #FFFFFF, 0 0 8px #FFFFFF; transition: opacity 0.2s, transform 0.25s cubic-bezier(.2,1.6,.4,1); z-index: 3; }
+.cat-say.show { opacity: 1; transform: translateY(-2px) scale(1); }
+
+/* 兌換券卡片 */
+.ticket { width: 100%; max-width: 330px; background: #FFFFFF; border-radius: 26px; padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 10px; animation: fxIn 0.35s cubic-bezier(.2,1.4,.4,1); position: relative; }
+.ticket-title { align-self: center; background: var(--btn); color: #FFFFFF; font-size: 20px; font-weight: 900; padding: 6px 22px; border-radius: 999px; box-shadow: 0 4px 0 #B23F69; animation: ribbonIn 0.6s cubic-bezier(.2,1.6,.4,1); }
+.ticket-body { position: relative; border: 3px dashed #F7B8CF; border-radius: 20px; background: #FFF6F9; padding: 14px 12px 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; overflow: hidden; }
+.ticket-body::before, .ticket-body::after { content: ''; position: absolute; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%; background: #FFFFFF; border: 3px dashed #F7B8CF; }
+.ticket-body::before { left: -14px; } .ticket-body::after { right: -14px; }
+.ticket-ico { width: 110px; height: 110px; object-fit: contain; }
+.ticket-cat { position: absolute; left: 4px; top: 4px; width: 74px; height: 74px; }
+.ticket-name { font-size: 20px; font-weight: 900; }
+.ticket-meta { font-size: 12px; color: var(--muted); }
+.ticket-tip { font-size: 14px; font-weight: 900; color: var(--primary-ink); background: #FFFFFF; padding: 6px 12px; border-radius: 999px; margin-top: 2px; }
+.ticket-stamp { position: absolute; right: 10px; top: 12px; transform: rotate(-14deg); border: 3px solid #D84A7E; color: #D84A7E; border-radius: 14px; padding: 4px 12px; font-size: 22px; font-weight: 900; display: flex; flex-direction: column; align-items: center; line-height: 1.1; background: rgba(255,255,255,0.75); animation: stampIn 0.4s cubic-bezier(.2,1.6,.4,1); }
+.ticket-stamp small { font-size: 10px; font-weight: 800; }
+@keyframes stampIn { from { transform: rotate(-14deg) scale(2); opacity: 0; } }
+.ticket.is-used .ticket-ico { opacity: 0.55; }
+.ticket-btns { display: flex; gap: 8px; justify-content: center; }
+.redeemed { width: 100%; text-align: left; }
+.redeemed span { flex-grow: 1; }
+.redeemed em { font-style: normal; font-size: 12px; font-weight: 900; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.redeemed em.wait { color: var(--primary-ink); background: var(--primary-soft); }
+.redeemed em.used { color: var(--muted); background: #F1E8EC; }
+.ticket-modal { z-index: 75; }
