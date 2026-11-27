@@ -311,7 +311,12 @@ h1, h2, h3, p { margin: 0; }
 @keyframes fxLevel { 0% { transform: scale(1); } 35% { transform: scale(1.25) translateY(-8px); } 100% { transform: scale(1); } }
 
 .reward { align-items: flex-start; }
-.reward.is-goal { border: 2px solid var(--primary); }
+.reward.is-goal { position: relative; margin-top: 12px; padding-top: 22px; border: 2px solid var(--primary); background-color: var(--hero); background-image: radial-gradient(var(--hero-dot) 18%, transparent 19%); background-size: 22px 22px; }
+.reward.is-goal .reward-ico { width: 72px; height: 72px; }
+.reward.is-goal b { font-size: 17px; }
+.reward.is-goal .bar { height: 14px !important; background: #FFFFFF; }
+.reward.is-goal .reward-foot { font-size: 13px; color: var(--ink); }
+.goal-ribbon { position: absolute; top: -13px; left: 18px; background: var(--btn); color: #FFFFFF; font-size: 13px; font-weight: 900; padding: 4px 14px; border-radius: 999px; box-shadow: 0 3px 0 #B23F69; }
 .reward-btns { display: flex; gap: 8px; justify-content: flex-end; align-items: center; margin-top: 2px; }
 .reward-btns .btn { height: 36px; padding: 0 14px; font-size: 14px; }
 .reward-btns .btn:disabled { background: #EADDE3; color: #9C8592; box-shadow: none; opacity: 1; }
@@ -442,3 +447,27 @@ h1, h2, h3, p { margin: 0; }
 .redeemed em.wait { color: var(--primary-ink); background: var(--primary-soft); }
 .redeemed em.used { color: var(--muted); background: #F1E8EC; }
 .ticket-modal { z-index: 75; }
+
+/* 許願池 */
+.wish-tag { font-size: 11px; font-weight: 900; color: #FFFFFF; background: #B98AE0; border-radius: 999px; padding: 2px 8px; margin-right: 6px; vertical-align: 2px; }
+.btn.wish-del { background: transparent; color: var(--muted); box-shadow: none; border: 2px solid var(--line); }
+.wish-pool { display: flex; flex-direction: column; gap: 10px; background: linear-gradient(#FFFFFF, #FFF3F8); border: 2px dashed #F7B8CF; box-shadow: none; }
+.wish-head { display: flex; align-items: center; gap: 10px; }
+.wish-head img { width: 52px; height: 52px; object-fit: contain; }
+.wish-head span { display: flex; flex-direction: column; gap: 2px; }
+.wish-head b { font-size: 17px; font-weight: 900; }
+.wish-head small { font-size: 12px; color: var(--muted); font-weight: 700; }
+.wish-sizes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.wish-size { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 8px 0; border-radius: 14px; background: #FFFFFF; border: 2px solid var(--line); color: var(--ink); }
+.wish-size b { font-size: 14px; font-weight: 900; }
+.wish-size small { font-size: 11px; color: var(--muted); font-weight: 800; }
+.wish-size.on { border-color: var(--primary); background: var(--primary-soft); }
+.wish-size.on b { color: var(--primary-ink); }
+.wish-pend { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.wish-pend > b { font-size: 13px; font-weight: 900; color: var(--muted); }
+.wish-row { display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 2px solid var(--line); border-radius: 14px; padding: 8px 10px; }
+.wish-row-t { flex-grow: 1; min-width: 0; display: flex; flex-direction: column; }
+.wish-row-t b { font-size: 14px; font-weight: 900; }
+.wish-row-t small { font-size: 11px; color: var(--muted); font-weight: 800; }
+.wish-wait { font-size: 12px; font-weight: 900; color: #8A5CB8; background: #F1E6FB; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+.wish-x { font-size: 12px; font-weight: 800; color: var(--muted); background: transparent; border: 0; padding: 4px 2px; }

@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 40;
+  const APP_VERSION = 41;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -267,9 +267,14 @@
     u.rate = slow ? 0.4 : S.settings.rate;
     u.volume = 1;
     // 一定要留住這個物件：iPhone 會把沒人參照的句子回收掉，唸到一半就斷或根本不唸
-    const job = { u, text, slow, started: false, ended: false };
+    const job = { u, text, slow, started: false, ended: false, at: Date.now() };
     current = job;
-    u.onstart = () => { job.started = true; slog('開始 ' + text); };
+    u.onstart = () => {
+      job.started = true; job.at = Date.now(); slog('開始 ' + text);
+      // 唸太久還沒結束 → 多半是 iPhone 卡住（說在唸、其實沒聲音），記下來並清掉，下一次按才唸得出來
+      const ms = (String(text).length * 90) / (slow ? 0.4 : S.settings.rate) + 2500;
+      setTimeout(() => { if (current === job && !job.ended) { slog('唸太久，可能卡住，清掉 ' + text); job.ended = true; current = null; try { s.cancel(); } catch (e) {} } }, ms);
+    };
     u.onend = () => { job.ended = true; if (current === job) current = null; };
     u.onerror = e => { job.ended = true; slog('錯誤 ' + (e.error || '') + ' ' + text); if (current === job) current = null; };
     if (s.paused) s.resume();
@@ -287,14 +292,18 @@
       const s = window.speechSynthesis; if (!s) return;
       clearTimeout(sayTimer);
       if (now) clearTimeout(autoT);
-      // 正在唸同一個字、同樣速度 → 讓它唸完就好，不要停掉重來（停掉馬上重唸，iPhone 常常會吃掉）
-      if (current && current.text === text && !!current.slow === !!slow && s.speaking && !current.ended) { slog('同一句正在唸，不重來 ' + text); return; }
+      // 同一句剛開始唸（1 秒內又按）→ 當成連點，讓它唸完；超過 1 秒還在按，多半是 iPhone 卡住沒聲音，停掉重唸
+      let stuck = false;
+      if (current && current.text === text && !!current.slow === !!slow && s.speaking && !current.ended) {
+        if (Date.now() - current.at < 1000) { slog('同一句正在唸，不重來 ' + text); return; }
+        stuck = true; slog('又按了同一句，停掉重唸 ' + text);
+      }
       const busy = s.speaking || s.pending;
       // 佇列卡住（有排隊、卻沒在唸）也先清掉
       if (busy) s.cancel();
       // 自己按的：沒東西在唸就當下立刻唸；有東西在唸就先停，隔 60 毫秒再唸（同一瞬間停又唸會被吃掉）
       // 自動唸的：等音效過去再唸
-      const wait = now ? (busy ? 60 : 0) : Math.max(busy ? 120 : 0, (FX.busyUntil || 0) - Date.now());
+      const wait = now ? (stuck ? 250 : busy ? 60 : 0) : Math.max(busy ? 120 : 0, (FX.busyUntil || 0) - Date.now());
       if (wait) sayTimer = setTimeout(() => speakNow(text, slow), wait); else speakNow(text, slow);
     } catch (e) { slog('例外 ' + e.message); }
   }
@@ -782,6 +791,13 @@
     { id: 'sushi', name: '壽司郎兌換券', cost: 800 },
     { id: 'wish', name: '萬用許願兌換券', cost: 5000 }
   ];
+  // 許願池：Lara 自己寫願望、選大小 → 先「審核中」（status: 'pending'），Alex 同意後（status: 'ok'）才變成她的兌換券；
+  // 換過一次就收進「我兌換過的」
+  const WISH_SIZES = [{ k: 's', label: '小願望', cost: 300 }, { k: 'm', label: '中願望', cost: 800 }, { k: 'l', label: '大願望', cost: 2000 }];
+  const WISH_MAX = 5;
+  function allRewards() { return REWARDS.concat((S.wishes || []).filter(w => w.status === 'ok').map(w => ({ id: w.id, name: w.name, cost: w.cost, img: 'wish', own: true }))); }
+  const rewardImg = it => `img/reward/${(it && (it.img || it.id)) || 'wish'}.webp`;
+  const findReward = id => allRewards().find(x => x.id === id);
   // 碗裡的份量（0 空碗～5 滿出來），看「離我的目標」的比例；夠換目標那張就是滿出來
   function bowlLevel(fish) {
     if (fish <= 0) return 0;
@@ -792,45 +808,63 @@
   const bowlImg = fish => `img/bowl/lv${bowlLevel(fish)}.webp`;
   // Lara 選的目標（還沒選就用最接近、還換不起的那張）
   function myGoal(fish) {
-    const g = REWARDS.find(x => x.id === S.goal);
+    const g = findReward(S.goal);
     return g || nextGoal(fish);
   }
   function redeemCount(r) { return S.redeemed.filter(x => x.name === r.name).length; }
   // 兌換券清單（獎勵頁和收藏頁共用）：每張都有進度條、還差幾隻、設為目標、兌換
   function rewardListHtml() {
     const goal = myGoal(S.fish);
-    return `<div class="list">${REWARDS.map((it, k) => {
+    // 我的目標排第一張，其他照原本順序（k 保留原本的編號，兌換按鈕才不會對錯）
+    const order = allRewards().sort((a, b) => (goal && b.id === goal.id) - (goal && a.id === goal.id));
+    return `<div class="list">${order.map(it => {
       const p = Math.round(Math.min(S.fish, it.cost) / it.cost * 100), left = Math.max(0, it.cost - S.fish), n = redeemCount(it), isGoal = goal && goal.id === it.id;
       return `
       <div class="card reward ${isGoal ? 'is-goal' : ''}">
-        <img class="reward-ico" src="img/reward/${it.id}.webp" alt="">
+        ${isGoal ? '<span class="goal-ribbon">我的目標</span>' : ''}
+        <img class="reward-ico" src="${rewardImg(it)}" alt="">
         <div class="t">
-          <div><b>${esc(it.name)}</b><span class="muted" style="font-size:12px;font-weight:800;white-space:nowrap">${it.cost} 隻</span></div>
+          <div><b>${it.own ? '<span class="wish-tag">我的願望</span>' : ''}${esc(it.name)}</b><span class="muted" style="font-size:12px;font-weight:800;white-space:nowrap">${it.cost} 隻</span></div>
           <div class="bar" style="height:10px"><div style="width:${p}%"></div></div>
           <span class="reward-foot">${left ? `${S.fish} / ${it.cost}・還差 <b>${left}</b> 隻` : '<b>可以兌換了！</b>'}${n ? `・已兌換 ${n} 次` : ''}</span>
           <div class="reward-btns">
-            ${isGoal ? '<span class="goal-tag">我的目標</span>' : `<button class="btn soft small" data-goal="${it.id}">設為目標</button>`}
-            <button class="btn small" data-redeem="${k}" ${left ? 'disabled' : ''}>兌換</button>
+            ${it.own ? `<button class="btn wish-del small" data-unwish="${it.id}">刪掉</button>` : ''}
+            ${isGoal ? '' : `<button class="btn soft small" data-goal="${it.id}">設為目標</button>`}
+            <button class="btn small" data-redeem="${it.id}" ${left ? 'disabled' : ''}>兌換</button>
           </div>
         </div>
-      </div>`; }).join('')}</div>`;
+      </div>`; }).join('')}</div>
+    ${wishPoolHtml()}`;
+  }
+  function wishPoolHtml() {
+    const n = (S.wishes || []).length, pend = (S.wishes || []).filter(w => w.status !== 'ok');
+    return `<div class="card wish-pool">
+      <div class="wish-head"><img src="img/reward/wish.webp" alt=""><span><b>許願池</b><small>想要什麼，自己寫下來！Alex 看過以後，就會變成妳的兌換券</small></span></div>
+      ${n >= WISH_MAX ? `<p class="muted" style="font-size:13px">已經許了 ${WISH_MAX} 個願望囉，先換掉或刪掉一個，才能再許新的。</p>` : `
+      <input class="field" id="wishName" maxlength="16" placeholder="例如：去看電影、買一本漫畫">
+      <div class="wish-sizes">${WISH_SIZES.map((z, i) => `<button class="wish-size ${i === 0 ? 'on' : ''}" data-wsize="${z.k}"><b>${z.label}</b><small>${z.cost} 隻</small></button>`).join('')}</div>
+      <button class="btn" id="wishGo">許願</button>`}
+      ${pend.length ? `<div class="wish-pend"><b>等 Alex 看過的願望</b>${pend.map(w => `
+        <div class="wish-row"><span class="wish-row-t"><b>${esc(w.name)}</b><small>${(WISH_SIZES.find(z => z.cost === w.cost) || {}).label || ''}・${w.cost} 隻</small></span>
+          <span class="wish-wait">審核中</span><button class="wish-x" data-unwish="${w.id}">刪掉</button></div>`).join('')}</div>` : ''}
+    </div>`;
   }
   function redeemedHtml() {
     return `<div class="card" id="redeemedList"><b style="font-weight:900">我兌換過的</b><p class="muted" style="font-size:12px;margin-top:2px">點一張可以再打開兌換券</p>
-      ${S.redeemed.length ? `<div class="list" style="margin-top:10px">${S.redeemed.map((r, k) => ({ r, k })).reverse().map(({ r, k }) => { const it = REWARDS.find(x => x.name === r.name); return `
-        <button class="redeemed" data-ticket="${k}">${it ? `<img src="img/reward/${it.id}.webp" alt="">` : ''}<span><b>${esc(r.name)}</b><small>${esc(r.date)}・用了 ${r.cost} 隻</small></span></button>`; }).join('')}</div>`
+      ${S.redeemed.length ? `<div class="list" style="margin-top:10px">${S.redeemed.map((r, k) => ({ r, k })).reverse().map(({ r, k }) => { const it = allRewards().find(x => x.name === r.name) || { img: r.img || 'wish' }; return `
+        <button class="redeemed" data-ticket="${k}"><img src="${rewardImg(it)}" alt=""><span><b>${esc(r.name)}</b><small>${esc(r.date)}・用了 ${r.cost} 隻</small></span></button>`; }).join('')}</div>`
       : '<p class="muted" style="font-size:13px;margin-top:6px">還沒有兌換過，存夠小魚乾就可以換囉。</p>'}</div>`;
   }
   // 兌換券卡片：剛兌換時（fresh）有慶祝並提醒截圖給 Alex；之後在「我兌換過的」點開可以再看
   function ticketCard(k, fresh, done) {
     const r = S.redeemed[k]; if (!r) return;
-    const it = REWARDS.find(x => x.name === r.name) || {};
+    const it = allRewards().find(x => x.name === r.name) || { img: r.img || 'wish' };
     const m = document.createElement('div'); m.className = 'fx-modal ticket-modal';
     m.innerHTML = `<div class="ticket ${r.used ? 'is-used' : ''}">
       ${fresh ? '<div class="ticket-title">兌換成功！</div>' : ''}
       <div class="ticket-body">
         <div class="ticket-cat"></div>
-        <img class="ticket-ico" src="img/reward/${it.id || 'wish'}.webp" alt="">
+        <img class="ticket-ico" src="${rewardImg(it)}" alt="">
         <b class="ticket-name">${esc(r.name)}</b>
         <span class="ticket-meta">No. ${String(k + 1).padStart(3, '0')}・${esc(r.date)} 兌換・用了 ${r.cost} 隻小魚乾</span>
         <p class="ticket-tip">請截圖這個畫面，然後跟 Alex 兌換喔！</p>
@@ -851,25 +885,47 @@
   function bindRewards(done) {
     view.querySelectorAll('[data-goal]').forEach(b => b.onclick = () => { S.goal = b.dataset.goal; save(); toast('目標換好了'); done(); });
     view.querySelectorAll('[data-redeem]').forEach(b => b.onclick = () => {
-      const it = REWARDS[+b.dataset.redeem];
-      if (S.fish < it.cost) return;
+      const it = findReward(b.dataset.redeem);
+      if (!it || S.fish < it.cost) return;
       if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定兌換？'; return; }
-      S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today() }); save();
+      S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today(), img: it.img || it.id });
+      if (it.own) { S.wishes = S.wishes.filter(w => w.id !== it.id); if (S.goal === it.id) S.goal = ''; }
+      save();
       done();
       ticketCard(S.redeemed.length - 1, true, done);
     });
     view.querySelectorAll('[data-ticket]').forEach(b => b.onclick = () => ticketCard(+b.dataset.ticket, false, done));
+    view.querySelectorAll('[data-unwish]').forEach(b => b.onclick = () => {
+      if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定刪掉？'; return; }
+      S.wishes = (S.wishes || []).filter(w => w.id !== b.dataset.unwish);
+      if (S.goal === b.dataset.unwish) S.goal = '';
+      save(); toast('刪掉了'); done();
+    });
+    let size = WISH_SIZES[0];
+    view.querySelectorAll('[data-wsize]').forEach(b => b.onclick = () => {
+      size = WISH_SIZES.find(z => z.k === b.dataset.wsize);
+      view.querySelectorAll('[data-wsize]').forEach(x => x.classList.toggle('on', x === b));
+    });
+    const go = view.querySelector('#wishGo');
+    if (go) go.onclick = () => {
+      const inp = view.querySelector('#wishName'), name = inp.value.trim();
+      if (!name) { toast('先寫下妳的願望喔'); inp.focus(); return; }
+      S.wishes = S.wishes || [];
+      const id = 'w' + Date.now();
+      S.wishes.push({ id, name, cost: size.cost, status: 'pending', date: today() });
+      save(); snd('fish'); toast('許好願了！等 Alex 看過喔'); done();
+    };
   }
   function nextGoal(fish) {
-    const list = REWARDS.filter(x => x.cost > fish).sort((a, b) => a.cost - b.cost);
+    const list = allRewards().filter(x => x.cost > fish).sort((a, b) => a.cost - b.cost);
     return list[0] || null;
   }
   function goalHtml(u, after) {
     const g = myGoal(after);
-    const ready = REWARDS.filter(x => x.cost <= after);
+    const ready = allRewards().filter(x => x.cost <= after);
     let h = '';
     if (g) {
-      h += `<div class="goal"><div class="goal-top"><img class="goal-ico" src="img/reward/${g.id}.webp" alt=""><span>我的目標</span><b>${esc(g.name)}</b></div>
+      h += `<div class="goal"><div class="goal-top"><img class="goal-ico" src="${rewardImg(g)}" alt=""><span>我的目標</span><b>${esc(g.name)}</b></div>
         <div class="goal-bar"><div id="goalFill" style="width:${Math.max(0, Math.min(100, (after - (window.__goalGain || 0)) / g.cost * 100))}%"></div></div>
         <div class="goal-foot"><span id="goalNow">${after - (window.__goalGain || 0)}</span> / ${g.cost} 隻・<b id="goalLeft">${after - (window.__goalGain || 0) >= g.cost ? '可以兌換了！' : '還差 ' + (g.cost - after + (window.__goalGain || 0)) + ' 隻'}</b></div></div>`;
     }
@@ -1134,6 +1190,11 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 15, date: '11/27', items: [
+      '妳設為目標的兌換券，現在會排在最上面，還換成粉紅點點的樣子，一眼就看得到！',
+      '按播放例句沒聲音的時候，現在再按一次就會重新唸，不會一直沒聲音了。',
+      '新的「許願池」！想要什麼可以自己寫下來，選小、中、大願望。Alex 看過以後，就會變成妳自己的兌換券！'
+    ] },
     { id: 14, date: '11/27', items: [
       '點例句裡的單字、按播放時，比較不會沒聲音了。',
       '最下面那一排往下移了一點，比較好按。'
