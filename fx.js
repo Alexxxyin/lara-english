@@ -66,11 +66,19 @@
   const LOCAL = { correct: 'sounds/correct.mp3', 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3', 1124: 'sounds/1124.mp3' }; // 已下載（Alex 2026-11-27 同意）
   const cache = {};
   const pool = {};
+  // 網頁一打開就先把音效檔下載好放進 <audio>（iPhone 只限制「播放」，不限制「下載」），
+  // 第一次點的時候就不用再等下載。
+  function makePool(id) {
+    if (pool[id]) return pool[id];
+    pool[id] = [0, 1, 2].map(() => { const a = new Audio(LOCAL[id]); a.preload = 'auto'; try { a.load(); } catch (e) {} return a; });
+    pool[id].i = 0;
+    return pool[id];
+  }
   // 每次點畫面都試著解鎖還沒解鎖成功的 <audio>（iPhone 只認 touchend／click 這類手勢）
   function unlockPool() {
     Object.keys(LOCAL).forEach(id => {
-      if (!pool[id]) { pool[id] = [0, 1, 2].map(() => { const a = new Audio(LOCAL[id]); a.preload = 'auto'; return a; }); pool[id].i = 0; }
-      pool[id].forEach(a => {
+      makePool(id).forEach((a, idx) => {
+        if (idx === 0) return; // 第一個留著給「第一次點擊」直接播放，不拿來靜音解鎖
         if (a.__ok || a.__trying || !a.paused) return;
         a.__trying = true; a.muted = true;
         const p = a.play();
@@ -79,10 +87,12 @@
       });
     });
   }
+  // 先用解鎖過的；第一次點時還沒解鎖，就直接用一個已經下載好的（這次點擊本身就能讓它播放）
   function fromPool(id) {
     const list = pool[id]; if (!list) return null;
-    const ok = list.filter(a => a.__ok); if (!ok.length) return null;
-    return ok.find(a => a.paused) || ok[list.i++ % ok.length];
+    const ok = list.filter(a => a.__ok);
+    if (ok.length) return ok.find(a => a.paused) || ok[list.i++ % ok.length];
+    return list.find(a => a.paused && !a.__trying) || null;
   }
   // opts: max 最多播幾秒（之後淡出）、rate 播放速度（<1 會變慢變低）、times 連續播幾次、gap 每次間隔秒數、rates 每次的速度
   // 音檔先整個解碼放進記憶體（Web Audio），點下去馬上出聲；還沒載好時才用 <audio> 頂著
@@ -118,7 +128,7 @@
           if (el) {
             try { el.pause(); el.currentTime = 0; } catch (e) {}
             el.preservesPitch = false; el.webkitPreservesPitch = false; el.playbackRate = r; el.volume = vol; el.muted = false;
-            const p = el.play(); if (p && p.catch) p.catch(() => {});
+            const p = el.play(); if (p && p.then) p.then(() => { el.__ok = true; }).catch(() => {});
             if (opts.max) { clearTimeout(el.__t); el.__t = setTimeout(() => el.pause(), (opts.max / r + 0.1) * 1000); }
             return;
           }
@@ -301,5 +311,10 @@
     setTimeout(() => el.remove(), 650);
   }
   document.addEventListener('pointerdown', paw, { passive: true });
+  // 網頁一打開就在背景準備音效（下載＋解碼），不出聲
+  function warmup() {
+    try { Object.keys(LOCAL).forEach(id => { makePool(id); preload(id); }); } catch (e) {}
+  }
+  if (document.readyState === 'complete') setTimeout(warmup, 300); else window.addEventListener('load', () => setTimeout(warmup, 300));
   window.FX = FX;
 })();

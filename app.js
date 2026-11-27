@@ -298,16 +298,20 @@
   }
   // 第一次碰螢幕時，在使用者手勢裡先唸一個聽不到的短字，iPhone 之後才會讓程式自動出聲
   let speechUnlocked = false;
-  function unlockSpeech() {
+  // 第一下就點了會唸東西的按鈕（單字圖、播放、慢速、例句單字⋯）：那個發音本身就能解鎖，不另外插一個字
+  const SPEAKS = '[data-say], #p1, #p2, #ps, #lp, #ls, [data-line], .tw, [data-ws], #sndtest button, #tv';
+  function unlockSpeech(e) {
     try {
-      const s = window.speechSynthesis; if (!s || speechUnlocked || s.speaking || s.pending) return;
+      const s = window.speechSynthesis; if (!s || speechUnlocked) return;
+      if (e && e.target && e.target.closest && e.target.closest(SPEAKS)) { speechUnlocked = true; return; }
+      if (s.speaking || s.pending) return;
       speechUnlocked = true;
       const u = new SpeechSynthesisUtterance('a'); u.volume = 0; u.rate = 2; u.lang = 'en-US';
       window.__unlockUtt = u; // 留住物件，避免被回收後卡住佇列
       s.speak(u);
     } catch (e) {}
   }
-  if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+  if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; setTimeout(loadVoices, 500); setTimeout(loadVoices, 1500); }
 
   // ---------- 畫面框架 ----------
   function setNav(on) {
@@ -1083,6 +1087,9 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 10, date: '11/27', items: [
+      '剛打開網站時，第一次點貓咪或單字圖比較不會卡、不會沒聲音了。'
+    ] },
     { id: 9, date: '11/27', items: [
       '設定裡多了「更新日誌」，網站有新東西時，首頁右上角的「設定」旁邊會出現「!」提醒妳。',
       '每隔 3 天，首頁會提醒妳備份一次學習進度。按「現在備份」，選 LINE 傳給自己就好；進度不見時，在 LINE 點開那個檔案，到「設定 → 匯入備份」就能找回來。'
@@ -1233,8 +1240,8 @@
   try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
   document.addEventListener('pointerdown', () => FX.unlock(), { capture: true, passive: true });
   ['touchend', 'click'].forEach(t => document.addEventListener(t, () => FX.unlock(), { capture: true, passive: true }));
-  document.addEventListener('touchstart', () => { FX.unlock(); unlockSpeech(); }, { once: true, passive: true });
-  document.addEventListener('click', () => { FX.unlock(); unlockSpeech(); }, { once: true });
+  document.addEventListener('touchstart', e => { FX.unlock(); unlockSpeech(e); }, { once: true, passive: true });
+  document.addEventListener('click', e => { FX.unlock(); unlockSpeech(e); }, { once: true });
 
   async function start() {
     load(); syncSound();
