@@ -416,7 +416,7 @@
       const f = order[i], w = WORDS[f], s = sentenceFor(f);
       render(`
         ${topBar('單字卡・' + unitLabel(u), `${i + 1} / ${order.length}`, '#unit/' + u.id)}
-        <div class="bar"><div style="width:${(i / order.length) * 100}%"></div></div>
+        <div class="bar"><div style="width:${((i + 1) / order.length) * 100}%"></div></div>
         <div class="card fc" id="fc">
           <img class="wimg" src="${img(f)}" alt="">
           <div class="word-big">${esc(w.en)}</div>
@@ -467,7 +467,7 @@
       const q = opts.build(f);
       render(`
         ${topBar(opts.title, `${i + 1} / ${opts.items.length}`, opts.back)}
-        <div class="bar"><div style="width:${(i / opts.items.length) * 100}%"></div></div>
+        <div class="bar"><div style="width:${((i + 1) / opts.items.length) * 100}%"></div></div>
         <div class="card q-card ${q.kind === 'img' ? 'q-listen' : ''}" id="qc">${q.html}</div>
         <div class="${q.kind === 'img' ? 'img-opts' : 'opts'}" id="opts">
           ${q.choices.map((c, k) => q.kind === 'img'
@@ -562,7 +562,7 @@
       const hint = ans.split('').map((c, k) => c === ' ' ? '&nbsp;&nbsp;' : k < hintN ? esc(c) : '_').join(' ');
       render(`
         ${topBar('拼字測驗・' + unitLabel(u), `${i + 1} / ${items.length}`, '#unit/' + u.id)}
-        <div class="bar"><div style="width:${(i / items.length) * 100}%"></div></div>
+        <div class="bar"><div style="width:${((i + 1) / items.length) * 100}%"></div></div>
         <div class="card q-card" id="qc">
           <img class="wimg" src="${img(f)}" alt="" style="width:52%">
           <div class="q-prompt">${esc(w.zh)}</div>
@@ -616,7 +616,7 @@
       const f = items[i], w = WORDS[f];
       render(`
         ${topBar('口說跟讀・' + unitLabel(u), `${i + 1} / ${items.length}`, '#unit/' + u.id)}
-        <div class="bar"><div style="width:${(i / items.length) * 100}%"></div></div>
+        <div class="bar"><div style="width:${((i + 1) / items.length) * 100}%"></div></div>
         <div class="card q-card" id="qc">
           <img class="wimg" src="${img(f)}" alt="" style="width:50%">
           <div class="word-big">${esc(w.en)}</div>
