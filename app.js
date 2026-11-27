@@ -18,6 +18,7 @@
   function load() {
     try { S = Object.assign(blank(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = blank(); }
     S.settings = Object.assign(blank().settings, S.settings || {});
+    if (!S.firstUse) { S.firstUse = Date.now(); save(); }
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
   function W(f) { return S.words[f] || (S.words[f] = { box: 0, due: 0, miss: 0, right: 0, known: false }); }
@@ -189,6 +190,34 @@
   function bindTapWords(root) {
     (root || view).querySelectorAll('.tw').forEach(t => t.onclick = e => { e.stopPropagation(); wordSheet(t.dataset.w, t.dataset.f, t); });
   }
+  // ---------- 備份 ----------
+  const BACKUP_DAYS = 3; // Alex 2026-11-27：每 3 天提醒一次
+  async function backupNow() {
+    const name = 'lara-english-backup-' + today() + '.json';
+    const text = JSON.stringify(S, null, 1);
+    let ok = false;
+    try {
+      const file = new File([text], name, { type: 'application/json' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: 'Lara 英文備份' });
+        ok = true;
+      }
+    } catch (e) { if (e && e.name === 'AbortError') return false; }
+    if (!ok) {
+      const blob = new Blob([text], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+    S.lastBackup = Date.now(); S.backupSnooze = 0; save();
+    toast('備份好了');
+    return true;
+  }
+  // 要不要在首頁提醒：有在學、而且離上次備份（或開始用）超過 3 天、也沒有按「之後再說」
+  function needBackup() {
+    const learned = Object.keys(S.words).length > 0;
+    const since = S.lastBackup || S.firstUse || Date.now();
+    return learned && Date.now() - since > BACKUP_DAYS * DAY && Date.now() > (S.backupSnooze || 0);
+  }
   function toast(msg) {
     const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
     document.body.appendChild(t); setTimeout(() => t.remove(), 1800);
@@ -321,7 +350,7 @@
         <div class="badges">
           ${st >= 1 ? `<span class="pill warm" data-streak>連續 ${st} 天</span>` : ''}
           <span class="pill purple fish-pill" data-fish><img src="img/fish/fish.webp" alt="">小魚乾 <span data-count="${S.fish}">${S.fish}</span></span>
-          <a href="#settings" class="muted" style="font-size:12px;font-weight:800;text-decoration:none;padding:2px 4px">設定</a>
+          <a href="#settings" class="set-link">設定${hasNewLog() ? '<span class="bang">!</span>' : ''}</a>
         </div>
       </div>
       <div class="hero">
@@ -350,6 +379,10 @@
         <button class="tile" style="background:#FCE6EE" data-go="#speak/${u.id}"><b>口說跟讀</b><span>唸給手機聽</span></button>
         <button class="tile" style="background:#FFF4CC" data-go="#fill/${u.id}"><b>${fillName}</b><span>${isDlg(u) ? '在餐廳說說看' : '把字放進句子'}</span></button>
       </div>
+      ${needBackup() ? `<div class="card backup-card">
+        <div><b>該備份囉</b><p>${S.lastBackup ? `上次備份是 ${Math.floor((Date.now() - S.lastBackup) / DAY)} 天前` : '還沒備份過'}。按「現在備份」，選 <b class="hl">LINE</b>，傳給自己就好。換手機或進度不見時，在 LINE 點開那個檔案，再到「設定 → 匯入備份」就能找回來。</p></div>
+        <div class="backup-btns"><button class="btn soft small" id="bkLater">之後再說</button><button class="btn small" id="bkNow">現在備份</button></div>
+      </div>` : ''}
       <div class="card row-card">
         <div><b style="font-size:15px;font-weight:900">錯題本</b><p class="muted" style="font-size:12px;margin-top:2px">${due ? `有 ${due} 個字該複習了` : weakList().length ? '今天沒有要複習的字' : '還沒有答錯的字'}</p></div>
         <button class="btn small" style="background:var(--warm-bg);color:var(--warm)" data-go="#review">去看看</button>
@@ -357,6 +390,8 @@
     `, 'home');
     bindGo();
     addCat(view.querySelector('#heroCat'));
+    const bn = view.querySelector('#bkNow'); if (bn) bn.onclick = async () => { if (await backupNow()) pageHome(); };
+    const bl = view.querySelector('#bkLater'); if (bl) bl.onclick = () => { S.backupSnooze = Date.now() + 1 * DAY; save(); pageHome(); };
   }
   function bindGo() { view.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go)); }
 
@@ -1045,12 +1080,69 @@
     bindRewards(pageReward);
   }
 
+  // ---------- 更新日誌 ----------
+  // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
+  const CHANGELOG = [
+    { id: 9, date: '11/27', items: [
+      '設定裡多了「更新日誌」，網站有新東西時，首頁右上角的「設定」旁邊會出現「!」提醒妳。',
+      '每隔 3 天，首頁會提醒妳備份一次學習進度。按「現在備份」，選 LINE 傳給自己就好；進度不見時，在 LINE 點開那個檔案，到「設定 → 匯入備份」就能找回來。'
+    ] },
+    { id: 8, date: '11/27', items: [
+      '例句和對話裡的每個英文字都可以點，會跳出小卡，告訴妳這個字的中文、音標、詞性，還可以聽發音。',
+      '首頁的三花貓可以連續點，點幾下就喵幾下。',
+      '發音更穩定，比較不會按了沒聲音。如果還是沒聲音，可以到「設定 → 聲音測試」看看。',
+      '練習時上面的進度條跟題號對齊了，最後一題剛好滿格。'
+    ] },
+    { id: 7, date: '11/27', items: [
+      '錯題本上面的三格（現在該複習、還在練習、已經很熟）都可以點，下面的按鈕會跟著換。',
+      '錯題本也是一輪 10 個字，練完可以選「再來 10 個」。',
+      '按「還不熟」的字會另外記成「還不熟幾次」，不會算成答錯。',
+      '單字卡翻到背面後，可以按「翻回正面」。'
+    ] },
+    { id: 6, date: '11/27', items: [
+      '單字下面加上了 KK 音標，是照課本抄的。',
+      '「慢速」唸得更慢了，片語的字和字之間會停一下。',
+      '發音換成比較自然的女生聲音。',
+      '拿掉了背景音樂。'
+    ] },
+    { id: 5, date: '11/27', items: [
+      '獎勵改成四張兌換券：古早味冰冰、小木屋鬆餅、壽司郎、萬用許願兌換券。可以選一張「設為目標」，存夠了就按「兌換」，換過的會留在「我兌換過的」。',
+      '碗裡的小魚乾會跟著妳存的數量變多，存夠目標時會滿出來。'
+    ] },
+    { id: 4, date: '11/27', items: [
+      '新增「收藏」：可以看到我的碗、單字圖鑑（學會的字會亮起來）、三花貓的動作、房間。',
+      '學會越多字、學完越多單元，就會解鎖新的貓咪動作和房間。'
+    ] },
+    { id: 3, date: '11/27', items: [
+      '單字卡一輪 10 個字，學完會到結算畫面，小魚乾會一隻隻掉進碗裡，再問妳要不要再 10 個。',
+      '測驗的題目和選項縮小了，整題放得進一個畫面，不用往下滑。'
+    ] }
+  ];
+  const LATEST_LOG = CHANGELOG[0].id;
+  function hasNewLog() { return (S.seenLog || 0) < LATEST_LOG; }
+  function pageLog() {
+    const seen = S.seenLog || 0;
+    render(`
+      ${topBar('更新日誌', '', '#settings')}
+      <div class="card log-tip"><b>看到新東西了嗎？</b><p>每次網站更新後，請把舊的分頁關掉再重新打開，才會是最新的版本。如果是從主畫面的三花貓圖示打開的，就從下往上滑把它完全關掉，再重新點開。</p></div>
+      <div class="list">
+        ${CHANGELOG.map(c => `<div class="card log-item">
+          <div class="log-head"><b>${esc(c.date)} 更新</b>${c.id > seen ? '<span class="log-new">新</span>' : ''}</div>
+          <ul>${c.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+        </div>`).join('')}
+      </div>
+    `, null, true);
+    bindBack('#settings');
+    if (seen < LATEST_LOG) { S.seenLog = LATEST_LOG; save(); }
+  }
+
   // ---------- 設定 ----------
   function pageSettings() {
     loadVoices();
     const cur = pickVoice() || voices.find(v => v.name === defaultVoiceName());
     render(`
       ${topBar('設定', '', '#home')}
+      <button class="card log-entry" data-go="#log"><span><b>更新日誌</b><small>網站改了什麼，用白話告訴妳</small></span>${hasNewLog() ? '<span class="bang big">!</span>' : '<span class="muted" style="font-size:13px">看看</span>'}</button>
       <div class="card" style="display:flex;flex-direction:column;gap:10px">
         <b style="font-weight:900">發音速度</b>
         <div class="seg" id="rate">${[[0.75, '慢一點'], [0.9, '正常'], [1, '快一點']].map(([v, n]) => `<button data-v="${v}" class="${S.settings.rate === v ? 'on' : ''}">${n}</button>`).join('')}</div>
@@ -1066,13 +1158,14 @@
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:10px">
         <b style="font-weight:900">備份進度</b>
-        <p class="muted" style="font-size:13px">進度只存在這支手機裡。偶爾按一下「匯出備份」，換手機或清掉瀏覽器資料時，可以用「匯入備份」找回來。</p>
+        <p class="muted" style="font-size:13px">進度只存在這支手機裡。按「匯出備份」，選 LINE 傳給自己；換手機或進度不見時，在 LINE 點開那個檔案存到手機，再按「匯入備份」選它就能找回來。${S.lastBackup ? `上次備份：${Math.floor((Date.now() - S.lastBackup) / DAY)} 天前` : '還沒備份過'}</p>
         <div class="pair"><button class="btn ghost small" id="exp">匯出備份</button><button class="btn ghost small" id="imp">匯入備份</button></div>
         <input type="file" id="file" accept="application/json,.json" hidden>
       </div>
       <p class="muted" style="font-size:12px;text-align:center">建議用 Safari 的「分享 → 加入主畫面」，從主畫面打開，進度比較不會被清掉。</p>
     `, null, true);
     bindBack('#home');
+    bindGo();
     view.querySelectorAll('#rate button').forEach(b => b.onclick = () => { S.settings.rate = +b.dataset.v; save(); pageSettings(); say('lasagna'); });
     view.querySelectorAll('#sndtest button').forEach(b => b.onclick = () => {
       FX.unlock();
@@ -1082,11 +1175,7 @@
     view.querySelectorAll('#snd button').forEach(b => b.onclick = () => { S.settings.sound = b.dataset.v === '1'; save(); syncSound(); pageSettings(); snd('correct'); });
     const v = view.querySelector('#voice'); if (v) v.onchange = () => { S.settings.voice = v.value; save(); say('I would like the lasagna, please.'); };
     const tv = view.querySelector('#tv'); if (tv) tv.onclick = () => say('I would like the lasagna, please.', false, true);
-    view.querySelector('#exp').onclick = () => {
-      const blob = new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' });
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'lara-english-backup-' + today() + '.json';
-      document.body.appendChild(a); a.click(); a.remove();
-    };
+    view.querySelector('#exp').onclick = async () => { if (await backupNow()) pageSettings(); };
     const file = view.querySelector('#file');
     view.querySelector('#imp').onclick = () => file.click();
     file.onchange = () => {
@@ -1119,6 +1208,7 @@
       case 'reward': return pageReward();
       case 'collect': return pageCollect(a);
       case 'settings': return pageSettings();
+      case 'log': return pageLog();
       case '_': return;
       case 'demo-finish': { // 結算畫面示範（不會真的加小魚乾）
         earned = 8;

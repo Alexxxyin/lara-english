@@ -369,3 +369,28 @@ h1, h2, h3, p { margin: 0; }
 .ws-note { font-size: 13px; color: var(--muted); }
 .ws-btns { display: flex; gap: 10px; margin-top: 6px; }
 .ws-btns .btn { flex: 1; }
+
+.backup-card { background: #FFF6E5; border: 2px dashed #F5C26B; display: flex; flex-direction: column; gap: 10px; }
+.backup-card b { font-size: 15px; font-weight: 900; color: #A45A00; }
+.backup-card p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.backup-btns { display: flex; gap: 8px; justify-content: flex-end; }
+
+/* 更新日誌 */
+.set-link { font-size: 12px; font-weight: 800; text-decoration: none; padding: 2px 4px; color: var(--muted); display: inline-flex; align-items: center; gap: 4px; }
+.bang { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: #E0457B; color: #FFFFFF; font-size: 11px; font-weight: 900; line-height: 1; animation: bangPulse 1.6s ease-in-out infinite; }
+.bang.big { width: 24px; height: 24px; font-size: 15px; }
+@keyframes bangPulse { 50% { transform: scale(1.15); } }
+.log-entry { display: flex; align-items: center; justify-content: space-between; text-align: left; width: 100%; border: 2px solid var(--primary-soft); }
+.log-entry span:first-child { display: flex; flex-direction: column; gap: 2px; }
+.log-entry b { font-size: 16px; font-weight: 900; }
+.log-entry small { font-size: 12px; color: var(--muted); }
+.log-tip { background: #FFF6E5; border: 2px dashed #F5C26B; }
+.log-tip b { font-weight: 900; color: #A45A00; }
+.log-tip p { font-size: 13px; color: var(--ink); margin-top: 4px; line-height: 1.6; }
+.log-item .log-head { display: flex; align-items: center; gap: 8px; }
+.log-item .log-head b { font-size: 16px; font-weight: 900; }
+.log-new { font-size: 11px; font-weight: 900; color: #FFFFFF; background: #E0457B; padding: 2px 8px; border-radius: 999px; }
+.log-item ul { margin: 8px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.log-item li { font-size: 14px; line-height: 1.6; }
+
+.backup-card p b.hl { font-size: 12px; color: #06A04A; }
