@@ -57,6 +57,10 @@
   function dayFx() {
     if (touchDay()) setTimeout(() => { FX.visual('streak', null, document.querySelector('[data-streak]') || document.body, S.streak.count); if (S.settings.sound) FX.sound('complete'); }, 600);
   }
+  // 練習中答對的小魚乾先記著，結算畫面再一次放進碗裡
+  const BOWL = (location.search.match(/bowl=(pink|paw|wood)/) || [])[1] || 'pink'; // 碗的樣式：pink（貓耳粉紅碗）、paw（掌印白碗）、wood（木碗）
+  let earned = 0;
+  function earn(n) { earned += n; }
   function addFish(n, fromEl) {
     S.fish += n; save();
     const badge = document.querySelector('[data-fish]');
@@ -120,20 +124,43 @@
   // ---------- 發音 ----------
   let voices = [];
   function loadVoices() { voices = (window.speechSynthesis ? speechSynthesis.getVoices() : []).filter(v => /^en(-|_)/i.test(v.lang)); }
+  // iPhone 上「列出來但沒下載」的語音會沒聲音，所以只有 Lara 在設定裡自己選過才指定語音，
+  // 否則交給手機用預設的英文語音。
   function pickVoice() {
     if (S.settings.voice) { const v = voices.find(v => v.name === S.settings.voice); if (v) return v; }
-    const us = voices.filter(v => /en(-|_)US/i.test(v.lang));
-    return us.find(v => /Samantha|Ava|Allison|Susan/i.test(v.name)) || us[0] || voices[0] || null;
+    return null;
   }
-  function say(text, slow) {
+  function defaultVoiceName() {
+    const us = voices.filter(v => /en(-|_)US/i.test(v.lang));
+    const d = us.find(v => v.default) || us[0] || voices[0];
+    return d ? d.name : '';
+  }
+  let sayTimer = null;
+  function say(text, slow, retry) {
     try {
       const s = window.speechSynthesis; if (!s) return;
-      s.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'en-US';
-      const v = pickVoice(); if (v) u.voice = v;
-      u.rate = slow ? 0.55 : S.settings.rate;
-      s.speak(u);
+      clearTimeout(sayTimer);
+      const go = () => {
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'en-US';
+        const v = retry ? null : pickVoice(); if (v) u.voice = v;
+        u.rate = slow ? 0.55 : S.settings.rate;
+        let started = false;
+        u.onstart = () => { started = true; };
+        s.resume(); // iPhone 有時會卡在暫停狀態
+        s.speak(u);
+        // 1.5 秒內沒開始講，就不指定語音再試一次
+        if (!retry) sayTimer = setTimeout(() => { if (!started && !s.speaking) { s.cancel(); say(text, slow, true); } }, 1500);
+      };
+      // 先取消再馬上講，Safari 常會吃掉；有東西在講才取消，並稍等一下
+      if (s.speaking || s.pending) { s.cancel(); sayTimer = setTimeout(go, 80); } else go();
+    } catch (e) {}
+  }
+  // 第一次碰螢幕時，在使用者手勢裡先講一個無聲的字，iPhone 之後才會讓程式出聲
+  function unlockSpeech() {
+    try {
+      const s = window.speechSynthesis; if (!s) return;
+      const u = new SpeechSynthesisUtterance(' '); u.volume = 0; u.lang = 'en-US'; s.speak(u);
     } catch (e) {}
   }
   if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
@@ -215,7 +242,7 @@
     bindGo();
     addCat(view.querySelector('#heroCat'));
   }
-  function bindGo() { view.querySelectorAll('[data-go]').forEach(b => b.onclick = () => { snd('tap'); go(b.dataset.go); }); }
+  function bindGo() { view.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go)); }
 
   // ---------- 單元清單 ----------
   function pageUnits() {
@@ -258,13 +285,18 @@
   }
 
   // ---------- 單字卡 ----------
+  // 單字卡一輪 10 個；同一次打開網站裡看過的字先不重複，全部看過才重來
+  const flashSeen = {};
   function pageFlash(id) {
     const u = unitOf(id); if (!u) return go('#home');
-    const list = u.words.map(w => w.f);
-    const order = list.filter(f => !(S.words[f] && S.words[f].known)).concat(list.filter(f => S.words[f] && S.words[f].known));
+    const seen = flashSeen[u.id] || (flashSeen[u.id] = new Set());
+    const isKnown = f => S.words[f] && S.words[f].known;
+    let pool = u.words.map(w => w.f).filter(f => !seen.has(f));
+    if (!pool.length) { seen.clear(); pool = u.words.map(w => w.f); }
+    const order = pool.filter(f => !isKnown(f)).concat(pool.filter(isKnown)).slice(0, ROUND);
     let i = 0, flipped = false, remembered = 0;
     function show() {
-      if (i >= order.length) return finish(u, { learned: remembered, total: order.length, rightRate: null, back: '#unit/' + u.id });
+      if (i >= order.length) return finish(u, { learned: remembered, total: order.length, back: '#unit/' + u.id, again: '再來 10 個', seenN: seen.size, unitN: u.words.length });
       const f = order[i], w = WORDS[f], s = sentenceFor(f);
       render(`
         ${topBar('單字卡・' + unitLabel(u), `${i + 1} / ${order.length}`, '#unit/' + u.id)}
@@ -272,27 +304,28 @@
         <div class="card fc" id="fc">
           <img class="wimg" src="${img(f)}" alt="">
           <div class="word-big">${esc(w.en)}</div>
-          <div class="play-row"><button class="btn" id="p1">播放</button><button class="btn ghost" id="p2">慢速</button></div>
+          <div class="play-row"><button class="btn" id="p1" data-own-sound>播放</button><button class="btn ghost" id="p2" data-own-sound>慢速</button></div>
           <div style="border-top:1px dashed #F6DDE7;padding-top:12px;display:flex;flex-direction:column;gap:10px;align-items:center">
-            ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<button class="sent" id="ps"><span class="e">${markIn(s.en, keyOf(f))}</span><span class="z">${esc(s.zh)}</span></button>` : ''}`
+            ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<button class="sent" id="ps" data-own-sound><span class="e">${markIn(s.en, keyOf(f))}</span><span class="z">${esc(s.zh)}</span></button>` : ''}`
               : `<button class="btn soft" id="flip">翻面看中文</button>`}
           </div>
         </div>
-        <div class="pair"><button class="b-bad" id="no">還不熟</button><button class="b-good" id="yes">記住了</button></div>
+        <div class="pair"><button class="b-bad" id="no">還不熟</button><button class="b-good" id="yes" data-own-sound>記住了</button></div>
       `, null, true);
       bindBack();
       view.querySelector('#p1').onclick = () => say(w.en);
       view.querySelector('#p2').onclick = () => say(w.en, true);
       const fl = view.querySelector('#flip'); if (fl) fl.onclick = () => { flipped = true; show(); };
       const ps = view.querySelector('#ps'); if (ps) ps.onclick = () => say(s.en);
-      view.querySelector('#no').onclick = () => { const x = W(f); x.miss++; x.box = 0; x.due = Date.now(); save(); dayFx(); i++; flipped = false; show(); };
+      view.querySelector('#no').onclick = () => { const x = W(f); x.miss++; x.box = 0; x.due = Date.now(); seen.add(f); save(); dayFx(); i++; flipped = false; show(); };
       view.querySelector('#yes').onclick = e => {
         const x = W(f); const first = !x.known; x.known = true; if (!x.due) { x.box = Math.max(x.box, 1); x.due = startOfToday() + DAY; }
-        remembered++; save(); dayFx();
-        if (first) { addFish(1, e.currentTarget); snd('fish'); }
-        i++; flipped = false; setTimeout(show, first ? 250 : 0);
+        remembered++; seen.add(f); save(); dayFx();
+        if (first) earn(1);
+        snd('correct'); FX.visual('correct', null, e.currentTarget);
+        i++; flipped = false; setTimeout(show, 220);
       };
-      if (i === 0 || true) setTimeout(() => say(w.en), 200);
+      setTimeout(() => say(w.en), 200);
     }
     show();
   }
@@ -333,7 +366,7 @@
         if (ok) { right++; b.classList.add('right'); snd('correct'); FX.visual('correct', null, b, view.querySelector('#qc')); }
         else { b.classList.add('wrong'); wrongs.push(f); snd('wrong'); FX.visual('wrong', null, b); }
         record(f, ok);
-        if (ok) addFish(1, b);
+        if (ok) earn(1);
         const w = WORDS[f];
         view.querySelector('#fb').innerHTML = `<div class="feedback ${ok ? 'ok' : 'no'}"><span>${ok ? '答對了' : '正確答案是'}：${esc(w.en)}・${esc(w.zh)}</span></div><button class="btn" id="next" style="width:100%;margin-top:12px">下一題</button>`;
         say(w.en);
@@ -430,7 +463,7 @@
         if (ok) {
           if (tries === 0) right++;
           snd('correct'); FX.visual('correct', null, inp, view.querySelector('#qc'));
-          record(f, tries === 0); if (tries === 0) addFish(1, inp);
+          record(f, tries === 0); if (tries === 0) earn(1);
           fb.innerHTML = `<div class="feedback ok">拼對了：${esc(w.en)}</div>`;
           say(w.en); chk.textContent = '下一題'; chk.dataset.next = '1'; inp.disabled = true;
         } else {
@@ -492,7 +525,7 @@
             const target = answers(f).map(norm);
             const ok = alts.some(a => target.some(t => norm(a) === t || (' ' + norm(a) + ' ').includes(' ' + t + ' ')));
             const heard = alts[0] || '';
-            if (ok) { right++; snd('correct'); record(f, true); addFish(1, mic); }
+            if (ok) { right++; snd('correct'); record(f, true); earn(1); }
             else { snd('wrong'); }
             show(`<div class="feedback ${ok ? 'ok' : 'no'}"><span>${ok ? '唸得很好' : '再試一次看看'}</span><span style="font-weight:600">手機聽到：${esc(heard) || '（沒聽清楚）'}</span></div>`);
           };
@@ -502,7 +535,7 @@
         };
       } else {
         view.querySelector('#selfno').onclick = nx;
-        view.querySelector('#selfok').onclick = e => { right++; addFish(1, e.currentTarget); snd('fish'); nx(); };
+        view.querySelector('#selfok').onclick = e => { right++; earn(1); snd('correct'); nx(); };
       }
       if (!result) setTimeout(() => say(w.en), 250);
     }
@@ -545,7 +578,7 @@
         const k = blanks[cur], want = d.lines[k].blank;
         const f = u.words.find(w => w.en.toLowerCase() === want.toLowerCase()) || u.words.find(w => want.toLowerCase().includes(w.en.toLowerCase()));
         if (b.dataset.c === want) {
-          if (!missed.has(k)) { right++; if (f) record(f.f, true); addFish(1, b); }
+          if (!missed.has(k)) { right++; if (f) record(f.f, true); earn(1); }
           snd('correct'); filled[k] = want; cur++; say(d.lines[k].en);
           setTimeout(show, 450);
         } else {
@@ -560,27 +593,74 @@
   // ---------- 完成畫面 ----------
   function finish(u, r) {
     const bonus = 5;
-    const unitNew = u && checkUnitDone(u);
-    const total = bonus + (unitNew ? 30 : 0);
+    const unitNew = !r.demo && u && checkUnitDone(u);
+    const total = earned + bonus + (unitNew ? 30 : 0);
+    earned = 0;
     const pct = r.total && r.right != null ? Math.round(r.right / r.total * 100) : null;
+    const before = S.fish;
     render(`
       <div class="card done-card">
-        <div class="cat" id="doneCat"></div>
-        <h1 style="font-size:24px;font-weight:900">${unitNew ? esc(unitLabel(u)) + ' 學完了！' : '這一輪完成了'}</h1>
-        ${unitNew ? `<p class="muted">整個單元的字都認識了，多拿 30 小魚乾</p>` : ''}
+        <h1 style="font-size:24px;font-weight:900">${unitNew ? esc(unitLabel(u)) + ' 學完了！' : '這一輪完成了！'}</h1>
         <div class="stats">
-          <div><b>${r.learned != null ? r.learned : r.total}</b><span>${r.learned != null ? '記住了' : '題數'}</span></div>
-          <div><b>${pct != null ? pct + '%' : '—'}</b><span>答對率</span></div>
-          <div class="fishy" id="fishbox"><b>+${total}</b><span>小魚乾</span></div>
+          <div><b>${r.learned != null ? r.learned : r.right}</b><span>${r.learned != null ? '記住了' : '答對'}</span></div>
+          <div><b>${r.learned != null ? r.total - r.learned : (pct != null ? pct + '%' : '—')}</b><span>${r.learned != null ? '還不熟' : '答對率'}</span></div>
+          <div class="fishy"><b>+${total}</b><span>小魚乾</span></div>
         </div>
+        <div class="bowl-stage" id="stage">
+          <div class="bowl-cat" id="doneCat"></div>
+          <div class="bowl" id="bowl"><img id="bowlImg" src="img/bowl/${BOWL}-empty.webp" alt="碗"><span class="bowl-count" id="bowlCount">+0</span></div>
+        </div>
+        <p class="muted" style="font-size:13px" id="bowlMsg">小魚乾正在放進碗裡⋯</p>
+        ${r.seenN != null ? `<p class="muted" style="font-size:12px">這個單元已經看過 ${r.seenN} / ${r.unitN} 個字</p>` : ''}
       </div>
       ${r.wrongs && r.wrongs.length ? `<div class="card"><b style="font-weight:900">這輪答錯的字</b><p class="muted" style="font-size:12px;margin:2px 0 8px">已經放進錯題本，之後會再出現</p><div class="list">${[...new Set(r.wrongs)].map(f => `<div class="review-row" style="box-shadow:none;background:var(--bg)"><img src="${img(f)}" alt=""><div class="t"><b>${esc(WORDS[f].en)}</b><span>${esc(WORDS[f].zh)}</span></div></div>`).join('')}</div></div>` : ''}
-      <div class="pair"><button class="btn ghost" id="again">再練一次</button><button class="btn" id="home">回首頁</button></div>
+      <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:12px">
+        <b style="font-size:17px;font-weight:900">要不要${r.again ? r.again.replace('再來', '再') : '再來一輪'}？</b>
+        <div class="pair"><button class="btn ghost" id="home">休息一下</button><button class="btn" id="again">${r.again || '再來 10 題'}</button></div>
+      </div>
     `, null, true);
-    addCat(view.querySelector('#doneCat'), { actions: ['fish', 'roll', 'belly', 'pawsup', 'wave', 'tail', 'yarn', 'butterfly'] });
-    view.querySelector('#again').onclick = () => { const h = location.hash; location.hash = '#_'; setTimeout(() => location.hash = h, 0); };
+    addCat(view.querySelector('#doneCat'), { actions: unitNew ? ['pawsup', 'roll', 'belly'] : ['fish', 'wave', 'tail', 'yarn'] });
+    view.querySelector('#again').onclick = () => { const h = r.demo ? '#flash/1-1' : location.hash; location.hash = '#_'; setTimeout(() => location.hash = h, 0); };
     view.querySelector('#home').onclick = () => go(r.back || '#home');
-    setTimeout(() => { addFish(total, view.querySelector('#fishbox')); snd(unitNew ? 'complete' : 'fish'); }, 350);
+    if (!r.demo) { S.fish += total; save(); }
+    fishIntoBowl(total, before);
+  }
+  // 小魚乾從上面一隻隻掉進碗裡，碗慢慢裝滿，最後貓咪叫一聲
+  function fishIntoBowl(total, before) {
+    const bowl = view.querySelector('#bowl'), stage = view.querySelector('#stage');
+    const cnt = view.querySelector('#bowlCount'), bimg = view.querySelector('#bowlImg'), msg = view.querySelector('#bowlMsg');
+    const shown = Math.min(total, 12); // 最多飛 12 隻，數字照實際加
+    let got = 0;
+    for (let k = 0; k < shown; k++) {
+      setTimeout(() => {
+        if (!document.body.contains(bowl)) return;
+        const b = bowl.getBoundingClientRect(), st = stage.getBoundingClientRect();
+        const fish = document.createElement('img');
+        fish.src = 'img/fish/fish.webp'; fish.className = 'fx-fish';
+        const sx = st.left + 20 + Math.random() * (st.width - 40), sy = st.top - 10;
+        fish.style.left = sx + 'px'; fish.style.top = sy + 'px';
+        document.getElementById('fx-layer') || document.body.appendChild(Object.assign(document.createElement('div'), { id: 'fx-layer' }));
+        document.getElementById('fx-layer').appendChild(fish);
+        const ex = b.left + b.width / 2 - sx, ey = b.top + b.height * 0.35 - sy;
+        fish.animate([
+          { transform: 'translate(-50%,-50%) rotate(-30deg) scale(0.7)', opacity: 0 },
+          { transform: `translate(calc(-50% + ${ex * 0.5}px), calc(-50% + ${ey * 0.2}px)) rotate(10deg) scale(1)`, opacity: 1, offset: 0.4 },
+          { transform: `translate(calc(-50% + ${ex}px), calc(-50% + ${ey}px)) rotate(40deg) scale(0.6)`, opacity: 1 }
+        ], { duration: 650, easing: 'ease-in', fill: 'forwards' });
+        setTimeout(() => {
+          fish.remove();
+          got = k === shown - 1 ? total : Math.round(total * (k + 1) / shown);
+          cnt.textContent = '+' + got;
+          bowl.classList.remove('fx-pop'); void bowl.offsetWidth; bowl.classList.add('fx-pop');
+          bimg.src = `img/bowl/${BOWL}-${got >= total * 0.7 ? 'full' : 'few'}.webp`;
+          if (k === shown - 1) {
+            snd('fish');
+            msg.textContent = `碗裡多了 ${total} 隻小魚乾，現在一共 ${before + total} 隻`;
+            const badge = document.querySelector('[data-fish] [data-count]'); if (badge) badge.textContent = S.fish;
+          }
+        }, 640);
+      }, 300 + k * 170);
+    }
   }
 
   // ---------- 錯題本 ----------
@@ -665,7 +745,7 @@
   // ---------- 設定 ----------
   function pageSettings() {
     loadVoices();
-    const cur = pickVoice();
+    const cur = pickVoice() || voices.find(v => v.name === defaultVoiceName());
     render(`
       ${topBar('設定', '', '#home')}
       <div class="card" style="display:flex;flex-direction:column;gap:10px">
@@ -709,6 +789,7 @@
   // ---------- 路由 ----------
   function route() {
     stopMic();
+    earned = 0;
     const [p, a] = location.hash.replace(/^#/, '').split('/');
     switch (p) {
       case 'units': return pageUnits();
@@ -724,13 +805,26 @@
       case 'reward': return pageReward();
       case 'settings': return pageSettings();
       case '_': return;
+      case 'demo-finish': { // 結算畫面示範（不會真的加小魚乾）
+        earned = 8;
+        return finish(unitOf('1-1'), { learned: 8, total: 10, back: '#home', again: '再來 10 個', seenN: 10, unitN: 37, demo: true });
+      }
       default: return pageHome();
     }
   }
 
   // iOS 需要使用者先點一下才能出聲
-  document.addEventListener('touchstart', () => FX.unlock(), { once: true, passive: true });
-  document.addEventListener('click', () => FX.unlock(), { once: true });
+  // 一般按鈕的點擊音效；本身有聲音的按鈕（答題、發音、記住了、兌換⋯）不另外出聲
+  const OWN_SOUND = '[data-own-sound], #opts button, .chip, [data-say], #lp, #ls, #p1, #p2, #ps, #mic, #chk, [data-redeem], .line, #yes';
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button, a');
+    if (!b || b.disabled || b.closest(OWN_SOUND) || b.matches(OWN_SOUND)) return;
+    snd('tap');
+  }, true);
+  // iPhone：靜音開關打開時也要出聲（Safari 17 以上支援）
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+  document.addEventListener('touchstart', () => { FX.unlock(); unlockSpeech(); }, { once: true, passive: true });
+  document.addEventListener('click', () => { FX.unlock(); unlockSpeech(); }, { once: true });
 
   async function start() {
     load(); syncSound();

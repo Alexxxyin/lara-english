@@ -52,7 +52,7 @@
 
   // Mixkit 免費音效（Mixkit Sound Effects Free License，可商用、免標註）。
   // 挑選時直接播放 Mixkit 網址；選定後下載到 sounds/，LOCAL 記錄已下載的。
-  const LOCAL = { 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3' }; // 已下載（Alex 2026-11-27 同意）
+  const LOCAL = { 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3', 1124: 'sounds/1124.mp3' }; // 已下載（Alex 2026-11-27 同意）
   const cache = {};
   // opts: max 最多播幾秒（之後淡出）、rate 播放速度（<1 會變慢變低）、times 連續播幾次、gap 每次間隔秒數、rates 每次的速度
   function file(name, id, opts) {
@@ -66,7 +66,7 @@
           const r = (opts.rates && opts.rates[k]) || opts.rate || 1;
           a.preservesPitch = false; a.mozPreservesPitch = false; a.webkitPreservesPitch = false;
           a.playbackRate = r;
-          const vol = Math.min(1, 0.8 * FX.volume); a.volume = vol;
+          const vol = Math.min(1, (opts.vol || 0.8) * FX.volume); a.volume = vol;
           const p = a.play(); if (p && p.catch) p.catch(() => {});
           if (opts.max) {
             setTimeout(() => {
@@ -117,10 +117,15 @@
       A: file('點貓咪的喵', 86, { rate: 0.8 })
     },
     tap: {
-      A: { name: '輕點一下', play() { tone({ f: 1200, d: 0.04, v: 0.08 }); } },
-      B: { name: '不要聲音', play() {} }
-    }
-  };
+      A: file('塑膠泡泡「啵」', 1124, { max: 0.35, vol: 0.5 }),
+      B: file('肥皂泡泡', 2925, { max: 0.35, vol: 0.5 }),
+      C: file('輕輕的「噗」', 3005, { max: 0.35, vol: 0.5 }),
+      D: file('訊息小彈跳', 2354, { max: 0.35, vol: 0.5 }),
+      E: file('泡泡跳出來', 2357, { max: 0.35, vol: 0.5 }),
+      F: file('選取「喀」', 1109, { max: 0.35, vol: 0.5 }),
+      G: file('清脆的介面音', 2568, { max: 0.35, vol: 0.5 }),
+      H: file('勾選「嗒」', 1120, { max: 0.35, vol: 0.5 })
+    }  };
 
   // ---------- 畫面特效 ----------
   function once(el, cls, ms) {
@@ -212,7 +217,7 @@
     fishImg: 'img/fish/fish-1.webp', // Alex 選第 1 種
     SOUNDS, VISUALS,
     // 網站目前使用的選項（Alex 挑完後改這裡）
-    choice: { correct: 'C', wrong: 'D', fish: 'A', complete: 'C', meow: 'A', tap: 'B', vCorrect: 'A', vWrong: 'A', vFish: 'B', vStreak: 'B' },
+    choice: { correct: 'C', wrong: 'D', fish: 'A', complete: 'C', meow: 'A', tap: 'A', vCorrect: 'A', vWrong: 'A', vFish: 'B', vStreak: 'B' },
     sound(kind, opt) {
       try { const s = SOUNDS[kind][opt || this.choice[kind]]; if (s) s.play(); } catch (e) {}
     },
