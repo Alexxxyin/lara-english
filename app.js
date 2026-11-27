@@ -58,7 +58,6 @@
     if (touchDay()) setTimeout(() => { FX.visual('streak', null, document.querySelector('[data-streak]') || document.body, S.streak.count); if (S.settings.sound) FX.sound('complete'); }, 600);
   }
   // 練習中答對的小魚乾先記著，結算畫面再一次放進碗裡
-  const BOWL = (location.search.match(/bowl=(pink|paw|wood)/) || [])[1] || 'pink'; // 碗的樣式：pink（貓耳粉紅碗）、paw（掌印白碗）、wood（木碗）
   // ---------- 收藏與解鎖 ----------
   // 用「學會幾個字、學完幾個單元」解鎖，不花小魚乾（小魚乾留給 Lara 換真實獎勵）
   const ROOMS = [
@@ -340,14 +339,14 @@
               : `<button class="btn soft" id="flip">翻面看中文</button>`}
           </div>
         </div>
-        <div class="pair"><button class="b-bad" id="no">還不熟</button><button class="b-good" id="yes" data-own-sound>記住了</button></div>
+        <div class="pair"><button class="b-bad" id="no" data-own-sound>還不熟</button><button class="b-good" id="yes" data-own-sound>記住了</button></div>
       `, null, true);
       bindBack();
       view.querySelector('#p1').onclick = () => say(w.en);
       view.querySelector('#p2').onclick = () => say(w.en, true);
       const fl = view.querySelector('#flip'); if (fl) fl.onclick = () => { flipped = true; show(); };
       const ps = view.querySelector('#ps'); if (ps) ps.onclick = () => say(s.en);
-      view.querySelector('#no').onclick = () => { const x = W(f); x.miss++; x.box = 0; x.due = Date.now(); seen.add(f); save(); dayFx(); i++; flipped = false; show(); };
+      view.querySelector('#no').onclick = () => { snd('wrong'); const x = W(f); x.miss++; x.box = 0; x.due = Date.now(); seen.add(f); save(); dayFx(); i++; flipped = false; show(); };
       view.querySelector('#yes').onclick = e => {
         const x = W(f); const first = !x.known; x.known = true; if (!x.due) { x.box = Math.max(x.box, 1); x.due = startOfToday() + DAY; }
         remembered++; seen.add(f); save(); dayFx();
@@ -622,20 +621,33 @@
 
   // ---------- 完成畫面 ----------
   // 下一個獎勵目標：還買不起、最便宜的那個
+  // 兌換券（Alex 設定好的，不能自己新增或刪除）
+  const REWARDS = [
+    { id: 'ice', name: '古早味冰冰兌換券', cost: 500 },
+    { id: 'waffle', name: '小木屋鬆餅兌換券', cost: 600 },
+    { id: 'sushi', name: '壽司郎兌換券', cost: 800 },
+    { id: 'wish', name: '萬用許願兌換券', cost: 5000 }
+  ];
+  // 碗裡的份量（0 空碗～5 滿出來），看「離下一張兌換券」的比例；夠換任何一張就是滿出來
+  function bowlLevel(fish) {
+    if (fish <= 0) return 0;
+    if (REWARDS.some(x => fish >= x.cost)) return 5;
+    const g = nextGoal(fish), k = g ? fish / g.cost : 1;
+    return k < 0.2 ? 1 : k < 0.5 ? 2 : k < 0.8 ? 3 : 4;
+  }
+  const bowlImg = fish => `img/bowl/lv${bowlLevel(fish)}.webp`;
   function nextGoal(fish) {
-    const list = (S.rewards || []).filter(x => x.cost > fish).sort((a, b) => a.cost - b.cost);
+    const list = REWARDS.filter(x => x.cost > fish).sort((a, b) => a.cost - b.cost);
     return list[0] || null;
   }
   function goalHtml(u, after) {
     const g = nextGoal(after);
-    const ready = (S.rewards || []).filter(x => x.cost <= after);
+    const ready = REWARDS.filter(x => x.cost <= after);
     let h = '';
     if (g) {
-      h += `<div class="goal"><div class="goal-top"><span>下一個獎勵</span><b>${esc(g.name)}</b></div>
+      h += `<div class="goal"><div class="goal-top"><img class="goal-ico" src="img/reward/${g.id}.webp" alt=""><span>下一個獎勵</span><b>${esc(g.name)}</b></div>
         <div class="goal-bar"><div id="goalFill" style="width:${Math.min(100, (after - (window.__goalGain || 0)) / g.cost * 100)}%"></div></div>
         <div class="goal-foot"><span id="goalNow">${after - (window.__goalGain || 0)}</span> / ${g.cost} 隻・<b id="goalLeft">還差 ${g.cost - after + (window.__goalGain || 0)} 隻</b></div></div>`;
-    } else if (!(S.rewards || []).length) {
-      h += `<div class="goal"><div class="goal-top"><span>下一個獎勵</span><b>還沒設定</b></div><div class="goal-foot">到「獎勵」頁加一個想要的獎勵，這裡就會顯示離它還差多少。</div></div>`;
     }
     if (ready.length) h += `<div class="goal ready"><div class="goal-top"><span>可以兌換了</span><b>${ready.map(x => esc(x.name)).join('、')}</b></div></div>`;
     if (u) {
@@ -665,7 +677,7 @@
         </div>
         <div class="room" id="stage" style="background-image:url(img/room/room-${roomNow()}.webp)">
           <div class="room-cat" id="doneCat"></div>
-          <div class="bowl" id="bowl"><img id="bowlImg" src="img/bowl/${BOWL}-empty.webp" alt="碗"><span class="bowl-count" id="bowlCount">+0</span></div>
+          <div class="bowl" id="bowl"><img id="bowlImg" src="${bowlImg(before)}" alt="碗"><span class="bowl-count" id="bowlCount">+0</span></div>
         </div>
         <p class="bowl-msg" id="bowlMsg">小魚乾正在放進碗裡⋯</p>
         ${(() => { if (r.demo) return ''; const nu = newUnlocks(); save(); if (!nu.cats.length && !nu.rooms.length) return '';
@@ -728,7 +740,8 @@
           const got = k === shown - 1 ? total : Math.round(total * (k + 1) / shown);
           cnt.textContent = '+' + got;
           bowl.classList.remove('fx-pop'); void bowl.offsetWidth; bowl.classList.add('fx-pop');
-          bimg.src = `img/bowl/${BOWL}-${got >= total * 0.7 ? 'full' : 'few'}.webp`;
+          const src = bowlImg(before + got);
+          if (!bimg.src.endsWith(src)) { bimg.src = src; bowl.classList.remove('fx-level'); void bowl.offsetWidth; bowl.classList.add('fx-level'); }
           if (S.settings.sound) FX.pop(k);
           if (k === shown - 1) {
             msg.innerHTML = `碗裡多了 <b>${total}</b> 隻小魚乾，現在一共 <b>${before + total}</b> 隻`;
@@ -807,12 +820,11 @@
     let body = '';
     if (collectTab === 'bowl') {
       const g = nextGoal(S.fish);
-      const state = S.fish === 0 ? 'empty' : (g && S.fish < g.cost * 0.6) || S.fish < 30 ? 'few' : 'full';
       body = `
         <div class="card my-bowl">
           <div class="room small" style="background-image:url(img/room/room-${roomNow()}.webp)">
             <div class="room-cat" id="bowlCat"></div>
-            <div class="bowl"><img src="img/bowl/${BOWL}-${state}.webp" alt="碗"></div>
+            <div class="bowl"><img src="${bowlImg(S.fish)}" alt="碗"></div>
           </div>
           <div class="big-num"><b>${S.fish}</b><span>隻小魚乾</span></div>
           <div class="goals">${goalHtml(null, S.fish).replace(/id="goal\w+"/g, '')}</div>
@@ -823,7 +835,7 @@
         ${UNITS.map(u => { const n = knownCount(u); return `
           <div class="card"><div class="collect-unit"><b>${esc(unitLabel(u))} ${esc(u.zh)}</b><span>${n} / ${u.words.length}</span></div>
           <div class="dex">${u.words.map(w => { const on = S.words[w.f] && S.words[w.f].known; return on
-            ? `<button class="dex-card on" data-say="${esc(w.f)}"><img src="${img(w.f)}" alt="" loading="lazy"><span>${esc(w.en)}</span></button>`
+            ? `<button class="dex-card on" data-say="${esc(w.f)}"><img src="${img(w.f)}" alt="" loading="lazy"><span>${esc(w.en)}</span><small>${esc(w.zh)}</small></button>`
             : `<button class="dex-card" data-locked><img src="${img(w.f)}" alt="" loading="lazy"><span>？</span></button>`; }).join('')}</div></div>`; }).join('')}`;
     } else if (collectTab === 'cats') {
       const all = CAT_BASE.concat(CAT_UNLOCK).map(id => (window.CAT_ACTIONS || []).find(a => a.id === id)).filter(Boolean);
@@ -838,7 +850,7 @@
         <div class="list">${ROOMS.map(r => { const on = roomsOn.includes(r.id), cur = roomNow() === r.id; return `
           <div class="card room-card ${on ? '' : 'locked'}">
             <div class="room-thumb"><i style="background-image:url(img/room/room-${r.id}.webp)"></i>${on ? '' : `<span>學會 ${r.need} 個字解鎖<br>（還差 ${r.need - k} 個）</span>`}</div>
-            <div class="room-row"><b>${esc(r.name)}</b>${on ? (cur ? '<span class="pill purple">使用中</span>' : `<button class="btn small" data-room="${r.id}">使用這間</button>`) : '<span class="pill">還沒解鎖</span>'}</div>
+            <div class="room-row"><b>${on ? esc(r.name) : '？？？'}</b>${on ? (cur ? '<span class="pill purple">使用中</span>' : `<button class="btn small" data-room="${r.id}">使用這間</button>`) : '<span class="pill">還沒解鎖</span>'}</div>
           </div>`; }).join('')}</div>`;
     }
     render(`
@@ -865,33 +877,25 @@
 
   // ---------- 獎勵 ----------
   function pageReward() {
-    const items = S.rewards;
     render(`
       <div class="hello"><h1 style="font-size:24px;font-weight:900">獎勵</h1><span class="pill purple fish-pill" data-fish style="font-size:14px;padding:6px 12px"><img src="img/fish/fish.webp" alt="">小魚乾 <span data-count="${S.fish}">${S.fish}</span></span></div>
-      <p class="muted" style="font-size:13px">答對一題 +1，練完一輪 +5，學完一個單元 +30。存到了就可以換自己決定的獎勵。</p>
+      <p class="muted" style="font-size:13px">答對一題 +1，練完一輪 +5，學完一個單元 +30。存到了就可以換兌換券。</p>
       <div class="list">
-        ${items.map((it, k) => { const p = Math.min(100, Math.round(S.fish / it.cost * 100)); return `
-          <div class="card reward"><div class="t"><div><b>${esc(it.name)}</b><span class="muted" style="font-size:12px;font-weight:800;white-space:nowrap">${it.cost} 小魚乾</span></div><div class="bar"><div style="width:${p}%"></div></div></div>
-          ${S.fish >= it.cost ? `<button class="btn small" data-redeem="${k}">兌換</button>` : `<button class="btn soft small" data-del="${k}" style="padding:0 12px">刪除</button>`}</div>`; }).join('') || '<div class="card muted" style="font-size:14px">還沒有獎勵。在下面加一個自己想要的吧，例如：一杯喜歡的飲料、一本書。</div>'}
-      </div>
-      <div class="card" style="display:flex;flex-direction:column;gap:8px">
-        <b style="font-weight:900">新增獎勵</b>
-        <input class="field" id="rn" placeholder="獎勵名稱">
-        <div style="display:flex;gap:8px"><input class="field" id="rc" type="number" inputmode="numeric" placeholder="要幾個小魚乾" style="flex-grow:1"><button class="btn small" id="add" style="height:46px">加入</button></div>
+        ${REWARDS.map((it, k) => { const have = Math.min(S.fish, it.cost), p = Math.round(have / it.cost * 100), left = Math.max(0, it.cost - S.fish); return `
+          <div class="card reward">
+            <img class="reward-ico" src="img/reward/${it.id}.webp" alt="">
+            <div class="t">
+              <div><b>${esc(it.name)}</b><span class="muted" style="font-size:12px;font-weight:800;white-space:nowrap">${it.cost} 隻</span></div>
+              <div class="bar" style="height:10px"><div style="width:${p}%"></div></div>
+              <span class="reward-foot">${left ? `現在 ${S.fish} 隻・還差 <b>${left}</b> 隻` : '<b>可以兌換了！</b>'}</span>
+            </div>
+            ${left ? '' : `<button class="btn small" data-redeem="${k}">兌換</button>`}
+          </div>`; }).join('')}
       </div>
       ${S.redeemed.length ? `<div class="card"><b style="font-weight:900">兌換紀錄</b><div class="list" style="margin-top:8px">${S.redeemed.slice().reverse().map(r => `<div style="display:flex;justify-content:space-between;font-size:14px"><span>${esc(r.name)}</span><span class="muted">${esc(r.date)}</span></div>`).join('')}</div></div>` : ''}
     `, 'reward');
-    view.querySelector('#add').onclick = () => {
-      const n = view.querySelector('#rn').value.trim(), c = parseInt(view.querySelector('#rc').value, 10);
-      if (!n || !(c > 0)) return toast('請填名稱和數量');
-      S.rewards.push({ name: n, cost: c }); save(); pageReward();
-    };
-    view.querySelectorAll('[data-del]').forEach(b => b.onclick = () => {
-      if (b.dataset.sure) { S.rewards.splice(+b.dataset.del, 1); save(); pageReward(); }
-      else { b.dataset.sure = '1'; b.textContent = '確定？'; }
-    });
     view.querySelectorAll('[data-redeem]').forEach(b => b.onclick = () => {
-      const it = S.rewards[+b.dataset.redeem];
+      const it = REWARDS[+b.dataset.redeem];
       if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定兌換'; return; }
       S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today() }); save();
       snd('complete'); toast('兌換好了：' + it.name); pageReward();
@@ -1015,6 +1019,7 @@
   // iPhone：靜音開關打開時也要出聲（Safari 17 以上支援）
   try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
   document.addEventListener('pointerdown', () => FX.unlock(), { capture: true, passive: true });
+  ['touchend', 'click'].forEach(t => document.addEventListener(t, () => FX.unlock(), { capture: true, passive: true }));
   document.addEventListener('touchstart', () => { FX.unlock(); unlockSpeech(); }, { once: true, passive: true });
   document.addEventListener('click', () => { FX.unlock(); unlockSpeech(); }, { once: true });
 

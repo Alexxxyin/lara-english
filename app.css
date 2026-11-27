@@ -287,8 +287,18 @@ h1, h2, h3, p { margin: 0; }
 .room-card { display: flex; flex-direction: column; gap: 10px; }
 .room-thumb { width: 100%; aspect-ratio: 3 / 2; border-radius: 18px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
 .room-thumb i { position: absolute; inset: 0; background-size: cover; background-position: center; }
-.room-card.locked .room-thumb i { filter: grayscale(1) blur(2px); opacity: 0.45; }
+.room-card.locked .room-thumb { background: #4A3A44; }
+.room-card.locked .room-thumb i { filter: grayscale(1) brightness(0.35) blur(10px); opacity: 0.5; transform: scale(1.1); }
 .room-thumb span { position: relative; }
 .room-thumb span { background: rgba(255,255,255,0.92); padding: 8px 14px; border-radius: 14px; font-weight: 900; text-align: center; font-size: 14px; color: var(--ink); }
 .room-row { display: flex; justify-content: space-between; align-items: center; }
 .room-row b { font-size: 16px; font-weight: 900; }
+
+.dex-card small { font-size: 9px; color: var(--muted); line-height: 1.15; text-align: center; }
+.reward-ico { width: 56px; height: 56px; flex-shrink: 0; object-fit: contain; }
+.reward-foot { font-size: 12px; color: var(--muted); }
+.reward-foot b { color: var(--primary-ink); }
+.goal-ico { width: 30px; height: 30px; object-fit: contain; margin: -4px 0; }
+.goal-top { align-items: center; }
+.fx-level { animation: fxLevel 0.7s cubic-bezier(.2,1.6,.4,1); }
+@keyframes fxLevel { 0% { transform: scale(1); } 35% { transform: scale(1.25) translateY(-8px); } 100% { transform: scale(1); } }
