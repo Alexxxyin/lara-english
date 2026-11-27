@@ -1,0 +1,1377 @@
+[
+ {
+  "id": "1-1",
+  "zh": "西餐廳",
+  "en": "At a Western Restaurant",
+  "words": [
+   {
+    "f": "1-1-01-bruschetta",
+    "en": "bruschetta",
+    "zh": "普切塔（烤過的大蒜麵包）"
+   },
+   {
+    "f": "1-1-02-paella",
+    "en": "paella",
+    "zh": "西班牙海鮮燉飯"
+   },
+   {
+    "f": "1-1-03-risotto",
+    "en": "risotto",
+    "zh": "燉飯"
+   },
+   {
+    "f": "1-1-04-grilled-vegetables",
+    "en": "grilled vegetables",
+    "zh": "烤時蔬"
+   },
+   {
+    "f": "1-1-05-roasted-salmon-steak",
+    "en": "roasted salmon steak",
+    "zh": "烤鮭魚排"
+   },
+   {
+    "f": "1-1-06-duck-confit",
+    "en": "duck confit",
+    "zh": "油封鴨"
+   },
+   {
+    "f": "1-1-07-focaccia",
+    "en": "focaccia",
+    "zh": "佛卡夏（麵包）"
+   },
+   {
+    "f": "1-1-08-calamari",
+    "en": "calamari",
+    "zh": "炸魷魚圈"
+   },
+   {
+    "f": "1-1-09-lamb-shank",
+    "en": "lamb shank",
+    "zh": "燉羊膝"
+   },
+   {
+    "f": "1-1-10-prosciutto-and-melon",
+    "en": "prosciutto and melon",
+    "zh": "蜜瓜火腿"
+   },
+   {
+    "f": "1-1-11-rack-of-lamb",
+    "en": "rack of lamb",
+    "zh": "烤羊排"
+   },
+   {
+    "f": "1-1-12-beef-wellington",
+    "en": "beef Wellington",
+    "zh": "威靈頓牛排"
+   },
+   {
+    "f": "1-1-13-t-bone",
+    "en": "T-bone",
+    "zh": "丁骨牛排"
+   },
+   {
+    "f": "1-1-14-new-york-strip",
+    "en": "New York strip",
+    "zh": "紐約客牛排"
+   },
+   {
+    "f": "1-1-15-filet-mignon",
+    "en": "filet mignon",
+    "zh": "菲力牛排"
+   },
+   {
+    "f": "1-1-16-porterhouse",
+    "en": "porterhouse",
+    "zh": "紅屋牛排"
+   },
+   {
+    "f": "1-1-17-tomahawk-steak",
+    "en": "tomahawk steak",
+    "zh": "戰斧牛排"
+   },
+   {
+    "f": "1-1-18-rib-eye",
+    "en": "rib eye",
+    "zh": "肋眼牛排"
+   },
+   {
+    "f": "1-1-19-tiramisu",
+    "en": "tiramisu",
+    "zh": "提拉米蘇"
+   },
+   {
+    "f": "1-1-20-souffle",
+    "en": "soufflé",
+    "zh": "舒芙蕾"
+   },
+   {
+    "f": "1-1-21-sundae",
+    "en": "sundae",
+    "zh": "聖代"
+   },
+   {
+    "f": "1-1-22-brownie",
+    "en": "brownie",
+    "zh": "（巧克力）布朗尼"
+   },
+   {
+    "f": "1-1-23-cheek",
+    "en": "cheek",
+    "zh": "牛頰"
+   },
+   {
+    "f": "1-1-24-neck",
+    "en": "neck",
+    "zh": "牛頸"
+   },
+   {
+    "f": "1-1-25-chuck",
+    "en": "chuck",
+    "zh": "牛肩胛肉"
+   },
+   {
+    "f": "1-1-26-brisket",
+    "en": "brisket",
+    "zh": "前胸肉"
+   },
+   {
+    "f": "1-1-27-shank",
+    "en": "shank",
+    "zh": "牛腱肉"
+   },
+   {
+    "f": "1-1-28-rib",
+    "en": "rib",
+    "zh": "帶骨牛肋排；肋排"
+   },
+   {
+    "f": "1-1-29-plate",
+    "en": "plate",
+    "zh": "牛腹肉"
+   },
+   {
+    "f": "1-1-30-short-loin",
+    "en": "short loin",
+    "zh": "前腰脊肉"
+   },
+   {
+    "f": "1-1-31-flank",
+    "en": "flank",
+    "zh": "牛腹脅肉"
+   },
+   {
+    "f": "1-1-32-sirloin",
+    "en": "sirloin",
+    "zh": "後腰脊肉；沙朗"
+   },
+   {
+    "f": "1-1-33-tenderloin",
+    "en": "tenderloin",
+    "zh": "嫩腰肉；菲力"
+   },
+   {
+    "f": "1-1-34-top-sirloin",
+    "en": "top sirloin",
+    "zh": "上後腰脊肉"
+   },
+   {
+    "f": "1-1-35-bottom-sirloin",
+    "en": "bottom sirloin",
+    "zh": "下後腰脊肉"
+   },
+   {
+    "f": "1-1-36-rump",
+    "en": "rump",
+    "zh": "牛臀肉"
+   },
+   {
+    "f": "1-1-37-round",
+    "en": "round",
+    "zh": "後腿肉"
+   }
+  ]
+ },
+ {
+  "id": "1-2",
+  "zh": "國際美食",
+  "en": "International Cuisines",
+  "words": [
+   {
+    "f": "1-2-01-fish-and-chips",
+    "en": "fish and chips",
+    "zh": "炸魚薯條"
+   },
+   {
+    "f": "1-2-02-toad-in-the-hole",
+    "en": "toad-in-the-hole",
+    "zh": "蟾蜍在洞"
+   },
+   {
+    "f": "1-2-03-lancashire-hot-pot",
+    "en": "Lancashire hot pot",
+    "zh": "蘭開夏燉羊肉"
+   },
+   {
+    "f": "1-2-04-shepherds-pie",
+    "en": "shepherd's pie",
+    "zh": "牧羊人派"
+   },
+   {
+    "f": "1-2-05-cornish-pasty",
+    "en": "Cornish pasty",
+    "zh": "康沃爾餡餅"
+   },
+   {
+    "f": "1-2-06-bangers-and-mash",
+    "en": "bangers and mash",
+    "zh": "香腸佐薯泥"
+   },
+   {
+    "f": "1-2-07-biryani",
+    "en": "biryani",
+    "zh": "印度香飯"
+   },
+   {
+    "f": "1-2-08-tandoori-chicken",
+    "en": "tandoori chicken",
+    "zh": "印度烤雞"
+   },
+   {
+    "f": "1-2-09-pakora",
+    "en": "pakora",
+    "zh": "帕可拉（炸蔬菜小吃）"
+   },
+   {
+    "f": "1-2-10-masala-dosa",
+    "en": "masala dosa",
+    "zh": "印度瑪撒拉香料捲餅"
+   },
+   {
+    "f": "1-2-11-paratha",
+    "en": "paratha",
+    "zh": "印度抓餅"
+   },
+   {
+    "f": "1-2-12-naan",
+    "en": "naan",
+    "zh": "南餅、印度烤餅"
+   },
+   {
+    "f": "1-2-13-roti",
+    "en": "roti",
+    "zh": "印度薄餅"
+   },
+   {
+    "f": "1-2-14-ratatouille",
+    "en": "ratatouille",
+    "zh": "普羅旺斯雜燴"
+   },
+   {
+    "f": "1-2-15-escargot",
+    "en": "escargot",
+    "zh": "法國蝸牛；田螺"
+   },
+   {
+    "f": "1-2-16-pot-au-feu",
+    "en": "pot-au-feu",
+    "zh": "火上鍋；蔬菜牛肉鍋"
+   },
+   {
+    "f": "1-2-17-coq-au-vin",
+    "en": "coq au vin",
+    "zh": "紅酒燉雞"
+   },
+   {
+    "f": "1-2-18-foie-gras",
+    "en": "foie gras",
+    "zh": "鵝肝"
+   },
+   {
+    "f": "1-2-19-beef-bourguignon",
+    "en": "beef bourguignon",
+    "zh": "紅酒燉牛肉"
+   },
+   {
+    "f": "1-2-20-philly-cheesesteak",
+    "en": "Philly cheesesteak",
+    "zh": "費城牛肉起司三明治"
+   },
+   {
+    "f": "1-2-21-meat-loaf",
+    "en": "meat loaf",
+    "zh": "肉卷"
+   },
+   {
+    "f": "1-2-22-apple-pie",
+    "en": "apple pie",
+    "zh": "蘋果派"
+   },
+   {
+    "f": "1-2-23-biscuits-and-gravy",
+    "en": "biscuits and gravy",
+    "zh": "肉汁比司吉"
+   },
+   {
+    "f": "1-2-24-buffalo-wings",
+    "en": "Buffalo wings",
+    "zh": "水牛城辣雞翅"
+   },
+   {
+    "f": "1-2-25-doner-kebab",
+    "en": "doner kebab",
+    "zh": "土耳其旋轉烤肉"
+   },
+   {
+    "f": "1-2-26-kebab",
+    "en": "kebab",
+    "zh": "卡博串；中東烤肉"
+   },
+   {
+    "f": "1-2-27-baklava",
+    "en": "baklava",
+    "zh": "果仁蜜餅；巴拉瓦餅"
+   },
+   {
+    "f": "1-2-28-dolma",
+    "en": "dolma",
+    "zh": "蔬菜鑲肉"
+   }
+  ]
+ },
+ {
+  "id": "1-3",
+  "zh": "義大利麵和披薩",
+  "en": "Pasta and Pizza",
+  "words": [
+   {
+    "f": "1-3-01-bolognese-sauce",
+    "en": "Bolognese sauce",
+    "zh": "波隆納肉醬；番茄肉醬"
+   },
+   {
+    "f": "1-3-02-lasagna",
+    "en": "lasagna",
+    "zh": "千層麵"
+   },
+   {
+    "f": "1-3-03-lasagna-sheet",
+    "en": "lasagna sheet",
+    "zh": "千層麵片"
+   },
+   {
+    "f": "1-3-04-spaghetti",
+    "en": "spaghetti",
+    "zh": "長直麵"
+   },
+   {
+    "f": "1-3-05-farfalle",
+    "en": "farfalle",
+    "zh": "蝴蝶麵"
+   },
+   {
+    "f": "1-3-06-pesto-sauce",
+    "en": "pesto sauce",
+    "zh": "青醬"
+   },
+   {
+    "f": "1-3-07-carbonara",
+    "en": "carbonara",
+    "zh": "起司培根蛋（麵）"
+   },
+   {
+    "f": "1-3-08-pumpkin-sauce",
+    "en": "pumpkin sauce",
+    "zh": "南瓜醬"
+   },
+   {
+    "f": "1-3-09-conchiglie",
+    "en": "conchiglie",
+    "zh": "貝殼麵"
+   },
+   {
+    "f": "1-3-10-macaroni",
+    "en": "macaroni",
+    "zh": "通心粉"
+   },
+   {
+    "f": "1-3-11-linguine",
+    "en": "linguine",
+    "zh": "義大利細扁麵"
+   },
+   {
+    "f": "1-3-12-smoked-salmon",
+    "en": "smoked salmon",
+    "zh": "煙燻鮭魚"
+   },
+   {
+    "f": "1-3-13-alfredo-sauce",
+    "en": "Alfredo sauce",
+    "zh": "義式白醬；奶油白醬"
+   },
+   {
+    "f": "1-3-14-marinara",
+    "en": "marinara",
+    "zh": "番茄紅醬；義式番茄醬"
+   },
+   {
+    "f": "1-3-15-ravioli",
+    "en": "ravioli",
+    "zh": "義大利方餃"
+   },
+   {
+    "f": "1-3-16-penne",
+    "en": "penne",
+    "zh": "斜管麵、筆尖麵"
+   },
+   {
+    "f": "1-3-17-creamy-mushroom-and-bacon",
+    "en": "creamy mushroom and bacon",
+    "zh": "奶油蘑菇培根（麵）"
+   },
+   {
+    "f": "1-3-18-basil",
+    "en": "basil",
+    "zh": "羅勒"
+   },
+   {
+    "f": "1-3-19-cheese",
+    "en": "cheese",
+    "zh": "起司"
+   },
+   {
+    "f": "1-3-20-tomato",
+    "en": "tomato",
+    "zh": "番茄"
+   },
+   {
+    "f": "1-3-21-margherita-pizza",
+    "en": "margherita pizza",
+    "zh": "瑪格麗塔披薩"
+   },
+   {
+    "f": "1-3-22-supreme-pizza",
+    "en": "supreme pizza",
+    "zh": "總匯披薩"
+   },
+   {
+    "f": "1-3-23-hawaiian-pizza",
+    "en": "Hawaiian pizza",
+    "zh": "夏威夷披薩"
+   },
+   {
+    "f": "1-3-24-pepperoni-pizza",
+    "en": "pepperoni pizza",
+    "zh": "辣味香腸披薩"
+   },
+   {
+    "f": "1-3-25-veggie-pizza",
+    "en": "veggie pizza",
+    "zh": "蔬食披薩"
+   },
+   {
+    "f": "1-3-26-seafood-pizza",
+    "en": "seafood pizza",
+    "zh": "海鮮披薩"
+   }
+  ]
+ },
+ {
+  "id": "1-4",
+  "zh": "自助餐廳",
+  "en": "At a Buffet",
+  "words": [
+   {
+    "f": "1-4-01-chafing-dish",
+    "en": "chafing dish",
+    "zh": "（食物保溫用）餐鍋"
+   },
+   {
+    "f": "1-4-02-bread-basket",
+    "en": "bread basket",
+    "zh": "麵包籃"
+   },
+   {
+    "f": "1-4-03-tongs",
+    "en": "tongs",
+    "zh": "夾子（複數形）"
+   },
+   {
+    "f": "1-4-04-salad-bar",
+    "en": "salad bar",
+    "zh": "沙拉吧"
+   },
+   {
+    "f": "1-4-05-sashimi",
+    "en": "sashimi",
+    "zh": "生魚片；刺身"
+   },
+   {
+    "f": "1-4-06-tuna",
+    "en": "tuna",
+    "zh": "鮪魚"
+   },
+   {
+    "f": "1-4-07-salmon",
+    "en": "salmon",
+    "zh": "鮭魚"
+   },
+   {
+    "f": "1-4-08-mussel",
+    "en": "mussel",
+    "zh": "淡菜；貽貝"
+   },
+   {
+    "f": "1-4-09-shrimp",
+    "en": "shrimp",
+    "zh": "蝦子"
+   },
+   {
+    "f": "1-4-10-salad-dressing",
+    "en": "salad dressing",
+    "zh": "沙拉醬；沙拉調料"
+   },
+   {
+    "f": "1-4-11-thousand-island-dressing",
+    "en": "thousand island dressing",
+    "zh": "千島醬"
+   },
+   {
+    "f": "1-4-12-wafu-dressing",
+    "en": "Japanese-style/Wafu dressing",
+    "zh": "和風醬"
+   },
+   {
+    "f": "1-4-13-caesar-dressing",
+    "en": "Caesar dressing",
+    "zh": "凱薩醬"
+   },
+   {
+    "f": "1-4-14-charcuterie-board",
+    "en": "charcuterie board",
+    "zh": "熟食冷肉盤"
+   },
+   {
+    "f": "1-4-15-assorted-cheese-platter",
+    "en": "assorted cheese platter",
+    "zh": "綜合起司盤"
+   },
+   {
+    "f": "1-4-16-dim-sum",
+    "en": "dim sum",
+    "zh": "港式點心"
+   },
+   {
+    "f": "1-4-17-fried-rice",
+    "en": "fried rice",
+    "zh": "炒飯"
+   },
+   {
+    "f": "1-4-18-fried-noodles",
+    "en": "fried noodles",
+    "zh": "炒麵"
+   },
+   {
+    "f": "1-4-19-chef",
+    "en": "chef",
+    "zh": "廚師"
+   },
+   {
+    "f": "1-4-20-prime-rib",
+    "en": "prime rib",
+    "zh": "牛肋排"
+   },
+   {
+    "f": "1-4-21-carving-station",
+    "en": "carving station",
+    "zh": "現切台；切肉台"
+   },
+   {
+    "f": "1-4-22-beverage-station",
+    "en": "beverage station",
+    "zh": "飲料台"
+   },
+   {
+    "f": "1-4-23-ice-cream-freezer",
+    "en": "ice cream freezer",
+    "zh": "冰淇淋櫃"
+   },
+   {
+    "f": "1-4-24-chocolate-fountain",
+    "en": "chocolate fountain",
+    "zh": "巧克力噴泉"
+   },
+   {
+    "f": "1-4-25-bread-and-dessert",
+    "en": "bread and dessert",
+    "zh": "麵包與甜點"
+   },
+   {
+    "f": "1-4-26-doughnut",
+    "en": "doughnut/donut",
+    "zh": "甜甜圈"
+   },
+   {
+    "f": "1-4-27-baguette",
+    "en": "baguette",
+    "zh": "長棍麵包"
+   },
+   {
+    "f": "1-4-28-multigrain-bread",
+    "en": "multigrain bread",
+    "zh": "雜糧麵包"
+   },
+   {
+    "f": "1-4-29-bagel",
+    "en": "bagel",
+    "zh": "貝果"
+   },
+   {
+    "f": "1-4-30-strawberry-cake",
+    "en": "strawberry cake",
+    "zh": "草莓蛋糕"
+   },
+   {
+    "f": "1-4-31-creme-brulee",
+    "en": "crème brûlée",
+    "zh": "焦糖烤布蕾"
+   },
+   {
+    "f": "1-4-32-panna-cotta",
+    "en": "panna cotta",
+    "zh": "奶酪"
+   }
+  ]
+ },
+ {
+  "id": "1-5",
+  "zh": "沙拉食材",
+  "en": "Salad Ingredients",
+  "words": [
+   {
+    "f": "1-5-01-sunflower-seed",
+    "en": "sunflower seed",
+    "zh": "葵花籽"
+   },
+   {
+    "f": "1-5-02-almond",
+    "en": "almond",
+    "zh": "杏仁果"
+   },
+   {
+    "f": "1-5-03-butterhead",
+    "en": "butterhead",
+    "zh": "奶油萵苣"
+   },
+   {
+    "f": "1-5-04-chestnut",
+    "en": "chestnut",
+    "zh": "栗子"
+   },
+   {
+    "f": "1-5-05-feta-cheese",
+    "en": "feta cheese",
+    "zh": "菲達起司"
+   },
+   {
+    "f": "1-5-06-baby-carrot",
+    "en": "baby carrot",
+    "zh": "小紅蘿蔔"
+   },
+   {
+    "f": "1-5-07-sliced-radish",
+    "en": "sliced radish",
+    "zh": "小蘿蔔切片"
+   },
+   {
+    "f": "1-5-08-cherry-tomato",
+    "en": "cherry tomato",
+    "zh": "小番茄"
+   },
+   {
+    "f": "1-5-09-pea",
+    "en": "pea",
+    "zh": "豌豆"
+   },
+   {
+    "f": "1-5-10-peanut",
+    "en": "peanut",
+    "zh": "花生"
+   },
+   {
+    "f": "1-5-11-cashew",
+    "en": "cashew",
+    "zh": "腰果"
+   },
+   {
+    "f": "1-5-12-pine-nut",
+    "en": "pine nut",
+    "zh": "松子"
+   },
+   {
+    "f": "1-5-13-alfalfa-seed",
+    "en": "alfalfa seed",
+    "zh": "苜蓿籽"
+   },
+   {
+    "f": "1-5-14-walnut",
+    "en": "walnut",
+    "zh": "核桃"
+   },
+   {
+    "f": "1-5-15-brazil-nut",
+    "en": "Brazil nut",
+    "zh": "巴西堅果"
+   },
+   {
+    "f": "1-5-16-hazelnut",
+    "en": "hazelnut",
+    "zh": "榛果"
+   },
+   {
+    "f": "1-5-17-pecan",
+    "en": "pecan",
+    "zh": "胡桃、山核桃"
+   },
+   {
+    "f": "1-5-18-chickpea",
+    "en": "chickpea",
+    "zh": "鷹嘴豆"
+   },
+   {
+    "f": "1-5-19-pumpkin-seed",
+    "en": "pumpkin seed",
+    "zh": "南瓜籽"
+   },
+   {
+    "f": "1-5-20-italian",
+    "en": "Italian",
+    "zh": "義式沙拉醬"
+   },
+   {
+    "f": "1-5-21-ranch",
+    "en": "ranch",
+    "zh": "田園醬"
+   },
+   {
+    "f": "1-5-22-honey-mustard",
+    "en": "honey mustard",
+    "zh": "蜂蜜芥末醬"
+   },
+   {
+    "f": "1-5-23-french",
+    "en": "French",
+    "zh": "法式醬"
+   },
+   {
+    "f": "1-5-24-iceberg",
+    "en": "iceberg",
+    "zh": "結球萵苣；美生菜"
+   },
+   {
+    "f": "1-5-25-radicchio",
+    "en": "radicchio",
+    "zh": "義大利紫菊苣"
+   },
+   {
+    "f": "1-5-26-leaf-lettuce",
+    "en": "leaf lettuce",
+    "zh": "散葉萵苣"
+   },
+   {
+    "f": "1-5-27-escarole",
+    "en": "escarole",
+    "zh": "闊葉苦苣、菊苣"
+   },
+   {
+    "f": "1-5-28-mizuna",
+    "en": "mizuna",
+    "zh": "日本蕪菁；水菜"
+   },
+   {
+    "f": "1-5-29-tatsoi",
+    "en": "tatsoi",
+    "zh": "榻棵菜"
+   },
+   {
+    "f": "1-5-30-chard",
+    "en": "chard",
+    "zh": "莙薘菜；葉用甜菜"
+   },
+   {
+    "f": "1-5-31-belgian-endive",
+    "en": "Belgian endive",
+    "zh": "比利時苦苣"
+   },
+   {
+    "f": "1-5-32-romaine",
+    "en": "romaine",
+    "zh": "蘿蔓；蘿蔓心"
+   },
+   {
+    "f": "1-5-33-kale",
+    "en": "kale",
+    "zh": "羽衣甘藍"
+   },
+   {
+    "f": "1-5-34-arugula",
+    "en": "arugula",
+    "zh": "芝麻葉"
+   },
+   {
+    "f": "1-5-35-beet-greens",
+    "en": "beet greens",
+    "zh": "甜菜葉"
+   },
+   {
+    "f": "1-5-36-bell-pepper",
+    "en": "bell/sweet pepper",
+    "zh": "甜椒"
+   },
+   {
+    "f": "1-5-37-cranberry",
+    "en": "cranberry",
+    "zh": "蔓越莓"
+   },
+   {
+    "f": "1-5-38-blueberry",
+    "en": "blueberry",
+    "zh": "藍莓"
+   },
+   {
+    "f": "1-5-39-avocado",
+    "en": "avocado",
+    "zh": "酪梨"
+   }
+  ]
+ },
+ {
+  "id": "1-6",
+  "zh": "各式沙拉",
+  "en": "Various Salads",
+  "words": [
+   {
+    "f": "1-6-01-caprese-salad",
+    "en": "caprese salad",
+    "zh": "卡布里沙拉"
+   },
+   {
+    "f": "1-6-02-cobb-salad",
+    "en": "Cobb salad",
+    "zh": "柯布沙拉"
+   },
+   {
+    "f": "1-6-03-greek-salad",
+    "en": "Greek salad",
+    "zh": "希臘沙拉"
+   },
+   {
+    "f": "1-6-04-poke-bowl",
+    "en": "poke bowl",
+    "zh": "夏威夷生魚飯沙拉"
+   },
+   {
+    "f": "1-6-05-caesar-salad",
+    "en": "Caesar salad",
+    "zh": "凱薩沙拉"
+   },
+   {
+    "f": "1-6-06-fruit-salad",
+    "en": "fruit salad",
+    "zh": "水果沙拉"
+   },
+   {
+    "f": "1-6-07-egg-salad",
+    "en": "egg salad",
+    "zh": "蛋沙拉"
+   },
+   {
+    "f": "1-6-08-potato-salad",
+    "en": "potato salad",
+    "zh": "馬鈴薯沙拉"
+   },
+   {
+    "f": "1-6-09-chefs-salad",
+    "en": "chef's salad",
+    "zh": "主廚沙拉"
+   },
+   {
+    "f": "1-6-10-garden-salad",
+    "en": "garden salad",
+    "zh": "田園沙拉"
+   },
+   {
+    "f": "1-6-11-green-papaya-salad",
+    "en": "green papaya salad",
+    "zh": "青木瓜沙拉"
+   },
+   {
+    "f": "1-6-12-salade-nicoise",
+    "en": "salade Niçoise",
+    "zh": "尼斯沙拉"
+   },
+   {
+    "f": "1-6-13-tabbouleh",
+    "en": "tabbouleh",
+    "zh": "塔布勒沙拉"
+   },
+   {
+    "f": "1-6-14-waldorf-salad",
+    "en": "Waldorf salad",
+    "zh": "華爾道夫沙拉"
+   },
+   {
+    "f": "1-6-15-tuna-salad",
+    "en": "tuna salad",
+    "zh": "鮪魚沙拉"
+   },
+   {
+    "f": "1-6-16-olivier",
+    "en": "Olivier",
+    "zh": "奧列夫沙拉"
+   },
+   {
+    "f": "1-6-17-shirazi-salad",
+    "en": "shirazi salad",
+    "zh": "設拉子沙拉"
+   },
+   {
+    "f": "1-6-18-pasta-salad",
+    "en": "pasta salad",
+    "zh": "義大利麵沙拉"
+   },
+   {
+    "f": "1-6-19-fattoush",
+    "en": "fattoush",
+    "zh": "阿拉伯蔬菜沙拉"
+   },
+   {
+    "f": "1-6-20-salade-lyonnaise",
+    "en": "salade Lyonnaise",
+    "zh": "里昂沙拉"
+   },
+   {
+    "f": "1-6-21-coleslaw",
+    "en": "coleslaw",
+    "zh": "涼拌捲心菜絲"
+   }
+  ]
+ },
+ {
+  "id": "1-7",
+  "zh": "餐廳與做菜動作",
+  "en": "Inside a Restaurant",
+  "words": [
+   {
+    "f": "1-7-01-host-hostess",
+    "en": "host/hostess",
+    "zh": "接待員／女接待員"
+   },
+   {
+    "f": "1-7-02-seat-a-customer",
+    "en": "seat a customer",
+    "zh": "帶客人入座"
+   },
+   {
+    "f": "1-7-03-serve-a-meal",
+    "en": "serve a meal",
+    "zh": "上菜"
+   },
+   {
+    "f": "1-7-04-patron",
+    "en": "patron",
+    "zh": "顧客、主顧"
+   },
+   {
+    "f": "1-7-05-place-setting",
+    "en": "place setting",
+    "zh": "（供一人使用的）一副餐具"
+   },
+   {
+    "f": "1-7-06-set-a-table",
+    "en": "set a table",
+    "zh": "布置餐桌"
+   },
+   {
+    "f": "1-7-07-take-an-order",
+    "en": "take an order",
+    "zh": "點餐"
+   },
+   {
+    "f": "1-7-08-marinate-meat",
+    "en": "marinate meat",
+    "zh": "醃肉"
+   },
+   {
+    "f": "1-7-09-scramble-eggs",
+    "en": "scramble eggs",
+    "zh": "打蛋"
+   },
+   {
+    "f": "1-7-10-peel-carrots",
+    "en": "peel carrots",
+    "zh": "削紅蘿蔔皮"
+   },
+   {
+    "f": "1-7-11-chop-spinach",
+    "en": "chop spinach",
+    "zh": "切菠菜"
+   },
+   {
+    "f": "1-7-12-do-the-dishes",
+    "en": "do the dishes",
+    "zh": "洗碗"
+   },
+   {
+    "f": "1-7-13-stir-fry-vegetables",
+    "en": "stir-fry vegetables",
+    "zh": "炒菜"
+   },
+   {
+    "f": "1-7-14-blanch-broccoli",
+    "en": "blanch broccoli",
+    "zh": "燙青花菜"
+   },
+   {
+    "f": "1-7-15-dice",
+    "en": "dice",
+    "zh": "切丁"
+   },
+   {
+    "f": "1-7-16-slice",
+    "en": "slice",
+    "zh": "切片"
+   },
+   {
+    "f": "1-7-17-grate",
+    "en": "grate",
+    "zh": "刨"
+   },
+   {
+    "f": "1-7-18-season",
+    "en": "season",
+    "zh": "調味"
+   },
+   {
+    "f": "1-7-19-sift",
+    "en": "sift",
+    "zh": "篩"
+   },
+   {
+    "f": "1-7-20-grind",
+    "en": "grind",
+    "zh": "磨"
+   },
+   {
+    "f": "1-7-21-stew",
+    "en": "stew",
+    "zh": "燉"
+   },
+   {
+    "f": "1-7-22-deep-fry",
+    "en": "deep-fry",
+    "zh": "油炸"
+   },
+   {
+    "f": "1-7-23-fry",
+    "en": "fry",
+    "zh": "煎"
+   },
+   {
+    "f": "1-7-24-grill",
+    "en": "grill",
+    "zh": "（在烤架上）燒烤"
+   },
+   {
+    "f": "1-7-25-roast",
+    "en": "roast",
+    "zh": "（在烤箱）烘烤"
+   },
+   {
+    "f": "1-7-26-toss",
+    "en": "toss",
+    "zh": "攪拌"
+   }
+  ]
+ },
+ {
+  "id": "d1",
+  "zh": "從帶位到上菜",
+  "en": "Restaurant English",
+  "words": [
+   {
+    "f": "d-01-diner",
+    "en": "diner",
+    "zh": "小餐館；用餐者"
+   },
+   {
+    "f": "d-02-reservation",
+    "en": "reservation",
+    "zh": "預訂；保留"
+   },
+   {
+    "f": "d-03-recommendation",
+    "en": "recommendation",
+    "zh": "推薦；建議"
+   },
+   {
+    "f": "d-04-recommend",
+    "en": "recommend",
+    "zh": "推薦（動詞）"
+   },
+   {
+    "f": "d-05-specialty",
+    "en": "specialty",
+    "zh": "招牌菜、特色食品；特產；專長"
+   },
+   {
+    "f": "d-06-refill",
+    "en": "refill",
+    "zh": "重新注滿；再裝滿"
+   }
+  ]
+ },
+ {
+  "id": "1-8",
+  "zh": "各式餐具",
+  "en": "Dining Utensils",
+  "words": [
+   {
+    "f": "1-8-01-pepper-shaker",
+    "en": "pepper shaker",
+    "zh": "胡椒罐"
+   },
+   {
+    "f": "1-8-02-salt-shaker",
+    "en": "salt shaker",
+    "zh": "鹽罐"
+   },
+   {
+    "f": "1-8-03-bread-plate",
+    "en": "bread plate",
+    "zh": "麵包盤"
+   },
+   {
+    "f": "1-8-04-butter-knife",
+    "en": "butter knife",
+    "zh": "奶油刀"
+   },
+   {
+    "f": "1-8-05-dessert-spoon",
+    "en": "dessert spoon",
+    "zh": "甜點匙"
+   },
+   {
+    "f": "1-8-06-champagne-flute",
+    "en": "champagne flute",
+    "zh": "香檳酒杯"
+   },
+   {
+    "f": "1-8-07-wine-glass",
+    "en": "wine glass",
+    "zh": "葡萄酒杯"
+   },
+   {
+    "f": "1-8-08-water-goblet",
+    "en": "water goblet/glass",
+    "zh": "水杯"
+   },
+   {
+    "f": "1-8-09-dessert-fork",
+    "en": "dessert fork",
+    "zh": "甜點叉"
+   },
+   {
+    "f": "1-8-10-soup-spoon",
+    "en": "soup spoon",
+    "zh": "湯匙"
+   },
+   {
+    "f": "1-8-11-teacup",
+    "en": "teacup",
+    "zh": "茶杯"
+   },
+   {
+    "f": "1-8-12-soup-bowl",
+    "en": "soup bowl",
+    "zh": "湯碗"
+   },
+   {
+    "f": "1-8-13-salad-fork",
+    "en": "salad fork",
+    "zh": "沙拉叉"
+   },
+   {
+    "f": "1-8-14-napkin",
+    "en": "napkin",
+    "zh": "餐巾"
+   },
+   {
+    "f": "1-8-15-dinner-fork",
+    "en": "dinner fork",
+    "zh": "晚餐叉"
+   },
+   {
+    "f": "1-8-16-salad-plate",
+    "en": "salad plate",
+    "zh": "沙拉盤"
+   },
+   {
+    "f": "1-8-17-charger-plate",
+    "en": "service/charger plate",
+    "zh": "服務盤"
+   },
+   {
+    "f": "1-8-18-dinner-knife",
+    "en": "dinner knife",
+    "zh": "晚餐刀"
+   },
+   {
+    "f": "1-8-19-saucer",
+    "en": "saucer",
+    "zh": "茶杯碟"
+   },
+   {
+    "f": "1-8-20-teaspoon",
+    "en": "teaspoon",
+    "zh": "茶匙"
+   },
+   {
+    "f": "1-8-21-teapot",
+    "en": "teapot",
+    "zh": "茶壺"
+   },
+   {
+    "f": "1-8-22-mug",
+    "en": "mug",
+    "zh": "馬克杯"
+   },
+   {
+    "f": "1-8-23-egg-cup",
+    "en": "egg cup",
+    "zh": "蛋杯"
+   },
+   {
+    "f": "1-8-24-pitcher",
+    "en": "pitcher/jug",
+    "zh": "水壺"
+   },
+   {
+    "f": "1-8-25-serving-spoon",
+    "en": "serving spoon",
+    "zh": "分菜匙、母匙"
+   },
+   {
+    "f": "1-8-26-salad-servers",
+    "en": "salad servers",
+    "zh": "沙拉叉匙"
+   },
+   {
+    "f": "1-8-27-platter",
+    "en": "platter",
+    "zh": "大淺盤"
+   },
+   {
+    "f": "1-8-28-baking-dish",
+    "en": "baking dish",
+    "zh": "烤盤"
+   },
+   {
+    "f": "1-8-29-trivet",
+    "en": "trivet",
+    "zh": "隔熱架"
+   },
+   {
+    "f": "1-8-30-coaster",
+    "en": "coaster",
+    "zh": "杯墊"
+   },
+   {
+    "f": "1-8-31-place-mat",
+    "en": "place mat",
+    "zh": "餐具墊"
+   },
+   {
+    "f": "1-8-32-dipping-dish",
+    "en": "dipping dish/bowl",
+    "zh": "沾醬碟、沾醬碗"
+   },
+   {
+    "f": "1-8-33-start",
+    "en": "start",
+    "zh": "準備開始用餐"
+   },
+   {
+    "f": "1-8-34-next-dish",
+    "en": "next dish",
+    "zh": "等待下一道菜"
+   },
+   {
+    "f": "1-8-35-excellent",
+    "en": "excellent",
+    "zh": "喜歡這道菜"
+   },
+   {
+    "f": "1-8-36-bad",
+    "en": "bad",
+    "zh": "不喜歡這道菜"
+   },
+   {
+    "f": "1-8-37-break",
+    "en": "break",
+    "zh": "稍作休息"
+   },
+   {
+    "f": "1-8-38-service-was-bad",
+    "en": "service was bad",
+    "zh": "服務不佳"
+   },
+   {
+    "f": "1-8-39-finished",
+    "en": "finished",
+    "zh": "用餐完畢"
+   }
+  ]
+ },
+ {
+  "id": "d2",
+  "zh": "學習正式的用餐禮儀",
+  "en": "Dining Etiquette",
+  "words": [
+   {
+    "f": "d-07-etiquette",
+    "en": "etiquette",
+    "zh": "禮節、禮儀；行為規範"
+   },
+   {
+    "f": "d-08-elegant",
+    "en": "elegant",
+    "zh": "雅緻的、優雅的"
+   },
+   {
+    "f": "d-09-embarrass",
+    "en": "embarrass",
+    "zh": "使尷尬、使窘迫"
+   },
+   {
+    "f": "d-10-utensil",
+    "en": "utensil",
+    "zh": "器具、器皿"
+   },
+   {
+    "f": "d-11-placement",
+    "en": "placement",
+    "zh": "擺放位置、放置、布置"
+   },
+   {
+    "f": "d-12-invert",
+    "en": "invert",
+    "zh": "使倒置、使顛倒"
+   },
+   {
+    "f": "d-13-parallel",
+    "en": "parallel",
+    "zh": "平行的；類似的"
+   }
+  ]
+ }
+]

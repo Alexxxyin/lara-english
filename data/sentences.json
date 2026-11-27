@@ -1,0 +1,1186 @@
+{
+ "sentences": {
+  "1-1-01-bruschetta": {
+   "en": "Let's share the bruschetta while we wait for our main courses.",
+   "zh": "我們等主餐的時候，先一起吃普切塔吧。"
+  },
+  "1-1-02-paella": {
+   "en": "This paella is full of shrimp, mussels, and saffron rice.",
+   "zh": "這道西班牙海鮮燉飯裡有滿滿的蝦、淡菜和番紅花飯。"
+  },
+  "1-1-03-risotto": {
+   "en": "Keep stirring the risotto, or the rice will stick to the pan.",
+   "zh": "燉飯要一直攪拌，不然米會黏鍋。"
+  },
+  "1-1-04-grilled-vegetables": {
+   "en": "The grilled vegetables come with a little olive oil and sea salt.",
+   "zh": "烤時蔬會淋一點橄欖油、撒點海鹽。"
+  },
+  "1-1-05-roasted-salmon-steak": {
+   "en": "My roasted salmon steak was crispy outside and soft inside.",
+   "zh": "我的烤鮭魚排外酥內嫩。"
+  },
+  "1-1-06-duck-confit": {
+   "en": "The duck confit is cooked slowly in its own fat for hours.",
+   "zh": "油封鴨是用鴨本身的油慢慢煮好幾個小時。"
+  },
+  "1-1-07-focaccia": {
+   "en": "This warm focaccia smells like rosemary and olive oil.",
+   "zh": "這塊溫熱的佛卡夏聞起來有迷迭香和橄欖油的香味。"
+  },
+  "1-1-08-calamari": {
+   "en": "Could we get the fried calamari with extra lemon, please?",
+   "zh": "炸魷魚圈可以多給一點檸檬嗎？"
+  },
+  "1-1-09-lamb-shank": {
+   "en": "The lamb shank is so tender that it falls off the bone.",
+   "zh": "這份燉羊膝軟嫩到肉一碰就從骨頭上掉下來。"
+  },
+  "1-1-10-prosciutto-and-melon": {
+   "en": "Prosciutto and melon is a perfect starter on a hot summer day.",
+   "zh": "炎熱的夏天，蜜瓜火腿是最完美的前菜。"
+  },
+  "1-1-11-rack-of-lamb": {
+   "en": "We ordered a rack of lamb to share for our anniversary.",
+   "zh": "我們點了一份烤羊排，一起慶祝結婚紀念日。"
+  },
+  "1-1-12-beef-wellington": {
+   "en": "Beef Wellington is a steak wrapped in pastry and baked.",
+   "zh": "威靈頓牛排是用酥皮包住牛排再烤出來的。"
+  },
+  "1-1-13-t-bone": {
+   "en": "A T-bone has a strip steak on one side and tenderloin on the other.",
+   "zh": "丁骨牛排的一邊是紐約客，另一邊是菲力。"
+  },
+  "1-1-14-new-york-strip": {
+   "en": "I'll have the New York strip, medium rare.",
+   "zh": "我要紐約客牛排，三分熟。"
+  },
+  "1-1-15-filet-mignon": {
+   "en": "The filet mignon is small, but it's the most tender steak.",
+   "zh": "菲力牛排份量雖小，卻是最嫩的牛排。"
+  },
+  "1-1-16-porterhouse": {
+   "en": "A porterhouse is big enough for two hungry people to share.",
+   "zh": "一塊紅屋牛排大到夠兩個餓肚子的人分著吃。"
+  },
+  "1-1-17-tomahawk-steak": {
+   "en": "Everyone took photos when the tomahawk steak arrived at our table.",
+   "zh": "戰斧牛排一上桌，大家都忙著拍照。"
+  },
+  "1-1-18-rib-eye": {
+   "en": "I love the rib eye because it's juicy and full of flavor.",
+   "zh": "我很愛肋眼牛排，因為它多汁又夠味。"
+  },
+  "1-1-19-tiramisu": {
+   "en": "The tiramisu here has a strong coffee taste.",
+   "zh": "這裡的提拉米蘇咖啡味很濃。"
+  },
+  "1-1-20-souffle": {
+   "en": "Please order the soufflé early, because it takes twenty minutes to bake.",
+   "zh": "舒芙蕾要烤二十分鐘，請提早點。"
+  },
+  "1-1-21-sundae": {
+   "en": "The kids shared a chocolate sundae with whipped cream and a cherry.",
+   "zh": "孩子們分吃一份加了鮮奶油和櫻桃的巧克力聖代。"
+  },
+  "1-1-22-brownie": {
+   "en": "Can I get a scoop of ice cream on my brownie?",
+   "zh": "我的布朗尼可以加一球冰淇淋嗎？"
+  },
+  "1-1-23-cheek": {
+   "en": "Beef cheek becomes soft and rich after cooking in red wine.",
+   "zh": "牛頰肉用紅酒燉過之後會變得又軟又濃郁。"
+  },
+  "1-1-24-neck": {
+   "en": "The neck is a tough cut, so it's best for soups.",
+   "zh": "牛頸肉比較硬，最適合拿來煮湯。"
+  },
+  "1-1-25-chuck": {
+   "en": "Ground chuck makes really juicy hamburgers.",
+   "zh": "用牛肩胛絞肉做的漢堡排特別多汁。"
+  },
+  "1-1-26-brisket": {
+   "en": "Texas barbecue places smoke brisket for more than ten hours.",
+   "zh": "德州烤肉店會把前胸肉煙燻超過十個小時。"
+  },
+  "1-1-27-shank": {
+   "en": "Beef shank is great for braising with soy sauce and star anise.",
+   "zh": "牛腱很適合加醬油和八角來滷。"
+  },
+  "1-1-28-rib": {
+   "en": "The butcher cut the rib into thick steaks for the grill.",
+   "zh": "肉販把牛肋排切成厚片，準備拿去烤。"
+  },
+  "1-1-29-plate": {
+   "en": "Cuts from the plate are often used for fajitas and Korean barbecue.",
+   "zh": "牛腹肉常被拿來做墨西哥法士達和韓式烤肉。"
+  },
+  "1-1-30-short-loin": {
+   "en": "Both T-bone and porterhouse steaks come from the short loin.",
+   "zh": "丁骨和紅屋牛排都來自前腰脊肉。"
+  },
+  "1-1-31-flank": {
+   "en": "Slice the flank thinly against the grain so it isn't chewy.",
+   "zh": "牛腹脅肉要逆紋切薄，吃起來才不會太韌。"
+  },
+  "1-1-32-sirloin": {
+   "en": "I'll have the sirloin with mashed potatoes and a side salad.",
+   "zh": "我要沙朗牛排，配馬鈴薯泥和一份小沙拉。"
+  },
+  "1-1-33-tenderloin": {
+   "en": "The whole tenderloin is expensive because each cow has so little of it.",
+   "zh": "整條菲力很貴，因為每頭牛身上只有一點點。"
+  },
+  "1-1-34-top-sirloin": {
+   "en": "Top sirloin is a lean steak that doesn't cost too much.",
+   "zh": "上後腰脊肉是一種油脂少、價格也不太貴的牛排。"
+  },
+  "1-1-35-bottom-sirloin": {
+   "en": "Bottom sirloin is often used for roast beef and tri-tip.",
+   "zh": "下後腰脊肉常用來做烤牛肉和三角肉。"
+  },
+  "1-1-36-rump": {
+   "en": "We roasted a rump for Sunday dinner with the whole family.",
+   "zh": "我們烤了一塊牛臀肉，當全家人的週日晚餐。"
+  },
+  "1-1-37-round": {
+   "en": "The round is very lean, so it's good for beef jerky.",
+   "zh": "後腿肉很瘦，很適合拿來做牛肉乾。"
+  },
+  "1-2-01-fish-and-chips": {
+   "en": "In London, we ate fish and chips with salt and vinegar.",
+   "zh": "在倫敦，我們吃了撒鹽、淋醋的炸魚薯條。"
+  },
+  "1-2-02-toad-in-the-hole": {
+   "en": "Toad-in-the-hole is just sausages baked in a puffy batter.",
+   "zh": "「蟾蜍在洞」其實就是把香腸放進麵糊裡烤到膨起來。"
+  },
+  "1-2-03-lancashire-hot-pot": {
+   "en": "Lancashire hot pot is lamb stew topped with sliced potatoes.",
+   "zh": "蘭開夏燉羊肉就是上面鋪著馬鈴薯片的燉羊肉。"
+  },
+  "1-2-04-shepherds-pie": {
+   "en": "My mom makes shepherd's pie with lamb and mashed potatoes.",
+   "zh": "我媽媽做的牧羊人派是用羊肉和馬鈴薯泥。"
+  },
+  "1-2-05-cornish-pasty": {
+   "en": "A Cornish pasty is easy to eat with your hands.",
+   "zh": "康沃爾餡餅很方便直接用手拿著吃。"
+  },
+  "1-2-06-bangers-and-mash": {
+   "en": "The pub's bangers and mash comes with lots of onion gravy.",
+   "zh": "這家酒吧的香腸佐薯泥附上滿滿的洋蔥肉汁。"
+  },
+  "1-2-07-biryani": {
+   "en": "The chicken biryani smells amazing with all those spices.",
+   "zh": "雞肉印度香飯加了那麼多香料，聞起來超香。"
+  },
+  "1-2-08-tandoori-chicken": {
+   "en": "Tandoori chicken is red because of the spices in the yogurt.",
+   "zh": "印度烤雞會紅紅的，是因為優格醃料裡的香料。"
+  },
+  "1-2-09-pakora": {
+   "en": "We dipped each crispy pakora in mint sauce.",
+   "zh": "我們把每個酥脆的帕可拉都沾了薄荷醬。"
+  },
+  "1-2-10-masala-dosa": {
+   "en": "A masala dosa is a thin, crispy pancake filled with spicy potatoes.",
+   "zh": "印度瑪撒拉香料捲餅是包著香辣馬鈴薯的酥脆薄餅。"
+  },
+  "1-2-11-paratha": {
+   "en": "The paratha is flaky and buttery, a bit like Taiwanese scallion pancake.",
+   "zh": "印度抓餅層層酥脆、奶油香濃，有點像台灣的蔥油餅。"
+  },
+  "1-2-12-naan": {
+   "en": "Can we have one more garlic naan for the curry?",
+   "zh": "可以再給我們一片大蒜烤餅配咖哩嗎？"
+  },
+  "1-2-13-roti": {
+   "en": "Tear off a piece of roti and use it to scoop up the curry.",
+   "zh": "撕一塊印度薄餅，用它把咖哩舀起來吃。"
+  },
+  "1-2-14-ratatouille": {
+   "en": "Ratatouille is a French dish of slowly cooked summer vegetables.",
+   "zh": "普羅旺斯雜燴是一道用夏季蔬菜慢慢燉煮的法國菜。"
+  },
+  "1-2-15-escargot": {
+   "en": "I tried escargot in Paris, and it tasted like garlic butter.",
+   "zh": "我在巴黎吃了法國蝸牛，吃起來都是蒜味奶油的味道。"
+  },
+  "1-2-16-pot-au-feu": {
+   "en": "On cold nights, a bowl of pot-au-feu warms you right up.",
+   "zh": "寒冷的夜晚，來一碗火上鍋，整個人都暖起來。"
+  },
+  "1-2-17-coq-au-vin": {
+   "en": "Coq au vin is chicken cooked slowly in red wine.",
+   "zh": "紅酒燉雞就是把雞肉放在紅酒裡慢慢燉煮。"
+  },
+  "1-2-18-foie-gras": {
+   "en": "The foie gras was so rich that I could only eat a little.",
+   "zh": "那份鵝肝太濃郁了，我只吃得下一點點。"
+  },
+  "1-2-19-beef-bourguignon": {
+   "en": "Beef bourguignon tastes even better the next day.",
+   "zh": "紅酒燉牛肉隔天吃會更好吃。"
+  },
+  "1-2-20-philly-cheesesteak": {
+   "en": "A Philly cheesesteak is thin beef and melted cheese in a long roll.",
+   "zh": "費城牛肉起司三明治就是長麵包裡夾著薄牛肉片和融化的起司。"
+  },
+  "1-2-21-meat-loaf": {
+   "en": "Grandma's meat loaf is the best comfort food I know.",
+   "zh": "奶奶做的肉卷是我心中最療癒的食物。"
+  },
+  "1-2-22-apple-pie": {
+   "en": "Would you like your apple pie warm, with vanilla ice cream?",
+   "zh": "您的蘋果派要加熱，再配香草冰淇淋嗎？"
+  },
+  "1-2-23-biscuits-and-gravy": {
+   "en": "In the South, biscuits and gravy is a popular breakfast.",
+   "zh": "在美國南方，肉汁比司吉是很受歡迎的早餐。"
+  },
+  "1-2-24-buffalo-wings": {
+   "en": "These Buffalo wings are too spicy, so pass me the blue cheese dip.",
+   "zh": "這些水牛城辣雞翅太辣了，把藍紋起司醬遞給我。"
+  },
+  "1-2-25-doner-kebab": {
+   "en": "The doner kebab meat is cut right off the turning spit.",
+   "zh": "土耳其旋轉烤肉是直接從轉動的烤肉架上切下來的。"
+  },
+  "1-2-26-kebab": {
+   "en": "He grilled a lamb kebab with onions and green peppers.",
+   "zh": "他烤了一串夾著洋蔥和青椒的羊肉串。"
+  },
+  "1-2-27-baklava": {
+   "en": "Baklava is very sweet, so one small piece is enough for me.",
+   "zh": "果仁蜜餅很甜，我吃一小塊就夠了。"
+  },
+  "1-2-28-dolma": {
+   "en": "Each dolma is rice and meat rolled up in a grape leaf.",
+   "zh": "每個蔬菜鑲肉都是用葡萄葉把米飯和肉捲起來。"
+  },
+  "1-3-01-bolognese-sauce": {
+   "en": "A good Bolognese sauce needs to cook for at least two hours.",
+   "zh": "好的波隆納肉醬至少要煮兩個小時。"
+  },
+  "1-3-02-lasagna": {
+   "en": "The lasagna is so cheesy that it's hard to cut neatly.",
+   "zh": "這份千層麵起司多到很難切得整齊。"
+  },
+  "1-3-03-lasagna-sheet": {
+   "en": "Put one lasagna sheet down, then add sauce and cheese on top.",
+   "zh": "先鋪一片千層麵片，再在上面加醬和起司。"
+  },
+  "1-3-04-spaghetti": {
+   "en": "My kids always order spaghetti with meatballs.",
+   "zh": "我家小孩每次都點肉丸義大利麵。"
+  },
+  "1-3-05-farfalle": {
+   "en": "Farfalle looks like little bow ties, so kids love it.",
+   "zh": "蝴蝶麵看起來像小領結，所以小朋友很愛。"
+  },
+  "1-3-06-pesto-sauce": {
+   "en": "Pesto sauce is made with basil, pine nuts, garlic, and olive oil.",
+   "zh": "青醬是用羅勒、松子、大蒜和橄欖油做的。"
+  },
+  "1-3-07-carbonara": {
+   "en": "Real carbonara uses eggs and cheese, not cream.",
+   "zh": "正統的起司培根蛋麵用的是蛋和起司，不是鮮奶油。"
+  },
+  "1-3-08-pumpkin-sauce": {
+   "en": "This pumpkin sauce is sweet, creamy, and perfect for autumn.",
+   "zh": "這南瓜醬香甜滑順，最適合秋天了。"
+  },
+  "1-3-09-conchiglie": {
+   "en": "The little shells of conchiglie hold a lot of sauce.",
+   "zh": "貝殼麵小小的殼可以包住很多醬汁。"
+  },
+  "1-3-10-macaroni": {
+   "en": "Macaroni and cheese is a classic American side dish.",
+   "zh": "起司通心粉是經典的美式配菜。"
+  },
+  "1-3-11-linguine": {
+   "en": "I'll try the linguine with clams and white wine sauce.",
+   "zh": "我想試試白酒蛤蜊細扁麵。"
+  },
+  "1-3-12-smoked-salmon": {
+   "en": "The smoked salmon pasta has a light cream sauce and dill.",
+   "zh": "煙燻鮭魚義大利麵配的是清爽的奶油醬和蒔蘿。"
+  },
+  "1-3-13-alfredo-sauce": {
+   "en": "Alfredo sauce is rich, so I can't eat a big plate of it.",
+   "zh": "奶油白醬很濃郁，我沒辦法吃一大盤。"
+  },
+  "1-3-14-marinara": {
+   "en": "If you don't like cream, choose the marinara instead.",
+   "zh": "如果你不喜歡奶油醬，可以改選番茄紅醬。"
+  },
+  "1-3-15-ravioli": {
+   "en": "The ravioli are filled with spinach and ricotta cheese.",
+   "zh": "這些義大利方餃裡包的是菠菜和瑞可塔起司。"
+  },
+  "1-3-16-penne": {
+   "en": "Penne is easy to cook and goes well with almost any sauce.",
+   "zh": "斜管麵很好煮，幾乎配什麼醬都好吃。"
+  },
+  "1-3-17-creamy-mushroom-and-bacon": {
+   "en": "Is the creamy mushroom and bacon pasta very heavy?",
+   "zh": "奶油蘑菇培根麵會很膩嗎？"
+  },
+  "1-3-18-basil": {
+   "en": "Add some fresh basil just before you serve the pasta.",
+   "zh": "義大利麵上桌前再加一些新鮮羅勒。"
+  },
+  "1-3-19-cheese": {
+   "en": "Would you like some extra cheese on your pasta?",
+   "zh": "您的義大利麵要再加點起司嗎？"
+  },
+  "1-3-20-tomato": {
+   "en": "Cut the tomato into small pieces for the bruschetta topping.",
+   "zh": "把番茄切成小塊，鋪在普切塔上。"
+  },
+  "1-3-21-margherita-pizza": {
+   "en": "A margherita pizza has tomato, mozzarella, and basil, like the Italian flag.",
+   "zh": "瑪格麗塔披薩有番茄、莫札瑞拉起司和羅勒，就像義大利國旗的顏色。"
+  },
+  "1-3-22-supreme-pizza": {
+   "en": "The supreme pizza has almost every topping on the menu.",
+   "zh": "總匯披薩幾乎放了菜單上所有的配料。"
+  },
+  "1-3-23-hawaiian-pizza": {
+   "en": "Some people love Hawaiian pizza, but others hate pineapple on pizza.",
+   "zh": "有些人超愛夏威夷披薩，但也有人很討厭披薩上放鳳梨。"
+  },
+  "1-3-24-pepperoni-pizza": {
+   "en": "Let's get a large pepperoni pizza for movie night.",
+   "zh": "電影之夜我們來叫一個大的辣味香腸披薩吧。"
+  },
+  "1-3-25-veggie-pizza": {
+   "en": "The veggie pizza has mushrooms, peppers, olives, and onions.",
+   "zh": "蔬食披薩上有蘑菇、甜椒、橄欖和洋蔥。"
+  },
+  "1-3-26-seafood-pizza": {
+   "en": "This seafood pizza is topped with shrimp, squid, and clams.",
+   "zh": "這個海鮮披薩上面放了蝦、花枝和蛤蜊。"
+  },
+  "1-4-01-chafing-dish": {
+   "en": "Please close the lid of the chafing dish to keep the food warm.",
+   "zh": "請把餐鍋的蓋子蓋上，食物才會保溫。"
+  },
+  "1-4-02-bread-basket": {
+   "en": "Could you bring us another bread basket, please?",
+   "zh": "可以再給我們一籃麵包嗎？"
+  },
+  "1-4-03-tongs": {
+   "en": "Use the tongs, not your fingers, to pick up the bread.",
+   "zh": "拿麵包要用夾子，不要用手。"
+  },
+  "1-4-04-salad-bar": {
+   "en": "I always start with a small plate from the salad bar.",
+   "zh": "我每次都先從沙拉吧拿一小盤開始吃。"
+  },
+  "1-4-05-sashimi": {
+   "en": "The sashimi at this buffet is fresh and cut nice and thick.",
+   "zh": "這家吃到飽的生魚片很新鮮，切得也很厚。"
+  },
+  "1-4-06-tuna": {
+   "en": "The fatty tuna melts in your mouth.",
+   "zh": "鮪魚肚入口即化。"
+  },
+  "1-4-07-salmon": {
+   "en": "Salmon is my favorite because it's rich and a little sweet.",
+   "zh": "鮭魚是我的最愛，因為它油脂豐富又帶點甜味。"
+  },
+  "1-4-08-mussel": {
+   "en": "If a mussel stays closed after cooking, don't eat it.",
+   "zh": "淡菜煮完如果還沒打開，就不要吃。"
+  },
+  "1-4-09-shrimp": {
+   "en": "I peeled so much shrimp that my fingers smelled like garlic.",
+   "zh": "我剝了好多蝦子，手指都是蒜味。"
+  },
+  "1-4-10-salad-dressing": {
+   "en": "Do you want your salad dressing on the side?",
+   "zh": "你的沙拉醬要另外放嗎？"
+  },
+  "1-4-11-thousand-island-dressing": {
+   "en": "Thousand island dressing is sweet, pink, and a little tangy.",
+   "zh": "千島醬是粉紅色的，甜甜的又帶點酸。"
+  },
+  "1-4-12-wafu-dressing": {
+   "en": "Japanese-style dressing is light and tastes of soy sauce and sesame.",
+   "zh": "和風醬很清爽，吃得到醬油和芝麻的味道。",
+   "key": "Japanese-style dressing"
+  },
+  "1-4-13-caesar-dressing": {
+   "en": "Caesar dressing is made with garlic, lemon, and Parmesan cheese.",
+   "zh": "凱薩醬是用大蒜、檸檬和帕瑪森起司做的。"
+  },
+  "1-4-14-charcuterie-board": {
+   "en": "The charcuterie board had salami, ham, olives, and crackers.",
+   "zh": "熟食冷肉盤上有義大利臘腸、火腿、橄欖和餅乾。"
+  },
+  "1-4-15-assorted-cheese-platter": {
+   "en": "Try a bit of everything on the assorted cheese platter.",
+   "zh": "綜合起司盤上的每一種都吃一點看看。"
+  },
+  "1-4-16-dim-sum": {
+   "en": "We had dim sum with my grandparents every Sunday morning.",
+   "zh": "以前每個星期天早上，我們都跟爺爺奶奶去吃港式點心。"
+  },
+  "1-4-17-fried-rice": {
+   "en": "Day-old rice works best for making fried rice.",
+   "zh": "做炒飯用隔夜飯最好。"
+  },
+  "1-4-18-fried-noodles": {
+   "en": "The fried noodles at the buffet were a little too oily.",
+   "zh": "吃到飽的炒麵有點太油了。"
+  },
+  "1-4-19-chef": {
+   "en": "The chef came out to ask how we liked the meal.",
+   "zh": "主廚出來問我們覺得餐點怎麼樣。"
+  },
+  "1-4-20-prime-rib": {
+   "en": "The prime rib is slow-roasted and served with its own juices.",
+   "zh": "這份牛肋排是慢烤的，上桌時會淋上它自己的肉汁。"
+  },
+  "1-4-21-carving-station": {
+   "en": "At the carving station, the cook slices the roast beef for you.",
+   "zh": "在現切台，廚師會當場幫你切烤牛肉。"
+  },
+  "1-4-22-beverage-station": {
+   "en": "You can get coffee and juice at the beverage station.",
+   "zh": "咖啡和果汁可以到飲料台拿。"
+  },
+  "1-4-23-ice-cream-freezer": {
+   "en": "The kids ran straight to the ice cream freezer after dinner.",
+   "zh": "晚餐一吃完，孩子們就直奔冰淇淋櫃。"
+  },
+  "1-4-24-chocolate-fountain": {
+   "en": "Dip a strawberry into the chocolate fountain with a long stick.",
+   "zh": "用長籤把草莓伸進巧克力噴泉裡沾一沾。"
+  },
+  "1-4-25-bread-and-dessert": {
+   "en": "The bread and dessert section is at the end of the buffet line.",
+   "zh": "麵包與甜點區在自助餐檯的最後面。"
+  },
+  "1-4-26-doughnut": {
+   "en": "I can never say no to a warm glazed doughnut.",
+   "zh": "熱騰騰的糖霜甜甜圈我永遠拒絕不了。",
+   "key": "doughnut"
+  },
+  "1-4-27-baguette": {
+   "en": "A fresh baguette is crispy outside and soft inside.",
+   "zh": "新鮮的長棍麵包外脆內軟。"
+  },
+  "1-4-28-multigrain-bread": {
+   "en": "I choose multigrain bread because it keeps me full longer.",
+   "zh": "我選雜糧麵包，因為比較有飽足感。"
+  },
+  "1-4-29-bagel": {
+   "en": "I'd like a toasted bagel with cream cheese, please.",
+   "zh": "我要一個烤過的貝果，抹奶油乳酪，謝謝。"
+  },
+  "1-4-30-strawberry-cake": {
+   "en": "We ordered a strawberry cake for my sister's birthday.",
+   "zh": "我們訂了一個草莓蛋糕幫妹妹慶生。"
+  },
+  "1-4-31-creme-brulee": {
+   "en": "Tap the top of the crème brûlée with your spoon to crack the sugar.",
+   "zh": "用湯匙敲一敲焦糖烤布蕾的表面，把糖殼敲破。"
+  },
+  "1-4-32-panna-cotta": {
+   "en": "This panna cotta is smooth and served with berry sauce.",
+   "zh": "這份奶酪口感滑順，還淋上了莓果醬。"
+  },
+  "1-5-01-sunflower-seed": {
+   "en": "Sprinkle a few sunflower seeds on your salad for some crunch.",
+   "zh": "在沙拉上撒一些葵花籽，吃起來更脆。"
+  },
+  "1-5-02-almond": {
+   "en": "This salad has toasted almond slices and goat cheese on top.",
+   "zh": "這道沙拉上面有烤過的杏仁片和山羊起司。"
+  },
+  "1-5-03-butterhead": {
+   "en": "Butterhead lettuce has soft leaves that feel almost like butter.",
+   "zh": "奶油萵苣的葉子很軟，口感幾乎像奶油一樣。"
+  },
+  "1-5-04-chestnut": {
+   "en": "Roasted chestnut adds a sweet, nutty taste to a winter salad.",
+   "zh": "烤栗子能讓冬季沙拉多一份香甜的堅果味。"
+  },
+  "1-5-05-feta-cheese": {
+   "en": "Crumble some feta cheese over the tomatoes and cucumbers.",
+   "zh": "把一些菲達起司捏碎，撒在番茄和小黃瓜上。"
+  },
+  "1-5-06-baby-carrot": {
+   "en": "Every baby carrot in this bag is washed and ready to eat.",
+   "zh": "這袋裡的每根小紅蘿蔔都洗好了，可以直接吃。"
+  },
+  "1-5-07-sliced-radish": {
+   "en": "Sliced radish makes the salad look bright and pretty.",
+   "zh": "小蘿蔔切片讓沙拉看起來色彩繽紛又漂亮。"
+  },
+  "1-5-08-cherry-tomato": {
+   "en": "Cut each cherry tomato in half before adding it to the bowl.",
+   "zh": "每顆小番茄都先切半，再放進碗裡。"
+  },
+  "1-5-09-pea": {
+   "en": "Not a single pea was left on my son's plate tonight.",
+   "zh": "今晚我兒子盤子裡連一顆豌豆都沒剩。"
+  },
+  "1-5-10-peanut": {
+   "en": "Is there any peanut sauce in this salad? I'm allergic.",
+   "zh": "這道沙拉有加花生醬嗎？我會過敏。"
+  },
+  "1-5-11-cashew": {
+   "en": "Toast the cashew pieces in a dry pan until they turn golden.",
+   "zh": "把腰果放進乾鍋裡烘到變成金黃色。"
+  },
+  "1-5-12-pine-nut": {
+   "en": "One pine nut is tiny, but a handful adds lots of flavor.",
+   "zh": "一顆松子很小，但一把就能增添很多風味。"
+  },
+  "1-5-13-alfalfa-seed": {
+   "en": "You can grow sprouts at home from an alfalfa seed in a jar.",
+   "zh": "用罐子裝苜蓿籽，就能在家裡種出苜蓿芽。"
+  },
+  "1-5-14-walnut": {
+   "en": "A walnut has a slightly bitter taste that goes well with apples.",
+   "zh": "核桃帶點微苦，跟蘋果很搭。"
+  },
+  "1-5-15-brazil-nut": {
+   "en": "A single Brazil nut is much bigger than an almond.",
+   "zh": "一顆巴西堅果比杏仁果大很多。"
+  },
+  "1-5-16-hazelnut": {
+   "en": "Chocolate and hazelnut are a great match in desserts.",
+   "zh": "巧克力和榛果在甜點裡是絕配。"
+  },
+  "1-5-17-pecan": {
+   "en": "Candied pecan pieces make this salad taste like dessert.",
+   "zh": "裹糖的胡桃讓這道沙拉吃起來像甜點。"
+  },
+  "1-5-18-chickpea": {
+   "en": "Crispy roasted chickpea snacks are a healthy swap for croutons.",
+   "zh": "烤得酥脆的鷹嘴豆是取代麵包丁的健康選擇。"
+  },
+  "1-5-19-pumpkin-seed": {
+   "en": "A pumpkin seed is green inside once you remove the shell.",
+   "zh": "南瓜籽剝掉殼之後，裡面是綠色的。"
+  },
+  "1-5-20-italian": {
+   "en": "I'd like Italian on my salad, but just a little.",
+   "zh": "我的沙拉要義式醬，但只要一點點。"
+  },
+  "1-5-21-ranch": {
+   "en": "Americans love dipping carrots and chicken wings in ranch.",
+   "zh": "美國人很愛拿紅蘿蔔和雞翅沾田園醬。"
+  },
+  "1-5-22-honey-mustard": {
+   "en": "Honey mustard is sweet and a little spicy at the same time.",
+   "zh": "蜂蜜芥末醬吃起來又甜又帶點辣。"
+  },
+  "1-5-23-french": {
+   "en": "French is the orange, sweet dressing, right?",
+   "zh": "法式醬是那種橘色、甜甜的醬，對吧？"
+  },
+  "1-5-24-iceberg": {
+   "en": "Iceberg lettuce is very crunchy but doesn't have much flavor.",
+   "zh": "美生菜很脆，但沒什麼味道。"
+  },
+  "1-5-25-radicchio": {
+   "en": "Radicchio is purple and a little bitter, so use just a few leaves.",
+   "zh": "紫菊苣是紫色的，有點苦，放幾片就好。"
+  },
+  "1-5-26-leaf-lettuce": {
+   "en": "Leaf lettuce is soft and great for wrapping grilled meat.",
+   "zh": "散葉萵苣很軟，很適合拿來包烤肉。"
+  },
+  "1-5-27-escarole": {
+   "en": "Escarole is a little bitter, but it tastes great in soup too.",
+   "zh": "闊葉苦苣有點苦，但煮湯也很好喝。"
+  },
+  "1-5-28-mizuna": {
+   "en": "Mizuna has thin, peppery leaves that are popular in Japanese salads.",
+   "zh": "水菜的葉子細細的、帶點辛辣味，常用在日式沙拉裡。"
+  },
+  "1-5-29-tatsoi": {
+   "en": "Tatsoi has small, round leaves and a mild taste.",
+   "zh": "榻棵菜的葉子小小圓圓的，味道溫和。"
+  },
+  "1-5-30-chard": {
+   "en": "Rainbow chard has colorful stems in red, yellow, and pink.",
+   "zh": "彩虹莙薘菜的莖有紅、黃、粉紅好幾種顏色。"
+  },
+  "1-5-31-belgian-endive": {
+   "en": "Use Belgian endive leaves like little boats for dips.",
+   "zh": "比利時苦苣的葉子可以當小船，裝沾醬來吃。"
+  },
+  "1-5-32-romaine": {
+   "en": "A Caesar salad is usually made with crunchy romaine.",
+   "zh": "凱薩沙拉通常是用爽脆的蘿蔓做的。"
+  },
+  "1-5-33-kale": {
+   "en": "Massage the kale with a little olive oil to make it softer.",
+   "zh": "用一點橄欖油搓揉羽衣甘藍，它會變得比較軟。"
+  },
+  "1-5-34-arugula": {
+   "en": "Arugula has a peppery taste that goes well with pizza.",
+   "zh": "芝麻葉帶點辛辣味，跟披薩很搭。"
+  },
+  "1-5-35-beet-greens": {
+   "en": "Don't throw away the beet greens; they're delicious when cooked.",
+   "zh": "甜菜葉別丟掉，煮熟後很好吃。"
+  },
+  "1-5-36-bell-pepper": {
+   "en": "A red bell pepper is sweeter than a green one.",
+   "zh": "紅甜椒比青椒更甜。",
+   "key": "bell pepper"
+  },
+  "1-5-37-cranberry": {
+   "en": "Dried cranberry pieces add a sweet and sour taste to salads.",
+   "zh": "蔓越莓乾讓沙拉多了酸酸甜甜的味道。"
+  },
+  "1-5-38-blueberry": {
+   "en": "I put a blueberry on top of each little cake.",
+   "zh": "我在每個小蛋糕上都放了一顆藍莓。"
+  },
+  "1-5-39-avocado": {
+   "en": "Is the avocado ripe? It should feel a little soft.",
+   "zh": "這顆酪梨熟了嗎？摸起來應該要有點軟。"
+  },
+  "1-6-01-caprese-salad": {
+   "en": "A caprese salad is just tomato, mozzarella, basil, and olive oil.",
+   "zh": "卡布里沙拉其實就是番茄、莫札瑞拉起司、羅勒和橄欖油。"
+  },
+  "1-6-02-cobb-salad": {
+   "en": "My Cobb salad came with chicken, bacon, egg, and avocado.",
+   "zh": "我的柯布沙拉裡有雞肉、培根、蛋和酪梨。"
+  },
+  "1-6-03-greek-salad": {
+   "en": "There's feta cheese and olives in the Greek salad.",
+   "zh": "希臘沙拉裡有菲達起司和橄欖。"
+  },
+  "1-6-04-poke-bowl": {
+   "en": "I build my own poke bowl with salmon, rice, and seaweed.",
+   "zh": "我自己組了一碗夏威夷生魚飯，有鮭魚、白飯和海帶。"
+  },
+  "1-6-05-caesar-salad": {
+   "en": "Can I have the Caesar salad without croutons?",
+   "zh": "我的凱薩沙拉可以不要麵包丁嗎？"
+  },
+  "1-6-06-fruit-salad": {
+   "en": "A cold fruit salad is the best dessert in summer.",
+   "zh": "夏天最棒的甜點就是一碗冰涼的水果沙拉。"
+  },
+  "1-6-07-egg-salad": {
+   "en": "I made egg salad sandwiches for our picnic.",
+   "zh": "我做了蛋沙拉三明治帶去野餐。"
+  },
+  "1-6-08-potato-salad": {
+   "en": "Every family barbecue has a big bowl of potato salad.",
+   "zh": "每次家庭烤肉都會有一大碗馬鈴薯沙拉。"
+  },
+  "1-6-09-chefs-salad": {
+   "en": "A chef's salad has ham, turkey, cheese, and boiled eggs.",
+   "zh": "主廚沙拉裡有火腿、火雞肉、起司和水煮蛋。"
+  },
+  "1-6-10-garden-salad": {
+   "en": "Would you like soup or a garden salad with your steak?",
+   "zh": "您的牛排要配湯還是田園沙拉？"
+  },
+  "1-6-11-green-papaya-salad": {
+   "en": "The green papaya salad is sour, sweet, and very spicy.",
+   "zh": "青木瓜沙拉又酸又甜，還非常辣。"
+  },
+  "1-6-12-salade-nicoise": {
+   "en": "A salade Niçoise has tuna, eggs, green beans, and olives.",
+   "zh": "尼斯沙拉裡有鮪魚、蛋、四季豆和橄欖。"
+  },
+  "1-6-13-tabbouleh": {
+   "en": "Tabbouleh is full of parsley, mint, and lemon juice.",
+   "zh": "塔布勒沙拉裡有滿滿的巴西里、薄荷和檸檬汁。"
+  },
+  "1-6-14-waldorf-salad": {
+   "en": "A Waldorf salad mixes apples, celery, walnuts, and mayonnaise.",
+   "zh": "華爾道夫沙拉是把蘋果、西洋芹、核桃和美乃滋拌在一起。"
+  },
+  "1-6-15-tuna-salad": {
+   "en": "I like tuna salad with a little sweet corn in it.",
+   "zh": "我喜歡在鮪魚沙拉裡加一點玉米粒。"
+  },
+  "1-6-16-olivier": {
+   "en": "In Russia, people often eat Olivier salad on New Year's Eve.",
+   "zh": "在俄羅斯，大家常在跨年夜吃奧列夫沙拉。"
+  },
+  "1-6-17-shirazi-salad": {
+   "en": "Shirazi salad is chopped cucumber, tomato, and onion with lime juice.",
+   "zh": "設拉子沙拉是把小黃瓜、番茄和洋蔥切丁，再淋上萊姆汁。"
+  },
+  "1-6-18-pasta-salad": {
+   "en": "Pasta salad is easy to make the night before a party.",
+   "zh": "義大利麵沙拉很好做，可以在派對前一晚先準備好。"
+  },
+  "1-6-19-fattoush": {
+   "en": "Fattoush is a salad with crispy pieces of fried pita bread.",
+   "zh": "阿拉伯蔬菜沙拉裡有炸得酥脆的口袋餅碎片。"
+  },
+  "1-6-20-salade-lyonnaise": {
+   "en": "Salade Lyonnaise comes with bacon and a soft poached egg on top.",
+   "zh": "里昂沙拉上面放了培根和一顆軟嫩的水波蛋。"
+  },
+  "1-6-21-coleslaw": {
+   "en": "The fried chicken comes with a side of coleslaw.",
+   "zh": "炸雞附一份涼拌捲心菜絲。"
+  },
+  "1-7-01-host-hostess": {
+   "en": "The host will show you to your table in a minute.",
+   "zh": "接待員馬上就會帶您入座。",
+   "key": "host"
+  },
+  "1-7-02-seat-a-customer": {
+   "en": "It's the hostess's job to seat a customer quickly and politely.",
+   "zh": "快速又有禮貌地帶客人入座，是接待員的工作。"
+  },
+  "1-7-03-serve-a-meal": {
+   "en": "Waiters should serve a meal from the guest's left side.",
+   "zh": "服務生應該從客人的左手邊上菜。"
+  },
+  "1-7-04-patron": {
+   "en": "Every patron gets a free drink on the restaurant's birthday.",
+   "zh": "餐廳週年慶當天，每位顧客都可以獲得一杯免費飲料。"
+  },
+  "1-7-05-place-setting": {
+   "en": "Each place setting has two forks, a knife, and a spoon.",
+   "zh": "每一副餐具都有兩支叉子、一把刀和一支湯匙。"
+  },
+  "1-7-06-set-a-table": {
+   "en": "Can you help me set a table for six people tonight?",
+   "zh": "你今晚可以幫我布置六個人的餐桌嗎？"
+  },
+  "1-7-07-take-an-order": {
+   "en": "The waiter came over to take an order from the next table.",
+   "zh": "服務生走過來幫隔壁桌點餐。"
+  },
+  "1-7-08-marinate-meat": {
+   "en": "I marinate meat in soy sauce, garlic, and honey overnight.",
+   "zh": "我會用醬油、大蒜和蜂蜜把肉醃一整晚。"
+  },
+  "1-7-09-scramble-eggs": {
+   "en": "On weekends, I scramble eggs with a little milk and butter.",
+   "zh": "週末我會加一點牛奶和奶油來炒蛋。"
+  },
+  "1-7-10-peel-carrots": {
+   "en": "Can you peel carrots while I chop the onions?",
+   "zh": "我切洋蔥的時候，你可以幫忙削紅蘿蔔皮嗎？"
+  },
+  "1-7-11-chop-spinach": {
+   "en": "Wash and chop spinach right before you cook it.",
+   "zh": "菠菜要在下鍋前才洗、才切。"
+  },
+  "1-7-12-do-the-dishes": {
+   "en": "You cooked, so I'll do the dishes tonight.",
+   "zh": "你煮飯，那今晚我來洗碗。"
+  },
+  "1-7-13-stir-fry-vegetables": {
+   "en": "Stir-fry vegetables over high heat so they stay crunchy.",
+   "zh": "炒菜要用大火，菜才會保持脆脆的。"
+  },
+  "1-7-14-blanch-broccoli": {
+   "en": "Blanch broccoli for one minute to keep it bright green.",
+   "zh": "把青花菜燙一分鐘，就能保持翠綠。"
+  },
+  "1-7-15-dice": {
+   "en": "Dice the onion into small pieces for the sauce.",
+   "zh": "把洋蔥切成小丁，用來做醬汁。"
+  },
+  "1-7-16-slice": {
+   "en": "Please slice the bread before you put it in the basket.",
+   "zh": "麵包請先切片再放進籃子裡。"
+  },
+  "1-7-17-grate": {
+   "en": "Grate some fresh Parmesan over the pasta.",
+   "zh": "在義大利麵上刨一些新鮮的帕瑪森起司。"
+  },
+  "1-7-18-season": {
+   "en": "Season the steak with salt and pepper before grilling.",
+   "zh": "烤之前先用鹽和胡椒幫牛排調味。"
+  },
+  "1-7-19-sift": {
+   "en": "Sift the flour so your cake will be light and fluffy.",
+   "zh": "麵粉要過篩，蛋糕才會鬆軟輕盈。"
+  },
+  "1-7-20-grind": {
+   "en": "I like to grind fresh coffee beans every morning.",
+   "zh": "我喜歡每天早上現磨咖啡豆。"
+  },
+  "1-7-21-stew": {
+   "en": "We stew beef with carrots and potatoes in winter.",
+   "zh": "冬天我們會用紅蘿蔔和馬鈴薯燉牛肉。"
+  },
+  "1-7-22-deep-fry": {
+   "en": "It's safer to deep-fry chicken in a heavy, deep pot.",
+   "zh": "用又厚又深的鍋子炸雞比較安全。"
+  },
+  "1-7-23-fry": {
+   "en": "Fry the egg until the edges are golden and crispy.",
+   "zh": "把蛋煎到邊緣金黃酥脆。"
+  },
+  "1-7-24-grill": {
+   "en": "Let's grill some corn and sausages in the backyard.",
+   "zh": "我們在後院烤些玉米和香腸吧。"
+  },
+  "1-7-25-roast": {
+   "en": "Roast the potatoes in the oven for about forty minutes.",
+   "zh": "把馬鈴薯放進烤箱烤大約四十分鐘。"
+  },
+  "1-7-26-toss": {
+   "en": "Toss the salad gently so every leaf gets some dressing.",
+   "zh": "輕輕拌一拌沙拉，讓每片葉子都沾到醬。"
+  },
+  "d-01-diner": {
+   "en": "We had pancakes and coffee at a little diner by the highway.",
+   "zh": "我們在公路旁一間小餐館吃了鬆餅、喝了咖啡。"
+  },
+  "d-02-reservation": {
+   "en": "I made a reservation for four people at seven o'clock.",
+   "zh": "我訂了七點、四個人的位子。"
+  },
+  "d-03-recommendation": {
+   "en": "Thanks for the recommendation; that pasta was amazing!",
+   "zh": "謝謝你的推薦，那道義大利麵超好吃！"
+  },
+  "d-04-recommend": {
+   "en": "What do you recommend for someone who doesn't eat meat?",
+   "zh": "不吃肉的人，你會推薦什麼？"
+  },
+  "d-05-specialty": {
+   "en": "The house specialty is slow-cooked pork with apple sauce.",
+   "zh": "本店招牌菜是慢燉豬肉佐蘋果醬。"
+  },
+  "d-06-refill": {
+   "en": "Could I get a refill on my iced tea, please?",
+   "zh": "我的冰紅茶可以續杯嗎？"
+  },
+  "1-8-01-pepper-shaker": {
+   "en": "Could you pass me the pepper shaker, please?",
+   "zh": "可以把胡椒罐遞給我嗎？"
+  },
+  "1-8-02-salt-shaker": {
+   "en": "Taste the soup before you reach for the salt shaker.",
+   "zh": "先嚐嚐湯的味道，再去拿鹽罐。"
+  },
+  "1-8-03-bread-plate": {
+   "en": "Your bread plate is the small one on the left.",
+   "zh": "你的麵包盤是左邊那個小盤子。"
+  },
+  "1-8-04-butter-knife": {
+   "en": "Use the butter knife to spread butter on your roll.",
+   "zh": "用奶油刀把奶油抹在小餐包上。"
+  },
+  "1-8-05-dessert-spoon": {
+   "en": "The dessert spoon is placed above your plate.",
+   "zh": "甜點匙放在你的盤子上方。"
+  },
+  "1-8-06-champagne-flute": {
+   "en": "The tall, thin champagne flute keeps the bubbles longer.",
+   "zh": "又高又細的香檳杯能讓氣泡維持得比較久。"
+  },
+  "1-8-07-wine-glass": {
+   "en": "Hold the wine glass by the stem, not the bowl.",
+   "zh": "拿葡萄酒杯要握杯腳，不要握杯身。"
+  },
+  "1-8-08-water-goblet": {
+   "en": "The waiter filled my water goblet before I even asked.",
+   "zh": "我還沒開口，服務生就幫我把水杯倒滿了。",
+   "key": "water goblet"
+  },
+  "1-8-09-dessert-fork": {
+   "en": "A dessert fork is smaller than a dinner fork.",
+   "zh": "甜點叉比晚餐叉小。"
+  },
+  "1-8-10-soup-spoon": {
+   "en": "Move your soup spoon away from you when you eat soup.",
+   "zh": "喝湯時，湯匙要往外舀。"
+  },
+  "1-8-11-teacup": {
+   "en": "My grandmother gave me a pretty flowered teacup.",
+   "zh": "奶奶送了我一個漂亮的花紋茶杯。"
+  },
+  "1-8-12-soup-bowl": {
+   "en": "Be careful, the soup bowl is very hot.",
+   "zh": "小心，湯碗很燙。"
+  },
+  "1-8-13-salad-fork": {
+   "en": "The salad fork is the shorter fork on the outside.",
+   "zh": "沙拉叉是放在最外側、比較短的那支叉子。"
+  },
+  "1-8-14-napkin": {
+   "en": "Put your napkin on your lap as soon as you sit down.",
+   "zh": "一坐下就把餐巾放在腿上。"
+  },
+  "1-8-15-dinner-fork": {
+   "en": "Use the dinner fork for your main course.",
+   "zh": "吃主菜要用晚餐叉。"
+  },
+  "1-8-16-salad-plate": {
+   "en": "Please take a clean salad plate each time you go back.",
+   "zh": "每次回去拿菜時，請換一個乾淨的沙拉盤。"
+  },
+  "1-8-17-charger-plate": {
+   "en": "A service plate sits under your dishes but isn't for eating from.",
+   "zh": "服務盤墊在你的餐盤下面，但不是用來盛食物吃的。",
+   "key": "service plate"
+  },
+  "1-8-18-dinner-knife": {
+   "en": "Cut your steak with the dinner knife, one bite at a time.",
+   "zh": "用晚餐刀切牛排，一次切一口。"
+  },
+  "1-8-19-saucer": {
+   "en": "Put your cup back on the saucer between sips.",
+   "zh": "喝完一口之後，把杯子放回茶杯碟上。"
+  },
+  "1-8-20-teaspoon": {
+   "en": "Add one teaspoon of sugar to your tea.",
+   "zh": "你的茶裡加一茶匙糖。"
+  },
+  "1-8-21-teapot": {
+   "en": "Warm the teapot with hot water before you add the tea leaves.",
+   "zh": "放茶葉之前，先用熱水溫一下茶壺。"
+  },
+  "1-8-22-mug": {
+   "en": "I drink my coffee from a big mug every morning.",
+   "zh": "我每天早上都用大馬克杯喝咖啡。"
+  },
+  "1-8-23-egg-cup": {
+   "en": "Put the soft-boiled egg in an egg cup and tap the top.",
+   "zh": "把半熟蛋放進蛋杯裡，敲敲頂端。"
+  },
+  "1-8-24-pitcher": {
+   "en": "Could we get a pitcher of water for the table?",
+   "zh": "可以給我們這桌一壺水嗎？",
+   "key": "pitcher"
+  },
+  "1-8-25-serving-spoon": {
+   "en": "Please use the serving spoon, not your own spoon.",
+   "zh": "請用公匙，不要用自己的湯匙。"
+  },
+  "1-8-26-salad-servers": {
+   "en": "Use the salad servers to put some salad on your plate.",
+   "zh": "用沙拉叉匙夾一些沙拉到你的盤子上。"
+  },
+  "1-8-27-platter": {
+   "en": "The waiter brought out a huge platter of grilled seafood.",
+   "zh": "服務生端出一大淺盤的烤海鮮。"
+  },
+  "1-8-28-baking-dish": {
+   "en": "Pour the lasagna sauce into a large baking dish.",
+   "zh": "把千層麵的醬倒進一個大烤盤裡。"
+  },
+  "1-8-29-trivet": {
+   "en": "Put the hot pot on a trivet so it won't burn the table.",
+   "zh": "把熱鍋放在隔熱架上，才不會燙壞桌子。"
+  },
+  "1-8-30-coaster": {
+   "en": "Please put your glass on a coaster.",
+   "zh": "請把你的杯子放在杯墊上。"
+  },
+  "1-8-31-place-mat": {
+   "en": "Each child chose a colorful place mat for dinner.",
+   "zh": "每個孩子都挑了一張彩色的餐具墊來吃晚餐。"
+  },
+  "1-8-32-dipping-dish": {
+   "en": "Pour a little soy sauce into the dipping dish.",
+   "zh": "在沾醬碟裡倒一點醬油。",
+   "key": "dipping dish"
+  },
+  "1-8-33-start": {
+   "en": "To show you're ready to start, keep your knife and fork beside the plate.",
+   "zh": "要表示準備開始用餐，就把刀叉放在盤子兩側。"
+  },
+  "1-8-34-next-dish": {
+   "en": "Cross your knife and fork on the plate when ready for the next dish.",
+   "zh": "準備好吃下一道菜時，就把刀叉交叉放在盤子上。"
+  },
+  "1-8-35-excellent": {
+   "en": "Placing your knife and fork side by side across the plate means excellent.",
+   "zh": "把刀叉並排橫放在盤子上，表示這道菜很棒。"
+  },
+  "1-8-36-bad": {
+   "en": "A knife tip pushed between the fork's tines says the food is bad.",
+   "zh": "把刀尖插進叉齒之間，是在告訴服務生這道菜不好吃。"
+  },
+  "1-8-37-break": {
+   "en": "Form an upside-down V with your knife and fork to take a break.",
+   "zh": "把刀叉擺成倒V字形，表示你只是暫停一下。"
+  },
+  "1-8-38-service-was-bad": {
+   "en": "Make a V with the tips of your knife and fork pointing at you if the service was bad.",
+   "zh": "如果服務不好，就把刀叉擺成 V 字形，尖端朝向自己。"
+  },
+  "1-8-39-finished": {
+   "en": "Put your knife and fork together at four o'clock when you're finished.",
+   "zh": "吃完時，把刀叉併攏放在四點鐘方向。"
+  },
+  "d-07-etiquette": {
+   "en": "Table etiquette is different in every country, so I always ask first.",
+   "zh": "每個國家的餐桌禮儀都不一樣，所以我都會先問一下。"
+  },
+  "d-08-elegant": {
+   "en": "The restaurant was elegant, with candles and white tablecloths.",
+   "zh": "那間餐廳很雅緻，有蠟燭和白色桌巾。"
+  },
+  "d-09-embarrass": {
+   "en": "I don't want to embarrass myself by using the wrong fork.",
+   "zh": "我不想因為拿錯叉子而讓自己出糗。"
+  },
+  "d-10-utensil": {
+   "en": "Start with the utensil on the outside and work your way in.",
+   "zh": "從最外側的餐具開始用，再一道一道往內拿。"
+  },
+  "d-11-placement": {
+   "en": "The placement of the glasses shows which one is for water.",
+   "zh": "從杯子擺放的位置就能看出哪個是水杯。"
+  },
+  "d-12-invert": {
+   "en": "Some people invert their coffee cup to show they don't want any.",
+   "zh": "有些人會把咖啡杯倒過來放，表示不需要咖啡。"
+  },
+  "d-13-parallel": {
+   "en": "Lay your knife and fork parallel on the plate when you're done.",
+   "zh": "吃完時，把刀叉平行放在盤子上。"
+  }
+ },
+ "dialogues": [
+  {
+   "unit": "d1",
+   "title": "A Table for Two",
+   "titleZh": "兩位用餐",
+   "lines": [
+    {
+     "who": "Waiter",
+     "en": "Good evening, welcome to Rosa's! Do you have a reservation?",
+     "zh": "晚安，歡迎光臨 Rosa's！請問有訂位嗎？",
+     "blank": "reservation"
+    },
+    {
+     "who": "Lara",
+     "en": "Yes, a table for two under Lara, at seven.",
+     "zh": "有，Lara，七點兩位。",
+     "blank": null
+    },
+    {
+     "who": "Waiter",
+     "en": "Right this way. Here are your menus.",
+     "zh": "這邊請。這是您的菜單。",
+     "blank": null
+    },
+    {
+     "who": "Lara",
+     "en": "Thanks. It's my first time here. What do you recommend?",
+     "zh": "謝謝。我第一次來，你推薦什麼？",
+     "blank": "recommend"
+    },
+    {
+     "who": "Waiter",
+     "en": "Our specialty is the slow-roasted chicken with lemon and herbs.",
+     "zh": "我們的招牌菜是檸檬香草慢烤雞。",
+     "blank": "specialty"
+    },
+    {
+     "who": "Lara",
+     "en": "Sounds great. A friend also gave me a recommendation for the mushroom soup.",
+     "zh": "聽起來很棒。我朋友也推薦我喝蘑菇濃湯。",
+     "blank": "recommendation"
+    },
+    {
+     "who": "Waiter",
+     "en": "Good choice! Almost every diner who tries it comes back for more.",
+     "zh": "好選擇！幾乎每位喝過的客人都會再回來點。",
+     "blank": "diner"
+    },
+    {
+     "who": "Lara",
+     "en": "Then I'll have both. Oh, could I get a refill of water, too?",
+     "zh": "那我兩個都要。喔，還有水可以幫我再加滿嗎？",
+     "blank": "refill"
+    },
+    {
+     "who": "Waiter",
+     "en": "Of course. I'll be right back with your water.",
+     "zh": "當然，我馬上幫您把水送來。",
+     "blank": null
+    }
+   ]
+  },
+  {
+   "unit": "d2",
+   "title": "Fancy Dinner Tips",
+   "titleZh": "高級晚餐小撇步",
+   "lines": [
+    {
+     "who": "Lara",
+     "en": "Amy, I'm going to an elegant restaurant next week, and I'm nervous.",
+     "zh": "Amy，我下週要去一間很高級的餐廳，好緊張。",
+     "blank": "elegant"
+    },
+    {
+     "who": "Amy",
+     "en": "Don't worry. Good etiquette is mostly about staying calm and polite.",
+     "zh": "別擔心，好的用餐禮儀重點就是保持冷靜、有禮貌。",
+     "blank": "etiquette"
+    },
+    {
+     "who": "Lara",
+     "en": "But there are so many forks! I don't want to embarrass myself.",
+     "zh": "可是叉子好多支！我不想讓自己出糗。",
+     "blank": "embarrass"
+    },
+    {
+     "who": "Amy",
+     "en": "Easy. Use each utensil from the outside in, one for each course.",
+     "zh": "很簡單，餐具從最外側往內用，一道菜用一副。",
+     "blank": "utensil"
+    },
+    {
+     "who": "Lara",
+     "en": "And how do I know which bread plate and glass are mine?",
+     "zh": "那我怎麼知道哪個麵包盤和杯子是我的？",
+     "blank": null
+    },
+    {
+     "who": "Amy",
+     "en": "Just remember the placement: bread on your left, drinks on your right.",
+     "zh": "記住擺放位置就好：麵包在左邊，飲料在右邊。",
+     "blank": "placement"
+    },
+    {
+     "who": "Lara",
+     "en": "What if I don't want any wine?",
+     "zh": "如果我不想喝酒呢？",
+     "blank": null
+    },
+    {
+     "who": "Amy",
+     "en": "Just say \"No, thank you.\" Don't invert your glass; it looks rude.",
+     "zh": "說聲「不用了，謝謝」就好。別把杯子倒扣，那樣看起來很沒禮貌。",
+     "blank": "invert"
+    },
+    {
+     "who": "Lara",
+     "en": "Got it. And what do I do when I'm done eating?",
+     "zh": "了解。那吃完的時候要怎麼做？",
+     "blank": null
+    },
+    {
+     "who": "Amy",
+     "en": "Place your knife and fork parallel on your plate. That's the signal.",
+     "zh": "把刀叉平行放在盤子上，這就是吃完的暗號。",
+     "blank": "parallel"
+    }
+   ]
+  }
+ ]
+}
