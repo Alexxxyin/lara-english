@@ -21,6 +21,9 @@
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; background: var(--bg); color: var(--ink); }
+/* 關掉 iPhone「點兩下放大」：連點不會被吃掉，點擊也不會延遲 */
+html { touch-action: manipulation; }
+.cat-canvas { touch-action: manipulation; }
 body {
   font-family: 'Nunito', 'Noto Sans TC', -apple-system, sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -339,3 +342,30 @@ h1, h2, h3, p { margin: 0; }
 .review-tabs button b { font-size: 20px; font-weight: 900; }
 .review-tabs button span { font-size: 11px; font-weight: 800; color: var(--muted); }
 .review-tabs button.on { border-color: var(--primary); background: var(--primary-soft); }
+
+/* 例句裡可以點的單字 */
+.tw { border-radius: 6px; cursor: pointer; padding: 0 1px; }
+.tw:active, .tw.on { background: var(--primary-soft); }
+.tw.target { color: var(--primary-ink); font-weight: 900; }
+.sent-box { background: var(--bg); border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; text-align: left; width: 100%; }
+.sent-box .e { font-size: 16px; font-weight: 800; line-height: 1.6; }
+.sent-box .z { font-size: 13px; color: var(--muted); }
+.sent-tools { display: flex; justify-content: space-between; align-items: center; }
+.sent-tools span { font-size: 11px; color: var(--faint); }
+.play-pill { font-size: 13px; font-weight: 900; color: var(--primary-ink); background: #FFFFFF; border: 2px solid var(--primary-line); padding: 4px 12px; border-radius: 999px; }
+.line .line-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+/* 單字小卡（點例句裡的字跳出來） */
+.word-sheet { position: fixed; inset: 0; z-index: 80; background: rgba(58, 34, 51, 0.25); display: flex; align-items: flex-end; justify-content: center; animation: fxFade 0.15s ease; }
+.word-sheet .ws { width: 100%; max-width: 480px; background: #FFFFFF; border-radius: 26px 26px 0 0; padding: 18px 20px calc(20px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 8px; animation: sheetUp 0.22s ease; }
+@keyframes sheetUp { from { transform: translateY(40px); opacity: 0; } }
+.ws-head { display: flex; align-items: center; gap: 12px; }
+.ws-head img { width: 64px; height: 64px; object-fit: contain; mix-blend-mode: multiply; }
+.ws-head .t { flex-grow: 1; display: flex; flex-direction: column; min-width: 0; }
+.ws-head b { font-size: 26px; font-weight: 900; word-break: break-word; }
+.ws-head .kk { text-align: left; margin: 0; }
+.ws-row { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.ws-pos { font-size: 12px; font-weight: 900; color: var(--primary-ink); background: var(--primary-soft); padding: 3px 10px; border-radius: 999px; }
+.ws-zh { font-size: 20px; font-weight: 900; }
+.ws-note { font-size: 13px; color: var(--muted); }
+.ws-btns { display: flex; gap: 10px; margin-top: 6px; }
+.ws-btns .btn { flex: 1; }

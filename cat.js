@@ -105,7 +105,7 @@
       let j; do { j = Math.floor(Math.random() * list.length); } while (j === idx);
       play(j);
     }
-    canvas.addEventListener('click', () => {
+    canvas.addEventListener('click', () => { // 搭配 CSS touch-action: manipulation，連點每一下都會收到
       if (window.FX && window.FX_SOUND_ON !== false) FX.sound('meow');
       canvas.classList.remove('cat-boop'); void canvas.offsetWidth; canvas.classList.add('cat-boop');
       next();

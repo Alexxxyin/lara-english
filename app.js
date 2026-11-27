@@ -6,7 +6,7 @@
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
 
-  let UNITS = [], WORDS = {}, SENT = {}, DIALOGUES = [], KK = {};
+  let UNITS = [], WORDS = {}, SENT = {}, DIALOGUES = [], KK = {}, DICT = {};
   let S; // 存檔
   const view = document.getElementById('view');
   const nav = document.getElementById('nav');
@@ -143,6 +143,52 @@
     if (!r) return esc(text);
     return esc(text.slice(0, r[0])) + '<mark>' + esc(text.slice(r[0], r[1])) + '</mark>' + esc(text.slice(r[1]));
   }
+  // 例句 → 每個單字都可以點（target 是這張卡的單字範圍，點了顯示單字卡本身的資料）
+  const TOKEN = /[A-Za-zÀ-ÿ]+(?:['’][A-Za-z]+)?(?:-[A-Za-z]+)*/g;
+  function tapWords(text, f) {
+    const r = f ? findKey(text, keyOf(f)) : null;
+    let out = '', last = 0, m;
+    TOKEN.lastIndex = 0;
+    while ((m = TOKEN.exec(text))) {
+      out += esc(text.slice(last, m.index));
+      const inTarget = r && m.index >= r[0] && m.index < r[1];
+      out += `<span class="tw${inTarget ? ' target' : ''}" data-w="${esc(m[0].toLowerCase().replace('’', "'"))}"${inTarget ? ` data-f="${esc(f)}"` : ''}>${esc(m[0])}</span>`;
+      last = m.index + m[0].length;
+    }
+    return out + esc(text.slice(last));
+  }
+  // 點單字跳出小卡：中文、英文、音標、發音、詞性
+  function wordSheet(key, f, el) {
+    const d = DICT[key] || {};
+    let head, kkTxt, pos, zh, note = d.note || '', speak, pic = '';
+    if (f && WORDS[f]) {
+      const w = WORDS[f];
+      head = w.en; kkTxt = kk(f) || d.kk || ''; zh = w.zh; speak = answers(f)[0];
+      pos = w.en.trim().includes(' ') ? '片語' : (d.pos || ''); note = '這張卡的單字'; pic = img(f);
+    } else {
+      // 標題顯示點到的那個字本身（點 best 就顯示 best），原形寫在說明裡
+      head = (d.w && d.w.toLowerCase() === key) ? d.w : (el ? el.textContent : key); kkTxt = d.kk || ''; pos = d.pos || ''; zh = d.zh || '（字典裡還沒有這個字）'; speak = key;
+    }
+    document.querySelectorAll('.tw.on').forEach(x => x.classList.remove('on'));
+    if (el) el.classList.add('on');
+    const m = document.createElement('div'); m.className = 'word-sheet';
+    m.innerHTML = `<div class="ws">
+      <div class="ws-head">${pic ? `<img src="${pic}" alt="">` : ''}<span class="t"><b>${esc(head)}</b>${kkTxt ? `<span class="kk">${esc(kkTxt)}</span>` : ''}</span></div>
+      <div class="ws-row">${pos ? `<span class="ws-pos">${esc(pos)}</span>` : ''}<span class="ws-zh">${esc(zh)}</span></div>
+      ${note ? `<span class="ws-note">${esc(note)}</span>` : ''}
+      <div class="ws-btns"><button class="btn" data-ws="play" data-own-sound>播放</button><button class="btn ghost" data-ws="slow" data-own-sound>慢速</button><button class="btn soft" data-ws="close">關閉</button></div>
+    </div>`;
+    const close = () => { m.remove(); if (el) el.classList.remove('on'); };
+    m.onclick = e => { if (e.target === m) close(); };
+    m.querySelector('[data-ws="play"]').onclick = () => say(speak, false, true);
+    m.querySelector('[data-ws="slow"]').onclick = () => say(speak, true, true);
+    m.querySelector('[data-ws="close"]').onclick = close;
+    document.body.appendChild(m);
+    say(speak, false, true);
+  }
+  function bindTapWords(root) {
+    (root || view).querySelectorAll('.tw').forEach(t => t.onclick = e => { e.stopPropagation(); wordSheet(t.dataset.w, t.dataset.f, t); });
+  }
   function toast(msg) {
     const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
     document.body.appendChild(t); setTimeout(() => t.remove(), 1800);
@@ -159,8 +205,8 @@
   // iPhone 上「列出來但沒下載」的語音會沒聲音，所以只有 Lara 在設定裡自己選過才指定語音，
   // 否則交給手機用預設的英文語音。
   function pickVoice() {
+    loadVoices(); // 每次都重新拿語音清單：iPhone 有時會換掉，用舊的語音物件可能沒聲音
     if (S.settings.voice) { const v = voices.find(v => v.name === S.settings.voice); if (v) return v; }
-    if (!voices.length) loadVoices();
     const us = voices.filter(v => /en(-|_)US/i.test(v.lang));
     const by = re => us.find(v => re.test(v.name) && v.localService !== false);
     // iPhone 只用一定有裝的 Samantha（選到沒下載的語音會沒聲音）；電腦優先用高音質的自然女聲
@@ -172,39 +218,64 @@
     const d = us.find(v => v.default) || us[0] || voices[0];
     return d ? d.name : '';
   }
-  let sayTimer = null, autoT = null;
+
+  // 發音紀錄：最近 15 筆，設定頁「聲音測試」看得到，用來找 iPhone 偶爾沒聲音的原因
+  const sayLog = [];
+  function slog(m) { const t = new Date(); sayLog.push(`${String(t.getMinutes()).padStart(2, '0')}:${String(t.getSeconds()).padStart(2, '0')}.${String(t.getMilliseconds()).padStart(3, '0').slice(0, 1)} ${m}`); if (sayLog.length > 15) sayLog.shift(); }
+
+  let sayTimer = null, autoT = null, current = null;
   // 自動唸（換卡、出題時），排在計時器裡；Lara 自己按發音時會被取消，不會蓋掉她要聽的
   function autoSay(text, ms) { clearTimeout(autoT); autoT = setTimeout(() => say(text), ms); }
-  // now：Lara 自己按播放／慢速／點圖時傳 true，當下立刻唸
+
+  // 真正叫手機唸。retry：第一次完全沒反應時，不指定語音再試一次（只試一次）
+  function speakNow(text, slow, retry) {
+    const s = window.speechSynthesis;
+    const u = new SpeechSynthesisUtterance(slow ? String(text).split(/\s+/).join(', ') : text);
+    u.lang = 'en-US';
+    const v = retry ? null : pickVoice(); if (v) u.voice = v;
+    u.rate = slow ? 0.4 : S.settings.rate;
+    u.volume = 1;
+    // 一定要留住這個物件：iPhone 會把沒人參照的句子回收掉，唸到一半就斷或根本不唸
+    const job = { u, text, slow, started: false, ended: false };
+    current = job;
+    u.onstart = () => { job.started = true; slog('開始 ' + text); };
+    u.onend = () => { job.ended = true; if (current === job) current = null; };
+    u.onerror = e => { job.ended = true; slog('錯誤 ' + (e.error || '') + ' ' + text); if (current === job) current = null; };
+    if (s.paused) s.resume();
+    s.speak(u);
+    slog((retry ? '重試 ' : '唸 ') + text + (v ? ' / ' + v.name : ' / 預設語音'));
+    // 1.5 秒內完全沒開始也沒結束、手機也沒在唸 → 卡住了，清掉重唸一次
+    if (!retry) setTimeout(() => {
+      if (current === job && !job.started && !job.ended && !s.speaking) { slog('沒反應，清掉重唸'); s.cancel(); setTimeout(() => speakNow(text, slow, true), 80); }
+    }, 1500);
+  }
+
+  // now：Lara 自己按播放／慢速／點圖時傳 true
   function say(text, slow, now) {
     try {
       const s = window.speechSynthesis; if (!s) return;
       clearTimeout(sayTimer);
-      const go = () => {
-        // 慢速：速度更慢，片語的字和字之間加逗號讓手機停頓一下，聽得出差別
-        const u = new SpeechSynthesisUtterance(slow ? String(text).split(/\s+/).join(', ') : text);
-        u.lang = 'en-US';
-        const v = pickVoice(); if (v) u.voice = v;
-        u.rate = slow ? 0.4 : S.settings.rate;
-        u.volume = 1;
-        s.resume(); // iPhone 有時會卡在暫停狀態
-        s.speak(u);
-      };
-      // Lara 自己按的（播放、慢速、點圖）：當下立刻唸，不等，也不放到計時器裡（iPhone 計時器裡唸可能沒聲音）
-      if (now) { clearTimeout(sayTimer); clearTimeout(autoT); if (s.speaking || s.pending) s.cancel(); go(); return; }
-      // 自動唸的：音效還在響就等它結束再唸（iPhone 上兩個一起出聲，單字會被切掉或忽大忽小）
-      const wait = Math.max(0, (FX.busyUntil || 0) - Date.now());
-      // 先取消再馬上講，Safari 常會吃掉；有東西在講才取消，並稍等一下
-      if (s.speaking || s.pending || slow) { s.cancel(); sayTimer = setTimeout(go, Math.max(wait, slow ? 180 : 120)); }
-      else if (wait) sayTimer = setTimeout(go, wait);
-      else go();
-    } catch (e) {}
+      if (now) clearTimeout(autoT);
+      // 正在唸同一個字、同樣速度 → 讓它唸完就好，不要停掉重來（停掉馬上重唸，iPhone 常常會吃掉）
+      if (current && current.text === text && !!current.slow === !!slow && s.speaking && !current.ended) { slog('同一句正在唸，不重來 ' + text); return; }
+      const busy = s.speaking || s.pending;
+      // 佇列卡住（有排隊、卻沒在唸）也先清掉
+      if (busy) s.cancel();
+      // 自己按的：沒東西在唸就當下立刻唸；有東西在唸就先停，隔 60 毫秒再唸（同一瞬間停又唸會被吃掉）
+      // 自動唸的：等音效過去再唸
+      const wait = now ? (busy ? 60 : 0) : Math.max(busy ? 120 : 0, (FX.busyUntil || 0) - Date.now());
+      if (wait) sayTimer = setTimeout(() => speakNow(text, slow), wait); else speakNow(text, slow);
+    } catch (e) { slog('例外 ' + e.message); }
   }
-  // 第一次碰螢幕時，在使用者手勢裡先講一個無聲的字，iPhone 之後才會讓程式出聲
+  // 第一次碰螢幕時，在使用者手勢裡先唸一個聽不到的短字，iPhone 之後才會讓程式自動出聲
+  let speechUnlocked = false;
   function unlockSpeech() {
     try {
-      const s = window.speechSynthesis; if (!s || s.speaking || s.pending) return; // 已經在唸就不用解鎖，免得排在單字前面
-      const u = new SpeechSynthesisUtterance(' '); u.volume = 0; u.lang = 'en-US'; s.speak(u);
+      const s = window.speechSynthesis; if (!s || speechUnlocked || s.speaking || s.pending) return;
+      speechUnlocked = true;
+      const u = new SpeechSynthesisUtterance('a'); u.volume = 0; u.rate = 2; u.lang = 'en-US';
+      window.__unlockUtt = u; // 留住物件，避免被回收後卡住佇列
+      s.speak(u);
     } catch (e) {}
   }
   if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
@@ -352,7 +423,7 @@
           ${kk(f) ? `<div class="kk">${esc(kk(f))}</div>` : ''}
           <div class="play-row"><button class="btn" id="p1" data-own-sound>播放</button><button class="btn ghost" id="p2" data-own-sound>慢速</button></div>
           <div style="border-top:1px dashed #F6DDE7;padding-top:12px;display:flex;flex-direction:column;gap:10px;align-items:center">
-            ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<button class="sent" id="ps" data-own-sound><span class="e">${markIn(s.en, keyOf(f))}</span><span class="z">${esc(s.zh)}</span></button>` : ''}<button class="btn soft small" id="unflip">翻回正面</button>`
+            ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<div class="sent-box"><span class="e">${tapWords(s.en, f)}</span><span class="z">${esc(s.zh)}</span><div class="sent-tools"><span>點單字看意思</span><button class="play-pill" id="ps" data-own-sound>播放例句</button></div></div>` : ''}<button class="btn soft small" id="unflip">翻回正面</button>`
               : `<button class="btn soft" id="flip">翻面看中文</button>`}
           </div>
         </div>
@@ -364,6 +435,7 @@
       const fl = view.querySelector('#flip'); if (fl) fl.onclick = () => { flipped = true; show(true); };
       const uf = view.querySelector('#unflip'); if (uf) uf.onclick = () => { flipped = false; show(true); };
       const ps = view.querySelector('#ps'); if (ps) ps.onclick = () => say(s.en, false, true);
+      bindTapWords();
       view.querySelector('#no').onclick = () => { snd('wrong'); const x = W(f); x.unsure = (x.unsure || 0) + 1; x.box = 0; x.due = Date.now(); seen.add(f); save(); dayFx(); i++; flipped = false; show(); };
       view.querySelector('#yes').onclick = e => {
         const x = W(f); const first = !x.known; x.known = true; if (!x.due) { x.box = Math.max(x.box, 1); x.due = startOfToday() + DAY; }
@@ -406,6 +478,7 @@
       `, null, true);
       bindBack(opts.back);
       if (q.onShow) q.onShow();
+      bindTapWords(view.querySelector('#qc'));
       const btns = view.querySelectorAll('#opts button');
       btns.forEach(b => b.onclick = () => {
         const c = q.choices[+b.dataset.k], ok = c.f === f;
@@ -467,7 +540,7 @@
       unit: u, title: '例句填空・' + unitLabel(u), back: '#unit/' + u.id, items,
       build: f => {
         const s = SENT[f], r = findKey(s.en, keyOf(f));
-        const gap = !r ? esc(s.en) : esc(s.en.slice(0, r[0])) + '<span class="blank">&nbsp;?&nbsp;</span>' + esc(s.en.slice(r[1]));
+        const gap = !r ? tapWords(s.en) : tapWords(s.en.slice(0, r[0])) + '<span class="blank">&nbsp;?&nbsp;</span>' + tapWords(s.en.slice(r[1]));
         return {
           kind: 'text',
           html: `<div class="sent" style="background:none;padding:0"><span class="e" style="font-size:19px">${gap}</span><span class="z" style="font-size:14px">${esc(s.zh)}</span></div>`,
@@ -602,19 +675,19 @@
     let cur = 0, right = 0, missed = new Set();
     const me = who => /lara/i.test(who);
     function lineHtml(l, k) {
-      let e = esc(l.en);
+      let e = tapWords(l.en);
       if (l.blank) {
         const i = l.en.toLowerCase().indexOf(l.blank.toLowerCase());
-        if (i >= 0) e = esc(l.en.slice(0, i)) + `<span class="blank">${filled[k] ? esc(l.en.slice(i, i + l.blank.length)) : '&nbsp;'}</span>` + esc(l.en.slice(i + l.blank.length));
+        if (i >= 0) e = tapWords(l.en.slice(0, i)) + `<span class="blank">${filled[k] ? tapWords(l.en.slice(i, i + l.blank.length)) : '&nbsp;'}</span>` + tapWords(l.en.slice(i + l.blank.length));
       }
-      return `<button class="line ${me(l.who) ? 'me' : ''}" data-line="${k}" style="text-align:left"><span class="who">${esc(l.who)}</span><span class="e">${e}</span><span class="z">${esc(l.zh)}</span></button>`;
+      return `<div class="line ${me(l.who) ? 'me' : ''}"><span class="line-top"><span class="who">${esc(l.who)}</span><button class="play-pill" data-line="${k}" data-own-sound>播放</button></span><span class="e">${e}</span><span class="z">${esc(l.zh)}</span></div>`;
     }
     function show() {
       const done = cur >= blanks.length;
       const chips = shuffle(blanks.map(k => d.lines[k].blank));
       render(`
         ${topBar('情境對話', `${Math.min(cur, blanks.length)} / ${blanks.length}`, '#unit/' + u.id)}
-        <div><h2 style="font-size:20px;font-weight:900">${esc(d.title)}</h2><p class="muted" style="font-size:13px">${esc(d.titleZh || '')}・點句子可以聽</p></div>
+        <div><h2 style="font-size:20px;font-weight:900">${esc(d.title)}</h2><p class="muted" style="font-size:13px">${esc(d.titleZh || '')}・點「播放」聽整句，點單字看意思</p></div>
         <div class="dlg">${d.lines.map(lineHtml).join('')}</div>
         <div style="position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));background:var(--bg);padding-top:8px">
         ${done ? `<button class="btn" id="fin" style="width:100%">完成</button>` : `<p style="font-size:13px;font-weight:800;margin-bottom:8px">第 ${cur + 1} 個空格要填哪個字？</p><div class="chips">${chips.map(c => `<button class="chip ${Object.values(filled).includes(c) ? 'used' : ''}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>`}
@@ -622,6 +695,7 @@
       `, null, true);
       bindBack();
       view.querySelectorAll('[data-line]').forEach(b => b.onclick = () => say(d.lines[+b.dataset.line].en, false, true));
+      bindTapWords();
       const fin = view.querySelector('#fin');
       if (fin) fin.onclick = () => finish(u, { right, total: blanks.length, back: '#unit/' + u.id });
       view.querySelectorAll('[data-c]').forEach(b => b.onclick = () => {
@@ -986,6 +1060,7 @@
         <p class="muted" style="font-size:12px">沒聽到聲音時，按下面三個試試看，再把結果告訴 Alex。</p>
         <div class="seg" id="sndtest"><button data-t="say">發音</button><button data-t="slow">慢速發音</button><button data-t="correct">答對（木琴）</button><button data-t="wrong">答錯（噔）</button></div>
         <span class="muted" style="font-size:12px" id="sndstate"></span>
+        <details><summary class="muted" style="font-size:12px">最近的發音紀錄（沒聲音時截圖給 Alex）</summary><pre id="saylog" style="font-size:11px;white-space:pre-wrap;margin:6px 0 0">${esc(sayLog.join('\n') || '還沒有紀錄')}</pre></details>
         <b style="font-weight:900;margin-top:6px">音效</b>
         <div class="seg" id="snd"><button data-v="1" class="${S.settings.sound ? 'on' : ''}">開</button><button data-v="0" class="${S.settings.sound ? '' : 'on'}">關</button></div>
       </div>
@@ -1077,6 +1152,7 @@
     UNITS = await fetch('data/units.json').then(r => r.json());
     UNITS.forEach(u => u.words.forEach(w => { WORDS[w.f] = w; }));
     try { const k = await fetch('data/kk.json?v=1').then(r => r.ok ? r.json() : null); if (k) KK = k; } catch (e) {}
+    try { const d = await fetch('data/dict.json?v=1').then(r => r.ok ? r.json() : null); if (d) DICT = d; } catch (e) {}
     try {
       const s = await fetch('data/sentences.json').then(r => r.ok ? r.json() : null);
       if (s) { SENT = s.sentences || {}; DIALOGUES = s.dialogues || []; }
