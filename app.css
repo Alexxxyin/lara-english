@@ -422,7 +422,7 @@ h1, h2, h3, p { margin: 0; }
 .chip-btn .bang { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; font-size: 14px; border: 2px solid #FFFFFF; }
 /* 貓咪頭上的小字：沒有對話框，直接放字，白色外光讓字在粉紅底上看得清楚 */
 .hero .cat { position: relative; }
-.cat-say { position: absolute; right: 0; bottom: 92%; transform-origin: 80% 100%; transform: translateY(6px) scale(0.7); opacity: 0; pointer-events: none; white-space: nowrap; font-family: 'Chiron GoRound TC', 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 12px; color: #C2185B; text-shadow: 0 0 3px #FFFFFF, 0 0 3px #FFFFFF, 0 0 6px #FFFFFF, 0 0 8px #FFFFFF; transition: opacity 0.2s, transform 0.25s cubic-bezier(.2,1.6,.4,1); z-index: 3; }
+.cat-say { position: absolute; right: 0; bottom: 100%; transform-origin: 80% 100%; transform: translateY(6px) scale(0.7); opacity: 0; pointer-events: none; white-space: nowrap; font-family: 'Chiron GoRound TC', 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 12px; color: #C2185B; text-shadow: 0 0 3px #FFFFFF, 0 0 3px #FFFFFF, 0 0 6px #FFFFFF, 0 0 8px #FFFFFF; transition: opacity 0.2s, transform 0.25s cubic-bezier(.2,1.6,.4,1); z-index: 3; }
 .cat-say.show { opacity: 1; transform: translateY(-2px) scale(1); }
 
 /* 兌換券卡片 */

@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 42;
+  const APP_VERSION = 44;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -251,13 +251,14 @@
     return d ? d.name : '';
   }
 
-  // 發音紀錄：最近 15 筆，設定頁「聲音測試」看得到，用來找 iPhone 偶爾沒聲音的原因
+  // 發音紀錄（含音效）：最近 30 筆，設定頁「聲音測試」看得到，用來找 iPhone 偶爾沒聲音的原因
   const sayLog = [];
-  function slog(m) { const t = new Date(); sayLog.push(`${String(t.getMinutes()).padStart(2, '0')}:${String(t.getSeconds()).padStart(2, '0')}.${String(t.getMilliseconds()).padStart(3, '0').slice(0, 1)} ${m}`); if (sayLog.length > 15) sayLog.shift(); }
+  function slog(m) { const t = new Date(); sayLog.push(`${String(t.getMinutes()).padStart(2, '0')}:${String(t.getSeconds()).padStart(2, '0')}.${String(t.getMilliseconds()).padStart(3, '0').slice(0, 1)} ${m}`); if (sayLog.length > 30) sayLog.shift(); }
+  FX.log = slog;
 
   let sayTimer = null, autoT = null, current = null;
   // 自動唸（換卡、出題時），排在計時器裡；Lara 自己按發音時會被取消，不會蓋掉她要聽的
-  function autoSay(text, ms) { clearTimeout(autoT); autoT = setTimeout(() => say(text), ms); }
+  function autoSay(text, ms) { preloadClip(text); clearTimeout(autoT); autoT = setTimeout(() => say(text), ms); }
 
   // 真正叫手機唸。retry：第一次完全沒反應時，不指定語音再試一次（只試一次）
   function speakNow(text, slow, retry) {
@@ -287,8 +288,65 @@
     }, 1500);
   }
 
+  // ---------- 錄好的發音（audio/）----------
+  // iPhone 的「朗讀」常常卡住沒聲音（說在唸、其實沒聲音），所以改播事先用 Mac 的 Ava 錄好的 mp3（工具/錄音.py）。
+  // 找不到音檔、或音檔播不出來時，才改回手機朗讀（speakTTS）。
+  let AUDIO = null; // 念法的 key → 檔名（audio/index.json）
+  const audioKey = t => String(t).toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' ').trim();
+  const clipUrl = t => { const n = AUDIO && AUDIO[audioKey(t)]; return n ? 'audio/' + n + '.mp3' : ''; };
+  const voiceEl = new Audio(); voiceEl.preload = 'auto';
+  let voiceOk = false, clipGen = 0, clipNow = null;
+  const warmed = new Set();
+  // 先把等一下會唸的音檔抓下來（瀏覽器會暫存），按下去比較快出聲
+  function preloadClip(t) {
+    const u = clipUrl(t); if (!u || warmed.has(u)) return;
+    warmed.add(u); fetch(u).catch(() => warmed.delete(u));
+  }
+  // 第一次碰螢幕時，靜音播一下，iPhone 之後才會讓它自己播（換卡時自動唸）
+  function unlockVoice(e) {
+    if (voiceOk || voiceEl.__trying) return;
+    if (e && e.target && e.target.closest && e.target.closest(SPEAKS)) return; // 第一下就是播放鍵：那次播放本身就會解鎖
+    const u = clipUrl('lasagna'); if (!u) return;
+    const g = clipGen;
+    voiceEl.__trying = true; voiceEl.muted = true; voiceEl.src = u;
+    const p = voiceEl.play();
+    const done = ok => { if (g !== clipGen) return; voiceEl.__trying = false; voiceEl.muted = false; if (ok) { voiceOk = true; try { voiceEl.pause(); } catch (x) {} } };
+    if (p && p.then) p.then(() => done(true)).catch(() => done(false)); else done(true);
+  }
+  function clipFail(why) {
+    const c = clipNow; if (!c || c.done) return;
+    c.done = true; slog('音檔播不出來（' + why + '），改用朗讀 ' + c.text);
+    speakTTS(c.text, c.slow, true);
+  }
+  voiceEl.addEventListener('error', () => clipFail('讀不到檔案'));
+  voiceEl.addEventListener('playing', () => { if (clipNow) clipNow.done = true; });
+  function playClip(text, slow, u) {
+    const g = ++clipGen;
+    try { const s = window.speechSynthesis; if (s && (s.speaking || s.pending)) s.cancel(); } catch (e) {}
+    voiceEl.__trying = false; voiceEl.muted = false;
+    try { voiceEl.pause(); } catch (e) {}
+    clipNow = { text, slow, done: false };
+    const full = new URL(u, location.href).href;
+    if (voiceEl.src !== full) voiceEl.src = u;
+    try { voiceEl.currentTime = 0; } catch (e) {}
+    const r = slow ? 0.6 : (S.settings.rate || 0.9) / 0.9;
+    try { voiceEl.defaultPlaybackRate = r; voiceEl.playbackRate = r; voiceEl.preservesPitch = true; voiceEl.webkitPreservesPitch = true; } catch (e) {}
+    voiceEl.volume = 1;
+    slog('音檔 ' + text + (slow ? '（慢速）' : ''));
+    const p = voiceEl.play();
+    if (p && p.then) p.then(() => { if (g === clipGen) voiceOk = true; }).catch(e => { if (g === clipGen) clipFail(e && e.name || '被擋'); });
+  }
   // now：Lara 自己按播放／慢速／點圖時傳 true
   function say(text, slow, now) {
+    const u = clipUrl(text);
+    if (!u) { slog('沒有音檔，用朗讀 ' + text); return speakTTS(text, slow, now); }
+    clearTimeout(sayTimer);
+    if (now) clearTimeout(autoT);
+    // 自己按的：馬上播；自動唸的：等音效過去再播
+    const wait = now ? 0 : Math.max(0, (FX.busyUntil || 0) - Date.now());
+    if (wait) sayTimer = setTimeout(() => playClip(text, slow, u), wait); else playClip(text, slow, u);
+  }
+  function speakTTS(text, slow, now) {
     try {
       const s = window.speechSynthesis; if (!s) return;
       clearTimeout(sayTimer);
@@ -517,6 +575,7 @@
         i++; flipped = false; setTimeout(show, 220);
       };
       if (!rerender) autoSay(w.en, 200);
+      if (s) preloadClip(s.en);
     }
     show();
   }
@@ -1234,6 +1293,10 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 17, date: '11/27', items: [
+      '發音全部換成錄好的聲音了！以後按播放、點單字、聽例句，應該都會馬上有聲音，不會再常常沒聲音了。',
+      '聲音也換成比較自然的 Ava 喔！'
+    ] },
     { id: 16, date: '11/27', items: [
       '許願池接上雲端了！妳許的願望會自動送給 Alex，Alex 看過以後，妳打開網站就會知道有沒有通過，還可能有 Alex 想跟妳說的話喔！',
       '妳的學習進度現在會自動備份到雲端，換手機或資料不見了，到「設定 → 雲端備份」就能拿回來。'
@@ -1325,11 +1388,12 @@
       <div class="card" style="display:flex;flex-direction:column;gap:10px">
         <b style="font-weight:900">發音速度</b>
         <div class="seg" id="rate">${[[0.75, '慢一點'], [0.9, '正常'], [1, '快一點']].map(([v, n]) => `<button data-v="${v}" class="${S.settings.rate === v ? 'on' : ''}">${n}</button>`).join('')}</div>
-        <b style="font-weight:900;margin-top:6px">發音的聲音</b>
+        <b style="font-weight:900;margin-top:6px">備用的發音聲音</b>
+        <p class="muted" style="font-size:12px">單字和例句現在都用錄好的聲音。這裡選的聲音，只在少數沒有錄音的字才會用到。</p>
         ${voices.length ? `<select class="field" id="voice">${voices.map(v => `<option value="${esc(v.name)}" ${cur && cur.name === v.name ? 'selected' : ''}>${esc(v.name)}（${esc(v.lang)}）</option>`).join('')}</select><button class="btn soft small" id="tv">試聽</button>` : '<span class="muted" style="font-size:13px">找不到英文語音</span>'}
         <b style="font-weight:900;margin-top:6px">聲音測試</b>
         <p class="muted" style="font-size:12px">沒聽到聲音時，按下面三個試試看，再把結果告訴 Alex。</p>
-        <div class="seg" id="sndtest"><button data-t="say">發音</button><button data-t="slow">慢速發音</button><button data-t="correct">答對（木琴）</button><button data-t="wrong">答錯（噔）</button></div>
+        <div class="seg" id="sndtest"><button data-t="say">發音</button><button data-t="tts">手機朗讀</button><button data-t="slow">慢速發音</button><button data-t="correct">答對（木琴）</button><button data-t="wrong">答錯（噔）</button></div>
         <span class="muted" style="font-size:12px" id="sndstate"></span>
         <details><summary class="muted" style="font-size:12px">最近的發音紀錄（沒聲音時截圖給 Alex）</summary><pre id="saylog" style="font-size:11px;white-space:pre-wrap;margin:6px 0 0">${esc(sayLog.join('\n') || '還沒有紀錄')}</pre></details>
         <b style="font-weight:900;margin-top:6px">音效</b>
@@ -1354,12 +1418,12 @@
     view.querySelectorAll('#rate button').forEach(b => b.onclick = () => { S.settings.rate = +b.dataset.v; save(); pageSettings(); say('lasagna'); });
     view.querySelectorAll('#sndtest button').forEach(b => b.onclick = () => {
       FX.unlock();
-      if (b.dataset.t === 'say') say('lasagna', false, true); else if (b.dataset.t === 'slow') say('lasagna', true, true); else FX.sound(b.dataset.t);
+      if (b.dataset.t === 'say') say('lasagna', false, true); else if (b.dataset.t === 'tts') speakTTS('lasagna', false, true); else if (b.dataset.t === 'slow') say('lasagna', true, true); else FX.sound(b.dataset.t);
       setTimeout(() => { const el = view.querySelector('#sndstate'); if (el) el.textContent = '音效狀態：' + FX.state() + (navigator.audioSession ? '・' + navigator.audioSession.type : ''); }, 300);
     });
     view.querySelectorAll('#snd button').forEach(b => b.onclick = () => { S.settings.sound = b.dataset.v === '1'; save(); syncSound(); pageSettings(); snd('correct'); });
-    const v = view.querySelector('#voice'); if (v) v.onchange = () => { S.settings.voice = v.value; save(); say('I would like the lasagna, please.'); };
-    const tv = view.querySelector('#tv'); if (tv) tv.onclick = () => say('I would like the lasagna, please.', false, true);
+    const v = view.querySelector('#voice'); if (v) v.onchange = () => { S.settings.voice = v.value; save(); speakTTS('I would like the lasagna, please.'); };
+    const tv = view.querySelector('#tv'); if (tv) tv.onclick = () => speakTTS('I would like the lasagna, please.', false, true);
     view.querySelector('#exp').onclick = async () => { if (await backupNow()) pageSettings(); };
     view.querySelector('#cloudGet').onclick = async e => {
       const b = e.currentTarget;
@@ -1432,6 +1496,7 @@
   ['touchend', 'click'].forEach(t => document.addEventListener(t, () => FX.unlock(), { capture: true, passive: true }));
   document.addEventListener('touchstart', e => { FX.unlock(); unlockSpeech(e); }, { once: true, passive: true });
   document.addEventListener('click', e => { FX.unlock(); unlockSpeech(e); }, { once: true });
+  ['touchend', 'click'].forEach(t => document.addEventListener(t, e => unlockVoice(e), { capture: true, passive: true }));
 
   function ago(t) {
     const m = Math.floor((Date.now() - t) / 60000);
@@ -1503,6 +1568,7 @@
     UNITS.forEach(u => u.words.forEach(w => { WORDS[w.f] = w; }));
     try { const k = await fetch('data/kk.json?v=1').then(r => r.ok ? r.json() : null); if (k) KK = k; } catch (e) {}
     try { const d = await fetch('data/dict.json?v=1').then(r => r.ok ? r.json() : null); if (d) DICT = d; } catch (e) {}
+    try { const a = await fetch('audio/index.json?v=' + APP_VERSION).then(r => r.ok ? r.json() : null); if (a) AUDIO = a; } catch (e) {}
     try {
       const s = await fetch('data/sentences.json').then(r => r.ok ? r.json() : null);
       if (s) { SENT = s.sentences || {}; DIALOGUES = s.dialogues || []; }

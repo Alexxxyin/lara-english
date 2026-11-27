@@ -71,6 +71,7 @@
   // 挑選時直接播放 Mixkit 網址；選定後下載到 sounds/，LOCAL 記錄已下載的。
   const LOCAL = { correct: 'sounds/correct.mp3', 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3', 1124: 'sounds/1124.mp3' }; // 已下載（Alex 2026-11-27 同意）
   const cache = {};
+  const NAMES = { correct: '答對', 2569: '答錯', 86: '喵', 600: '完成' }; // 寫進發音紀錄用（啵不記，太多）
   const pool = {};
   // 網頁一打開就先把音效檔下載好放進 <audio>（iPhone 只限制「播放」，不限制「下載」），
   // 第一次點的時候就不用再等下載。
@@ -130,6 +131,14 @@
           const r = (opts.rates && opts.rates[k]) || opts.rate || 1;
           const vol = Math.min(1, (opts.vol || 0.8) * FX.volume);
           if (id !== 1124) FX.busyUntil = Date.now() + (opts.busy != null ? opts.busy : (opts.max || 0.5) / r) * 1000; // 這段時間內先不要唸單字（點擊聲很短，不用等）
+          // 優先用 Web Audio（已經解碼好的聲音）：單字發音改用 <audio> 播錄音檔後，兩個 <audio> 幾乎同時播，
+          // iPhone 常常會把其中一個停掉，所以音效走另一條路，兩邊不會互相搶
+          const A = ac(), nm = NAMES[id];
+          if (buffers[id] && A) {
+            if (A.state === 'running') { if (nm) FX.log('音效 ' + nm); return playBuffer(buffers[id], r, vol, opts.max); }
+            wake(); // 這次先用 <audio>，同時叫醒 Web Audio，下一次就能用
+          }
+          if (nm) FX.log('音效 ' + nm + '（備用，WebAudio ' + (A ? A.state : '無') + '）');
           const el = fromPool(id);
           if (el) {
             try { el.pause(); el.currentTime = 0; } catch (e) {}
@@ -138,8 +147,6 @@
             if (opts.max) { clearTimeout(el.__t); el.__t = setTimeout(() => el.pause(), (opts.max / r + 0.1) * 1000); }
             return;
           }
-          const A = ac();
-          if (buffers[id] && A && A.state === 'running') return playBuffer(buffers[id], r, vol, opts.max);
           preload(id);
           const a = new Audio(LOCAL[id] || `https://assets.mixkit.co/active_storage/sfx/${id}/${id}-preview.mp3`);
           a.preservesPitch = false; a.webkitPreservesPitch = false; a.playbackRate = r; a.volume = vol;
@@ -298,10 +305,13 @@
       try { const v = VISUALS[kind][opt || this.choice['v' + kind[0].toUpperCase() + kind.slice(1)]]; if (v) v.run(...args); } catch (e) {}
     },
     // 只在剛打開網站的前 6 下點擊做解鎖；之後點畫面完全不碰音訊系統，避免搶走單字發音
+    // 每次點畫面都確認 Web Audio 醒著（音效靠它）；<audio> 的靜音解鎖只在前 6 下做
     unlock() {
+      wake();
       if ((FX.__unlockTaps = (FX.__unlockTaps || 0) + 1) > 6) return;
       prime(); unlockPool(); Object.keys(LOCAL).forEach(preload);
     },
+    log() {},
     busyUntil: 0,
     state() { return ctx ? ctx.state : '還沒建立'; },
     ctx() { return ac(); },
