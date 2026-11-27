@@ -8,14 +8,20 @@
       if (!C) return null;
       ctx = new C();
     }
-    // iPhone 會停在 suspended 或 interrupted，只要不是 running 就試著叫醒
-    if (ctx.state !== 'running') { try { ctx.resume(); } catch (e) {} }
     return ctx;
+  }
+  // 叫醒 Web Audio。注意：iPhone 在唸單字時會暫停 Web Audio，這時候去叫醒它會把聲音搶走，
+  // 單字就被切掉或沒聲音。所以只有「解鎖期間」和「真的要用 Web Audio 播音效」時才叫醒，而且正在唸就不叫。
+  function wake() {
+    const a = ac(); if (!a) return null;
+    const speaking = window.speechSynthesis && (speechSynthesis.speaking || speechSynthesis.pending);
+    if (a.state !== 'running' && !speaking) { try { a.resume(); } catch (e) {} }
+    return a;
   }
   // iPhone 的老招：在使用者點擊當下播一段無聲的聲音，之後程式才能自由出聲
   let primed = false;
   function prime() {
-    const a = ac(); if (!a || primed) return;
+    const a = wake(); if (!a || primed) return;
     try {
       const b = a.createBuffer(1, 1, 22050), src = a.createBufferSource();
       src.buffer = b; src.connect(a.destination); src.start(0);
@@ -106,7 +112,7 @@
       .then(buf => { buffers[id] = buf; }).catch(() => { loading[id] = null; });
   }
   function playBuffer(buf, r, vol, max) {
-    const a = ac();
+    const a = wake();
     const src = a.createBufferSource(); src.buffer = buf; src.playbackRate.value = r;
     const g = a.createGain(); const t0 = a.currentTime;
     g.gain.setValueAtTime(vol, t0);
@@ -291,7 +297,11 @@
     visual(kind, opt, ...args) {
       try { const v = VISUALS[kind][opt || this.choice['v' + kind[0].toUpperCase() + kind.slice(1)]]; if (v) v.run(...args); } catch (e) {}
     },
-    unlock() { prime(); unlockPool(); Object.keys(LOCAL).forEach(preload); },
+    // 只在剛打開網站的前 6 下點擊做解鎖；之後點畫面完全不碰音訊系統，避免搶走單字發音
+    unlock() {
+      if ((FX.__unlockTaps = (FX.__unlockTaps || 0) + 1) > 6) return;
+      prime(); unlockPool(); Object.keys(LOCAL).forEach(preload);
+    },
     busyUntil: 0,
     state() { return ctx ? ctx.state : '還沒建立'; },
     ctx() { return ac(); },
