@@ -255,6 +255,7 @@
     },
     unlock() { prime(); Object.keys(LOCAL).forEach(preload); },
     state() { return ctx ? ctx.state : '還沒建立'; },
+    ctx() { return ac(); },
     // 小魚乾掉進碗：泡泡「啵」，一隻比一隻高一點
     pop(i) { try { file('', 1124, { max: 0.3, vol: 0.45, rate: Math.min(1.6, 0.9 + i * 0.06) }).play(); } catch (e) {} }
   };

@@ -166,6 +166,7 @@
   let sayTimer = null;
   function say(text, slow, retry) {
     try {
+      if (bgm && !bgm.paused && !BGM_PAGES.includes(location.hash.replace(/^#/, '').split('/')[0])) bgm.pause();
       const s = window.speechSynthesis; if (!s) return;
       clearTimeout(sayTimer);
       const go = () => {
@@ -335,7 +336,7 @@
           <div class="word-big">${esc(w.en)}</div>
           <div class="play-row"><button class="btn" id="p1" data-own-sound>播放</button><button class="btn ghost" id="p2" data-own-sound>慢速</button></div>
           <div style="border-top:1px dashed #F6DDE7;padding-top:12px;display:flex;flex-direction:column;gap:10px;align-items:center">
-            ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<button class="sent" id="ps" data-own-sound><span class="e">${markIn(s.en, keyOf(f))}</span><span class="z">${esc(s.zh)}</span></button>` : ''}`
+            ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<button class="sent" id="ps" data-own-sound><span class="e">${markIn(s.en, keyOf(f))}</span><span class="z">${esc(s.zh)}</span></button>` : ''}<button class="btn soft small" id="unflip">翻回正面</button>`
               : `<button class="btn soft" id="flip">翻面看中文</button>`}
           </div>
         </div>
@@ -345,6 +346,7 @@
       view.querySelector('#p1').onclick = () => say(w.en);
       view.querySelector('#p2').onclick = () => say(w.en, true);
       const fl = view.querySelector('#flip'); if (fl) fl.onclick = () => { flipped = true; show(); };
+      const uf = view.querySelector('#unflip'); if (uf) uf.onclick = () => { flipped = false; show(); };
       const ps = view.querySelector('#ps'); if (ps) ps.onclick = () => say(s.en);
       view.querySelector('#no').onclick = () => { snd('wrong'); const x = W(f); x.miss++; x.box = 0; x.due = Date.now(); seen.add(f); save(); dayFx(); i++; flipped = false; show(); };
       view.querySelector('#yes').onclick = e => {
@@ -378,7 +380,7 @@
       render(`
         ${topBar(opts.title, `${i + 1} / ${opts.items.length}`, opts.back)}
         <div class="bar"><div style="width:${(i / opts.items.length) * 100}%"></div></div>
-        <div class="card q-card" id="qc">${q.html}</div>
+        <div class="card q-card ${q.kind === 'img' ? 'q-listen' : ''}" id="qc">${q.html}</div>
         <div class="${q.kind === 'img' ? 'img-opts' : 'opts'}" id="opts">
           ${q.choices.map((c, k) => q.kind === 'img'
             ? `<button class="img-opt" data-k="${k}"><img class="wimg" src="${img(c.f)}" alt=""><div class="cap"></div></button>`
@@ -397,7 +399,10 @@
         record(f, ok);
         if (ok) earn(1);
         const w = WORDS[f];
-        view.querySelector('#fb').innerHTML = `<div class="feedback ${ok ? 'ok' : 'no'}"><span>${ok ? '答對了' : '正確答案是'}：${esc(w.en)}・${esc(w.zh)}</span></div><button class="btn" id="next" style="width:100%;margin-top:12px">下一題</button>`;
+        // 答對／答錯和「下一題」合成一顆按鈕，整題放得進一個畫面
+        view.querySelector('#fb').innerHTML = `<button class="next-btn ${ok ? 'ok' : 'no'}" id="next"><span class="nb-t"><b>${ok ? '答對了' : '答案是'}：${esc(w.en)}</b><small>${esc(w.zh)}</small></span><span class="nb-go">下一題 ›</span></button>`;
+        const nb = view.querySelector('#next'); const r = nb.getBoundingClientRect();
+        if (r.bottom > window.innerHeight) nb.scrollIntoView({ block: 'end', behavior: 'smooth' });
         say(w.en);
         view.querySelector('#next').onclick = () => { i++; show(); };
       });
@@ -425,7 +430,7 @@
       unit: u, title: '聽音測驗・' + unitLabel(u), back: '#unit/' + u.id, items: roundWords(u),
       build: f => ({
         kind: 'img',
-        html: `<button class="big-play" id="lp">播放</button><button class="btn ghost small" id="ls">慢速再聽一次</button><span class="muted" style="font-size:13px">聽聲音，選出對的圖</span>`,
+        html: `<div class="listen-row"><button class="big-play" id="lp">播放</button><button class="btn ghost small" id="ls">慢速</button></div><span class="muted" style="font-size:13px">聽聲音，選出對的圖</span>`,
         choices: shuffle([f, ...pickOthers(f, pool, 3)]).map(x => ({ f: x })),
         onShow() {
           view.querySelector('#lp').onclick = () => say(WORDS[f].en);
@@ -1024,29 +1029,41 @@
     snd('tap');
   }, true);
   // ---------- 背景音樂 ----------
-  // 首頁、單元、錯題本、獎勵、設定這些頁面播；進到練習就淡出。音量很小。
+  // 只在底部那排（首頁、單元、錯題本、收藏、獎勵）播；進到任何練習、單元內頁、設定都立刻停。
+  // iPhone 不能用程式改 <audio> 的音量，所以音量和淡入淡出改用 Web Audio 的 GainNode 控制。
   const BGM_SRC = 'sounds/bgm.mp3';
   const BGM_VOL = 0.12;
-  const BGM_PAGES = ['', 'home', 'units', 'unit', 'review', 'reward', 'settings', 'collect'];
-  let bgm = null, bgmFade = null, bgmUnlocked = false;
-  function bgmFadeTo(v, after) {
-    if (!bgm) return;
-    clearInterval(bgmFade);
-    bgmFade = setInterval(() => {
-      const d = v - bgm.volume;
-      if (Math.abs(d) < 0.01) { bgm.volume = v; clearInterval(bgmFade); if (after) after(); return; }
-      bgm.volume = Math.max(0, Math.min(1, bgm.volume + Math.sign(d) * 0.01));
-    }, 40);
+  const BGM_PAGES = ['', 'home', 'units', 'review', 'collect', 'reward'];
+  let bgm = null, bgmGain = null, bgmUnlocked = false, bgmStopT = null;
+  function bgmSetup() {
+    if (bgm) return true;
+    const ctx = FX.ctx(); if (!ctx) return false;
+    bgm = new Audio(BGM_SRC); bgm.loop = true; bgm.preload = 'auto';
+    try {
+      const srcNode = ctx.createMediaElementSource(bgm);
+      bgmGain = ctx.createGain(); bgmGain.gain.value = 0;
+      srcNode.connect(bgmGain).connect(ctx.destination);
+    } catch (e) { bgmGain = null; bgm.volume = BGM_VOL; }
+    return true;
+  }
+  function bgmFade(to, sec) {
+    if (!bgmGain) return;
+    const ctx = FX.ctx(), t = ctx.currentTime;
+    bgmGain.gain.cancelScheduledValues(t);
+    bgmGain.gain.setValueAtTime(bgmGain.gain.value, t);
+    bgmGain.gain.linearRampToValueAtTime(to, t + sec);
   }
   function bgmUpdate() {
     const page = location.hash.replace(/^#/, '').split('/')[0];
     const want = bgmUnlocked && S.settings.music && BGM_PAGES.includes(page) && !document.hidden;
+    clearTimeout(bgmStopT);
     if (want) {
-      if (!bgm) { bgm = new Audio(BGM_SRC); bgm.loop = true; bgm.volume = 0; }
+      if (!bgmSetup()) return;
       if (bgm.paused) { const p = bgm.play(); if (p && p.catch) p.catch(() => {}); }
-      bgmFadeTo(BGM_VOL);
+      bgmFade(BGM_VOL, 0.8);
     } else if (bgm && !bgm.paused) {
-      bgmFadeTo(0, () => bgm.pause());
+      bgmFade(0, 0.25);
+      bgmStopT = setTimeout(() => { if (bgm) bgm.pause(); }, 280); // 一定會停，不靠淡出結束
     }
   }
   document.addEventListener('visibilitychange', bgmUpdate);
