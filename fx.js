@@ -65,6 +65,25 @@
   // 挑選時直接播放 Mixkit 網址；選定後下載到 sounds/，LOCAL 記錄已下載的。
   const LOCAL = { correct: 'sounds/correct.mp3', 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3', 1124: 'sounds/1124.mp3' }; // 已下載（Alex 2026-11-27 同意）
   const cache = {};
+  const pool = {};
+  // 每次點畫面都試著解鎖還沒解鎖成功的 <audio>（iPhone 只認 touchend／click 這類手勢）
+  function unlockPool() {
+    Object.keys(LOCAL).forEach(id => {
+      if (!pool[id]) { pool[id] = [0, 1, 2].map(() => { const a = new Audio(LOCAL[id]); a.preload = 'auto'; return a; }); pool[id].i = 0; }
+      pool[id].forEach(a => {
+        if (a.__ok || a.__trying || !a.paused) return;
+        a.__trying = true; a.muted = true;
+        const p = a.play();
+        const done = ok => { a.__trying = false; if (ok) { a.__ok = true; a.pause(); a.currentTime = 0; } a.muted = false; };
+        if (p && p.then) p.then(() => done(true)).catch(() => done(false)); else done(true);
+      });
+    });
+  }
+  function fromPool(id) {
+    const list = pool[id]; if (!list) return null;
+    const ok = list.filter(a => a.__ok); if (!ok.length) return null;
+    return ok.find(a => a.paused) || ok[list.i++ % ok.length];
+  }
   // opts: max 最多播幾秒（之後淡出）、rate 播放速度（<1 會變慢變低）、times 連續播幾次、gap 每次間隔秒數、rates 每次的速度
   // 音檔先整個解碼放進記憶體（Web Audio），點下去馬上出聲；還沒載好時才用 <audio> 頂著
   const buffers = {}, loading = {};
@@ -94,6 +113,15 @@
         const fire = () => {
           const r = (opts.rates && opts.rates[k]) || opts.rate || 1;
           const vol = Math.min(1, (opts.vol || 0.8) * FX.volume);
+          if (id !== 1124) FX.busyUntil = Date.now() + (opts.busy != null ? opts.busy : (opts.max || 0.5) / r) * 1000; // 這段時間內先不要唸單字（點擊聲很短，不用等）
+          const el = fromPool(id);
+          if (el) {
+            try { el.pause(); el.currentTime = 0; } catch (e) {}
+            el.preservesPitch = false; el.webkitPreservesPitch = false; el.playbackRate = r; el.volume = vol; el.muted = false;
+            const p = el.play(); if (p && p.catch) p.catch(() => {});
+            if (opts.max) { clearTimeout(el.__t); el.__t = setTimeout(() => el.pause(), (opts.max / r + 0.1) * 1000); }
+            return;
+          }
           const A = ac();
           if (buffers[id] && A && A.state === 'running') return playBuffer(buffers[id], r, vol, opts.max);
           preload(id);
@@ -111,14 +139,14 @@
     correct: {
       A: { name: '叮咚（兩聲往上）', play() { bell(659, 0, 0.35, 0.22); bell(880, 0.11, 0.5, 0.22); } },
       B: { name: '清脆三連音', play() { [1047, 1319, 1568].forEach((f, i) => tone({ f, t: i * 0.06, d: 0.22, v: 0.16, type: 'triangle' })); } },
-      C: file('木琴', 'correct', { vol: 0.9 }), // 跟原本合成的木琴一樣，改成音檔讓 iPhone 更穩
+      C: file('木琴', 'correct', { vol: 0.9, busy: 0.3 }), // 跟原本合成的木琴一樣，改成音檔讓 iPhone 更穩
       D: { name: '柔和一聲', play() { tone({ f: 740, f2: 990, glide: 0.08, d: 0.3, v: 0.25 }); } }
     },
     wrong: {
       A: file('益智節目「嗶」', 950, { max: 0.5 }),
       B: file('益智節目搶答「嗶」', 3090, { max: 0.5 }),
       C: file('短短的蜂鳴', 2964, { max: 0.5 }),
-      D: file('輕輕的「噔」', 2569, { max: 0.5 }),
+      D: file('輕輕的「噔」', 2569, { max: 0.5, busy: 0.3 }),
       E: file('按錯的「咔」', 1110, { max: 0.5 }),
       F: file('遊戲答錯提示', 249, { max: 0.5 }),
       G: file('「啵嗯」彈一下', 2894, { max: 0.5 }),
@@ -253,7 +281,8 @@
     visual(kind, opt, ...args) {
       try { const v = VISUALS[kind][opt || this.choice['v' + kind[0].toUpperCase() + kind.slice(1)]]; if (v) v.run(...args); } catch (e) {}
     },
-    unlock() { prime(); Object.keys(LOCAL).forEach(preload); },
+    unlock() { prime(); unlockPool(); Object.keys(LOCAL).forEach(preload); },
+    busyUntil: 0,
     state() { return ctx ? ctx.state : '還沒建立'; },
     ctx() { return ac(); },
     // 小魚乾掉進碗：泡泡「啵」，一隻比一隻高一點

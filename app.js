@@ -6,7 +6,7 @@
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
 
-  let UNITS = [], WORDS = {}, SENT = {}, DIALOGUES = [];
+  let UNITS = [], WORDS = {}, SENT = {}, DIALOGUES = [], KK = {};
   let S; // 存檔
   const view = document.getElementById('view');
   const nav = document.getElementById('nav');
@@ -119,6 +119,7 @@
   // ---------- 小工具 ----------
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const img = f => `img/words/${f}.webp`;
+  const kk = f => (KK[f] && KK[f].kk) || '';
   function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
   function pickOthers(f, pool, n) {
     const others = pool.filter(x => x !== f && WORDS[x].en.toLowerCase() !== WORDS[f].en.toLowerCase());
@@ -164,25 +165,27 @@
     return d ? d.name : '';
   }
   let sayTimer = null;
-  function say(text, slow, retry) {
+  function say(text, slow) {
     try {
-      if (bgm && !bgm.paused && !BGM_PAGES.includes(location.hash.replace(/^#/, '').split('/')[0])) bgm.pause();
       const s = window.speechSynthesis; if (!s) return;
+      if (bgm && !bgm.paused && !BGM_PAGES.includes(location.hash.replace(/^#/, '').split('/')[0])) bgm.pause();
       clearTimeout(sayTimer);
       const go = () => {
-        const u = new SpeechSynthesisUtterance(text);
+        // 慢速：速度更慢，片語的字和字之間加逗號讓手機停頓一下，聽得出差別
+        const u = new SpeechSynthesisUtterance(slow ? String(text).split(/\s+/).join(', ') : text);
         u.lang = 'en-US';
-        const v = retry ? null : pickVoice(); if (v) u.voice = v;
-        u.rate = slow ? 0.55 : S.settings.rate;
-        let started = false;
-        u.onstart = () => { started = true; };
+        const v = pickVoice(); if (v) u.voice = v;
+        u.rate = slow ? 0.4 : S.settings.rate;
+        u.volume = 1;
         s.resume(); // iPhone 有時會卡在暫停狀態
         s.speak(u);
-        // 1.5 秒內沒開始講，就不指定語音再試一次
-        if (!retry) sayTimer = setTimeout(() => { if (!started && !s.speaking) { s.cancel(); say(text, slow, true); } }, 1500);
       };
+      // 音效還在響就等它結束再唸（iPhone 上兩個一起出聲，單字會被切掉或忽大忽小）
+      const wait = Math.max(0, (FX.busyUntil || 0) - Date.now());
       // 先取消再馬上講，Safari 常會吃掉；有東西在講才取消，並稍等一下
-      if (s.speaking || s.pending) { s.cancel(); sayTimer = setTimeout(go, 80); } else go();
+      if (s.speaking || s.pending || slow) { s.cancel(); sayTimer = setTimeout(go, Math.max(wait, slow ? 180 : 120)); }
+      else if (wait) sayTimer = setTimeout(go, wait);
+      else go();
     } catch (e) {}
   }
   // 第一次碰螢幕時，在使用者手勢裡先講一個無聲的字，iPhone 之後才會讓程式出聲
@@ -307,7 +310,7 @@
         <button class="tile" style="background:#FFF4CC" data-go="#fill/${u.id}"><b>${isDlg(u) ? '情境對話' : '例句填空'}</b><span>${isDlg(u) ? '在餐廳說說看' : '把字放進句子'}</span></button>
       </div>
       <div class="words">
-        ${u.words.map(w => `<button class="word ${S.words[w.f] && S.words[w.f].known ? 'known' : ''}" data-say="${esc(w.f)}"><img class="wimg" src="${img(w.f)}" alt="" loading="lazy"><b>${esc(w.en)}</b><span>${esc(w.zh)}</span></button>`).join('')}
+        ${u.words.map(w => `<button class="word ${S.words[w.f] && S.words[w.f].known ? 'known' : ''}" data-say="${esc(w.f)}"><img class="wimg" src="${img(w.f)}" alt="" loading="lazy"><b>${esc(w.en)}</b>${kk(w.f) ? `<i class="kk-s">${esc(kk(w.f))}</i>` : ''}<span>${esc(w.zh)}</span></button>`).join('')}
       </div>
     `, 'units');
     bindBack('#units'); bindGo();
@@ -334,6 +337,7 @@
         <div class="card fc" id="fc">
           <img class="wimg" src="${img(f)}" alt="">
           <div class="word-big">${esc(w.en)}</div>
+          ${kk(f) ? `<div class="kk">${esc(kk(f))}</div>` : ''}
           <div class="play-row"><button class="btn" id="p1" data-own-sound>播放</button><button class="btn ghost" id="p2" data-own-sound>慢速</button></div>
           <div style="border-top:1px dashed #F6DDE7;padding-top:12px;display:flex;flex-direction:column;gap:10px;align-items:center">
             ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<button class="sent" id="ps" data-own-sound><span class="e">${markIn(s.en, keyOf(f))}</span><span class="z">${esc(s.zh)}</span></button>` : ''}<button class="btn soft small" id="unflip">翻回正面</button>`
@@ -531,6 +535,7 @@
         <div class="card q-card" id="qc">
           <img class="wimg" src="${img(f)}" alt="" style="width:50%">
           <div class="word-big">${esc(w.en)}</div>
+          ${kk(f) ? `<div class="kk">${esc(kk(f))}</div>` : ''}
           <span class="muted">${esc(w.zh)}</span>
           <div class="play-row"><button class="btn small" id="p1">先聽一次</button><button class="btn ghost small" id="p2">慢速</button></div>
         </div>
@@ -947,7 +952,7 @@
         ${voices.length ? `<select class="field" id="voice">${voices.map(v => `<option value="${esc(v.name)}" ${cur && cur.name === v.name ? 'selected' : ''}>${esc(v.name)}（${esc(v.lang)}）</option>`).join('')}</select><button class="btn soft small" id="tv">試聽</button>` : '<span class="muted" style="font-size:13px">找不到英文語音</span>'}
         <b style="font-weight:900;margin-top:6px">聲音測試</b>
         <p class="muted" style="font-size:12px">沒聽到聲音時，按下面三個試試看，再把結果告訴 Alex。</p>
-        <div class="seg" id="sndtest"><button data-t="say">發音</button><button data-t="correct">答對（木琴）</button><button data-t="wrong">答錯（噔）</button></div>
+        <div class="seg" id="sndtest"><button data-t="say">發音</button><button data-t="slow">慢速發音</button><button data-t="correct">答對（木琴）</button><button data-t="wrong">答錯（噔）</button></div>
         <span class="muted" style="font-size:12px" id="sndstate"></span>
         <b style="font-weight:900;margin-top:6px">背景音樂</b>
         <div class="seg" id="mus"><button data-v="1" class="${S.settings.music ? 'on' : ''}">開</button><button data-v="0" class="${S.settings.music ? '' : 'on'}">關</button></div>
@@ -966,7 +971,7 @@
     view.querySelectorAll('#rate button').forEach(b => b.onclick = () => { S.settings.rate = +b.dataset.v; save(); pageSettings(); say('lasagna'); });
     view.querySelectorAll('#sndtest button').forEach(b => b.onclick = () => {
       FX.unlock();
-      if (b.dataset.t === 'say') say('lasagna'); else FX.sound(b.dataset.t);
+      if (b.dataset.t === 'say') say('lasagna'); else if (b.dataset.t === 'slow') say('lasagna', true); else FX.sound(b.dataset.t);
       setTimeout(() => { const el = view.querySelector('#sndstate'); if (el) el.textContent = '音效狀態：' + FX.state() + (navigator.audioSession ? '・' + navigator.audioSession.type : ''); }, 300);
     });
     view.querySelectorAll('#mus button').forEach(b => b.onclick = () => { S.settings.music = b.dataset.v === '1'; save(); pageSettings(); bgmUpdate(); });
@@ -1030,40 +1035,19 @@
   }, true);
   // ---------- 背景音樂 ----------
   // 只在底部那排（首頁、單元、錯題本、收藏、獎勵）播；進到任何練習、單元內頁、設定都立刻停。
-  // iPhone 不能用程式改 <audio> 的音量，所以音量和淡入淡出改用 Web Audio 的 GainNode 控制。
+  // iPhone 不能用程式改 <audio> 音量，接到 Web Audio 又可能沒聲音，
+  // 所以音量直接做在音檔裡（bgm.mp3 已經調成原本的 0.2 倍），這裡用最單純的 <audio> 播放和暫停。
   const BGM_SRC = 'sounds/bgm.mp3';
-  const BGM_VOL = 0.12;
   const BGM_PAGES = ['', 'home', 'units', 'review', 'collect', 'reward'];
-  let bgm = null, bgmGain = null, bgmUnlocked = false, bgmStopT = null;
-  function bgmSetup() {
-    if (bgm) return true;
-    const ctx = FX.ctx(); if (!ctx) return false;
-    bgm = new Audio(BGM_SRC); bgm.loop = true; bgm.preload = 'auto';
-    try {
-      const srcNode = ctx.createMediaElementSource(bgm);
-      bgmGain = ctx.createGain(); bgmGain.gain.value = 0;
-      srcNode.connect(bgmGain).connect(ctx.destination);
-    } catch (e) { bgmGain = null; bgm.volume = BGM_VOL; }
-    return true;
-  }
-  function bgmFade(to, sec) {
-    if (!bgmGain) return;
-    const ctx = FX.ctx(), t = ctx.currentTime;
-    bgmGain.gain.cancelScheduledValues(t);
-    bgmGain.gain.setValueAtTime(bgmGain.gain.value, t);
-    bgmGain.gain.linearRampToValueAtTime(to, t + sec);
-  }
+  let bgm = null, bgmUnlocked = false;
   function bgmUpdate() {
     const page = location.hash.replace(/^#/, '').split('/')[0];
     const want = bgmUnlocked && S.settings.music && BGM_PAGES.includes(page) && !document.hidden;
-    clearTimeout(bgmStopT);
     if (want) {
-      if (!bgmSetup()) return;
+      if (!bgm) { bgm = new Audio(BGM_SRC); bgm.loop = true; bgm.preload = 'auto'; }
       if (bgm.paused) { const p = bgm.play(); if (p && p.catch) p.catch(() => {}); }
-      bgmFade(BGM_VOL, 0.8);
     } else if (bgm && !bgm.paused) {
-      bgmFade(0, 0.25);
-      bgmStopT = setTimeout(() => { if (bgm) bgm.pause(); }, 280); // 一定會停，不靠淡出結束
+      bgm.pause();
     }
   }
   document.addEventListener('visibilitychange', bgmUpdate);
@@ -1081,6 +1065,7 @@
     try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
     UNITS = await fetch('data/units.json').then(r => r.json());
     UNITS.forEach(u => u.words.forEach(w => { WORDS[w.f] = w; }));
+    try { const k = await fetch('data/kk.json?v=1').then(r => r.ok ? r.json() : null); if (k) KK = k; } catch (e) {}
     try {
       const s = await fetch('data/sentences.json').then(r => r.ok ? r.json() : null);
       if (s) { SENT = s.sentences || {}; DIALOGUES = s.dialogues || []; }

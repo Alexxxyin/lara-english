@@ -1,0 +1,1046 @@
+{
+"1-1-01-bruschetta": {
+"kk": "[bruˋʃɛtə]",
+"src": "book"
+},
+"1-1-02-paella": {
+"kk": "[pɑˋejə]",
+"src": "book"
+},
+"1-1-03-risotto": {
+"kk": "[rɪˋsɔto]",
+"src": "book"
+},
+"1-1-04-grilled-vegetables": {
+"kk": "[grɪld] [ˋvɛdʒtəbəlz]",
+"src": "book"
+},
+"1-1-05-roasted-salmon-steak": {
+"kk": "[ˋrostəd] [ˋsæmən] [stek]",
+"src": "book"
+},
+"1-1-06-duck-confit": {
+"kk": "[dʌk] [konˋfi]",
+"src": "book"
+},
+"1-1-07-focaccia": {
+"kk": "[foˋkɑtʃə]",
+"src": "book"
+},
+"1-1-08-calamari": {
+"kk": "[ˏkɑləˋmɑri]",
+"src": "book"
+},
+"1-1-09-lamb-shank": {
+"kk": "[læm] [ʃæŋk]",
+"src": "book"
+},
+"1-1-10-prosciutto-and-melon": {
+"kk": "[proˋʃuto] [ˋmɛlən]",
+"src": "book"
+},
+"1-1-11-rack-of-lamb": {
+"kk": "[ræk] [læm]",
+"src": "book"
+},
+"1-1-12-beef-wellington": {
+"kk": "[bif] [ˋwɛlɪŋtən]",
+"src": "book"
+},
+"1-1-13-t-bone": {
+"kk": "[ˋtiˏbon]",
+"src": "book"
+},
+"1-1-14-new-york-strip": {
+"kk": "[nu] [jɔrk] [strɪp]",
+"src": "book"
+},
+"1-1-15-filet-mignon": {
+"kk": "[ˏfɪleminˋjɑn]",
+"src": "book"
+},
+"1-1-16-porterhouse": {
+"kk": "[ˋpɔrtɚˏhaʊs]",
+"src": "book"
+},
+"1-1-17-tomahawk-steak": {
+"kk": "[ˋtɑmɪˏhɔk] [stek]",
+"src": "book"
+},
+"1-1-18-rib-eye": {
+"kk": "[rɪb] [aɪ]",
+"src": "book"
+},
+"1-1-19-tiramisu": {
+"kk": "[ˏtɪrəˋmisu]",
+"src": "book"
+},
+"1-1-20-souffle": {
+"kk": "[suˋfle]",
+"src": "book"
+},
+"1-1-21-sundae": {
+"kk": "[ˋsʌnde]",
+"src": "book"
+},
+"1-1-22-brownie": {
+"kk": "[ˋbraʊni]",
+"src": "book"
+},
+"1-1-23-cheek": {
+"kk": "[tʃik]",
+"src": "book"
+},
+"1-1-24-neck": {
+"kk": "[nɛk]",
+"src": "book"
+},
+"1-1-25-chuck": {
+"kk": "[tʃʌk]",
+"src": "book"
+},
+"1-1-26-brisket": {
+"kk": "[ˋbrɪskət]",
+"src": "book"
+},
+"1-1-27-shank": {
+"kk": "[ʃæŋk]",
+"src": "book"
+},
+"1-1-28-rib": {
+"kk": "[rɪb]",
+"src": "book"
+},
+"1-1-29-plate": {
+"kk": "[plet]",
+"src": "book"
+},
+"1-1-30-short-loin": {
+"kk": "[ʃɔrt] [lɔɪn]",
+"src": "book"
+},
+"1-1-31-flank": {
+"kk": "[flæŋk]",
+"src": "book"
+},
+"1-1-32-sirloin": {
+"kk": "[ˋsɝˏlɔɪn]",
+"src": "book"
+},
+"1-1-33-tenderloin": {
+"kk": "[ˋtɛndɚˏlɔɪn]",
+"src": "book"
+},
+"1-1-34-top-sirloin": {
+"kk": "[tɑp] [ˋsɝˏlɔɪn]",
+"src": "book"
+},
+"1-1-35-bottom-sirloin": {
+"kk": "[ˋbɑtəm] [ˋsɝˏlɔɪn]",
+"src": "book"
+},
+"1-1-36-rump": {
+"kk": "[rʌmp]",
+"src": "book"
+},
+"1-1-37-round": {
+"kk": "[raʊnd]",
+"src": "book"
+},
+"1-2-01-fish-and-chips": {
+"kk": "[fɪʃ] [tʃɪps]",
+"src": "book"
+},
+"1-2-02-toad-in-the-hole": {
+"kk": "[ˋtodɪnðəˋhol]",
+"src": "book"
+},
+"1-2-03-lancashire-hot-pot": {
+"kk": "[ˋlæŋkəˏʃɪr] [hɑt] [pɑt]",
+"src": "book"
+},
+"1-2-04-shepherds-pie": {
+"kk": "[ˋʃɛpɚdz] [paɪ]",
+"src": "book"
+},
+"1-2-05-cornish-pasty": {
+"kk": "[ˋkɔrnɪʃ] [ˋpæsti]",
+"src": "book"
+},
+"1-2-06-bangers-and-mash": {
+"kk": "[ˋbæŋɚz] [mæʃ]",
+"src": "book"
+},
+"1-2-07-biryani": {
+"kk": "[ˏbɪriˋɑni]",
+"src": "book"
+},
+"1-2-08-tandoori-chicken": {
+"kk": "[tɑnˋdʊri] [ˋtʃɪkn̩]",
+"src": "book"
+},
+"1-2-09-pakora": {
+"kk": "[pʌˋkɔrə]",
+"src": "book"
+},
+"1-2-10-masala-dosa": {
+"kk": "[mɑˋsɑlɑ] [ˋdosə]",
+"src": "book"
+},
+"1-2-11-paratha": {
+"kk": "[pəˋrɑtə]",
+"src": "book"
+},
+"1-2-12-naan": {
+"kk": "[nɑn]",
+"src": "book"
+},
+"1-2-13-roti": {
+"kk": "[ˋroti]",
+"src": "book"
+},
+"1-2-14-ratatouille": {
+"kk": "[ˏrætəˋtui]",
+"src": "book"
+},
+"1-2-15-escargot": {
+"kk": "[ˏɛˏskɑrˋgo]",
+"src": "book"
+},
+"1-2-16-pot-au-feu": {
+"kk": "[ˏpɑtoˋfə]",
+"src": "book"
+},
+"1-2-17-coq-au-vin": {
+"kk": "[ˏkokoˋvæn]",
+"src": "book"
+},
+"1-2-18-foie-gras": {
+"kk": "[ˋfwɑˋgrɑ]",
+"src": "book"
+},
+"1-2-19-beef-bourguignon": {
+"kk": "[bif] [ˏburgɚˋnjon]",
+"src": "book"
+},
+"1-2-20-philly-cheesesteak": {
+"kk": "[ˋfɪli] [ˋtʃizˏstek]",
+"src": "book"
+},
+"1-2-21-meat-loaf": {
+"kk": "[mit] [lof]",
+"src": "book"
+},
+"1-2-22-apple-pie": {
+"kk": "[ˋæpəl] [paɪ]",
+"src": "book"
+},
+"1-2-23-biscuits-and-gravy": {
+"kk": "[ˋbɪskəts] [ˋgrevi]",
+"src": "book"
+},
+"1-2-24-buffalo-wings": {
+"kk": "[ˋbʌfəˏlo] [wɪŋz]",
+"src": "book"
+},
+"1-2-25-doner-kebab": {
+"kk": "[ˋdonɚ] [kəˋbɑb]",
+"src": "book"
+},
+"1-2-26-kebab": {
+"kk": "[kəˋbɑb]",
+"src": "book"
+},
+"1-2-27-baklava": {
+"kk": "[ˋbɑkləˏvɑ]",
+"src": "book"
+},
+"1-2-28-dolma": {
+"kk": "[ˏdolˋmɑ]",
+"src": "book"
+},
+"1-3-01-bolognese-sauce": {
+"kk": "[ˏboləˋnez] [sɔs]",
+"src": "book"
+},
+"1-3-02-lasagna": {
+"kk": "[ləˋzɑnjə]",
+"src": "book"
+},
+"1-3-03-lasagna-sheet": {
+"kk": "[ləˋzɑnjə] [ʃit]",
+"src": "book"
+},
+"1-3-04-spaghetti": {
+"kk": "[spəˋgɛti]",
+"src": "book"
+},
+"1-3-05-farfalle": {
+"kk": "[fɑrˋfɑle]",
+"src": "book"
+},
+"1-3-06-pesto-sauce": {
+"kk": "[ˋpɛsto] [sɔs]",
+"src": "book"
+},
+"1-3-07-carbonara": {
+"kk": "[ˏkɑrbəˋnɑrə]",
+"src": "book"
+},
+"1-3-08-pumpkin-sauce": {
+"kk": "[ˋpʌmpkən] [sɔs]",
+"src": "book"
+},
+"1-3-09-conchiglie": {
+"kk": "[ˏkænˋkɪli]",
+"src": "book"
+},
+"1-3-10-macaroni": {
+"kk": "[ˏmækəˋroni]",
+"src": "book"
+},
+"1-3-11-linguine": {
+"kk": "[lɪŋˋgwini]",
+"src": "book"
+},
+"1-3-12-smoked-salmon": {
+"kk": "[smokt] [ˋsæmən]",
+"src": "book"
+},
+"1-3-13-alfredo-sauce": {
+"kk": "[ælˋfredo] [sɔs]",
+"src": "book"
+},
+"1-3-14-marinara": {
+"kk": "[ˏmɛrəˋnɛrə]",
+"src": "book"
+},
+"1-3-15-ravioli": {
+"kk": "[ˏræviˋoli]",
+"src": "book"
+},
+"1-3-16-penne": {
+"kk": "[ˋpɛne]",
+"src": "book"
+},
+"1-3-17-creamy-mushroom-and-bacon": {
+"kk": "[ˋkrimi] [ˋmʌʃˏrum] [ˋbekən]",
+"src": "book"
+},
+"1-3-18-basil": {
+"kk": "[ˋbezəl]",
+"src": "book"
+},
+"1-3-19-cheese": {
+"kk": "[tʃiz]",
+"src": "book"
+},
+"1-3-20-tomato": {
+"kk": "[təˋmeto]",
+"src": "book"
+},
+"1-3-21-margherita-pizza": {
+"kk": "[mɑrgəˋrɪtə] [ˋpistə]",
+"src": "book"
+},
+"1-3-22-supreme-pizza": {
+"kk": "[suˋprim] [ˋpitsə]",
+"src": "book"
+},
+"1-3-23-hawaiian-pizza": {
+"kk": "[həˋwɑjən] [ˋpitsə]",
+"src": "book"
+},
+"1-3-24-pepperoni-pizza": {
+"kk": "[ˏpɛpəˋroni] [ˋpitsə]",
+"src": "book"
+},
+"1-3-25-veggie-pizza": {
+"kk": "[ˋvɛdʒi] [ˋpitsə]",
+"src": "book"
+},
+"1-3-26-seafood-pizza": {
+"kk": "[ˋsiˏfud] [ˋpitsə]",
+"src": "book"
+},
+"1-4-01-chafing-dish": {
+"kk": "[ˋtʃefɪŋ] [dɪʃ]",
+"src": "book"
+},
+"1-4-02-bread-basket": {
+"kk": "[brɛd] [ˋbæskɪt]",
+"src": "book"
+},
+"1-4-03-tongs": {
+"kk": "[tɔŋz]",
+"src": "book"
+},
+"1-4-04-salad-bar": {
+"kk": "[ˋsæləd] [bɑr]",
+"src": "book"
+},
+"1-4-05-sashimi": {
+"kk": "[sɑˋʃimi]",
+"src": "book"
+},
+"1-4-06-tuna": {
+"kk": "[ˋtunə]",
+"src": "book"
+},
+"1-4-07-salmon": {
+"kk": "[ˋsæmən]",
+"src": "book"
+},
+"1-4-08-mussel": {
+"kk": "[ˋmʌsəl]",
+"src": "book"
+},
+"1-4-09-shrimp": {
+"kk": "[ʃrɪmp]",
+"src": "book"
+},
+"1-4-10-salad-dressing": {
+"kk": "[ˋsæləd] [ˋdrɛsɪŋ]",
+"src": "book"
+},
+"1-4-11-thousand-island-dressing": {
+"kk": "[ˋθaʊzn̩d] [ˋaɪlənd] [ˋdrɛsɪŋ]",
+"src": "book"
+},
+"1-4-12-wafu-dressing": {
+"kk": "[ˏdʒæpəˋnizˋstaɪl] [ˋwɑfu] [ˋdrɛsɪŋ]",
+"src": "book"
+},
+"1-4-13-caesar-dressing": {
+"kk": "[ˋsizɚ] [ˋdrɛsɪŋ]",
+"src": "book"
+},
+"1-4-14-charcuterie-board": {
+"kk": "[ʃɑrˏkutəˋri] [bɔrd]",
+"src": "book"
+},
+"1-4-15-assorted-cheese-platter": {
+"kk": "[əˋsɔrtəd] [tʃiz] [ˋplætɚ]",
+"src": "book"
+},
+"1-4-16-dim-sum": {
+"kk": "[ˋdɪmˋsʌm]",
+"src": "book"
+},
+"1-4-17-fried-rice": {
+"kk": "[fraɪd] [raɪs]",
+"src": "book"
+},
+"1-4-18-fried-noodles": {
+"kk": "[fraɪd] [ˋnudl̩z]",
+"src": "book"
+},
+"1-4-19-chef": {
+"kk": "[ʃɛf]",
+"src": "book"
+},
+"1-4-20-prime-rib": {
+"kk": "[praɪm] [rɪb]",
+"src": "book"
+},
+"1-4-21-carving-station": {
+"kk": "[ˋkɑrvɪŋ] [ˋsteʃən]",
+"src": "book"
+},
+"1-4-22-beverage-station": {
+"kk": "[ˋbɛvrɪdʒ] [ˋsteʃən]",
+"src": "book"
+},
+"1-4-23-ice-cream-freezer": {
+"kk": "[aɪs] [krim] [ˋfrizɚ]",
+"src": "book"
+},
+"1-4-24-chocolate-fountain": {
+"kk": "[ˋtʃɑklət] [ˋfaʊntn̩]",
+"src": "book"
+},
+"1-4-25-bread-and-dessert": {
+"kk": "[brɛd] [dɪˋzɝt]",
+"src": "book"
+},
+"1-4-26-doughnut": {
+"kk": "[ˋdonət]",
+"src": "book"
+},
+"1-4-27-baguette": {
+"kk": "[bæˋgɛt]",
+"src": "book"
+},
+"1-4-28-multigrain-bread": {
+"kk": "[ˏmʌltiˋgren] [brɛd]",
+"src": "book"
+},
+"1-4-29-bagel": {
+"kk": "[ˋbegəl]",
+"src": "book"
+},
+"1-4-30-strawberry-cake": {
+"kk": "[ˋstrɔˏbɛri] [kek]",
+"src": "book"
+},
+"1-4-31-creme-brulee": {
+"kk": "[krɛm] [bruˋle]",
+"src": "book"
+},
+"1-4-32-panna-cotta": {
+"kk": "[ˋpɑˏnɑ] [ˋkɑtə]",
+"src": "book"
+},
+"1-5-01-sunflower-seed": {
+"kk": "[ˋsʌnˏflaʊɚ] [sid]",
+"src": "book"
+},
+"1-5-02-almond": {
+"kk": "[ˋɑmənd]",
+"src": "book"
+},
+"1-5-03-butterhead": {
+"kk": "[ˋbʌtɚˏhɛd]",
+"src": "book"
+},
+"1-5-04-chestnut": {
+"kk": "[ˋtʃɛsˏnʌt]",
+"src": "book"
+},
+"1-5-05-feta-cheese": {
+"kk": "[ˋfɛtə] [tʃiz]",
+"src": "book"
+},
+"1-5-06-baby-carrot": {
+"kk": "[ˋbebi] [ˋkærət]",
+"src": "book"
+},
+"1-5-07-sliced-radish": {
+"kk": "[slaɪst] [ˋrædɪʃ]",
+"src": "book"
+},
+"1-5-08-cherry-tomato": {
+"kk": "[ˋtʃɛri] [təˋmeto]",
+"src": "book"
+},
+"1-5-09-pea": {
+"kk": "[pi]",
+"src": "book"
+},
+"1-5-10-peanut": {
+"kk": "[ˋpiˏnʌt]",
+"src": "book"
+},
+"1-5-11-cashew": {
+"kk": "[ˋkæʃu]",
+"src": "book"
+},
+"1-5-12-pine-nut": {
+"kk": "[paɪn] [nʌt]",
+"src": "book"
+},
+"1-5-13-alfalfa-seed": {
+"kk": "[ælˋfælfə] [sid]",
+"src": "book"
+},
+"1-5-14-walnut": {
+"kk": "[ˋwɔlˏnʌt]",
+"src": "book"
+},
+"1-5-15-brazil-nut": {
+"kk": "[brəˋzɪl] [nʌt]",
+"src": "book"
+},
+"1-5-16-hazelnut": {
+"kk": "[ˋhezəlˏnʌt]",
+"src": "book"
+},
+"1-5-17-pecan": {
+"kk": "[ˋpiˏkæn]",
+"src": "book"
+},
+"1-5-18-chickpea": {
+"kk": "[ˋtʃɪkˏpi]",
+"src": "book"
+},
+"1-5-19-pumpkin-seed": {
+"kk": "[ˋpʌmpkən] [sid]",
+"src": "book"
+},
+"1-5-20-italian": {
+"kk": "[ɪˋtæljən]",
+"src": "book"
+},
+"1-5-21-ranch": {
+"kk": "[ræntʃ]",
+"src": "book"
+},
+"1-5-22-honey-mustard": {
+"kk": "[ˋhʌni] [ˋmʌstɚd]",
+"src": "book"
+},
+"1-5-23-french": {
+"kk": "[frɛntʃ]",
+"src": "book"
+},
+"1-5-24-iceberg": {
+"kk": "[ˋaɪsˏbɝg]",
+"src": "book"
+},
+"1-5-25-radicchio": {
+"kk": "[ræˋdɪkio]",
+"src": "book"
+},
+"1-5-26-leaf-lettuce": {
+"kk": "[lif] [ˋlɛtəs]",
+"src": "book"
+},
+"1-5-27-escarole": {
+"kk": "[ˋɛskəˏrol]",
+"src": "book"
+},
+"1-5-28-mizuna": {
+"kk": "[mɪˋzunə]",
+"src": "book"
+},
+"1-5-29-tatsoi": {
+"kk": "[ˋtɑtˋsɔɪ]",
+"src": "book"
+},
+"1-5-30-chard": {
+"kk": "[tʃɑrd]",
+"src": "book"
+},
+"1-5-31-belgian-endive": {
+"kk": "[ˋbɛldʒən] [ˋɛnˏdaɪv]",
+"src": "book"
+},
+"1-5-32-romaine": {
+"kk": "[roˋmen]",
+"src": "book"
+},
+"1-5-33-kale": {
+"kk": "[kel]",
+"src": "book"
+},
+"1-5-34-arugula": {
+"kk": "[əˋrugələ]",
+"src": "book"
+},
+"1-5-35-beet-greens": {
+"kk": "[bit] [grinz]",
+"src": "book"
+},
+"1-5-36-bell-pepper": {
+"kk": "[bɛl] [swit] [ˋpɛpɚ]",
+"src": "book"
+},
+"1-5-37-cranberry": {
+"kk": "[ˋkrænˏbɛri]",
+"src": "book"
+},
+"1-5-38-blueberry": {
+"kk": "[ˋbluˏbɛri]",
+"src": "book"
+},
+"1-5-39-avocado": {
+"kk": "[ˏɑvəˋkɑdo]",
+"src": "book"
+},
+"1-6-01-caprese-salad": {
+"kk": "[kəˋprezi] [ˋsæləd]",
+"src": "book"
+},
+"1-6-02-cobb-salad": {
+"kk": "[kɑb] [ˋsæləd]",
+"src": "book"
+},
+"1-6-03-greek-salad": {
+"kk": "[grik] [ˋsæləd]",
+"src": "book"
+},
+"1-6-04-poke-bowl": {
+"kk": "[ˏpoˋke] [bol]",
+"src": "book"
+},
+"1-6-05-caesar-salad": {
+"kk": "[ˋsizɚ] [ˋsæləd]",
+"src": "book"
+},
+"1-6-06-fruit-salad": {
+"kk": "[frut] [ˋsæləd]",
+"src": "book"
+},
+"1-6-07-egg-salad": {
+"kk": "[ɛg] [ˋsæləd]",
+"src": "book"
+},
+"1-6-08-potato-salad": {
+"kk": "[pəˋteto] [ˋsæləd]",
+"src": "book"
+},
+"1-6-09-chefs-salad": {
+"kk": "[ʃɛfs] [ˋsæləd]",
+"src": "book"
+},
+"1-6-10-garden-salad": {
+"kk": "[ˋgɑrdən] [ˋsæləd]",
+"src": "book"
+},
+"1-6-11-green-papaya-salad": {
+"kk": "[grin] [pəˋpaɪə] [ˋsæləd]",
+"src": "book"
+},
+"1-6-12-salade-nicoise": {
+"kk": "[səˋlɑdɛ] [niˋswɑz]",
+"src": "book"
+},
+"1-6-13-tabbouleh": {
+"kk": "[təˋbuli]",
+"src": "book"
+},
+"1-6-14-waldorf-salad": {
+"kk": "[ˋwɔlˏdɔrf] [ˋsæləd]",
+"src": "book"
+},
+"1-6-15-tuna-salad": {
+"kk": "[ˋtunɑ] [ˋsæləd]",
+"src": "book"
+},
+"1-6-16-olivier": {
+"kk": "[oˋlɪviˏe]",
+"src": "book"
+},
+"1-6-17-shirazi-salad": {
+"kk": "[ʃɪˋraɪzi] [ˋsæləd]",
+"src": "book"
+},
+"1-6-18-pasta-salad": {
+"kk": "[ˋpɑstə] [ˋsæləd]",
+"src": "book"
+},
+"1-6-19-fattoush": {
+"kk": "[fæˋtuʃ]",
+"src": "book"
+},
+"1-6-20-salade-lyonnaise": {
+"kk": "[səˋlɑdɛ] [ˏliəˋnez]",
+"src": "book"
+},
+"1-6-21-coleslaw": {
+"kk": "[ˋkolˏslɔ]",
+"src": "book"
+},
+"1-7-01-host-hostess": {
+"kk": "[host] / [ˋhostəs]",
+"src": "book"
+},
+"1-7-02-seat-a-customer": {
+"kk": "[sit] [ə] [ˋkʌstəmɚ]",
+"src": "dict"
+},
+"1-7-03-serve-a-meal": {
+"kk": "[sɝv] [mil]",
+"src": "book"
+},
+"1-7-04-patron": {
+"kk": "[ˋpetrən]",
+"src": "book"
+},
+"1-7-05-place-setting": {
+"kk": "[ples] [ˋsɛtɪŋ]",
+"src": "book"
+},
+"1-7-06-set-a-table": {
+"kk": "[sɛt] [ˋtebəl]",
+"src": "book"
+},
+"1-7-07-take-an-order": {
+"kk": "[ˋɔrdɚ]",
+"src": "book"
+},
+"1-7-08-marinate-meat": {
+"kk": "[ˋmɛrəˏnet] [mit]",
+"src": "book"
+},
+"1-7-09-scramble-eggs": {
+"kk": "[ˋskræmbəl] [ɛgz]",
+"src": "book"
+},
+"1-7-10-peel-carrots": {
+"kk": "[pil] [ˋkɛrəts]",
+"src": "book"
+},
+"1-7-11-chop-spinach": {
+"kk": "[tʃɑp] [ˋspɪnɪtʃ]",
+"src": "book"
+},
+"1-7-12-do-the-dishes": {
+"kk": "[du] [ðə] [ˋdɪʃɪz]",
+"src": "book"
+},
+"1-7-13-stir-fry-vegetables": {
+"kk": "[ˋstɝˋfraɪ] [ˋvɛdʒtəbəlz]",
+"src": "book"
+},
+"1-7-14-blanch-broccoli": {
+"kk": "[blæntʃ] [ˋbrɑkəli]",
+"src": "book"
+},
+"1-7-15-dice": {
+"kk": "[daɪs]",
+"src": "book"
+},
+"1-7-16-slice": {
+"kk": "[slaɪs]",
+"src": "book"
+},
+"1-7-17-grate": {
+"kk": "[gret]",
+"src": "book"
+},
+"1-7-18-season": {
+"kk": "[ˋsizn̩]",
+"src": "book"
+},
+"1-7-19-sift": {
+"kk": "[sɪft]",
+"src": "book"
+},
+"1-7-20-grind": {
+"kk": "[graɪnd]",
+"src": "book"
+},
+"1-7-21-stew": {
+"kk": "[stu]",
+"src": "book"
+},
+"1-7-22-deep-fry": {
+"kk": "[ˋdipˋfraɪ]",
+"src": "book"
+},
+"1-7-23-fry": {
+"kk": "[fraɪ]",
+"src": "book"
+},
+"1-7-24-grill": {
+"kk": "[grɪl]",
+"src": "book"
+},
+"1-7-25-roast": {
+"kk": "[rost]",
+"src": "book"
+},
+"1-7-26-toss": {
+"kk": "[tɔs]",
+"src": "book"
+},
+"d-01-diner": {
+"kk": "[ˋdaɪnɚ]",
+"src": "book"
+},
+"d-02-reservation": {
+"kk": "[ˏrɛzɚˋveʃən]",
+"src": "book"
+},
+"d-03-recommendation": {
+"kk": "[ˏrɛkəmɛnˋdeʃən]",
+"src": "book"
+},
+"d-04-recommend": {
+"kk": "[ˏrɛkəˋmɛnd]",
+"src": "book"
+},
+"d-05-specialty": {
+"kk": "[ˋspɛʃəlti]",
+"src": "book"
+},
+"d-06-refill": {
+"kk": "[riˋfɪl]",
+"src": "book"
+},
+"1-8-01-pepper-shaker": {
+"kk": "[ˋpɛpɚ] [ˋʃekɚ]",
+"src": "book"
+},
+"1-8-02-salt-shaker": {
+"kk": "[sɔlt] [ˋʃekɚ]",
+"src": "book"
+},
+"1-8-03-bread-plate": {
+"kk": "[brɛd] [plet]",
+"src": "book"
+},
+"1-8-04-butter-knife": {
+"kk": "[ˋbʌtɚ] [naɪf]",
+"src": "book"
+},
+"1-8-05-dessert-spoon": {
+"kk": "[dɪˋzɝt] [spun]",
+"src": "book"
+},
+"1-8-06-champagne-flute": {
+"kk": "[ʃæmˋpen] [flut]",
+"src": "book"
+},
+"1-8-07-wine-glass": {
+"kk": "[waɪn] [glæs]",
+"src": "book"
+},
+"1-8-08-water-goblet": {
+"kk": "[ˋwɔtɚ] [ˋgɑblət] [glæs]",
+"src": "book"
+},
+"1-8-09-dessert-fork": {
+"kk": "[dɪˋzɝt] [fɔrk]",
+"src": "book"
+},
+"1-8-10-soup-spoon": {
+"kk": "[sup] [spun]",
+"src": "book"
+},
+"1-8-11-teacup": {
+"kk": "[ˋtiˏkʌp]",
+"src": "book"
+},
+"1-8-12-soup-bowl": {
+"kk": "[sup] [bol]",
+"src": "book"
+},
+"1-8-13-salad-fork": {
+"kk": "[ˋsæləd] [fɔrk]",
+"src": "book"
+},
+"1-8-14-napkin": {
+"kk": "[ˋnæpkən]",
+"src": "book"
+},
+"1-8-15-dinner-fork": {
+"kk": "[ˋdɪnɚ] [fɔrk]",
+"src": "book"
+},
+"1-8-16-salad-plate": {
+"kk": "[ˋsæləd] [plet]",
+"src": "book"
+},
+"1-8-17-charger-plate": {
+"kk": "[ˋsɝvəs] [ˋtʃɑrdʒɚ] [plet]",
+"src": "book"
+},
+"1-8-18-dinner-knife": {
+"kk": "[ˋdɪnɚ] [naɪf]",
+"src": "book"
+},
+"1-8-19-saucer": {
+"kk": "[ˋsɔsɚ]",
+"src": "book"
+},
+"1-8-20-teaspoon": {
+"kk": "[ˋtiˏspun]",
+"src": "book"
+},
+"1-8-21-teapot": {
+"kk": "[ˋtiˏpɑt]",
+"src": "book"
+},
+"1-8-22-mug": {
+"kk": "[mʌg]",
+"src": "book"
+},
+"1-8-23-egg-cup": {
+"kk": "[ɛg] [kʌp]",
+"src": "book"
+},
+"1-8-24-pitcher": {
+"kk": "[ˋpɪtʃɚ] [dʒʌg]",
+"src": "book"
+},
+"1-8-25-serving-spoon": {
+"kk": "[ˋsɝvɪŋ] [spun]",
+"src": "book"
+},
+"1-8-26-salad-servers": {
+"kk": "[ˋsæləd] [ˋsɝvɚz]",
+"src": "book"
+},
+"1-8-27-platter": {
+"kk": "[ˋplætɚ]",
+"src": "book"
+},
+"1-8-28-baking-dish": {
+"kk": "[ˋbekɪŋ] [dɪʃ]",
+"src": "book"
+},
+"1-8-29-trivet": {
+"kk": "[ˋtrɪvət]",
+"src": "book"
+},
+"1-8-30-coaster": {
+"kk": "[ˋkostɚ]",
+"src": "book"
+},
+"1-8-31-place-mat": {
+"kk": "[ples] [mæt]",
+"src": "book"
+},
+"1-8-32-dipping-dish": {
+"kk": "[ˋdɪpɪŋ] [dɪʃ] [bol]",
+"src": "book"
+},
+"1-8-33-start": {
+"kk": "[stɑrt]",
+"src": "book"
+},
+"1-8-34-next-dish": {
+"kk": "[nɛkst] [dɪʃ]",
+"src": "book"
+},
+"1-8-35-excellent": {
+"kk": "[ˋɛksələnt]",
+"src": "book"
+},
+"1-8-36-bad": {
+"kk": "[bæd]",
+"src": "book"
+},
+"1-8-37-break": {
+"kk": "[brek]",
+"src": "book"
+},
+"1-8-38-service-was-bad": {
+"kk": "[ˋsɝvəs] [wɑs] [bæd]",
+"src": "book"
+},
+"1-8-39-finished": {
+"kk": "[ˋfɪnɪʃt]",
+"src": "book"
+},
+"d-07-etiquette": {
+"kk": "[ˋɛtɪkət]",
+"src": "book"
+},
+"d-08-elegant": {
+"kk": "[ˋɛləgənt]",
+"src": "book"
+},
+"d-09-embarrass": {
+"kk": "[ɪmˋbɛrəs]",
+"src": "book"
+},
+"d-10-utensil": {
+"kk": "[juˋtɛnsəl]",
+"src": "book"
+},
+"d-11-placement": {
+"kk": "[ˋplesmənt]",
+"src": "book"
+},
+"d-12-invert": {
+"kk": "[ɪnˋvɝt]",
+"src": "book"
+},
+"d-13-parallel": {
+"kk": "[ˋpɛrəˏlɛl]",
+"src": "book"
+}
+}

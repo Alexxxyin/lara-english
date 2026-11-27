@@ -330,3 +330,7 @@ h1, h2, h3, p { margin: 0; }
 .nb-t small { font-size: 12px; opacity: 0.9; }
 .nb-go { font-size: 17px; font-weight: 900; white-space: nowrap; background: rgba(255,255,255,0.22); padding: 8px 14px; border-radius: 999px; }
 .page.full { gap: 10px; }
+
+/* KK 音標（用支援音標符號的字型） */
+.kk { font-family: 'Lucida Grande', 'Segoe UI', 'Arial Unicode MS', sans-serif; font-size: 17px; color: var(--muted); text-align: center; margin-top: -4px; letter-spacing: 0.3px; }
+.kk-s { font-style: normal; font-family: 'Lucida Grande', 'Segoe UI', 'Arial Unicode MS', sans-serif; font-size: 10px; color: var(--faint); line-height: 1.2; word-break: break-word; }
