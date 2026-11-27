@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Lara 許願審核</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="app.css?v=42">
+<style>
+  body { background: var(--bg); }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 20px 16px 60px; display: flex; flex-direction: column; gap: 14px; }
+  h1 { font-size: 24px; font-weight: 900; }
+  h2 { font-size: 17px; font-weight: 900; margin-top: 6px; }
+  .sub { font-size: 13px; color: var(--muted); }
+  .item { display: flex; flex-direction: column; gap: 8px; }
+  .item-top { display: flex; align-items: center; gap: 10px; }
+  .item-top img { width: 44px; height: 44px; object-fit: contain; }
+  .item-top span { flex-grow: 1; display: flex; flex-direction: column; }
+  .item-top b { font-size: 16px; font-weight: 900; }
+  .item-top small { font-size: 12px; color: var(--muted); font-weight: 700; }
+  .row { display: flex; gap: 8px; align-items: center; }
+  .row label { font-size: 13px; font-weight: 800; white-space: nowrap; }
+  .row .field { height: 42px; }
+  .btns { display: flex; gap: 8px; }
+  .btns .btn { flex: 1; }
+  .btn.no { background: #EFE6EA; color: #7A6570; box-shadow: none; }
+  .tag { font-size: 12px; font-weight: 900; border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+  .tag.ok { background: #E2F5EC; color: #2E7D5B; }
+  .tag.no { background: #EFE6EA; color: #7A6570; }
+  .tag.wait { background: #F1E6FB; color: #8A5CB8; }
+  .empty { font-size: 13px; color: var(--muted); }
+  .stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+  .stat div { background: var(--primary-soft); border-radius: 14px; padding: 8px 4px; }
+  .stat b { display: block; font-size: 20px; font-weight: 900; color: var(--primary-ink); }
+  .stat small { font-size: 11px; font-weight: 800; color: var(--muted); }
+  #msg { font-size: 13px; font-weight: 800; color: var(--primary-ink); min-height: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap" id="root"><h1>Lara 許願審核</h1><p class="sub">載入中⋯</p></div>
+<script src="firebase-config.js?v=42"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  'use strict';
+  const FAM = 'family/lara';
+  const root = document.getElementById('root');
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const when = t => { if (!t) return ''; const d = t.toDate ? t.toDate() : new Date(t); return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
+  const ts = () => firebase.firestore.FieldValue.serverTimestamp();
+  firebase.initializeApp(window.FIREBASE_CONFIG);
+  const auth = firebase.auth(), db = firebase.firestore();
+  let data = { fam: null, reqs: [], wishes: [], backup: null }, offs = [], skipped = false;
+  const draft = {}; // 打到一半的價格和留言，重畫時保留
+
+  auth.onAuthStateChanged(u => {
+    offs.forEach(f => f()); offs = [];
+    if (!u || u.isAnonymous) return login();
+    watch();
+  });
+
+  function login(err) {
+    root.innerHTML = `<h1>Lara 許願審核</h1>
+      <p class="sub">這是 Alex 用的審核頁，請用 Firebase 裡建立的帳號登入。</p>
+      <div class="card item">
+        <input class="field" id="em" type="email" autocomplete="username" placeholder="email">
+        <input class="field" id="pw" type="password" autocomplete="current-password" placeholder="密碼">
+        <button class="btn" id="go">登入</button>
+        <p id="msg">${err || ''}</p>
+      </div>`;
+    const go = () => {
+      document.getElementById('msg').textContent = '登入中⋯';
+      auth.signInWithEmailAndPassword(document.getElementById('em').value.trim(), document.getElementById('pw').value)
+        .catch(() => login('登入失敗，email 或密碼不對'));
+    };
+    document.getElementById('go').onclick = go;
+    document.getElementById('pw').onkeydown = e => { if (e.key === 'Enter') go(); };
+  }
+
+  function watch() {
+    root.innerHTML = '<h1>Lara 許願審核</h1><p class="sub">載入中⋯</p>';
+    const fail = e => { root.innerHTML = `<h1>Lara 許願審核</h1><p class="sub">讀不到資料：${esc(e.message)}。如果是 permission 相關的錯誤，請確認 Firestore 規則已經貼上並發布。</p><button class="btn soft small" id="out">登出</button>`; document.getElementById('out').onclick = () => auth.signOut(); };
+    offs.push(db.doc(FAM).onSnapshot(d => { data.fam = d.exists ? d.data() : { members: [] }; draw(); }, fail));
+    offs.push(db.collection(FAM + '/requests').onSnapshot(q => { data.reqs = q.docs.map(d => ({ id: d.id, ...d.data() })); draw(); }, fail));
+    offs.push(db.collection(FAM + '/wishes').onSnapshot(q => { data.wishes = q.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => ((b.at && b.at.toMillis()) || 0) - ((a.at && a.at.toMillis()) || 0)); draw(); }, fail));
+    offs.push(db.doc(FAM + '/backup/latest').onSnapshot(d => { data.backup = d.exists ? d.data() : null; draw(); }, fail));
+  }
+
+  function draw() {
+    if (!data.fam) return;
+    // 正在輸入的時候不要重畫，免得打到一半的字不見
+    const a = document.activeElement; if (a && a.matches && a.matches('input')) { skipped = true; return; }
+    skipped = false;
+    const members = data.fam.members || [];
+    const reqs = data.reqs.filter(r => !members.includes(r.id));
+    const pend = data.wishes.filter(w => w.status === 'pending'), done = data.wishes.filter(w => w.status !== 'pending');
+    const b = data.backup;
+    root.innerHTML = `
+      <div class="row" style="justify-content:space-between"><h1>Lara 許願審核</h1><button class="btn soft small" id="out">登出</button></div>
+      <p id="msg"></p>
+
+      ${reqs.length ? `<h2>有新的手機想連線</h2>
+        <p class="sub">確定是 Lara 的手機（看時間跟她剛打開網站的時間對不對得上）再按允許。不認得的就按不允許。</p>
+        ${reqs.map(r => `<div class="card item"><div class="item-top"><span><b>${esc(r.device || '手機')}</b><small>${when(r.at)} 送出要求</small></span></div>
+          <div class="btns"><button class="btn no small" data-deny="${r.id}">不允許</button><button class="btn small" data-allow="${r.id}">允許</button></div></div>`).join('')}` : ''}
+
+      <h2>等妳審核的願望（${pend.length}）</h2>
+      ${pend.length ? pend.map(w => `<div class="card item">
+        <div class="item-top"><img src="img/reward/wish.webp" alt=""><span><b>${esc(w.name)}</b><small>${when(w.at)}・Lara 選的價格：${w.cost} 隻</small></span><span class="tag wait">審核中</span></div>
+        <div class="row"><label>價格</label><input class="field" type="number" inputmode="numeric" min="1" id="c-${w.id}" value="${esc(draft['c-' + w.id] != null ? draft['c-' + w.id] : w.cost)}"><label>隻</label></div>
+        <input class="field" id="n-${w.id}" maxlength="40" placeholder="想跟 Lara 說的話（可以不填）" value="${esc(draft['n-' + w.id] || '')}">
+        <div class="btns"><button class="btn no small" data-no="${w.id}">不通過</button><button class="btn small" data-ok="${w.id}">通過</button></div>
+      </div>`).join('') : '<p class="empty">現在沒有新的願望。</p>'}
+
+      <h2>Lara 的進度（雲端備份）</h2>
+      ${b ? `<div class="card item"><div class="stat"><div><b>${b.fish || 0}</b><small>小魚乾</small></div><div><b>${b.known || 0}</b><small>學會的字</small></div><div><b style="font-size:14px;line-height:28px">${when(b.at)}</b><small>上次備份</small></div></div></div>` : '<p class="empty">還沒有備份。Lara 的手機連上後會自動備份。</p>'}
+
+      ${done.length ? `<h2>審核過的願望</h2>
+        ${done.map(w => `<div class="card item"><div class="item-top"><img src="img/reward/wish.webp" alt=""><span><b>${esc(w.name)}</b><small>${w.status === 'ok' ? w.cost + ' 隻' : ''}${w.note ? '・你說：' + esc(w.note) : ''}${w.redeemedAt ? '・' + when(w.redeemedAt) + ' 兌換了' : ''}</small></span>
+          <span class="tag ${w.status === 'ok' ? 'ok' : 'no'}">${w.redeemedAt ? '已兌換' : w.status === 'ok' ? '通過' : '不通過'}</span></div>
+          <div class="btns"><button class="btn soft small" data-del="${w.id}">從清單刪掉</button></div></div>`).join('')}` : ''}
+
+      <h2>已連線的手機（${members.length}）</h2>
+      ${members.length ? members.map((m, i) => `<div class="card item"><div class="item-top"><span><b>手機 ${i + 1}</b><small>${esc(m.slice(0, 8))}⋯</small></span><button class="btn soft small" data-kick="${m}">移除</button></div></div>`).join('') : '<p class="empty">還沒有。Lara 用手機打開網站後，這裡上面會出現連線要求。</p>'}
+    `;
+    bind();
+  }
+
+  const msg = t => { const m = document.getElementById('msg'); if (m) m.textContent = t; };
+  const act = (p, ok) => p.then(() => msg(ok)).catch(e => msg('沒成功：' + e.message));
+  function twice(b, label, fn) {
+    if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = label; return; }
+    fn();
+  }
+  function bind() {
+    root.querySelectorAll('input[id^="c-"], input[id^="n-"]').forEach(i => i.oninput = () => { draft[i.id] = i.value; });
+    document.getElementById('out').onclick = () => auth.signOut();
+    root.querySelectorAll('[data-allow]').forEach(b => b.onclick = () => {
+      const id = b.dataset.allow;
+      act(db.doc(FAM).set({ members: firebase.firestore.FieldValue.arrayUnion(id) }, { merge: true }).then(() => db.doc(FAM + '/requests/' + id).delete()), '允許了，Lara 下次打開網站就會連上');
+    });
+    root.querySelectorAll('[data-deny]').forEach(b => b.onclick = () => act(db.doc(FAM + '/requests/' + b.dataset.deny).delete(), '已拒絕'));
+    root.querySelectorAll('[data-ok]').forEach(b => b.onclick = () => {
+      const id = b.dataset.ok, cost = Math.round(+document.getElementById('c-' + id).value);
+      if (!(cost > 0)) { msg('價格要填大於 0 的數字'); return; }
+      const note = document.getElementById('n-' + id).value.trim();
+      act(db.doc(FAM + '/wishes/' + id).update({ status: 'ok', cost, note, decidedAt: ts() }), '通過了，Lara 下次打開網站就會看到');
+    });
+    root.querySelectorAll('[data-no]').forEach(b => b.onclick = () => twice(b, '確定不通過？', () => {
+      const id = b.dataset.no, note = document.getElementById('n-' + id).value.trim();
+      act(db.doc(FAM + '/wishes/' + id).update({ status: 'no', note, decidedAt: ts() }), '已設為不通過');
+    }));
+    root.querySelectorAll('[data-del]').forEach(b => b.onclick = () => twice(b, '確定刪掉？', () => act(db.doc(FAM + '/wishes/' + b.dataset.del).delete(), '刪掉了')));
+    root.querySelectorAll('[data-kick]').forEach(b => b.onclick = () => twice(b, '確定移除？', () => act(db.doc(FAM).update({ members: firebase.firestore.FieldValue.arrayRemove(b.dataset.kick) }), '移除了')));
+  }
+  // 輸入完（離開輸入框）再補畫一次
+  // 打字時有新資料進來會先等，離開輸入框後才補畫（只在真的有等的時候，才不會把「確定？」按鈕洗掉）
+  document.addEventListener('focusout', () => setTimeout(() => { const a = document.activeElement; if (skipped && !(a && a.matches && a.matches('input')) && auth.currentUser && !auth.currentUser.isAnonymous) draw(); }, 200));
+})();
+</script>
+</body>
+</html>

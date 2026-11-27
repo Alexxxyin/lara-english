@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 41;
+  const APP_VERSION = 42;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -22,7 +22,7 @@
     S.settings = Object.assign(blank().settings, S.settings || {});
     if (!S.firstUse) { S.firstUse = Date.now(); save(); }
   }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} if (window.LaraCloud) LaraCloud.dirty(); }
   function W(f) { return S.words[f] || (S.words[f] = { box: 0, due: 0, miss: 0, right: 0, known: false }); }
 
   function today(d) { const x = d ? new Date(d) : new Date(); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); }
@@ -216,6 +216,7 @@
   }
   // 要不要在首頁提醒：有在學、而且離上次備份（或開始用）超過 3 天、也沒有按「之後再說」
   function needBackup() {
+    if (S.cloudBackupAt && Date.now() - S.cloudBackupAt < BACKUP_DAYS * DAY) return false;
     const learned = Object.keys(S.words).length > 0;
     const since = S.lastBackup || S.firstUse || Date.now();
     return learned && Date.now() - since > BACKUP_DAYS * DAY && Date.now() > (S.backupSnooze || 0);
@@ -394,6 +395,10 @@
         <button class="tile" style="background:#FCE6EE" data-go="#speak/${u.id}"><b>口說跟讀</b><span>唸給手機聽</span></button>
         <button class="tile" style="background:#FFF4CC" data-go="#fill/${u.id}"><b>${fillName}</b><span>${isDlg(u) ? '在餐廳說說看' : '把字放進句子'}</span></button>
       </div>
+      ${cloudNewer ? `<div class="card backup-card">
+        <div><b>雲端有妳之前的進度</b><p>雲端備份裡有 ${cloudNewer.known} 個學會的字、${cloudNewer.fish} 隻小魚乾，比這支手機多。要拿回來的話，到「設定 → 雲端備份」按「從雲端拿回進度」。</p></div>
+        <div class="backup-btns"><button class="btn small" data-go="#settings">去設定</button></div>
+      </div>` : ''}
       ${needBackup() ? `<div class="card backup-card">
         <div><b>該備份囉</b><p>${S.lastBackup ? `上次備份是 ${Math.floor((Date.now() - S.lastBackup) / DAY)} 天前` : '還沒備份過'}。按「現在備份」，選 <b class="hl">LINE</b>，傳給自己就好。換手機或進度不見時，在 LINE 點開那個檔案，再到「設定 → 匯入備份」就能找回來。</p></div>
         <div class="backup-btns"><button class="btn soft small" id="bkLater">之後再說</button><button class="btn small" id="bkNow">現在備份</button></div>
@@ -795,7 +800,7 @@
   // 換過一次就收進「我兌換過的」
   const WISH_SIZES = [{ k: 's', label: '小願望', cost: 300 }, { k: 'm', label: '中願望', cost: 800 }, { k: 'l', label: '大願望', cost: 2000 }];
   const WISH_MAX = 5;
-  function allRewards() { return REWARDS.concat((S.wishes || []).filter(w => w.status === 'ok').map(w => ({ id: w.id, name: w.name, cost: w.cost, img: 'wish', own: true }))); }
+  function allRewards() { return REWARDS.concat((S.wishes || []).filter(w => w.status === 'ok').map(w => ({ id: w.id, name: w.name, cost: w.cost, img: 'wish', own: true, note: w.note || '' }))); }
   const rewardImg = it => `img/reward/${(it && (it.img || it.id)) || 'wish'}.webp`;
   const findReward = id => allRewards().find(x => x.id === id);
   // 碗裡的份量（0 空碗～5 滿出來），看「離我的目標」的比例；夠換目標那張就是滿出來
@@ -827,6 +832,7 @@
           <div><b>${it.own ? '<span class="wish-tag">我的願望</span>' : ''}${esc(it.name)}</b><span class="muted" style="font-size:12px;font-weight:800;white-space:nowrap">${it.cost} 隻</span></div>
           <div class="bar" style="height:10px"><div style="width:${p}%"></div></div>
           <span class="reward-foot">${left ? `${S.fish} / ${it.cost}・還差 <b>${left}</b> 隻` : '<b>可以兌換了！</b>'}${n ? `・已兌換 ${n} 次` : ''}</span>
+          ${it.note ? `<span class="wish-note">Alex：${esc(it.note)}</span>` : ''}
           <div class="reward-btns">
             ${it.own ? `<button class="btn wish-del small" data-unwish="${it.id}">刪掉</button>` : ''}
             ${isGoal ? '' : `<button class="btn soft small" data-goal="${it.id}">設為目標</button>`}
@@ -844,10 +850,43 @@
       <input class="field" id="wishName" maxlength="16" placeholder="例如：去看電影、買一本漫畫">
       <div class="wish-sizes">${WISH_SIZES.map((z, i) => `<button class="wish-size ${i === 0 ? 'on' : ''}" data-wsize="${z.k}"><b>${z.label}</b><small>${z.cost} 隻</small></button>`).join('')}</div>
       <button class="btn" id="wishGo">許願</button>`}
-      ${pend.length ? `<div class="wish-pend"><b>等 Alex 看過的願望</b>${pend.map(w => `
+      <p class="muted wish-cloud" id="wishCloud" style="font-size:12px">${wishCloudText()}</p>
+      ${pend.length ? `<div class="wish-pend"><b>等 Alex 看過的願望</b>${pend.map(w => w.status === 'no' ? `
+        <div class="wish-row no"><span class="wish-row-t"><b>${esc(w.name)}</b><small>${w.note ? 'Alex：' + esc(w.note) : '這次沒有通過'}</small></span>
+          <span class="wish-wait no">沒有通過</span><button class="wish-x" data-wishok="${w.id}">知道了</button></div>` : `
         <div class="wish-row"><span class="wish-row-t"><b>${esc(w.name)}</b><small>${(WISH_SIZES.find(z => z.cost === w.cost) || {}).label || ''}・${w.cost} 隻</small></span>
           <span class="wish-wait">審核中</span><button class="wish-x" data-unwish="${w.id}">刪掉</button></div>`).join('')}</div>` : ''}
     </div>`;
+  }
+  function wishCloudText() {
+    const st = window.LaraCloud ? LaraCloud.state : 'off';
+    if (!(S.wishes || []).some(w => w.status === 'pending')) return '';
+    if (st === 'waiting') return '這支手機還在等 Alex 允許連線，願望會先存在這裡，連上後自動送給 Alex。';
+    if (st === 'error') return '現在連不上網路，願望先存在這裡，有網路時會自動送給 Alex。';
+    return '';
+  }
+  // Alex 審核完的願望：在安全的頁面（不是練習中）跳出通知
+  let newsQ = [], cloudNewer = null;
+  function tryNews() {
+    if (!newsQ.length || document.querySelector('.fx-modal')) return;
+    const p = location.hash.replace(/^#/, '').split('/')[0];
+    if (!['', 'home', 'reward', 'collect', 'units', 'settings', 'review'].includes(p)) return;
+    const w = newsQ.shift(), ok = w.status === 'ok';
+    const m = document.createElement('div'); m.className = 'fx-modal ticket-modal';
+    m.innerHTML = `<div class="ticket">
+      <div class="ticket-title">${ok ? '願望通過了！' : '願望沒有通過'}</div>
+      <div class="ticket-body">
+        <img class="ticket-ico" src="img/reward/wish.webp" alt="">
+        <b class="ticket-name">${esc(w.name)}</b>
+        <span class="ticket-meta">${ok ? `存到 ${w.cost} 隻小魚乾就可以兌換囉` : '沒關係，可以再許別的願望喔'}</span>
+        ${w.note ? `<p class="ticket-tip">Alex：${esc(w.note)}</p>` : ''}
+      </div>
+      <div class="ticket-btns"><button class="btn" data-t="ok" style="min-width:140px">好</button></div>
+    </div>`;
+    const close = () => { m.remove(); const x = (S.wishes || []).find(v => v.id === w.id); if (x) { delete x.fresh; save(); } if (/^#(reward|collect)/.test(location.hash)) route(); setTimeout(tryNews, 300); };
+    m.querySelector('[data-t="ok"]').onclick = close; m.onclick = e => { if (e.target === m) close(); };
+    document.body.appendChild(m);
+    if (ok) { snd('complete'); setTimeout(() => hearts(m.querySelector('.ticket-ico')), 200); }
   }
   function redeemedHtml() {
     return `<div class="card" id="redeemedList"><b style="font-weight:900">我兌換過的</b><p class="muted" style="font-size:12px;margin-top:2px">點一張可以再打開兌換券</p>
@@ -889,7 +928,7 @@
       if (!it || S.fish < it.cost) return;
       if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定兌換？'; return; }
       S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today(), img: it.img || it.id });
-      if (it.own) { S.wishes = S.wishes.filter(w => w.id !== it.id); if (S.goal === it.id) S.goal = ''; }
+      if (it.own) { S.wishes = S.wishes.filter(w => w.id !== it.id); if (S.goal === it.id) S.goal = ''; if (window.LaraCloud) LaraCloud.markRedeemed(it.id); }
       save();
       done();
       ticketCard(S.redeemed.length - 1, true, done);
@@ -899,7 +938,11 @@
       if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定刪掉？'; return; }
       S.wishes = (S.wishes || []).filter(w => w.id !== b.dataset.unwish);
       if (S.goal === b.dataset.unwish) S.goal = '';
+      if (window.LaraCloud) LaraCloud.deleteWish(b.dataset.unwish);
       save(); toast('刪掉了'); done();
+    });
+    view.querySelectorAll('[data-wishok]').forEach(b => b.onclick = () => {
+      S.wishes = (S.wishes || []).filter(w => w.id !== b.dataset.wishok); save(); done();
     });
     let size = WISH_SIZES[0];
     view.querySelectorAll('[data-wsize]').forEach(b => b.onclick = () => {
@@ -914,6 +957,7 @@
       const id = 'w' + Date.now();
       S.wishes.push({ id, name, cost: size.cost, status: 'pending', date: today() });
       save(); snd('fish'); toast('許好願了！等 Alex 看過喔'); done();
+      if (window.LaraCloud) LaraCloud.syncWishes();
     };
   }
   function nextGoal(fish) {
@@ -1190,6 +1234,10 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 16, date: '11/27', items: [
+      '許願池接上雲端了！妳許的願望會自動送給 Alex，Alex 看過以後，妳打開網站就會知道有沒有通過，還可能有 Alex 想跟妳說的話喔！',
+      '妳的學習進度現在會自動備份到雲端，換手機或資料不見了，到「設定 → 雲端備份」就能拿回來。'
+    ] },
     { id: 15, date: '11/27', items: [
       '妳設為目標的兌換券，現在會排在最上面，還換成粉紅點點的樣子，一眼就看得到！',
       '按播放例句沒聲音的時候，現在再按一次就會重新唸，不會一直沒聲音了。',
@@ -1287,9 +1335,15 @@
         <b style="font-weight:900;margin-top:6px">音效</b>
         <div class="seg" id="snd"><button data-v="1" class="${S.settings.sound ? 'on' : ''}">開</button><button data-v="0" class="${S.settings.sound ? '' : 'on'}">關</button></div>
       </div>
+      <div class="card" id="cloudCard" style="display:flex;flex-direction:column;gap:10px">
+        <b style="font-weight:900">雲端備份</b>
+        <p class="muted" style="font-size:13px" id="cloudState">${cloudText()}</p>
+        ${cloudNewer ? `<p style="font-size:13px;font-weight:800;color:var(--primary-ink)">雲端有 ${cloudNewer.known} 個學會的字、${cloudNewer.fish} 隻小魚乾，比這支手機多。</p>` : ''}
+        <button class="btn soft small" id="cloudGet">從雲端拿回進度</button>
+      </div>
       <div class="card" style="display:flex;flex-direction:column;gap:10px">
-        <b style="font-weight:900">備份進度</b>
-        <p class="muted" style="font-size:13px">進度只存在這支手機裡。按「匯出備份」，選 LINE 傳給自己；換手機或進度不見時，在 LINE 點開那個檔案存到手機，再按「匯入備份」選它就能找回來。${S.lastBackup ? `上次備份：${Math.floor((Date.now() - S.lastBackup) / DAY)} 天前` : '還沒備份過'}</p>
+        <b style="font-weight:900">自己存一份</b>
+        <p class="muted" style="font-size:13px">想自己多存一份的話，按「匯出備份」，選 LINE 傳給自己；換手機或進度不見時，在 LINE 點開那個檔案存到手機，再按「匯入備份」選它就能找回來。${S.lastBackup ? `上次備份：${Math.floor((Date.now() - S.lastBackup) / DAY)} 天前` : '還沒備份過'}</p>
         <div class="pair"><button class="btn ghost small" id="exp">匯出備份</button><button class="btn ghost small" id="imp">匯入備份</button></div>
         <input type="file" id="file" accept="application/json,.json" hidden>
       </div>
@@ -1307,6 +1361,18 @@
     const v = view.querySelector('#voice'); if (v) v.onchange = () => { S.settings.voice = v.value; save(); say('I would like the lasagna, please.'); };
     const tv = view.querySelector('#tv'); if (tv) tv.onclick = () => say('I would like the lasagna, please.', false, true);
     view.querySelector('#exp').onclick = async () => { if (await backupNow()) pageSettings(); };
+    view.querySelector('#cloudGet').onclick = async e => {
+      const b = e.currentTarget;
+      if (!window.LaraCloud || LaraCloud.state !== 'ok') { toast('還沒連上雲端'); return; }
+      if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定用雲端的進度，蓋掉這支手機的？'; return; }
+      b.textContent = '拿回來中⋯';
+      try {
+        const d = await LaraCloud.fetchBackup();
+        if (!d || typeof d.words !== 'object') { toast('雲端還沒有備份'); pageSettings(); return; }
+        S = Object.assign(blank(), d); S.settings = Object.assign(blank().settings, S.settings || {});
+        cloudNewer = null; save(); syncSound(); toast('拿回來了'); go('#home');
+      } catch (err) { toast('現在連不上雲端'); pageSettings(); }
+    };
     const file = view.querySelector('#file');
     view.querySelector('#imp').onclick = () => file.click();
     file.onchange = () => {
@@ -1367,6 +1433,51 @@
   document.addEventListener('touchstart', e => { FX.unlock(); unlockSpeech(e); }, { once: true, passive: true });
   document.addEventListener('click', e => { FX.unlock(); unlockSpeech(e); }, { once: true });
 
+  function ago(t) {
+    const m = Math.floor((Date.now() - t) / 60000);
+    return m < 1 ? '剛剛' : m < 60 ? m + ' 分鐘前' : m < 1440 ? Math.floor(m / 60) + ' 小時前' : Math.floor(m / 1440) + ' 天前';
+  }
+  function cloudText() {
+    const st = window.LaraCloud ? LaraCloud.state : 'off';
+    return {
+      off: '雲端還沒開始連線。',
+      loading: '連線中⋯',
+      waiting: '這支手機還在等 Alex 允許連線。Alex 允許後，進度會自動備份到雲端。',
+      ok: '已連上雲端，進度會自動備份。' + (S.cloudBackupAt ? '上次備份：' + ago(S.cloudBackupAt) : ''),
+      error: '現在連不上雲端（可能沒有網路），進度還是會好好存在手機裡。',
+      admin: '這支手機登入了 Alex 的審核帳號，所以不會備份進度。'
+    }[st] || '';
+  }
+  // 雲端：網頁開好 1.5 秒後才在背景連線，不跟開頁、聲音搶時間
+  function startCloud() {
+    // 上次收到、還沒按「好」的審核結果，這次再跳一次
+    newsQ = (S.wishes || []).filter(w => w.fresh && w.status !== 'pending');
+    setTimeout(tryNews, 800);
+    if (!window.LaraCloud) return;
+    LaraCloud.onChange(() => {
+      const a = document.getElementById('cloudState'); if (a) a.textContent = cloudText();
+      const b = document.getElementById('wishCloud'); if (b) b.textContent = wishCloudText();
+    });
+    setTimeout(() => LaraCloud.init({
+      get: () => S,
+      save,
+      version: APP_VERSION,
+      changed(news) {
+        news.forEach(w => { w.fresh = 1; if (w.status === 'ok' && !findReward(S.goal)) S.goal = w.id; });
+        save();
+        newsQ = newsQ.concat(news);
+        if (!news.length && /^#(reward|collect)/.test(location.hash) && !document.activeElement.matches('input')) route();
+        tryNews();
+      },
+      backedUp(t) {
+        S.cloudBackupAt = t; cloudNewer = null;
+        try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+        const a = document.getElementById('cloudState'); if (a) a.textContent = cloudText();
+      },
+      cloudNewer(meta) { const first = !cloudNewer; cloudNewer = meta; if (first && /^#?(home)?$/.test(location.hash)) route(); }
+    }), 1500);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) LaraCloud.flush(); else LaraCloud.refresh(); });
+  }
   // ---------- 自動換新版 ----------
   // GitHub Pages 會讓手機暫存網頁 10 分鐘。這裡每次打開或切回 App 都去看 version.json（不走暫存），
   // 有新版就換一個網址重新載入，避開暫存。sessionStorage 記住試過的版本，不會一直重載。
@@ -1397,7 +1508,9 @@
       if (s) { SENT = s.sentences || {}; DIALOGUES = s.dialogues || []; }
     } catch (e) {}
     window.addEventListener('hashchange', route);
+    window.addEventListener('hashchange', () => setTimeout(tryNews, 400));
     route();
+    startCloud();
   }
   start();
 })();

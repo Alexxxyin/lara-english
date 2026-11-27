@@ -471,3 +471,7 @@ h1, h2, h3, p { margin: 0; }
 .wish-row-t small { font-size: 11px; color: var(--muted); font-weight: 800; }
 .wish-wait { font-size: 12px; font-weight: 900; color: #8A5CB8; background: #F1E6FB; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
 .wish-x { font-size: 12px; font-weight: 800; color: var(--muted); background: transparent; border: 0; padding: 4px 2px; }
+.wish-note { font-size: 12px; font-weight: 800; color: var(--primary-ink); background: #FFFFFF; border-radius: 10px; padding: 4px 8px; align-self: flex-start; }
+.wish-row.no { background: #FAF6F8; }
+.wish-wait.no { color: #8E7A84; background: #EFE6EA; }
+.wish-cloud:empty { display: none; }
