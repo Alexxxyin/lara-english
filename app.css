@@ -302,3 +302,15 @@ h1, h2, h3, p { margin: 0; }
 .goal-top { align-items: center; }
 .fx-level { animation: fxLevel 0.7s cubic-bezier(.2,1.6,.4,1); }
 @keyframes fxLevel { 0% { transform: scale(1); } 35% { transform: scale(1.25) translateY(-8px); } 100% { transform: scale(1); } }
+
+.reward { align-items: flex-start; }
+.reward.is-goal { border: 2px solid var(--primary); }
+.reward-btns { display: flex; gap: 8px; justify-content: flex-end; align-items: center; margin-top: 2px; }
+.reward-btns .btn { height: 36px; padding: 0 14px; font-size: 14px; }
+.reward-btns .btn:disabled { background: #EADDE3; color: #9C8592; box-shadow: none; opacity: 1; }
+.goal-tag { font-size: 12px; font-weight: 900; color: var(--primary-ink); background: var(--primary-soft); padding: 6px 12px; border-radius: 999px; }
+.redeemed { display: flex; align-items: center; gap: 10px; background: var(--bg); border-radius: 16px; padding: 8px 10px; }
+.redeemed img { width: 40px; height: 40px; object-fit: contain; }
+.redeemed span { display: flex; flex-direction: column; }
+.redeemed b { font-size: 14px; font-weight: 900; }
+.redeemed small { font-size: 12px; color: var(--muted); }

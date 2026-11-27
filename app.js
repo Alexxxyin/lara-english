@@ -628,26 +628,68 @@
     { id: 'sushi', name: '壽司郎兌換券', cost: 800 },
     { id: 'wish', name: '萬用許願兌換券', cost: 5000 }
   ];
-  // 碗裡的份量（0 空碗～5 滿出來），看「離下一張兌換券」的比例；夠換任何一張就是滿出來
+  // 碗裡的份量（0 空碗～5 滿出來），看「離我的目標」的比例；夠換目標那張就是滿出來
   function bowlLevel(fish) {
     if (fish <= 0) return 0;
-    if (REWARDS.some(x => fish >= x.cost)) return 5;
-    const g = nextGoal(fish), k = g ? fish / g.cost : 1;
+    const g = myGoal(fish), k = g ? fish / g.cost : 1;
+    if (k >= 1) return 5;
     return k < 0.2 ? 1 : k < 0.5 ? 2 : k < 0.8 ? 3 : 4;
   }
   const bowlImg = fish => `img/bowl/lv${bowlLevel(fish)}.webp`;
+  // Lara 選的目標（還沒選就用最接近、還換不起的那張）
+  function myGoal(fish) {
+    const g = REWARDS.find(x => x.id === S.goal);
+    return g || nextGoal(fish);
+  }
+  function redeemCount(r) { return S.redeemed.filter(x => x.name === r.name).length; }
+  // 兌換券清單（獎勵頁和收藏頁共用）：每張都有進度條、還差幾隻、設為目標、兌換
+  function rewardListHtml() {
+    const goal = myGoal(S.fish);
+    return `<div class="list">${REWARDS.map((it, k) => {
+      const p = Math.round(Math.min(S.fish, it.cost) / it.cost * 100), left = Math.max(0, it.cost - S.fish), n = redeemCount(it), isGoal = goal && goal.id === it.id;
+      return `
+      <div class="card reward ${isGoal ? 'is-goal' : ''}">
+        <img class="reward-ico" src="img/reward/${it.id}.webp" alt="">
+        <div class="t">
+          <div><b>${esc(it.name)}</b><span class="muted" style="font-size:12px;font-weight:800;white-space:nowrap">${it.cost} 隻</span></div>
+          <div class="bar" style="height:10px"><div style="width:${p}%"></div></div>
+          <span class="reward-foot">${left ? `${S.fish} / ${it.cost}・還差 <b>${left}</b> 隻` : '<b>可以兌換了！</b>'}${n ? `・已兌換 ${n} 次` : ''}</span>
+          <div class="reward-btns">
+            ${isGoal ? '<span class="goal-tag">我的目標</span>' : `<button class="btn soft small" data-goal="${it.id}">設為目標</button>`}
+            <button class="btn small" data-redeem="${k}" ${left ? 'disabled' : ''}>兌換</button>
+          </div>
+        </div>
+      </div>`; }).join('')}</div>`;
+  }
+  function redeemedHtml() {
+    return `<div class="card"><b style="font-weight:900">我兌換過的</b>
+      ${S.redeemed.length ? `<div class="list" style="margin-top:10px">${S.redeemed.slice().reverse().map(r => { const it = REWARDS.find(x => x.name === r.name); return `
+        <div class="redeemed">${it ? `<img src="img/reward/${it.id}.webp" alt="">` : ''}<span><b>${esc(r.name)}</b><small>${esc(r.date)}・用了 ${r.cost} 隻</small></span></div>`; }).join('')}</div>`
+      : '<p class="muted" style="font-size:13px;margin-top:6px">還沒有兌換過，存夠小魚乾就可以換囉。</p>'}</div>`;
+  }
+  // 綁定兌換券按鈕；done 是兌換或換目標後要重畫的頁面
+  function bindRewards(done) {
+    view.querySelectorAll('[data-goal]').forEach(b => b.onclick = () => { S.goal = b.dataset.goal; save(); toast('目標換好了'); done(); });
+    view.querySelectorAll('[data-redeem]').forEach(b => b.onclick = () => {
+      const it = REWARDS[+b.dataset.redeem];
+      if (S.fish < it.cost) return;
+      if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定兌換？'; return; }
+      S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today() }); save();
+      snd('complete'); toast('兌換好了：' + it.name); done();
+    });
+  }
   function nextGoal(fish) {
     const list = REWARDS.filter(x => x.cost > fish).sort((a, b) => a.cost - b.cost);
     return list[0] || null;
   }
   function goalHtml(u, after) {
-    const g = nextGoal(after);
+    const g = myGoal(after);
     const ready = REWARDS.filter(x => x.cost <= after);
     let h = '';
     if (g) {
-      h += `<div class="goal"><div class="goal-top"><img class="goal-ico" src="img/reward/${g.id}.webp" alt=""><span>下一個獎勵</span><b>${esc(g.name)}</b></div>
-        <div class="goal-bar"><div id="goalFill" style="width:${Math.min(100, (after - (window.__goalGain || 0)) / g.cost * 100)}%"></div></div>
-        <div class="goal-foot"><span id="goalNow">${after - (window.__goalGain || 0)}</span> / ${g.cost} 隻・<b id="goalLeft">還差 ${g.cost - after + (window.__goalGain || 0)} 隻</b></div></div>`;
+      h += `<div class="goal"><div class="goal-top"><img class="goal-ico" src="img/reward/${g.id}.webp" alt=""><span>我的目標</span><b>${esc(g.name)}</b></div>
+        <div class="goal-bar"><div id="goalFill" style="width:${Math.max(0, Math.min(100, (after - (window.__goalGain || 0)) / g.cost * 100))}%"></div></div>
+        <div class="goal-foot"><span id="goalNow">${after - (window.__goalGain || 0)}</span> / ${g.cost} 隻・<b id="goalLeft">${after - (window.__goalGain || 0) >= g.cost ? '可以兌換了！' : '還差 ' + (g.cost - after + (window.__goalGain || 0)) + ' 隻'}</b></div></div>`;
     }
     if (ready.length) h += `<div class="goal ready"><div class="goal-top"><span>可以兌換了</span><b>${ready.map(x => esc(x.name)).join('、')}</b></div></div>`;
     if (u) {
@@ -704,11 +746,11 @@
       hearts(view.querySelector('#bowl'));
       const fill = view.querySelector('#goalFill');
       if (fill) {
-        const g = nextGoal(after);
+        const g = myGoal(after);
         if (g) {
           fill.style.width = Math.min(100, after / g.cost * 100) + '%';
           view.querySelector('#goalNow').textContent = after;
-          view.querySelector('#goalLeft').textContent = '還差 ' + (g.cost - after) + ' 隻';
+          view.querySelector('#goalLeft').textContent = after >= g.cost ? '可以兌換了！' : '還差 ' + (g.cost - after) + ' 隻';
         }
       }
     });
@@ -827,9 +869,10 @@
             <div class="bowl"><img src="${bowlImg(S.fish)}" alt="碗"></div>
           </div>
           <div class="big-num"><b>${S.fish}</b><span>隻小魚乾</span></div>
-          <div class="goals">${goalHtml(null, S.fish).replace(/id="goal\w+"/g, '')}</div>
-          <p class="muted" style="font-size:12px">換過 ${S.redeemed.length} 次獎勵・<a href="#reward">去獎勵頁設定或兌換</a></p>
-        </div>`;
+        </div>
+        <div class="collect-head"><b>兌換券</b><span>選一張「設為目標」，碗裡的份量會跟著這張變化；存夠了就可以按「兌換」</span></div>
+        ${rewardListHtml()}
+        ${redeemedHtml()}`;
     } else if (collectTab === 'words') {
       body = `<div class="collect-head"><b>已收集 ${k} / ${Object.keys(WORDS).length}</b><span>學會的字會亮起來，點一下可以聽發音</span></div>
         ${UNITS.map(u => { const n = knownCount(u); return `
@@ -872,34 +915,18 @@
       m.querySelector('button').onclick = close; m.onclick = e => { if (e.target === m) close(); };
     });
     view.querySelectorAll('[data-room]').forEach(b => b.onclick = () => { S.room = b.dataset.room; save(); toast('換好了'); pageCollect(); });
-    if (collectTab === 'bowl') addCat(view.querySelector('#bowlCat'));
+    if (collectTab === 'bowl') { addCat(view.querySelector('#bowlCat')); bindRewards(() => pageCollect()); }
   }
 
   // ---------- 獎勵 ----------
   function pageReward() {
     render(`
       <div class="hello"><h1 style="font-size:24px;font-weight:900">獎勵</h1><span class="pill purple fish-pill" data-fish style="font-size:14px;padding:6px 12px"><img src="img/fish/fish.webp" alt="">小魚乾 <span data-count="${S.fish}">${S.fish}</span></span></div>
-      <p class="muted" style="font-size:13px">答對一題 +1，練完一輪 +5，學完一個單元 +30。存到了就可以換兌換券。</p>
-      <div class="list">
-        ${REWARDS.map((it, k) => { const have = Math.min(S.fish, it.cost), p = Math.round(have / it.cost * 100), left = Math.max(0, it.cost - S.fish); return `
-          <div class="card reward">
-            <img class="reward-ico" src="img/reward/${it.id}.webp" alt="">
-            <div class="t">
-              <div><b>${esc(it.name)}</b><span class="muted" style="font-size:12px;font-weight:800;white-space:nowrap">${it.cost} 隻</span></div>
-              <div class="bar" style="height:10px"><div style="width:${p}%"></div></div>
-              <span class="reward-foot">${left ? `現在 ${S.fish} 隻・還差 <b>${left}</b> 隻` : '<b>可以兌換了！</b>'}</span>
-            </div>
-            ${left ? '' : `<button class="btn small" data-redeem="${k}">兌換</button>`}
-          </div>`; }).join('')}
-      </div>
-      ${S.redeemed.length ? `<div class="card"><b style="font-weight:900">兌換紀錄</b><div class="list" style="margin-top:8px">${S.redeemed.slice().reverse().map(r => `<div style="display:flex;justify-content:space-between;font-size:14px"><span>${esc(r.name)}</span><span class="muted">${esc(r.date)}</span></div>`).join('')}</div></div>` : ''}
+      <p class="muted" style="font-size:13px">答對一題 +1，練完一輪 +5，學完一個單元 +30。選一張當目標慢慢存，存夠了就按「兌換」。</p>
+      ${rewardListHtml()}
+      ${redeemedHtml()}
     `, 'reward');
-    view.querySelectorAll('[data-redeem]').forEach(b => b.onclick = () => {
-      const it = REWARDS[+b.dataset.redeem];
-      if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = '確定兌換'; return; }
-      S.fish -= it.cost; S.redeemed.push({ name: it.name, cost: it.cost, date: today() }); save();
-      snd('complete'); toast('兌換好了：' + it.name); pageReward();
-    });
+    bindRewards(pageReward);
   }
 
   // ---------- 設定 ----------
