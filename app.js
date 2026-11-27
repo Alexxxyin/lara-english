@@ -13,7 +13,7 @@
 
   // ---------- 存檔 ----------
   function blank() {
-    return { v: 1, words: {}, fish: 0, streak: { last: '', count: 0 }, doneUnits: [], rewards: [], redeemed: [], settings: { rate: 0.9, voice: '', sound: true } };
+    return { v: 1, words: {}, fish: 0, streak: { last: '', count: 0 }, doneUnits: [], rewards: [], redeemed: [], settings: { rate: 0.9, voice: '', sound: true, music: true } };
   }
   function load() {
     try { S = Object.assign(blank(), JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) { S = blank(); }
@@ -59,6 +59,35 @@
   }
   // 練習中答對的小魚乾先記著，結算畫面再一次放進碗裡
   const BOWL = (location.search.match(/bowl=(pink|paw|wood)/) || [])[1] || 'pink'; // 碗的樣式：pink（貓耳粉紅碗）、paw（掌印白碗）、wood（木碗）
+  // ---------- 收藏與解鎖 ----------
+  // 用「學會幾個字、學完幾個單元」解鎖，不花小魚乾（小魚乾留給 Lara 換真實獎勵）
+  const ROOMS = [
+    { id: 'a', name: '粉紅客廳', need: 0 },
+    { id: 'b', name: '淡紫臥室', need: 30 },
+    { id: 'c', name: '小咖啡廳', need: 80 },
+    { id: 'd', name: '薄荷廚房', need: 150 },
+    { id: 'e', name: '陽台花園', need: 220 }
+  ];
+  const CAT_BASE = ['wave', 'yawn', 'tilt', 'groom', 'sleep']; // 一開始就有
+  const CAT_UNLOCK = ['roll', 'butterfly', 'belly', 'pawsup', 'stretch', 'tail', 'knead', 'yarn', 'fish', 'scratch']; // 每學完一個單元解鎖一個
+  function knownTotal() { return Object.keys(WORDS).filter(f => S.words[f] && S.words[f].known).length; }
+  function unitsDone() { return UNITS.filter(unitDone).length; }
+  function catsUnlocked() { return CAT_BASE.concat(CAT_UNLOCK.slice(0, unitsDone())); }
+  function roomsUnlocked() { const k = knownTotal(); return ROOMS.filter(r => k >= r.need).map(r => r.id); }
+  function syncCats() { window.CAT_READY = catsUnlocked(); }
+  function roomNow() {
+    const q = (location.search.match(/room=([a-e])/) || [])[1];
+    if (q) return q;
+    return roomsUnlocked().includes(S.room) ? S.room : 'a';
+  }
+  // 找出剛解鎖、還沒告訴 Lara 的東西
+  function newUnlocks() {
+    S.seen = S.seen || { cats: CAT_BASE.slice(), rooms: ['a'] };
+    const c = catsUnlocked().filter(x => !S.seen.cats.includes(x));
+    const r = roomsUnlocked().filter(x => !S.seen.rooms.includes(x));
+    S.seen.cats.push(...c); S.seen.rooms.push(...r);
+    return { cats: c, rooms: r };
+  }
   let earned = 0;
   function earn(n) { earned += n; }
   function addFish(n, fromEl) {
@@ -175,6 +204,7 @@
   function addCat(el, opts) { if (el && window.CatPlayer) cats.push(CatPlayer(el, opts)); }
   function render(html, tab, full) {
     cats.forEach(c => c.stop()); cats = [];
+    syncCats();
     view.innerHTML = `<div class="page${full ? ' full' : ''}">${html}</div>`;
     setNav(tab);
     window.scrollTo(0, 0);
@@ -591,26 +621,56 @@
   }
 
   // ---------- 完成畫面 ----------
+  // 下一個獎勵目標：還買不起、最便宜的那個
+  function nextGoal(fish) {
+    const list = (S.rewards || []).filter(x => x.cost > fish).sort((a, b) => a.cost - b.cost);
+    return list[0] || null;
+  }
+  function goalHtml(u, after) {
+    const g = nextGoal(after);
+    const ready = (S.rewards || []).filter(x => x.cost <= after);
+    let h = '';
+    if (g) {
+      h += `<div class="goal"><div class="goal-top"><span>下一個獎勵</span><b>${esc(g.name)}</b></div>
+        <div class="goal-bar"><div id="goalFill" style="width:${Math.min(100, (after - (window.__goalGain || 0)) / g.cost * 100)}%"></div></div>
+        <div class="goal-foot"><span id="goalNow">${after - (window.__goalGain || 0)}</span> / ${g.cost} 隻・<b id="goalLeft">還差 ${g.cost - after + (window.__goalGain || 0)} 隻</b></div></div>`;
+    } else if (!(S.rewards || []).length) {
+      h += `<div class="goal"><div class="goal-top"><span>下一個獎勵</span><b>還沒設定</b></div><div class="goal-foot">到「獎勵」頁加一個想要的獎勵，這裡就會顯示離它還差多少。</div></div>`;
+    }
+    if (ready.length) h += `<div class="goal ready"><div class="goal-top"><span>可以兌換了</span><b>${ready.map(x => esc(x.name)).join('、')}</b></div></div>`;
+    if (u) {
+      const k = knownCount(u), n = u.words.length;
+      h += `<div class="goal"><div class="goal-top"><span>單元目標</span><b>學完「${esc(u.zh)}」</b></div>
+        <div class="goal-bar unit"><div style="width:${k / n * 100}%"></div></div>
+        <div class="goal-foot">${k} / ${n} 個字・<b>${k >= n ? '已經學完了！' : '還差 ' + (n - k) + ' 個字'}</b></div></div>`;
+    }
+    return h;
+  }
+
   function finish(u, r) {
     const bonus = 5;
     const unitNew = !r.demo && u && checkUnitDone(u);
     const total = earned + bonus + (unitNew ? 30 : 0);
     earned = 0;
     const pct = r.total && r.right != null ? Math.round(r.right / r.total * 100) : null;
-    const before = S.fish;
+    const before = S.fish, after = before + total;
+    window.__goalGain = total;
     render(`
       <div class="card done-card">
-        <h1 style="font-size:24px;font-weight:900">${unitNew ? esc(unitLabel(u)) + ' 學完了！' : '這一輪完成了！'}</h1>
+        <div class="ribbon"><span>${unitNew ? esc(unitLabel(u)) + ' 學完了！' : '這一輪完成了！'}</span></div>
         <div class="stats">
           <div><b>${r.learned != null ? r.learned : r.right}</b><span>${r.learned != null ? '記住了' : '答對'}</span></div>
           <div><b>${r.learned != null ? r.total - r.learned : (pct != null ? pct + '%' : '—')}</b><span>${r.learned != null ? '還不熟' : '答對率'}</span></div>
           <div class="fishy"><b>+${total}</b><span>小魚乾</span></div>
         </div>
-        <div class="bowl-stage" id="stage">
-          <div class="bowl-cat" id="doneCat"></div>
+        <div class="room" id="stage" style="background-image:url(img/room/room-${roomNow()}.webp)">
+          <div class="room-cat" id="doneCat"></div>
           <div class="bowl" id="bowl"><img id="bowlImg" src="img/bowl/${BOWL}-empty.webp" alt="碗"><span class="bowl-count" id="bowlCount">+0</span></div>
         </div>
-        <p class="muted" style="font-size:13px" id="bowlMsg">小魚乾正在放進碗裡⋯</p>
+        <p class="bowl-msg" id="bowlMsg">小魚乾正在放進碗裡⋯</p>
+        ${(() => { if (r.demo) return ''; const nu = newUnlocks(); save(); if (!nu.cats.length && !nu.rooms.length) return '';
+          return `<div class="unlock"><b>新解鎖！</b>${nu.cats.map(c => `<span>貓咪動作「${esc((window.CAT_ACTIONS.find(a => a.id === c) || {}).name || c)}」</span>`).join('')}${nu.rooms.map(x => `<span>房間「${esc(ROOMS.find(q => q.id === x).name)}」</span>`).join('')}<a href="#collect">去收藏看看</a></div>`; })()}
+        <div class="goals">${goalHtml(u, after)}</div>
         ${r.seenN != null ? `<p class="muted" style="font-size:12px">這個單元已經看過 ${r.seenN} / ${r.unitN} 個字</p>` : ''}
       </div>
       ${r.wrongs && r.wrongs.length ? `<div class="card"><b style="font-weight:900">這輪答錯的字</b><p class="muted" style="font-size:12px;margin:2px 0 8px">已經放進錯題本，之後會再出現</p><div class="list">${[...new Set(r.wrongs)].map(f => `<div class="review-row" style="box-shadow:none;background:var(--bg)"><img src="${img(f)}" alt=""><div class="t"><b>${esc(WORDS[f].en)}</b><span>${esc(WORDS[f].zh)}</span></div></div>`).join('')}</div></div>` : ''}
@@ -619,29 +679,45 @@
         <div class="pair"><button class="btn ghost" id="home">休息一下</button><button class="btn" id="again">${r.again || '再來 10 題'}</button></div>
       </div>
     `, null, true);
-    addCat(view.querySelector('#doneCat'), { actions: unitNew ? ['pawsup', 'roll', 'belly'] : ['fish', 'wave', 'tail', 'yarn'] });
+    const cat = window.CatPlayer ? CatPlayer(view.querySelector('#doneCat'), { actions: ['wave', 'tilt', 'tail', 'groom'] }) : null;
+    if (cat) cats.push(cat);
     view.querySelector('#again').onclick = () => { const h = r.demo ? '#flash/1-1' : location.hash; location.hash = '#_'; setTimeout(() => location.hash = h, 0); };
     view.querySelector('#home').onclick = () => go(r.back || '#home');
     if (!r.demo) { S.fish += total; save(); }
-    fishIntoBowl(total, before);
+    fishIntoBowl(total, before, () => {
+      // 全部放完：鈴聲、貓咪開心打滾、愛心飄起來、目標條往前長
+      snd('complete');
+      setTimeout(() => snd('fish'), 700);
+      if (cat) { const happy = ['pawsup', 'roll', 'belly', 'wave'].filter(x => catsUnlocked().includes(x)); cat.play(happy[Math.floor(Math.random() * happy.length)] || 'wave'); }
+      hearts(view.querySelector('#bowl'));
+      const fill = view.querySelector('#goalFill');
+      if (fill) {
+        const g = nextGoal(after);
+        if (g) {
+          fill.style.width = Math.min(100, after / g.cost * 100) + '%';
+          view.querySelector('#goalNow').textContent = after;
+          view.querySelector('#goalLeft').textContent = '還差 ' + (g.cost - after) + ' 隻';
+        }
+      }
+    });
   }
-  // 小魚乾從上面一隻隻掉進碗裡，碗慢慢裝滿，最後貓咪叫一聲
-  function fishIntoBowl(total, before) {
+  // 小魚乾從上面一隻隻掉進碗裡，每隻「啵」一聲（越來越高），碗慢慢裝滿
+  function fishIntoBowl(total, before, done) {
     const bowl = view.querySelector('#bowl'), stage = view.querySelector('#stage');
     const cnt = view.querySelector('#bowlCount'), bimg = view.querySelector('#bowlImg'), msg = view.querySelector('#bowlMsg');
     const shown = Math.min(total, 12); // 最多飛 12 隻，數字照實際加
-    let got = 0;
+    let layer = document.getElementById('fx-layer');
+    if (!layer) { layer = document.createElement('div'); layer.id = 'fx-layer'; document.body.appendChild(layer); }
     for (let k = 0; k < shown; k++) {
       setTimeout(() => {
         if (!document.body.contains(bowl)) return;
         const b = bowl.getBoundingClientRect(), st = stage.getBoundingClientRect();
         const fish = document.createElement('img');
         fish.src = 'img/fish/fish.webp'; fish.className = 'fx-fish';
-        const sx = st.left + 20 + Math.random() * (st.width - 40), sy = st.top - 10;
+        const sx = st.left + 30 + Math.random() * (st.width - 60), sy = st.top + 10;
         fish.style.left = sx + 'px'; fish.style.top = sy + 'px';
-        document.getElementById('fx-layer') || document.body.appendChild(Object.assign(document.createElement('div'), { id: 'fx-layer' }));
-        document.getElementById('fx-layer').appendChild(fish);
-        const ex = b.left + b.width / 2 - sx, ey = b.top + b.height * 0.35 - sy;
+        layer.appendChild(fish);
+        const ex = b.left + b.width / 2 - sx, ey = b.top + b.height * 0.45 - sy;
         fish.animate([
           { transform: 'translate(-50%,-50%) rotate(-30deg) scale(0.7)', opacity: 0 },
           { transform: `translate(calc(-50% + ${ex * 0.5}px), calc(-50% + ${ey * 0.2}px)) rotate(10deg) scale(1)`, opacity: 1, offset: 0.4 },
@@ -649,20 +725,34 @@
         ], { duration: 650, easing: 'ease-in', fill: 'forwards' });
         setTimeout(() => {
           fish.remove();
-          got = k === shown - 1 ? total : Math.round(total * (k + 1) / shown);
+          const got = k === shown - 1 ? total : Math.round(total * (k + 1) / shown);
           cnt.textContent = '+' + got;
           bowl.classList.remove('fx-pop'); void bowl.offsetWidth; bowl.classList.add('fx-pop');
           bimg.src = `img/bowl/${BOWL}-${got >= total * 0.7 ? 'full' : 'few'}.webp`;
+          if (S.settings.sound) FX.pop(k);
           if (k === shown - 1) {
-            snd('fish');
-            msg.textContent = `碗裡多了 ${total} 隻小魚乾，現在一共 ${before + total} 隻`;
+            msg.innerHTML = `碗裡多了 <b>${total}</b> 隻小魚乾，現在一共 <b>${before + total}</b> 隻`;
             const badge = document.querySelector('[data-fish] [data-count]'); if (badge) badge.textContent = S.fish;
+            if (done) setTimeout(done, 250);
           }
         }, 640);
-      }, 300 + k * 170);
+      }, 400 + k * 170);
     }
   }
-
+  // 從碗冒出幾顆粉紅愛心（簡單圖形）
+  function hearts(from) {
+    if (!from) return;
+    const b = from.getBoundingClientRect();
+    for (let k = 0; k < 7; k++) {
+      const h = document.createElement('div'); h.className = 'fx-heart';
+      h.style.left = (b.left + b.width * (0.2 + Math.random() * 0.6)) + 'px';
+      h.style.top = (b.top + b.height * 0.2) + 'px';
+      h.style.setProperty('--dx', (Math.random() * 60 - 30).toFixed(0) + 'px');
+      h.style.animationDelay = (k * 0.12) + 's';
+      (document.getElementById('fx-layer') || document.body).appendChild(h);
+      setTimeout(() => h.remove(), 2200);
+    }
+  }
   // ---------- 錯題本 ----------
   function pageReview() {
     const weak = weakList().sort((a, b) => S.words[b].miss - S.words[a].miss);
@@ -705,6 +795,72 @@
         };
       }
     });
+  }
+
+  // ---------- 我的收藏 ----------
+  let collectTab = 'bowl';
+  function pageCollect(tab) {
+    if (tab) collectTab = tab;
+    const k = knownTotal(), ud = unitsDone();
+    const catsOn = catsUnlocked(), roomsOn = roomsUnlocked();
+    const tabs = [['bowl', '我的碗'], ['words', '單字圖鑑'], ['cats', '貓咪動作'], ['rooms', '房間']];
+    let body = '';
+    if (collectTab === 'bowl') {
+      const g = nextGoal(S.fish);
+      const state = S.fish === 0 ? 'empty' : (g && S.fish < g.cost * 0.6) || S.fish < 30 ? 'few' : 'full';
+      body = `
+        <div class="card my-bowl">
+          <div class="room small" style="background-image:url(img/room/room-${roomNow()}.webp)">
+            <div class="room-cat" id="bowlCat"></div>
+            <div class="bowl"><img src="img/bowl/${BOWL}-${state}.webp" alt="碗"></div>
+          </div>
+          <div class="big-num"><b>${S.fish}</b><span>隻小魚乾</span></div>
+          <div class="goals">${goalHtml(null, S.fish).replace(/id="goal\w+"/g, '')}</div>
+          <p class="muted" style="font-size:12px">換過 ${S.redeemed.length} 次獎勵・<a href="#reward">去獎勵頁設定或兌換</a></p>
+        </div>`;
+    } else if (collectTab === 'words') {
+      body = `<div class="collect-head"><b>已收集 ${k} / ${Object.keys(WORDS).length}</b><span>學會的字會亮起來，點一下可以聽發音</span></div>
+        ${UNITS.map(u => { const n = knownCount(u); return `
+          <div class="card"><div class="collect-unit"><b>${esc(unitLabel(u))} ${esc(u.zh)}</b><span>${n} / ${u.words.length}</span></div>
+          <div class="dex">${u.words.map(w => { const on = S.words[w.f] && S.words[w.f].known; return on
+            ? `<button class="dex-card on" data-say="${esc(w.f)}"><img src="${img(w.f)}" alt="" loading="lazy"><span>${esc(w.en)}</span></button>`
+            : `<button class="dex-card" data-locked><img src="${img(w.f)}" alt="" loading="lazy"><span>？</span></button>`; }).join('')}</div></div>`; }).join('')}`;
+    } else if (collectTab === 'cats') {
+      const all = CAT_BASE.concat(CAT_UNLOCK).map(id => (window.CAT_ACTIONS || []).find(a => a.id === id)).filter(Boolean);
+      body = `<div class="collect-head"><b>已解鎖 ${catsOn.length} / ${all.length} 個動作</b><span>每學完一個單元，就會解鎖一個新動作</span></div>
+        <div class="card"><div class="cat-grid">${all.map(a => { const on = catsOn.includes(a.id); const i = CAT_UNLOCK.indexOf(a.id); return `
+          <button class="cat-cell ${on ? 'on' : ''}" data-cat="${a.id}" ${on ? '' : 'data-locked'}>
+            <span class="cat-thumb" style="background-image:url(img/cat/anim/${a.id}.webp)"></span>
+            <b>${on ? esc(a.name) : '？？？'}</b>${on ? '' : `<span>學完 ${i + 1} 個單元</span>`}
+          </button>`; }).join('')}</div></div>`;
+    } else {
+      body = `<div class="collect-head"><b>已解鎖 ${roomsOn.length} / ${ROOMS.length} 個房間</b><span>學會越多字，就會解鎖越多房間。選好的房間會出現在結算畫面。</span></div>
+        <div class="list">${ROOMS.map(r => { const on = roomsOn.includes(r.id), cur = roomNow() === r.id; return `
+          <div class="card room-card ${on ? '' : 'locked'}">
+            <div class="room-thumb"><i style="background-image:url(img/room/room-${r.id}.webp)"></i>${on ? '' : `<span>學會 ${r.need} 個字解鎖<br>（還差 ${r.need - k} 個）</span>`}</div>
+            <div class="room-row"><b>${esc(r.name)}</b>${on ? (cur ? '<span class="pill purple">使用中</span>' : `<button class="btn small" data-room="${r.id}">使用這間</button>`) : '<span class="pill">還沒解鎖</span>'}</div>
+          </div>`; }).join('')}</div>`;
+    }
+    render(`
+      <div class="hello"><h1 style="font-size:24px;font-weight:900">我的收藏</h1><span class="pill purple fish-pill" data-fish><img src="img/fish/fish.webp" alt="">小魚乾 <span data-count="${S.fish}">${S.fish}</span></span></div>
+      <div class="seg collect-tabs">${tabs.map(([id, n]) => `<button data-tab="${id}" class="${collectTab === id ? 'on' : ''}">${n}</button>`).join('')}</div>
+      ${body}
+    `, 'collect');
+    view.querySelectorAll('.collect-tabs button').forEach(b => b.onclick = () => pageCollect(b.dataset.tab));
+    view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en));
+    view.querySelectorAll('.dex-card[data-locked]').forEach(b => b.onclick = () => toast('這個字還沒學會喔'));
+    view.querySelectorAll('.cat-cell').forEach(b => b.onclick = () => {
+      if (b.hasAttribute('data-locked')) return toast('學完更多單元就會解鎖');
+      const a = (window.CAT_ACTIONS || []).find(x => x.id === b.dataset.cat);
+      const m = document.createElement('div'); m.className = 'fx-modal';
+      m.innerHTML = `<div class="fx-modal-card"><div class="fx-cat" style="width:220px;height:220px"></div><b>${esc(a.name)}</b><button type="button">好</button></div>`;
+      document.body.appendChild(m);
+      const p = CatPlayer(m.querySelector('.fx-cat'), { only: a.id });
+      const close = () => { p.stop(); m.remove(); };
+      m.querySelector('button').onclick = close; m.onclick = e => { if (e.target === m) close(); };
+    });
+    view.querySelectorAll('[data-room]').forEach(b => b.onclick = () => { S.room = b.dataset.room; save(); toast('換好了'); pageCollect(); });
+    if (collectTab === 'bowl') addCat(view.querySelector('#bowlCat'));
   }
 
   // ---------- 獎勵 ----------
@@ -753,6 +909,8 @@
         <div class="seg" id="rate">${[[0.75, '慢一點'], [0.9, '正常'], [1, '快一點']].map(([v, n]) => `<button data-v="${v}" class="${S.settings.rate === v ? 'on' : ''}">${n}</button>`).join('')}</div>
         <b style="font-weight:900;margin-top:6px">發音的聲音</b>
         ${voices.length ? `<select class="field" id="voice">${voices.map(v => `<option value="${esc(v.name)}" ${cur && cur.name === v.name ? 'selected' : ''}>${esc(v.name)}（${esc(v.lang)}）</option>`).join('')}</select><button class="btn soft small" id="tv">試聽</button>` : '<span class="muted" style="font-size:13px">找不到英文語音</span>'}
+        <b style="font-weight:900;margin-top:6px">背景音樂</b>
+        <div class="seg" id="mus"><button data-v="1" class="${S.settings.music ? 'on' : ''}">開</button><button data-v="0" class="${S.settings.music ? '' : 'on'}">關</button></div>
         <b style="font-weight:900;margin-top:6px">音效</b>
         <div class="seg" id="snd"><button data-v="1" class="${S.settings.sound ? 'on' : ''}">開</button><button data-v="0" class="${S.settings.sound ? '' : 'on'}">關</button></div>
       </div>
@@ -766,6 +924,7 @@
     `, null, true);
     bindBack('#home');
     view.querySelectorAll('#rate button').forEach(b => b.onclick = () => { S.settings.rate = +b.dataset.v; save(); pageSettings(); say('lasagna'); });
+    view.querySelectorAll('#mus button').forEach(b => b.onclick = () => { S.settings.music = b.dataset.v === '1'; save(); pageSettings(); bgmUpdate(); });
     view.querySelectorAll('#snd button').forEach(b => b.onclick = () => { S.settings.sound = b.dataset.v === '1'; save(); syncSound(); pageSettings(); snd('correct'); });
     const v = view.querySelector('#voice'); if (v) v.onchange = () => { S.settings.voice = v.value; save(); say('I would like the lasagna, please.'); };
     const tv = view.querySelector('#tv'); if (tv) tv.onclick = () => say('I would like the lasagna, please.');
@@ -790,6 +949,7 @@
   function route() {
     stopMic();
     earned = 0;
+    setTimeout(bgmUpdate, 0);
     const [p, a] = location.hash.replace(/^#/, '').split('/');
     switch (p) {
       case 'units': return pageUnits();
@@ -803,6 +963,7 @@
       case 'review': return pageReview();
       case 'review-go': return pageReviewGo();
       case 'reward': return pageReward();
+      case 'collect': return pageCollect(a);
       case 'settings': return pageSettings();
       case '_': return;
       case 'demo-finish': { // 結算畫面示範（不會真的加小魚乾）
@@ -816,13 +977,44 @@
   // iOS 需要使用者先點一下才能出聲
   // 一般按鈕的點擊音效；本身有聲音的按鈕（答題、發音、記住了、兌換⋯）不另外出聲
   const OWN_SOUND = '[data-own-sound], #opts button, .chip, [data-say], #lp, #ls, #p1, #p2, #ps, #mic, #chk, [data-redeem], .line, #yes';
-  document.addEventListener('click', e => {
+  // 手指一碰到就出聲（不等放開）
+  document.addEventListener('pointerdown', e => {
     const b = e.target.closest('button, a');
     if (!b || b.disabled || b.closest(OWN_SOUND) || b.matches(OWN_SOUND)) return;
     snd('tap');
   }, true);
+  // ---------- 背景音樂 ----------
+  // 首頁、單元、錯題本、獎勵、設定這些頁面播；進到練習就淡出。音量很小。
+  const BGM_SRC = 'sounds/bgm.mp3';
+  const BGM_VOL = 0.12;
+  const BGM_PAGES = ['', 'home', 'units', 'unit', 'review', 'reward', 'settings', 'collect'];
+  let bgm = null, bgmFade = null, bgmUnlocked = false;
+  function bgmFadeTo(v, after) {
+    if (!bgm) return;
+    clearInterval(bgmFade);
+    bgmFade = setInterval(() => {
+      const d = v - bgm.volume;
+      if (Math.abs(d) < 0.01) { bgm.volume = v; clearInterval(bgmFade); if (after) after(); return; }
+      bgm.volume = Math.max(0, Math.min(1, bgm.volume + Math.sign(d) * 0.01));
+    }, 40);
+  }
+  function bgmUpdate() {
+    const page = location.hash.replace(/^#/, '').split('/')[0];
+    const want = bgmUnlocked && S.settings.music && BGM_PAGES.includes(page) && !document.hidden;
+    if (want) {
+      if (!bgm) { bgm = new Audio(BGM_SRC); bgm.loop = true; bgm.volume = 0; }
+      if (bgm.paused) { const p = bgm.play(); if (p && p.catch) p.catch(() => {}); }
+      bgmFadeTo(BGM_VOL);
+    } else if (bgm && !bgm.paused) {
+      bgmFadeTo(0, () => bgm.pause());
+    }
+  }
+  document.addEventListener('visibilitychange', bgmUpdate);
+  ['touchend', 'click'].forEach(t => document.addEventListener(t, () => { if (!bgmUnlocked) { bgmUnlocked = true; bgmUpdate(); } }, { passive: true }));
+
   // iPhone：靜音開關打開時也要出聲（Safari 17 以上支援）
   try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+  document.addEventListener('pointerdown', () => FX.unlock(), { capture: true, passive: true });
   document.addEventListener('touchstart', () => { FX.unlock(); unlockSpeech(); }, { once: true, passive: true });
   document.addEventListener('click', () => { FX.unlock(); unlockSpeech(); }, { once: true });
 

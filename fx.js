@@ -55,25 +55,42 @@
   const LOCAL = { 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3', 1124: 'sounds/1124.mp3' }; // 已下載（Alex 2026-11-27 同意）
   const cache = {};
   // opts: max 最多播幾秒（之後淡出）、rate 播放速度（<1 會變慢變低）、times 連續播幾次、gap 每次間隔秒數、rates 每次的速度
+  // 音檔先整個解碼放進記憶體（Web Audio），點下去馬上出聲；還沒載好時才用 <audio> 頂著
+  const buffers = {}, loading = {};
+  function preload(id) {
+    if (buffers[id] || loading[id]) return;
+    const a = ac(); if (!a) return;
+    const src = LOCAL[id] || `https://assets.mixkit.co/active_storage/sfx/${id}/${id}-preview.mp3`;
+    loading[id] = fetch(src).then(r => r.arrayBuffer())
+      .then(b => new Promise((ok, no) => a.decodeAudioData(b, ok, no)))
+      .then(buf => { buffers[id] = buf; }).catch(() => { loading[id] = null; });
+  }
+  function playBuffer(buf, r, vol, max) {
+    const a = ac();
+    const src = a.createBufferSource(); src.buffer = buf; src.playbackRate.value = r;
+    const g = a.createGain(); const t0 = a.currentTime;
+    g.gain.setValueAtTime(vol, t0);
+    if (max) { g.gain.setValueAtTime(vol, t0 + max); g.gain.linearRampToValueAtTime(0.0001, t0 + max + 0.1); }
+    src.connect(g).connect(a.destination);
+    src.start(t0); if (max) src.stop(t0 + max + 0.12);
+  }
+  // opts: max 最多播幾秒（之後淡出）、rate 播放速度（<1 會變慢變低）、times 連續播幾次、gap 每次間隔秒數、rates 每次的速度、vol 音量
   function file(name, id, opts) {
     opts = opts || {};
     return { name, id, opts, play() {
-      const src = LOCAL[id] || `https://assets.mixkit.co/active_storage/sfx/${id}/${id}-preview.mp3`;
       const times = opts.times || 1;
       for (let k = 0; k < times; k++) {
-        setTimeout(() => {
-          const a = new Audio(src);
+        const fire = () => {
           const r = (opts.rates && opts.rates[k]) || opts.rate || 1;
-          a.preservesPitch = false; a.mozPreservesPitch = false; a.webkitPreservesPitch = false;
-          a.playbackRate = r;
-          const vol = Math.min(1, (opts.vol || 0.8) * FX.volume); a.volume = vol;
+          const vol = Math.min(1, (opts.vol || 0.8) * FX.volume);
+          if (buffers[id] && ac()) return playBuffer(buffers[id], r, vol, opts.max);
+          preload(id);
+          const a = new Audio(LOCAL[id] || `https://assets.mixkit.co/active_storage/sfx/${id}/${id}-preview.mp3`);
+          a.preservesPitch = false; a.webkitPreservesPitch = false; a.playbackRate = r; a.volume = vol;
           const p = a.play(); if (p && p.catch) p.catch(() => {});
-          if (opts.max) {
-            setTimeout(() => {
-              let v = vol; const t = setInterval(() => { v -= vol / 5; if (v <= 0) { a.pause(); clearInterval(t); } else a.volume = v; }, 20);
-            }, opts.max * 1000);
-          }
-        }, k * (opts.gap || 0) * 1000);
+          if (opts.max) setTimeout(() => a.pause(), (opts.max + 0.1) * 1000);
+        };
+        if (k === 0 || !opts.gap) fire(); else setTimeout(fire, k * opts.gap * 1000);
       }
     } };
   }
@@ -201,7 +218,7 @@
         m.querySelector('button').onclick = close;
         m.onclick = e => { if (e.target === m) close(); };
         document.body.appendChild(m);
-        if (window.CatPlayer) cat = CatPlayer(m.querySelector('.fx-cat'), { actions: ['wave', 'roll', 'belly', 'pawsup', 'tail', 'butterfly'] });
+        if (window.CatPlayer) cat = CatPlayer(m.querySelector('.fx-cat'));
       } },
       C: { name: '一排圓點逐一填滿', run(badge, days) {
         const m = document.createElement('div'); m.className = 'fx-dots-toast';
@@ -224,7 +241,9 @@
     visual(kind, opt, ...args) {
       try { const v = VISUALS[kind][opt || this.choice['v' + kind[0].toUpperCase() + kind.slice(1)]]; if (v) v.run(...args); } catch (e) {}
     },
-    unlock() { ac(); }
+    unlock() { ac(); Object.keys(LOCAL).forEach(preload); },
+    // 小魚乾掉進碗：泡泡「啵」，一隻比一隻高一點
+    pop(i) { try { file('', 1124, { max: 0.3, vol: 0.45, rate: Math.min(1.6, 0.9 + i * 0.06) }).play(); } catch (e) {} }
   };
   // 點螢幕時出現貓咪掌印
   FX.pawImg = 'img/paw/paw-2.webp'; // Alex 選第 2 種（三花配色）

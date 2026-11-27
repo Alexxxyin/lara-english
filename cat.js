@@ -56,7 +56,11 @@
   function CatPlayer(box, opts) {
     opts = opts || {};
     let list = opts.actions ? ACTIONS.filter(a => opts.actions.includes(a.id)) : ACTIONS;
-    if (window.CAT_READY) list = list.filter(a => window.CAT_READY.includes(a.id));
+    if (window.CAT_READY) {
+      const f = list.filter(a => window.CAT_READY.includes(a.id));
+      list = f.length ? f : ACTIONS.filter(a => window.CAT_READY.includes(a.id));
+    }
+    if (opts.only) list = ACTIONS.filter(a => a.id === opts.only); // 收藏頁指定看某個動作
     const canvas = document.createElement('canvas');
     canvas.className = 'cat-canvas';
     box.appendChild(canvas);
