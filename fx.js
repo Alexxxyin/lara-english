@@ -139,14 +139,14 @@
     correct: {
       A: { name: '叮咚（兩聲往上）', play() { bell(659, 0, 0.35, 0.22); bell(880, 0.11, 0.5, 0.22); } },
       B: { name: '清脆三連音', play() { [1047, 1319, 1568].forEach((f, i) => tone({ f, t: i * 0.06, d: 0.22, v: 0.16, type: 'triangle' })); } },
-      C: file('木琴', 'correct', { vol: 0.9, busy: 0.3 }), // 跟原本合成的木琴一樣，改成音檔讓 iPhone 更穩
+      C: file('木琴', 'correct', { vol: 0.9, busy: 0.1 }), // 跟原本合成的木琴一樣，改成音檔讓 iPhone 更穩
       D: { name: '柔和一聲', play() { tone({ f: 740, f2: 990, glide: 0.08, d: 0.3, v: 0.25 }); } }
     },
     wrong: {
       A: file('益智節目「嗶」', 950, { max: 0.5 }),
       B: file('益智節目搶答「嗶」', 3090, { max: 0.5 }),
       C: file('短短的蜂鳴', 2964, { max: 0.5 }),
-      D: file('輕輕的「噔」', 2569, { max: 0.5, busy: 0.3 }),
+      D: file('輕輕的「噔」', 2569, { max: 0.5, busy: 0.1 }),
       E: file('按錯的「咔」', 1110, { max: 0.5 }),
       F: file('遊戲答錯提示', 249, { max: 0.5 }),
       G: file('「啵嗯」彈一下', 2894, { max: 0.5 }),
