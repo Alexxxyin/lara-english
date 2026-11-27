@@ -841,7 +841,7 @@
         <button data-tab="weak" class="${reviewTab === 'weak' ? 'on' : ''}"><b>${weak.length}</b><span>還在練習</span></button>
         <button data-tab="good" class="${reviewTab === 'good' ? 'on' : ''}"><b style="color:var(--good)">${good.length}</b><span>已經很熟</span></button>
       </div>
-      <button class="btn" id="go" ${due.length ? '' : 'disabled'} style="width:100%">${due.length ? `開始複習 ${Math.min(due.length, 15)} 個字` : '現在沒有要複習的字'}</button>
+      <button class="btn" id="go" ${list.length ? '' : 'disabled'} style="width:100%">${list.length ? { due: '開始複習', weak: '練習還在練習的', good: '再複習很熟的' }[reviewTab] + ` ${Math.min(list.length, 15)} 個字` : empty}</button>
       <div class="list">
         ${list.map(f => { const x = S.words[f]; const d = Math.ceil((x.due - Date.now()) / DAY); const tag = reviewTab === 'good' ? '<span class="pill" style="background:var(--good-bg);color:var(--good)">很熟了</span>' : (label(x) ? `<span class="miss">${label(x)}</span>` : '');
           return `<button class="review-row" data-say="${f}" style="text-align:left"><img src="${img(f)}" alt="" loading="lazy"><div class="t"><b>${esc(WORDS[f].en)}</b><span>${esc(WORDS[f].zh)}${reviewTab === 'good' ? '' : '・' + (x.due <= Date.now() ? '現在複習' : d + ' 天後複習')}</span></div>${tag}</button>`; }).join('') || `<p class="muted" style="text-align:center;padding:20px">${empty}</p>`}
@@ -849,15 +849,16 @@
     `, 'review');
     view.querySelectorAll('.review-tabs button').forEach(b => b.onclick = () => pageReview(b.dataset.tab));
     view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en, false, true));
-    const g = view.querySelector('#go'); if (g) g.onclick = () => go('#review-go');
+    const g = view.querySelector('#go'); if (g) g.onclick = () => go('#review-go/' + reviewTab);
   }
-  function pageReviewGo() {
-    const items = shuffle(dueList()).slice(0, 15);
+  function pageReviewGo(tab) {
+    const src = tab === 'weak' ? weakList() : tab === 'good' ? Object.keys(S.words).filter(f => WORDS[f] && S.words[f].box >= 4) : dueList();
+    const items = shuffle(src).slice(0, 15);
     if (!items.length) return go('#review');
     const pool = Object.keys(WORDS);
     // 複習用：翻字和聽音輪流
     choiceRound({
-      unit: null, title: '複習', back: '#review', items,
+      unit: null, title: { weak: '練習還在練習的字', good: '複習很熟的字' }[tab] || '複習', back: '#review', items,
       build: (f) => {
         const sameUnit = UNITS.find(u => u.words.some(w => w.f === f)).words.map(w => w.f);
         if (Math.random() < 0.5) return {
@@ -1021,7 +1022,7 @@
       case 'speak': return pageSpeak(a);
       case 'fill': return pageFill(a);
       case 'review': return pageReview();
-      case 'review-go': return pageReviewGo();
+      case 'review-go': return pageReviewGo(a);
       case 'reward': return pageReward();
       case 'collect': return pageCollect(a);
       case 'settings': return pageSettings();
