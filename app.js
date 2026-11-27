@@ -97,7 +97,7 @@
   }
 
   // 錯題本：答錯過、還沒練熟的字
-  function weakList() { return Object.keys(S.words).filter(f => WORDS[f] && S.words[f].miss > 0 && S.words[f].box < 4); }
+  function weakList() { return Object.keys(S.words).filter(f => WORDS[f] && (S.words[f].miss > 0 || S.words[f].unsure > 0) && S.words[f].box < 4); }
   function dueList() { const now = Date.now(); return weakList().filter(f => S.words[f].due <= now); }
 
   function unitOf(id) { return UNITS.find(u => u.id === id); }
@@ -165,7 +165,8 @@
     return d ? d.name : '';
   }
   let sayTimer = null;
-  function say(text, slow) {
+  // now：Lara 自己按播放／慢速／點圖時傳 true，當下立刻唸
+  function say(text, slow, now) {
     try {
       const s = window.speechSynthesis; if (!s) return;
       if (bgm && !bgm.paused && !BGM_PAGES.includes(location.hash.replace(/^#/, '').split('/')[0])) bgm.pause();
@@ -180,7 +181,9 @@
         s.resume(); // iPhone 有時會卡在暫停狀態
         s.speak(u);
       };
-      // 音效還在響就等它結束再唸（iPhone 上兩個一起出聲，單字會被切掉或忽大忽小）
+      // Lara 自己按的（播放、慢速、點圖）：當下立刻唸，不等，也不放到計時器裡（iPhone 計時器裡唸可能沒聲音）
+      if (now) { clearTimeout(sayTimer); if (s.speaking || s.pending) s.cancel(); go(); return; }
+      // 自動唸的：音效還在響就等它結束再唸（iPhone 上兩個一起出聲，單字會被切掉或忽大忽小）
       const wait = Math.max(0, (FX.busyUntil || 0) - Date.now());
       // 先取消再馬上講，Safari 常會吃掉；有東西在講才取消，並稍等一下
       if (s.speaking || s.pending || slow) { s.cancel(); sayTimer = setTimeout(go, Math.max(wait, slow ? 180 : 120)); }
@@ -191,7 +194,7 @@
   // 第一次碰螢幕時，在使用者手勢裡先講一個無聲的字，iPhone 之後才會讓程式出聲
   function unlockSpeech() {
     try {
-      const s = window.speechSynthesis; if (!s) return;
+      const s = window.speechSynthesis; if (!s || s.speaking || s.pending) return; // 已經在唸就不用解鎖，免得排在單字前面
       const u = new SpeechSynthesisUtterance(' '); u.volume = 0; u.lang = 'en-US'; s.speak(u);
     } catch (e) {}
   }
@@ -314,7 +317,7 @@
       </div>
     `, 'units');
     bindBack('#units'); bindGo();
-    view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en));
+    view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en, false, true));
   }
 
   // ---------- 單字卡 ----------
@@ -347,12 +350,12 @@
         <div class="pair"><button class="b-bad" id="no" data-own-sound>還不熟</button><button class="b-good" id="yes" data-own-sound>記住了</button></div>
       `, null, true);
       bindBack();
-      view.querySelector('#p1').onclick = () => say(w.en);
-      view.querySelector('#p2').onclick = () => say(w.en, true);
+      view.querySelector('#p1').onclick = () => say(w.en, false, true);
+      view.querySelector('#p2').onclick = () => say(w.en, true, true);
       const fl = view.querySelector('#flip'); if (fl) fl.onclick = () => { flipped = true; show(); };
       const uf = view.querySelector('#unflip'); if (uf) uf.onclick = () => { flipped = false; show(); };
-      const ps = view.querySelector('#ps'); if (ps) ps.onclick = () => say(s.en);
-      view.querySelector('#no').onclick = () => { snd('wrong'); const x = W(f); x.miss++; x.box = 0; x.due = Date.now(); seen.add(f); save(); dayFx(); i++; flipped = false; show(); };
+      const ps = view.querySelector('#ps'); if (ps) ps.onclick = () => say(s.en, false, true);
+      view.querySelector('#no').onclick = () => { snd('wrong'); const x = W(f); x.unsure = (x.unsure || 0) + 1; x.box = 0; x.due = Date.now(); seen.add(f); save(); dayFx(); i++; flipped = false; show(); };
       view.querySelector('#yes').onclick = e => {
         const x = W(f); const first = !x.known; x.known = true; if (!x.due) { x.box = Math.max(x.box, 1); x.due = startOfToday() + DAY; }
         remembered++; seen.add(f); save(); dayFx();
@@ -437,8 +440,8 @@
         html: `<div class="listen-row"><button class="big-play" id="lp">播放</button><button class="btn ghost small" id="ls">慢速</button></div><span class="muted" style="font-size:13px">聽聲音，選出對的圖</span>`,
         choices: shuffle([f, ...pickOthers(f, pool, 3)]).map(x => ({ f: x })),
         onShow() {
-          view.querySelector('#lp').onclick = () => say(WORDS[f].en);
-          view.querySelector('#ls').onclick = () => say(WORDS[f].en, true);
+          view.querySelector('#lp').onclick = () => say(WORDS[f].en, false, true);
+          view.querySelector('#ls').onclick = () => say(WORDS[f].en, true, true);
           setTimeout(() => say(WORDS[f].en), 300);
         }
       })
@@ -490,7 +493,7 @@
       `, null, true);
       bindBack();
       const inp = view.querySelector('#in');
-      view.querySelector('#p1').onclick = () => say(w.en);
+      view.querySelector('#p1').onclick = () => say(w.en, false, true);
       view.querySelector('#more').onclick = () => { hintN = Math.min(hintN + 1, ans.length); const v = inp.value; show(); view.querySelector('#in').value = v; };
       const chk = view.querySelector('#chk');
       const check = () => {
@@ -545,8 +548,8 @@
              : `<div class="pair"><button class="b-bad" id="selfno">還唸不好</button><button class="b-good" id="selfok">唸好了</button></div>`}
       `, null, true);
       bindBack();
-      view.querySelector('#p1').onclick = () => say(w.en);
-      view.querySelector('#p2').onclick = () => say(w.en, true);
+      view.querySelector('#p1').onclick = () => say(w.en, false, true);
+      view.querySelector('#p2').onclick = () => say(w.en, true, true);
       const nx = () => { stopMic(); i++; show(); };
       if (SR) {
         view.querySelector('#skip').onclick = nx;
@@ -609,7 +612,7 @@
         </div>
       `, null, true);
       bindBack();
-      view.querySelectorAll('[data-line]').forEach(b => b.onclick = () => say(d.lines[+b.dataset.line].en));
+      view.querySelectorAll('[data-line]').forEach(b => b.onclick = () => say(d.lines[+b.dataset.line].en, false, true));
       const fin = view.querySelector('#fin');
       if (fin) fin.onclick = () => finish(u, { right, total: blanks.length, back: '#unit/' + u.id });
       view.querySelectorAll('[data-c]').forEach(b => b.onclick = () => {
@@ -820,11 +823,11 @@
   }
   // ---------- 錯題本 ----------
   function pageReview() {
-    const weak = weakList().sort((a, b) => S.words[b].miss - S.words[a].miss);
+    const weak = weakList().sort((a, b) => (S.words[b].miss + (S.words[b].unsure || 0)) - (S.words[a].miss + (S.words[a].unsure || 0)));
     const due = dueList();
     const goodN = Object.keys(S.words).filter(f => S.words[f].box >= 4).length;
     render(`
-      <div><h1 style="font-size:24px;font-weight:900">錯題本</h1><p class="muted" style="font-size:13px">答錯的字會自動排進來，越常錯越常出現；連續答對就會畢業</p></div>
+      <div><h1 style="font-size:24px;font-weight:900">錯題本</h1><p class="muted" style="font-size:13px">答錯或按「還不熟」的字會自動排進來，越常出現的越常複習；連續答對就會畢業</p></div>
       <div class="stats">
         <div style="background:var(--warm-bg)"><b>${due.length}</b><span style="color:#6B3A08">現在該複習</span></div>
         <div style="background:#FFFFFF"><b>${weak.length}</b><span>還在練習</span></div>
@@ -832,10 +835,10 @@
       </div>
       <button class="btn" id="go" ${due.length ? '' : 'disabled'} style="width:100%">${due.length ? `開始複習 ${Math.min(due.length, 15)} 個字` : '現在沒有要複習的字'}</button>
       <div class="list">
-        ${weak.map(f => { const x = S.words[f]; const d = Math.ceil((x.due - Date.now()) / DAY); return `<button class="review-row" data-say="${f}" style="text-align:left"><img src="${img(f)}" alt="" loading="lazy"><div class="t"><b>${esc(WORDS[f].en)}</b><span>${esc(WORDS[f].zh)}・${x.due <= Date.now() ? '現在複習' : d + ' 天後複習'}</span></div><span class="miss">錯 ${x.miss} 次</span></button>`; }).join('') || '<p class="muted" style="text-align:center;padding:20px">還沒有答錯的字</p>'}
+        ${weak.map(f => { const x = S.words[f]; const d = Math.ceil((x.due - Date.now()) / DAY); return `<button class="review-row" data-say="${f}" style="text-align:left"><img src="${img(f)}" alt="" loading="lazy"><div class="t"><b>${esc(WORDS[f].en)}</b><span>${esc(WORDS[f].zh)}・${x.due <= Date.now() ? '現在複習' : d + ' 天後複習'}</span></div><span class="miss">${[x.miss ? `錯 ${x.miss} 次` : '', x.unsure ? `還不熟 ${x.unsure} 次` : ''].filter(Boolean).join('・')}</span></button>`; }).join('') || '<p class="muted" style="text-align:center;padding:20px">還沒有答錯的字</p>'}
       </div>
     `, 'review');
-    view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en));
+    view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en, false, true));
     const g = view.querySelector('#go'); if (g) g.onclick = () => go('#review-go');
   }
   function pageReviewGo() {
@@ -856,7 +859,7 @@
           kind: 'img',
           html: `<button class="big-play" id="lp">播放</button><span class="muted" style="font-size:13px">聽聲音，選出對的圖</span>`,
           choices: shuffle([f, ...pickOthers(f, sameUnit, 3)]).map(x => ({ f: x })),
-          onShow() { view.querySelector('#lp').onclick = () => say(WORDS[f].en); setTimeout(() => say(WORDS[f].en), 300); }
+          onShow() { view.querySelector('#lp').onclick = () => say(WORDS[f].en, false, true); setTimeout(() => say(WORDS[f].en), 300); }
         };
       }
     });
@@ -912,7 +915,7 @@
       ${body}
     `, 'collect');
     view.querySelectorAll('.collect-tabs button').forEach(b => b.onclick = () => pageCollect(b.dataset.tab));
-    view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en));
+    view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en, false, true));
     view.querySelectorAll('.dex-card[data-locked]').forEach(b => b.onclick = () => toast('這個字還沒學會喔'));
     view.querySelectorAll('.cat-cell').forEach(b => b.onclick = () => {
       if (b.hasAttribute('data-locked')) return toast('學完更多單元就會解鎖');
@@ -971,13 +974,13 @@
     view.querySelectorAll('#rate button').forEach(b => b.onclick = () => { S.settings.rate = +b.dataset.v; save(); pageSettings(); say('lasagna'); });
     view.querySelectorAll('#sndtest button').forEach(b => b.onclick = () => {
       FX.unlock();
-      if (b.dataset.t === 'say') say('lasagna'); else if (b.dataset.t === 'slow') say('lasagna', true); else FX.sound(b.dataset.t);
+      if (b.dataset.t === 'say') say('lasagna', false, true); else if (b.dataset.t === 'slow') say('lasagna', true, true); else FX.sound(b.dataset.t);
       setTimeout(() => { const el = view.querySelector('#sndstate'); if (el) el.textContent = '音效狀態：' + FX.state() + (navigator.audioSession ? '・' + navigator.audioSession.type : ''); }, 300);
     });
     view.querySelectorAll('#mus button').forEach(b => b.onclick = () => { S.settings.music = b.dataset.v === '1'; save(); pageSettings(); bgmUpdate(); });
     view.querySelectorAll('#snd button').forEach(b => b.onclick = () => { S.settings.sound = b.dataset.v === '1'; save(); syncSound(); pageSettings(); snd('correct'); });
     const v = view.querySelector('#voice'); if (v) v.onchange = () => { S.settings.voice = v.value; save(); say('I would like the lasagna, please.'); };
-    const tv = view.querySelector('#tv'); if (tv) tv.onclick = () => say('I would like the lasagna, please.');
+    const tv = view.querySelector('#tv'); if (tv) tv.onclick = () => say('I would like the lasagna, please.', false, true);
     view.querySelector('#exp').onclick = () => {
       const blob = new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'lara-english-backup-' + today() + '.json';
