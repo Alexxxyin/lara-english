@@ -152,12 +152,20 @@
 
   // ---------- 發音 ----------
   let voices = [];
-  function loadVoices() { voices = (window.speechSynthesis ? speechSynthesis.getVoices() : []).filter(v => /^en(-|_)/i.test(v.lang)); }
+  // Mac／iPhone 內建的搞怪語音（機器人、唱歌、耳語⋯），不能拿來教發音
+  const ODD_VOICES = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Eddy|Flo|Fred|Good News|Grandma|Grandpa|Jester|Junior|Kathy|Organ|Ralph|Reed|Rocko|Sandy|Shelley|Superstar|Trinoids|Whisper|Wobble|Zarvox)\b/i;
+  function loadVoices() { voices = (window.speechSynthesis ? speechSynthesis.getVoices() : []).filter(v => /^en(-|_)/i.test(v.lang) && !ODD_VOICES.test(v.name)); }
+  const IS_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   // iPhone 上「列出來但沒下載」的語音會沒聲音，所以只有 Lara 在設定裡自己選過才指定語音，
   // 否則交給手機用預設的英文語音。
   function pickVoice() {
     if (S.settings.voice) { const v = voices.find(v => v.name === S.settings.voice); if (v) return v; }
-    return null;
+    if (!voices.length) loadVoices();
+    const us = voices.filter(v => /en(-|_)US/i.test(v.lang));
+    const by = re => us.find(v => re.test(v.name) && v.localService !== false);
+    // iPhone 只用一定有裝的 Samantha（選到沒下載的語音會沒聲音）；電腦優先用高音質的自然女聲
+    if (IS_IOS) return by(/^Samantha/) || null;
+    return by(/^Ava/) || by(/^Zoe/) || by(/^Samantha/) || us.find(v => /Google US English/.test(v.name)) || us.find(v => v.localService) || null;
   }
   function defaultVoiceName() {
     const us = voices.filter(v => /en(-|_)US/i.test(v.lang));
@@ -382,7 +390,7 @@
     let i = 0, right = 0;
     const wrongs = [];
     function show() {
-      if (i >= opts.items.length) return finish(opts.unit, { right, total: opts.items.length, back: opts.back, wrongs });
+      if (i >= opts.items.length) return finish(opts.unit, { right, total: opts.items.length, back: opts.back, wrongs, again: opts.again, left: opts.left });
       const f = opts.items[i];
       const q = opts.build(f);
       render(`
@@ -740,6 +748,7 @@
           return `<div class="unlock"><b>新解鎖！</b>${nu.cats.map(c => `<span>貓咪動作「${esc((window.CAT_ACTIONS.find(a => a.id === c) || {}).name || c)}」</span>`).join('')}${nu.rooms.map(x => `<span>房間「${esc(ROOMS.find(q => q.id === x).name)}」</span>`).join('')}<a href="#collect">去收藏看看</a></div>`; })()}
         <div class="goals">${goalHtml(u, after)}</div>
         ${r.seenN != null ? `<p class="muted" style="font-size:12px">這個單元已經看過 ${r.seenN} / ${r.unitN} 個字</p>` : ''}
+        ${r.left ? `<p class="muted" style="font-size:12px">這一類還有 ${r.left} 個字沒練到</p>` : ''}
       </div>
       ${r.wrongs && r.wrongs.length ? `<div class="card"><b style="font-weight:900">這輪答錯的字</b><p class="muted" style="font-size:12px;margin:2px 0 8px">已經放進錯題本，之後會再出現</p><div class="list">${[...new Set(r.wrongs)].map(f => `<div class="review-row" style="box-shadow:none;background:var(--bg)"><img src="${img(f)}" alt=""><div class="t"><b>${esc(WORDS[f].en)}</b><span>${esc(WORDS[f].zh)}</span></div></div>`).join('')}</div></div>` : ''}
       <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:12px">
@@ -841,7 +850,7 @@
         <button data-tab="weak" class="${reviewTab === 'weak' ? 'on' : ''}"><b>${weak.length}</b><span>還在練習</span></button>
         <button data-tab="good" class="${reviewTab === 'good' ? 'on' : ''}"><b style="color:var(--good)">${good.length}</b><span>已經很熟</span></button>
       </div>
-      <button class="btn" id="go" ${list.length ? '' : 'disabled'} style="width:100%">${list.length ? { due: '開始複習', weak: '練習還在練習的', good: '再複習很熟的' }[reviewTab] + ` ${Math.min(list.length, 15)} 個字` : empty}</button>
+      <button class="btn" id="go" ${list.length ? '' : 'disabled'} style="width:100%">${list.length ? { due: '開始複習', weak: '練習還在練習的', good: '再複習很熟的' }[reviewTab] + ` ${list.length} 個字` + (list.length > ROUND ? `（一輪 ${ROUND} 個）` : '') : empty}</button>
       <div class="list">
         ${list.map(f => { const x = S.words[f]; const d = Math.ceil((x.due - Date.now()) / DAY); const tag = reviewTab === 'good' ? '<span class="pill" style="background:var(--good-bg);color:var(--good)">很熟了</span>' : (label(x) ? `<span class="miss">${label(x)}</span>` : '');
           return `<button class="review-row" data-say="${f}" style="text-align:left"><img src="${img(f)}" alt="" loading="lazy"><div class="t"><b>${esc(WORDS[f].en)}</b><span>${esc(WORDS[f].zh)}${reviewTab === 'good' ? '' : '・' + (x.due <= Date.now() ? '現在複習' : d + ' 天後複習')}</span></div>${tag}</button>`; }).join('') || `<p class="muted" style="text-align:center;padding:20px">${empty}</p>`}
@@ -851,14 +860,23 @@
     view.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(WORDS[b.dataset.say].en, false, true));
     const g = view.querySelector('#go'); if (g) g.onclick = () => go('#review-go/' + reviewTab);
   }
+  // 錯題本一輪 10 個；同一次打開網站裡練過的先不重複，全部練過才重來
+  const reviewSeen = {};
+  function reviewSource(tab) { return tab === 'weak' ? weakList() : tab === 'good' ? Object.keys(S.words).filter(f => WORDS[f] && S.words[f].box >= 4) : dueList(); }
   function pageReviewGo(tab) {
-    const src = tab === 'weak' ? weakList() : tab === 'good' ? Object.keys(S.words).filter(f => WORDS[f] && S.words[f].box >= 4) : dueList();
-    const items = shuffle(src).slice(0, 15);
+    tab = tab || 'due';
+    const seen = reviewSeen[tab] || (reviewSeen[tab] = new Set());
+    const src = reviewSource(tab);
+    let rest = src.filter(f => !seen.has(f));
+    if (!rest.length) { seen.clear(); rest = src; }
+    const items = shuffle(rest).slice(0, ROUND);
+    items.forEach(f => seen.add(f));
+    const left = src.filter(f => !seen.has(f)).length;
     if (!items.length) return go('#review');
     const pool = Object.keys(WORDS);
     // 複習用：翻字和聽音輪流
     choiceRound({
-      unit: null, title: { weak: '練習還在練習的字', good: '複習很熟的字' }[tab] || '複習', back: '#review', items,
+      unit: null, title: { weak: '練習還在練習的字', good: '複習很熟的字' }[tab] || '複習', back: '#review', items, again: left ? '再來 ' + Math.min(left, ROUND) + ' 個' : '再練一輪', left,
       build: (f) => {
         const sameUnit = UNITS.find(u => u.words.some(w => w.f === f)).words.map(w => w.f);
         if (Math.random() < 0.5) return {
