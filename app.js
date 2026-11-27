@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 35;
+  const APP_VERSION = 36;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -1089,6 +1089,9 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 12, date: '11/27', items: [
+      '主畫面的圖示換成「三花貓從書本後面探頭」，名字改成「Lara努力學習」。桌面上的舊圖示不會自己換，想換新圖示的話，請照 Alex 給妳的步驟做（要先備份，不然進度會不見）。'
+    ] },
     { id: 11, date: '11/27', items: [
       '網站有新版本時，打開 App 會自動換成最新版，不用再自己關掉重開。'
     ] },
