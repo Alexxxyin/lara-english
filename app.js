@@ -940,6 +940,10 @@
         <div class="seg" id="rate">${[[0.75, '慢一點'], [0.9, '正常'], [1, '快一點']].map(([v, n]) => `<button data-v="${v}" class="${S.settings.rate === v ? 'on' : ''}">${n}</button>`).join('')}</div>
         <b style="font-weight:900;margin-top:6px">發音的聲音</b>
         ${voices.length ? `<select class="field" id="voice">${voices.map(v => `<option value="${esc(v.name)}" ${cur && cur.name === v.name ? 'selected' : ''}>${esc(v.name)}（${esc(v.lang)}）</option>`).join('')}</select><button class="btn soft small" id="tv">試聽</button>` : '<span class="muted" style="font-size:13px">找不到英文語音</span>'}
+        <b style="font-weight:900;margin-top:6px">聲音測試</b>
+        <p class="muted" style="font-size:12px">沒聽到聲音時，按下面三個試試看，再把結果告訴 Alex。</p>
+        <div class="seg" id="sndtest"><button data-t="say">發音</button><button data-t="correct">答對（木琴）</button><button data-t="wrong">答錯（噔）</button></div>
+        <span class="muted" style="font-size:12px" id="sndstate"></span>
         <b style="font-weight:900;margin-top:6px">背景音樂</b>
         <div class="seg" id="mus"><button data-v="1" class="${S.settings.music ? 'on' : ''}">開</button><button data-v="0" class="${S.settings.music ? '' : 'on'}">關</button></div>
         <b style="font-weight:900;margin-top:6px">音效</b>
@@ -955,6 +959,11 @@
     `, null, true);
     bindBack('#home');
     view.querySelectorAll('#rate button').forEach(b => b.onclick = () => { S.settings.rate = +b.dataset.v; save(); pageSettings(); say('lasagna'); });
+    view.querySelectorAll('#sndtest button').forEach(b => b.onclick = () => {
+      FX.unlock();
+      if (b.dataset.t === 'say') say('lasagna'); else FX.sound(b.dataset.t);
+      setTimeout(() => { const el = view.querySelector('#sndstate'); if (el) el.textContent = '音效狀態：' + FX.state() + (navigator.audioSession ? '・' + navigator.audioSession.type : ''); }, 300);
+    });
     view.querySelectorAll('#mus button').forEach(b => b.onclick = () => { S.settings.music = b.dataset.v === '1'; save(); pageSettings(); bgmUpdate(); });
     view.querySelectorAll('#snd button').forEach(b => b.onclick = () => { S.settings.sound = b.dataset.v === '1'; save(); syncSound(); pageSettings(); snd('correct'); });
     const v = view.querySelector('#voice'); if (v) v.onchange = () => { S.settings.voice = v.value; save(); say('I would like the lasagna, please.'); };

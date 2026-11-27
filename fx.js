@@ -8,8 +8,19 @@
       if (!C) return null;
       ctx = new C();
     }
-    if (ctx.state === 'suspended') ctx.resume();
+    // iPhone 會停在 suspended 或 interrupted，只要不是 running 就試著叫醒
+    if (ctx.state !== 'running') { try { ctx.resume(); } catch (e) {} }
     return ctx;
+  }
+  // iPhone 的老招：在使用者點擊當下播一段無聲的聲音，之後程式才能自由出聲
+  let primed = false;
+  function prime() {
+    const a = ac(); if (!a || primed) return;
+    try {
+      const b = a.createBuffer(1, 1, 22050), src = a.createBufferSource();
+      src.buffer = b; src.connect(a.destination); src.start(0);
+      primed = a.state === 'running';
+    } catch (e) {}
   }
 
   // 一個音：type 波形、f 頻率、t 開始秒、d 長度、v 音量、f2 結束頻率（滑音）
@@ -52,7 +63,7 @@
 
   // Mixkit 免費音效（Mixkit Sound Effects Free License，可商用、免標註）。
   // 挑選時直接播放 Mixkit 網址；選定後下載到 sounds/，LOCAL 記錄已下載的。
-  const LOCAL = { 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3', 1124: 'sounds/1124.mp3' }; // 已下載（Alex 2026-11-27 同意）
+  const LOCAL = { correct: 'sounds/correct.mp3', 2569: 'sounds/2569.mp3', 86: 'sounds/86.mp3', 600: 'sounds/600.mp3', 1124: 'sounds/1124.mp3' }; // 已下載（Alex 2026-11-27 同意）
   const cache = {};
   // opts: max 最多播幾秒（之後淡出）、rate 播放速度（<1 會變慢變低）、times 連續播幾次、gap 每次間隔秒數、rates 每次的速度
   // 音檔先整個解碼放進記憶體（Web Audio），點下去馬上出聲；還沒載好時才用 <audio> 頂著
@@ -83,7 +94,8 @@
         const fire = () => {
           const r = (opts.rates && opts.rates[k]) || opts.rate || 1;
           const vol = Math.min(1, (opts.vol || 0.8) * FX.volume);
-          if (buffers[id] && ac()) return playBuffer(buffers[id], r, vol, opts.max);
+          const A = ac();
+          if (buffers[id] && A && A.state === 'running') return playBuffer(buffers[id], r, vol, opts.max);
           preload(id);
           const a = new Audio(LOCAL[id] || `https://assets.mixkit.co/active_storage/sfx/${id}/${id}-preview.mp3`);
           a.preservesPitch = false; a.webkitPreservesPitch = false; a.playbackRate = r; a.volume = vol;
@@ -99,7 +111,7 @@
     correct: {
       A: { name: '叮咚（兩聲往上）', play() { bell(659, 0, 0.35, 0.22); bell(880, 0.11, 0.5, 0.22); } },
       B: { name: '清脆三連音', play() { [1047, 1319, 1568].forEach((f, i) => tone({ f, t: i * 0.06, d: 0.22, v: 0.16, type: 'triangle' })); } },
-      C: { name: '木琴', play() { tone({ f: 784, d: 0.18, v: 0.3 }); tone({ f: 1047, t: 0.09, d: 0.3, v: 0.3 }); } },
+      C: file('木琴', 'correct', { vol: 0.9 }), // 跟原本合成的木琴一樣，改成音檔讓 iPhone 更穩
       D: { name: '柔和一聲', play() { tone({ f: 740, f2: 990, glide: 0.08, d: 0.3, v: 0.25 }); } }
     },
     wrong: {
@@ -241,7 +253,8 @@
     visual(kind, opt, ...args) {
       try { const v = VISUALS[kind][opt || this.choice['v' + kind[0].toUpperCase() + kind.slice(1)]]; if (v) v.run(...args); } catch (e) {}
     },
-    unlock() { ac(); Object.keys(LOCAL).forEach(preload); },
+    unlock() { prime(); Object.keys(LOCAL).forEach(preload); },
+    state() { return ctx ? ctx.state : '還沒建立'; },
     // 小魚乾掉進碗：泡泡「啵」，一隻比一隻高一點
     pop(i) { try { file('', 1124, { max: 0.3, vol: 0.45, rate: Math.min(1.6, 0.9 + i * 0.06) }).play(); } catch (e) {} }
   };
