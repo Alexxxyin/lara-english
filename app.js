@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 38;
+  const APP_VERSION = 39;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -410,7 +410,7 @@
     const bl = view.querySelector('#bkLater'); if (bl) bl.onclick = () => { S.backupSnooze = Date.now() + 1 * DAY; save(); pageHome(); };
   }
   // 首頁貓咪頭上的話（前 5 下是提示，之後隨機）；index.html 的手寫字型只下載這些字，改了文字要一起更新
-  // 字體、顏色在 app.css 的 .cat-say；index.html 的字型網址只下載這些字，改了文字要一起更新
+  // 字體（昭源甜圓體 700）、顏色在 app.css 的 .cat-say；index.html 的字型網址只下載這些字，改了文字要一起更新
   // Alex 2026-11-27 打的句子：前 3 句是提示句（依序出現），之後隨機（不連續重複同一句）
   const CAT_HINTS = ["多點我幾下才會有聲音喔～", "多點我幾下才會有聲音喔～", "再點一下下就會喵喵叫囉～"];
   const CAT_LINES = ["喵～今天也要加油喔！", "摸摸頭好舒服～", "學完一輪，給我小魚乾好嗎？", "我在這裡陪妳背單字喔～", "妳今天好認真！", "要適當休息ㄛ～", "今天喝水了咪？", "有摸摸雪寶咪？", "想尿尿就去尿哦！", "今天也棒棒der ^ ^", "累了就睡一下ㄅ", "偶爾也要走出房間看看Alex喔"];
