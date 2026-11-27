@@ -2,6 +2,8 @@
 (function () {
   'use strict';
   const KEY = 'lara-english-v1';
+  // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
+  const APP_VERSION = 35;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -1087,6 +1089,9 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 11, date: '11/27', items: [
+      '網站有新版本時，打開 App 會自動換成最新版，不用再自己關掉重開。'
+    ] },
     { id: 10, date: '11/27', items: [
       '剛打開網站時，第一次點貓咪或單字圖比較不會卡、不會沒聲音了。'
     ] },
@@ -1131,7 +1136,7 @@
     const seen = S.seenLog || 0;
     render(`
       ${topBar('更新日誌', '', '#settings')}
-      <div class="card log-tip"><b>看到新東西了嗎？</b><p>每次網站更新後，請把舊的分頁關掉再重新打開，才會是最新的版本。如果是從主畫面的三花貓圖示打開的，就從下往上滑把它完全關掉，再重新點開。</p></div>
+      <div class="card log-tip"><b>看到新東西了嗎？</b><p>網站現在會自動換成最新版。如果覺得畫面怪怪的、新功能沒出現，請把舊的分頁關掉再重新打開；從主畫面三花貓圖示打開的，就從下往上滑把它完全關掉，再重新點開。</p></div>
       <div class="list">
         ${CHANGELOG.map(c => `<div class="card log-item">
           <div class="log-head"><b>${esc(c.date)} 更新</b>${c.id > seen ? '<span class="log-new">新</span>' : ''}</div>
@@ -1243,7 +1248,25 @@
   document.addEventListener('touchstart', e => { FX.unlock(); unlockSpeech(e); }, { once: true, passive: true });
   document.addEventListener('click', e => { FX.unlock(); unlockSpeech(e); }, { once: true });
 
+  // ---------- 自動換新版 ----------
+  // GitHub Pages 會讓手機暫存網頁 10 分鐘。這裡每次打開或切回 App 都去看 version.json（不走暫存），
+  // 有新版就換一個網址重新載入，避開暫存。sessionStorage 記住試過的版本，不會一直重載。
+  async function checkUpdate() {
+    try {
+      const r = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      const v = (await r.json()).v;
+      if (!(v > APP_VERSION)) return;
+      let tried = ''; try { tried = sessionStorage.getItem('lara-reload'); } catch (e) {}
+      if (tried === String(v)) return;
+      try { sessionStorage.setItem('lara-reload', String(v)); } catch (e) {}
+      location.replace(location.pathname + '?u=' + v + location.hash);
+    } catch (e) {}
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) checkUpdate(); });
+
   async function start() {
+    checkUpdate();
     load(); syncSound();
     try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
     UNITS = await fetch('data/units.json').then(r => r.json());
