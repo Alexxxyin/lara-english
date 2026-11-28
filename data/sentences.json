@@ -1051,6 +1051,1068 @@
   "d-13-parallel": {
    "en": "Lay your knife and fork parallel on the plate when you're done.",
    "zh": "吃完時，把刀叉平行放在盤子上。"
+  },
+  "5-1-01-runway": {
+   "en": "Our plane waited at the end of the runway before it took off.",
+   "zh": "我們的飛機在跑道盡頭等了一下才起飛。"
+  },
+  "5-1-02-terminal": {
+   "en": "Our flight leaves from Terminal 2, so don't go to the wrong one.",
+   "zh": "我們的班機從第二航廈出發，別走錯了。"
+  },
+  "5-1-03-air-bridge": {
+   "en": "We walked through the air bridge straight onto the plane.",
+   "zh": "我們走過空橋，直接上了飛機。"
+  },
+  "5-1-04-control-tower": {
+   "en": "The control tower tells every plane when it can land.",
+   "zh": "塔臺會告訴每架飛機什麼時候可以降落。"
+  },
+  "5-1-05-apron": {
+   "en": "Small trucks were busy loading bags on the apron.",
+   "zh": "小卡車在停機坪上忙著裝行李。"
+  },
+  "5-1-06-departure-hall": {
+   "en": "The departure hall was full of people with big suitcases.",
+   "zh": "出境大廳擠滿了拖著大行李箱的人。"
+  },
+  "5-1-07-flight-information-board": {
+   "en": "Let's check the flight information board for our gate.",
+   "zh": "我們看一下航班資訊表，找我們的登機門。"
+  },
+  "5-1-08-luggage-scale": {
+   "en": "I put my bag on the luggage scale to see how heavy it was.",
+   "zh": "我把包包放上行李秤，看看有多重。"
+  },
+  "5-1-09-check-in-counter": {
+   "en": "We lined up at the check-in counter two hours before the flight.",
+   "zh": "我們在起飛前兩小時到報到櫃檯排隊。"
+  },
+  "5-1-10-baggage-tag": {
+   "en": "Keep the baggage tag in case your bag gets lost.",
+   "zh": "把託運行李標籤收好，以免行李不見。"
+  },
+  "5-1-11-security-checkpoint": {
+   "en": "Take your laptop out of your bag at the security checkpoint.",
+   "zh": "到安全檢查站時，要把筆電從包包裡拿出來。"
+  },
+  "5-1-12-passport-control": {
+   "en": "The line at passport control moved very slowly today.",
+   "zh": "今天護照查驗的隊伍走得很慢。"
+  },
+  "5-1-13-boarding-gate": {
+   "en": "Please be at the boarding gate thirty minutes before departure.",
+   "zh": "請在起飛前三十分鐘到登機門。"
+  },
+  "5-1-14-duty-free-shop": {
+   "en": "She bought a bottle of perfume at the duty-free shop.",
+   "zh": "她在免稅商店買了一瓶香水。"
+  },
+  "5-1-15-arrival-hall": {
+   "en": "My mom was waiting for me in the arrival hall with flowers.",
+   "zh": "我媽媽拿著花在入境大廳等我。"
+  },
+  "5-1-16-immigration-control": {
+   "en": "At immigration control, the officer asked how long I would stay.",
+   "zh": "在入境審查處，官員問我會待多久。"
+  },
+  "5-1-17-customs": {
+   "en": "You have to tell customs if you bring in fresh fruit.",
+   "zh": "如果帶新鮮水果入境，必須向海關申報。"
+  },
+  "5-1-18-baggage-carousel": {
+   "en": "I watched the baggage carousel and waited for my pink suitcase.",
+   "zh": "我盯著行李轉盤，等我的粉紅色行李箱。"
+  },
+  "5-1-19-baggage-claim": {
+   "en": "After landing, we went straight to baggage claim.",
+   "zh": "降落後，我們直接去行李提領處。"
+  },
+  "5-1-20-cockpit": {
+   "en": "The pilot let the kids take a photo in the cockpit.",
+   "zh": "機長讓孩子們在駕駛艙裡拍照。"
+  },
+  "5-1-21-business-class": {
+   "en": "The seats in business class can lie flat like a bed.",
+   "zh": "商務艙的座位可以平躺得像床一樣。"
+  },
+  "5-1-22-window-shade": {
+   "en": "Could you pull down the window shade? The sun is too bright.",
+   "zh": "可以把遮陽板拉下來嗎？陽光太刺眼了。"
+  },
+  "5-1-23-food-trolley": {
+   "en": "The food trolley stopped next to me, and I chose chicken.",
+   "zh": "手推餐車停在我旁邊，我選了雞肉。"
+  },
+  "5-1-24-flight-attendant": {
+   "en": "The flight attendant brought me a warm blanket.",
+   "zh": "空服員幫我拿來一條暖暖的毯子。"
+  },
+  "5-1-25-lavatory": {
+   "en": "Please wait. The lavatory is being used right now.",
+   "zh": "請稍等，盥洗室現在有人在用。"
+  },
+  "5-1-26-economy-class": {
+   "en": "We flew economy class to save money for shopping.",
+   "zh": "我們搭經濟艙，省下錢來購物。"
+  },
+  "5-1-27-overhead-compartment-bin": {
+   "en": "Please put your bag in the overhead compartment.",
+   "zh": "請把包包放進上方置物櫃。"
+  },
+  "5-1-28-aisle": {
+   "en": "I like an aisle seat so I can stand up easily.",
+   "zh": "我喜歡靠走道的位子，起身比較方便。"
+  },
+  "5-2-01-passenger": {
+   "en": "Every passenger must wear a seat belt during takeoff.",
+   "zh": "起飛時每位乘客都必須繫好安全帶。"
+  },
+  "5-2-02-ground-staff": {
+   "en": "The ground staff helped an old man find his gate.",
+   "zh": "地勤人員幫一位老先生找到他的登機門。"
+  },
+  "5-2-03-baggage-luggage-trolley-cart": {
+   "en": "I put both suitcases on a baggage trolley.",
+   "zh": "我把兩個行李箱都放上行李推車。"
+  },
+  "5-2-04-carry-on": {
+   "en": "My carry-on is small enough to fit under the seat.",
+   "zh": "我的隨身行李小到可以放在座位底下。"
+  },
+  "5-2-05-suitcase": {
+   "en": "My suitcase is so full that I can't close it.",
+   "zh": "我的行李箱太滿了，關不起來。"
+  },
+  "5-2-06-self-check-in-kiosk": {
+   "en": "You can print your boarding pass at the self check-in kiosk.",
+   "zh": "妳可以在自助報到機印登機證。"
+  },
+  "5-2-07-cabin-crew": {
+   "en": "The cabin crew smiled and welcomed us on board.",
+   "zh": "機組人員微笑著歡迎我們登機。"
+  },
+  "5-2-08-baggage-scanner": {
+   "en": "Every bag goes through the baggage scanner.",
+   "zh": "每個包包都要經過行李掃描機。"
+  },
+  "5-2-09-status": {
+   "en": "The status of our flight just changed to \"Delayed.\"",
+   "zh": "我們班機的狀態剛剛變成「延誤」。"
+  },
+  "5-2-10-flight-number": {
+   "en": "Please check that the flight number on your ticket is right.",
+   "zh": "請確認妳機票上的班機編號是對的。"
+  },
+  "5-2-11-destination": {
+   "en": "Our final destination is a small island in Japan.",
+   "zh": "我們最後的目的地是日本的一座小島。"
+  },
+  "5-2-12-gate": {
+   "en": "Our flight leaves from Gate 12.",
+   "zh": "我們的班機從 12 號登機門出發。"
+  },
+  "5-2-13-final-call": {
+   "en": "This is the final call for passengers on Flight 305.",
+   "zh": "這是 305 班機旅客的登機最後呼叫。"
+  },
+  "5-2-14-gate-closing": {
+   "en": "The board says \"Gate closing,\" so we have to run!",
+   "zh": "看板顯示「登機門即將關閉」，我們得用跑的！"
+  },
+  "5-2-15-boarding": {
+   "en": "Boarding will start in ten minutes.",
+   "zh": "再過十分鐘就要開始登機了。"
+  },
+  "5-2-16-departed": {
+   "en": "We were too late, and the flight had already departed.",
+   "zh": "我們太晚到了，班機已經飛走了。"
+  },
+  "5-2-17-on-time": {
+   "en": "Good news! Our flight is on time.",
+   "zh": "好消息！我們的班機準時。"
+  },
+  "5-2-18-delayed": {
+   "en": "The flight was delayed for two hours because of the rain.",
+   "zh": "班機因為下雨延誤了兩個小時。"
+  },
+  "5-2-19-canceled": {
+   "en": "Our flight was canceled, so we stayed one more night.",
+   "zh": "我們的班機取消了，所以多住了一晚。"
+  },
+  "5-2-20-arrived": {
+   "en": "Her flight has arrived, so she will come out soon.",
+   "zh": "她的班機已經抵達，她很快就會出來了。"
+  },
+  "5-2-21-gate-change": {
+   "en": "There was a gate change, so we walked to Gate 20.",
+   "zh": "登機門更改了，所以我們走去 20 號登機門。"
+  },
+  "5-2-22-passport": {
+   "en": "Don't forget your passport. You can't fly without it.",
+   "zh": "別忘了帶護照，沒有它不能搭飛機。"
+  },
+  "5-2-23-baggage-claim-ticket": {
+   "en": "Keep your baggage claim ticket until you get your bag.",
+   "zh": "拿到行李之前，要留著託運行李收據。"
+  },
+  "5-2-24-visa": {
+   "en": "I need a visa to visit that country.",
+   "zh": "我去那個國家需要簽證。"
+  },
+  "5-2-25-lithium-battery": {
+   "en": "A lithium battery must go in your carry-on, not your suitcase.",
+   "zh": "鋰電池要放在隨身行李，不能放進託運的行李箱。"
+  },
+  "5-2-26-portable-charger": {
+   "en": "My phone was almost dead, so I used my portable charger.",
+   "zh": "我的手機快沒電了，所以我用了行動電源。"
+  },
+  "5-2-27-liquids": {
+   "en": "All liquids must be in small bottles in a clear bag.",
+   "zh": "所有液態物品都要裝在小瓶子裡，放進透明袋。"
+  },
+  "5-2-28-personal-electronic-devices": {
+   "en": "Please turn off all personal electronic devices now.",
+   "zh": "現在請關閉所有個人電子用品。"
+  },
+  "5-2-29-smartphone": {
+   "en": "I use my smartphone to show my boarding pass.",
+   "zh": "我用智慧型手機出示登機證。"
+  },
+  "5-2-30-laptop": {
+   "en": "I watched a movie on my laptop during the flight.",
+   "zh": "我在飛機上用筆電看了一部電影。"
+  },
+  "5-2-31-tablet": {
+   "en": "My little brother played games on a tablet the whole trip.",
+   "zh": "我弟弟整趟旅程都在用平板玩遊戲。"
+  },
+  "5-2-32-baseball-bat": {
+   "en": "You can't take a baseball bat on the plane with you.",
+   "zh": "妳不能把棒球棒帶上飛機。"
+  },
+  "5-2-33-pepper-spray": {
+   "en": "Pepper spray is not allowed in your carry-on.",
+   "zh": "隨身行李不能帶辣椒噴霧。"
+  },
+  "5-2-34-swiss-army-knife": {
+   "en": "They took my Swiss Army knife at security.",
+   "zh": "我的瑞士刀在安檢時被拿走了。"
+  },
+  "5-2-35-scissors": {
+   "en": "Small scissors may be okay, but big ones are not.",
+   "zh": "小剪刀也許可以，但大剪刀不行。"
+  },
+  "5-2-36-utility-knife": {
+   "en": "Please pack your utility knife in your suitcase.",
+   "zh": "請把美工刀放進託運的行李箱。"
+  },
+  "5-2-37-explosives": {
+   "en": "Explosives are never allowed on a plane.",
+   "zh": "爆裂物絕對不能帶上飛機。"
+  },
+  "5-2-38-boarding-pass": {
+   "en": "Please show your boarding pass and passport.",
+   "zh": "請出示妳的登機證和護照。"
+  },
+  "5-2-39-passenger-name": {
+   "en": "The passenger name must be the same as the one on your passport.",
+   "zh": "乘客姓名必須和護照上的一樣。"
+  },
+  "5-2-40-departure-date": {
+   "en": "I wrote the departure date on my calendar.",
+   "zh": "我把出發日期寫在月曆上。"
+  },
+  "5-2-41-departure-time": {
+   "en": "The departure time is 8:40, so let's leave home early.",
+   "zh": "出發時間是八點四十分，我們早點出門吧。"
+  },
+  "5-2-42-gate-number": {
+   "en": "The gate number is printed on your boarding pass.",
+   "zh": "登機門編號印在妳的登機證上。"
+  },
+  "5-2-43-class": {
+   "en": "What class are you flying, business or economy?",
+   "zh": "妳搭哪一種艙等，商務艙還是經濟艙？"
+  },
+  "5-2-44-boarding-time": {
+   "en": "The boarding time is twenty minutes before the flight leaves.",
+   "zh": "登機時間是起飛前二十分鐘。"
+  },
+  "5-2-45-seat-number": {
+   "en": "My seat number is 19B, next to the window.",
+   "zh": "我的座位號碼是 19B，靠窗。"
+  },
+  "d-14-prohibit": {
+   "en": "Many airports prohibit smoking inside the building.",
+   "zh": "很多機場禁止在室內吸菸。"
+  },
+  "d-15-spare": {
+   "en": "I always bring a spare phone charger when I travel.",
+   "zh": "我旅行時都會帶一條備用的手機充電線。"
+  },
+  "d-16-maximum": {
+   "en": "The maximum weight for one bag is 23 kilograms.",
+   "zh": "每件行李的最大重量是二十三公斤。"
+  },
+  "d-17-overweight": {
+   "en": "My suitcase was overweight, so I took out some shoes.",
+   "zh": "我的行李箱超重了，所以我拿出幾雙鞋子。"
+  },
+  "d-18-souvenir": {
+   "en": "I bought a cute cat keychain as a souvenir.",
+   "zh": "我買了一個可愛的貓咪鑰匙圈當紀念品。"
+  },
+  "5-3-01-elevator": {
+   "en": "Let's take the elevator to the tenth floor.",
+   "zh": "我們搭電梯到十樓吧。"
+  },
+  "5-3-02-travel-brochure": {
+   "en": "I found a fun boat tour in this travel brochure.",
+   "zh": "我在這本旅遊手冊裡找到一個好玩的乘船行程。"
+  },
+  "5-3-03-lobby": {
+   "en": "Let's meet in the hotel lobby at nine o'clock.",
+   "zh": "我們九點在飯店大廳見面吧。"
+  },
+  "5-3-04-tour-guide": {
+   "en": "Our tour guide told us a funny story about the old town.",
+   "zh": "我們的導遊講了一個關於老城區的有趣故事。"
+  },
+  "5-3-05-revolving-door": {
+   "en": "The little girl went around the revolving door twice.",
+   "zh": "那個小女孩在旋轉門裡轉了兩圈。"
+  },
+  "5-3-06-doorman": {
+   "en": "The doorman opened the door and said good morning.",
+   "zh": "門房幫我們開門，說了聲早安。"
+  },
+  "5-3-07-valet": {
+   "en": "The valet will park your car for you.",
+   "zh": "泊車人員會幫妳停車。"
+  },
+  "5-3-08-security-guard": {
+   "en": "A security guard stands at the door all night.",
+   "zh": "有一位保全人員整晚都站在門口。"
+  },
+  "5-3-09-gift-shop": {
+   "en": "The gift shop sells cute postcards and keychains.",
+   "zh": "禮品店有賣可愛的明信片和鑰匙圈。"
+  },
+  "5-3-10-lounge-area": {
+   "en": "We read our books in the lounge area while we waited.",
+   "zh": "我們在休息區一邊等一邊看書。"
+  },
+  "5-3-11-bellhop-bellboy-porter": {
+   "en": "The bellhop carried our heavy bags up to the room.",
+   "zh": "行李員幫我們把很重的行李搬到房間。"
+  },
+  "5-3-12-concierge": {
+   "en": "The concierge helped us book a table at a good restaurant.",
+   "zh": "禮賓人員幫我們訂了一家好餐廳的位子。"
+  },
+  "5-3-13-front-desk": {
+   "en": "If you need more towels, just call the front desk.",
+   "zh": "如果需要更多毛巾，打電話給櫃臺就好。"
+  },
+  "5-3-14-receptionist": {
+   "en": "The receptionist gave us two key cards.",
+   "zh": "櫃臺接待員給了我們兩張房卡。"
+  },
+  "5-3-15-key-card": {
+   "en": "Tap your key card on the door to open it.",
+   "zh": "把房卡貼在門上就能開門。"
+  },
+  "5-4-01-electric-kettle": {
+   "en": "I used the electric kettle to make some hot tea.",
+   "zh": "我用快煮壺泡了一些熱茶。"
+  },
+  "5-4-02-safe": {
+   "en": "Put your passport in the safe when you go out.",
+   "zh": "出門時把護照放進保險櫃。"
+  },
+  "5-4-03-hair-dryer": {
+   "en": "There is a hair dryer in the bathroom drawer.",
+   "zh": "浴室的抽屜裡有一支吹風機。"
+  },
+  "5-4-04-slippers": {
+   "en": "I love wearing the soft hotel slippers.",
+   "zh": "我很喜歡穿飯店軟軟的拖鞋。"
+  },
+  "5-4-05-single-room": {
+   "en": "I'm traveling alone, so a single room is enough.",
+   "zh": "我一個人旅行，所以單人房就夠了。"
+  },
+  "5-4-06-twin-room": {
+   "en": "My sister and I booked a twin room.",
+   "zh": "我和姊姊訂了一間兩張單人床的房間。"
+  },
+  "5-4-07-suite": {
+   "en": "Our suite had a living room and a big bathtub.",
+   "zh": "我們的套房有客廳和大浴缸。"
+  },
+  "5-4-08-presidential-suite": {
+   "en": "The singer stayed in the presidential suite on the top floor.",
+   "zh": "那位歌手住在頂樓的總統套房。"
+  },
+  "5-4-09-double-room": {
+   "en": "We'd like a double room for three nights, please.",
+   "zh": "我們想要一間雙人房，住三晚。"
+  },
+  "5-4-10-toiletries": {
+   "en": "The hotel gives you free toiletries, like soap and shampoo.",
+   "zh": "飯店有提供免費的盥洗用品，像是香皂和洗髮精。"
+  },
+  "5-4-11-bathrobe": {
+   "en": "After the bath, I put on the warm bathrobe.",
+   "zh": "洗完澡後，我穿上暖暖的浴袍。"
+  },
+  "5-4-12-wardrobe": {
+   "en": "Hang your dress in the wardrobe so it doesn't get wrinkled.",
+   "zh": "把洋裝掛進衣櫥，才不會皺掉。"
+  },
+  "5-4-13-hanger": {
+   "en": "Can I have one more hanger for my coat?",
+   "zh": "可以再給我一個衣架掛外套嗎？"
+  },
+  "5-4-14-room-service": {
+   "en": "We were too tired to go out, so we ordered room service.",
+   "zh": "我們累到不想出門，所以叫了客房服務。"
+  },
+  "5-4-15-hallway": {
+   "en": "Our room is at the end of the hallway.",
+   "zh": "我們的房間在走廊的盡頭。"
+  },
+  "5-4-16-housekeeping-cart": {
+   "en": "The housekeeping cart was full of clean towels.",
+   "zh": "清潔工作推車上放滿了乾淨的毛巾。"
+  },
+  "5-4-17-minibar": {
+   "en": "Drinks from the minibar are not free.",
+   "zh": "冰箱酒櫃裡的飲料不是免費的。"
+  },
+  "5-4-18-bedside-lamp": {
+   "en": "I turned on the bedside lamp to read a book.",
+   "zh": "我打開床頭燈看書。"
+  },
+  "5-4-19-nightstand": {
+   "en": "I left my glasses on the nightstand.",
+   "zh": "我把眼鏡放在床頭櫃上。"
+  },
+  "5-4-20-housekeeper": {
+   "en": "The housekeeper cleans our room every morning.",
+   "zh": "房務員每天早上打掃我們的房間。"
+  },
+  "5-4-21-bed-sheet": {
+   "en": "The bed sheet was white, soft and very clean.",
+   "zh": "床單又白又軟，非常乾淨。"
+  },
+  "5-4-22-sauna": {
+   "en": "After the sauna, my face was all red.",
+   "zh": "洗完三溫暖，我的臉都紅了。"
+  },
+  "5-4-23-towel": {
+   "en": "Can I get a big towel for the pool?",
+   "zh": "可以給我一條游泳池用的大浴巾嗎？"
+  },
+  "5-4-24-jacuzzi": {
+   "en": "We relaxed in the warm jacuzzi after a long walk.",
+   "zh": "走了很久的路後，我們在溫暖的按摩浴缸裡放鬆。"
+  },
+  "5-4-25-spa": {
+   "en": "My mom spent the whole afternoon at the spa.",
+   "zh": "我媽媽在水療中心待了一整個下午。"
+  },
+  "5-4-26-essential-oil": {
+   "en": "This lavender essential oil helps me sleep.",
+   "zh": "這瓶薰衣草精油能幫助我入睡。"
+  },
+  "5-4-27-masseuse": {
+   "en": "The masseuse said my shoulders were very tight.",
+   "zh": "女按摩師說我的肩膀很緊繃。"
+  },
+  "5-4-28-fitness-room": {
+   "en": "The fitness room is open from 6 a.m. to 10 p.m.",
+   "zh": "健身房早上六點開到晚上十點。"
+  },
+  "5-4-29-buffet": {
+   "en": "The hotel buffet has more than fifty kinds of food.",
+   "zh": "飯店的自助餐有超過五十種食物。"
+  },
+  "5-4-30-business-center": {
+   "en": "You can print your tickets at the business center.",
+   "zh": "妳可以在商務中心列印票券。"
+  },
+  "d-19-initially": {
+   "en": "Initially, I wanted to stay two nights, but I stayed four.",
+   "zh": "一開始我只想住兩晚，結果住了四晚。"
+  },
+  "d-20-extend": {
+   "en": "Can I extend my stay for one more night?",
+   "zh": "我可以多住一晚嗎？"
+  },
+  "d-21-vacancy": {
+   "en": "Sorry, we have no vacancy this weekend.",
+   "zh": "抱歉，這個週末我們沒有空房。"
+  },
+  "d-22-checkout": {
+   "en": "Checkout is at eleven, so let's pack after breakfast.",
+   "zh": "退房時間是十一點，我們吃完早餐就收行李吧。"
+  },
+  "5-5-01-deck": {
+   "en": "We watched the sunset from the deck of the ship.",
+   "zh": "我們在船的甲板上看夕陽。"
+  },
+  "5-5-02-radar": {
+   "en": "The radar helps the ship find its way at night.",
+   "zh": "雷達幫助船在夜裡找到方向。"
+  },
+  "5-5-03-deck-chair": {
+   "en": "Grandpa fell asleep in a deck chair by the pool.",
+   "zh": "爺爺在泳池邊的躺椅上睡著了。"
+  },
+  "5-5-04-basketball-court": {
+   "en": "My brother played on the basketball court all morning.",
+   "zh": "我弟弟整個早上都在籃球場打球。"
+  },
+  "5-5-05-outdoor-swimming-pool": {
+   "en": "The outdoor swimming pool has a great view of the sea.",
+   "zh": "戶外游泳池可以看到很美的海景。"
+  },
+  "5-5-06-hot-tub": {
+   "en": "The hot tub is nice and warm at night.",
+   "zh": "晚上的熱水浴缸暖暖的很舒服。"
+  },
+  "5-5-07-rock-climbing-wall": {
+   "en": "I made it to the top of the rock climbing wall!",
+   "zh": "我爬到攀岩牆的最上面了！"
+  },
+  "5-5-08-cabin": {
+   "en": "Our cabin is small, but it has a window.",
+   "zh": "我們的客艙雖然小，但是有窗戶。"
+  },
+  "5-5-09-balcony": {
+   "en": "We had breakfast on our balcony and watched the waves.",
+   "zh": "我們在陽台吃早餐，看著海浪。"
+  },
+  "5-5-10-lifeboat": {
+   "en": "Every lifeboat can hold about one hundred people.",
+   "zh": "每艘救生艇大約可以載一百個人。"
+  },
+  "5-5-11-nightclub": {
+   "en": "The nightclub on the ship was loud and full of people.",
+   "zh": "船上的夜店很吵，擠滿了人。"
+  },
+  "5-5-12-beauty-salon": {
+   "en": "She got her nails done at the beauty salon.",
+   "zh": "她在美容院做了指甲。"
+  },
+  "5-5-13-bar": {
+   "en": "Let's get a drink at the bar before dinner.",
+   "zh": "晚餐前我們去酒吧喝一杯吧。"
+  },
+  "5-5-14-video-arcade": {
+   "en": "The kids spent all their coins at the video arcade.",
+   "zh": "孩子們在電子遊樂場把硬幣都花光了。"
+  },
+  "5-5-15-fitness-center": {
+   "en": "I go to the fitness center to run every morning.",
+   "zh": "我每天早上去健身中心跑步。"
+  },
+  "5-5-16-casino": {
+   "en": "My uncle won a little money at the casino.",
+   "zh": "我叔叔在賭場贏了一點錢。"
+  },
+  "5-6-01-vegetable-garden": {
+   "en": "We picked fresh tomatoes from the vegetable garden.",
+   "zh": "我們從菜園摘了新鮮的番茄。"
+  },
+  "5-6-02-hay-roll": {
+   "en": "The children sat on a big hay roll for a photo.",
+   "zh": "孩子們坐在一大捆乾草卷上拍照。"
+  },
+  "5-6-03-barn": {
+   "en": "The farmer keeps hay and tools in the red barn.",
+   "zh": "農夫把乾草和工具放在紅色的穀倉裡。"
+  },
+  "5-6-04-apple-orchard": {
+   "en": "In fall, the apple orchard smells sweet.",
+   "zh": "秋天時，蘋果園聞起來甜甜的。"
+  },
+  "5-6-05-cornfield": {
+   "en": "We got lost in the tall cornfield for a minute.",
+   "zh": "我們在高高的玉米田裡迷路了一下下。"
+  },
+  "5-6-06-fence": {
+   "en": "The goats looked at us from behind the fence.",
+   "zh": "山羊從圍欄後面看著我們。"
+  },
+  "5-6-07-holiday-cottage": {
+   "en": "We stayed in a holiday cottage with a garden.",
+   "zh": "我們住在一間有花園的度假屋。"
+  },
+  "5-6-08-cowshed": {
+   "en": "The cows go back to the cowshed when it rains.",
+   "zh": "下雨時，牛會回到牛舍裡。"
+  },
+  "5-6-09-dairy-cow": {
+   "en": "A dairy cow can give a lot of milk every day.",
+   "zh": "一頭乳牛每天可以產很多牛奶。"
+  },
+  "5-6-10-pony": {
+   "en": "The little pony was brown and very gentle.",
+   "zh": "那匹小馬是棕色的，非常溫和。"
+  },
+  "5-6-11-lamb": {
+   "en": "The baby lamb drank milk from a bottle.",
+   "zh": "小羊用奶瓶喝牛奶。"
+  },
+  "5-6-12-piglet": {
+   "en": "The little piglet rolled happily in the mud.",
+   "zh": "小豬開心地在泥巴裡打滾。"
+  },
+  "5-6-13-chick": {
+   "en": "A tiny yellow chick followed its mother.",
+   "zh": "一隻小小的黃色小雞跟著牠的媽媽。"
+  },
+  "5-6-14-duckling": {
+   "en": "Five ducklings swam behind their mom in the pond.",
+   "zh": "五隻小鴨跟在媽媽後面在池塘裡游泳。"
+  },
+  "5-6-15-milk-a-cow": {
+   "en": "The farmer showed us how to milk a cow by hand.",
+   "zh": "農夫教我們怎麼用手擠牛奶。"
+  },
+  "5-6-16-shear-a-sheep": {
+   "en": "It takes only a few minutes to shear a sheep.",
+   "zh": "剪一隻羊的毛只要幾分鐘。"
+  },
+  "5-6-17-collect-eggs": {
+   "en": "Every morning, we collect eggs from the hens.",
+   "zh": "每天早上，我們都去收母雞下的蛋。"
+  },
+  "5-6-18-pick-apples": {
+   "en": "Let's pick apples and bake a pie tonight.",
+   "zh": "我們去採蘋果，今晚來烤派吧。"
+  },
+  "5-6-19-feed-a-goat": {
+   "en": "You can buy grass to feed a goat for ten dollars.",
+   "zh": "妳可以花十元買草來餵山羊。"
+  },
+  "5-6-20-go-hayriding": {
+   "en": "In the evening, we went hayriding around the farm.",
+   "zh": "傍晚時，我們坐乾草車繞著農場兜了一圈。",
+   "key": "went hayriding"
+  },
+  "5-6-21-go-horseback-riding": {
+   "en": "I want to go horseback riding by the river.",
+   "zh": "我想去河邊騎馬。"
+  },
+  "5-6-22-go-grass-sliding": {
+   "en": "The kids screamed with joy when they went grass sliding.",
+   "zh": "孩子們去滑草時開心地尖叫。",
+   "key": "went grass sliding"
+  },
+  "d-23-leisure": {
+   "en": "Reading is my favorite leisure activity.",
+   "zh": "閱讀是我最喜歡的休閒活動。"
+  },
+  "d-24-preferable": {
+   "en": "A quiet room would be preferable to one near the elevator.",
+   "zh": "安靜的房間會比靠近電梯的房間更好。"
+  },
+  "d-25-complimentary": {
+   "en": "The hotel offers complimentary coffee in the lobby.",
+   "zh": "飯店在大廳提供免費的咖啡。"
+  },
+  "d-26-access": {
+   "en": "Guests have free access to the gym and the pool.",
+   "zh": "房客可以免費使用健身房和游泳池。"
+  },
+  "d-27-organic": {
+   "en": "All the vegetables on this farm are organic.",
+   "zh": "這座農場的蔬菜都是有機的。"
+  },
+  "d-28-harmony": {
+   "en": "The farmers live in harmony with nature.",
+   "zh": "農夫們和大自然和諧共存。"
+  },
+  "5-7-01-first-aid-station": {
+   "en": "If you get hurt, go to the first-aid station.",
+   "zh": "如果受傷了，就去救護站。"
+  },
+  "5-7-02-giant-panda": {
+   "en": "The giant panda ate bamboo the whole time we watched.",
+   "zh": "我們看的時候，大貓熊一直在吃竹子。"
+  },
+  "5-7-03-drinking-fountain": {
+   "en": "I filled my bottle at the drinking fountain.",
+   "zh": "我在飲水機裝滿了我的水壺。"
+  },
+  "5-7-04-souvenir-shop": {
+   "en": "She bought a panda T-shirt at the souvenir shop.",
+   "zh": "她在紀念品店買了一件貓熊 T 恤。"
+  },
+  "5-7-05-refreshment-kiosk": {
+   "en": "We got ice cream at the refreshment kiosk.",
+   "zh": "我們在點心攤買了冰淇淋。"
+  },
+  "5-7-06-aviary": {
+   "en": "Colorful birds flew over our heads in the aviary.",
+   "zh": "在鳥園裡，彩色的鳥從我們頭上飛過。"
+  },
+  "5-7-07-ostrich": {
+   "en": "An ostrich can run very fast, but it can't fly.",
+   "zh": "鴕鳥跑得很快，但是不會飛。"
+  },
+  "5-7-08-condor": {
+   "en": "The condor opened its huge wings.",
+   "zh": "禿鷹張開了牠巨大的翅膀。"
+  },
+  "5-7-09-peacock": {
+   "en": "The peacock showed off its beautiful tail.",
+   "zh": "孔雀展開牠漂亮的尾巴。"
+  },
+  "5-7-10-turnstile": {
+   "en": "Put your ticket in and walk through the turnstile.",
+   "zh": "把票插進去，然後走過旋轉閘門。"
+  },
+  "5-7-11-kangaroo": {
+   "en": "A baby kangaroo was sleeping in its mother's pouch.",
+   "zh": "小袋鼠在媽媽的育兒袋裡睡覺。"
+  },
+  "5-7-12-rhinoceros": {
+   "en": "The rhinoceros has a big horn on its nose.",
+   "zh": "犀牛的鼻子上有一支大角。"
+  },
+  "5-7-13-chimpanzee": {
+   "en": "The chimpanzee waved at us and made everyone laugh.",
+   "zh": "黑猩猩對我們揮手，逗得大家都笑了。"
+  },
+  "5-7-14-antelope": {
+   "en": "The antelope jumped high over the grass.",
+   "zh": "羚羊高高跳過草地。"
+  },
+  "5-7-15-amphibian-and-reptile-enclosure": {
+   "en": "We saw frogs and snakes in the amphibian and reptile enclosure.",
+   "zh": "我們在兩棲爬蟲類館看到了青蛙和蛇。"
+  },
+  "5-7-16-leopard": {
+   "en": "The leopard was sleeping in a tree.",
+   "zh": "豹在樹上睡覺。"
+  },
+  "5-7-17-lizard": {
+   "en": "A small green lizard ran up the wall.",
+   "zh": "一隻綠色小蜥蜴爬上了牆。"
+  },
+  "5-7-18-crocodile": {
+   "en": "The crocodile lay still in the water with its eyes open.",
+   "zh": "鱷魚張著眼睛，一動也不動地躺在水裡。"
+  },
+  "5-7-19-python": {
+   "en": "The python is longer than a car!",
+   "zh": "這條大蟒蛇比一台車還長！"
+  },
+  "5-7-20-shuttle-train-terminal": {
+   "en": "Our feet hurt, so we waited at the shuttle train terminal.",
+   "zh": "我們腳好痠，所以在遊園車總站等車。"
+  },
+  "5-8-01-life-size-model": {
+   "en": "There is a life-size model of a whale in the hall.",
+   "zh": "大廳裡有一隻實體大小的鯨魚模型。"
+  },
+  "5-8-02-jellyfish": {
+   "en": "The jellyfish glowed pink and blue in the dark tank.",
+   "zh": "水母在黑暗的水缸裡發出粉紅色和藍色的光。"
+  },
+  "5-8-03-sea-horse": {
+   "en": "The father sea horse carries the babies.",
+   "zh": "海馬是由爸爸負責孕育寶寶。"
+  },
+  "5-8-04-seaweed": {
+   "en": "Small fish hid in the seaweed.",
+   "zh": "小魚躲在海藻裡。"
+  },
+  "5-8-05-tropical-fish-room": {
+   "en": "The tropical fish room was full of bright colors.",
+   "zh": "熱帶魚區充滿了鮮豔的顏色。"
+  },
+  "5-8-06-coral-reef": {
+   "en": "Many kinds of fish live in a coral reef.",
+   "zh": "很多種魚住在珊瑚礁裡。"
+  },
+  "5-8-07-clown-fish": {
+   "en": "The little clown fish looks just like the one in the movie.",
+   "zh": "這隻小丑魚長得就跟電影裡的一模一樣。"
+  },
+  "5-8-08-penguin": {
+   "en": "The penguin walked slowly and then jumped into the water.",
+   "zh": "企鵝慢慢地走，然後跳進水裡。"
+  },
+  "5-8-09-underwater-tunnel": {
+   "en": "In the underwater tunnel, a shark swam right over us.",
+   "zh": "在海底隧道裡，一隻鯊魚就從我們頭上游過。"
+  },
+  "5-8-10-dugong": {
+   "en": "A dugong eats sea grass all day long.",
+   "zh": "儒艮整天都在吃海草。"
+  },
+  "5-8-11-touch-pool": {
+   "en": "At the touch pool, I gently touched a starfish.",
+   "zh": "在觸摸池，我輕輕摸了一隻海星。"
+  },
+  "5-8-12-starfish": {
+   "en": "A starfish can grow back a lost arm.",
+   "zh": "海星斷掉的腕可以再長回來。"
+  },
+  "5-8-13-sea-cucumber": {
+   "en": "The sea cucumber felt soft and a little slimy.",
+   "zh": "海參摸起來軟軟的，有一點黏。"
+  },
+  "5-8-14-sea-urchin": {
+   "en": "Be careful! A sea urchin has sharp spines.",
+   "zh": "小心！海膽有尖尖的刺。"
+  },
+  "5-8-15-open-sea-gallery": {
+   "en": "The open sea gallery has one huge glass window.",
+   "zh": "海洋館有一大片巨大的玻璃窗。"
+  },
+  "5-8-16-diver": {
+   "en": "A diver was feeding the fish inside the big tank.",
+   "zh": "一位潛水員在大水缸裡餵魚。"
+  },
+  "5-8-17-white-whale": {
+   "en": "The white whale looked like it was smiling at us.",
+   "zh": "白鯨看起來好像在對我們微笑。"
+  },
+  "5-8-18-whale-shark": {
+   "en": "A whale shark is huge, but it only eats tiny food.",
+   "zh": "鯨鯊體型很大，但只吃很小的食物。"
+  },
+  "5-8-19-dolphin": {
+   "en": "The dolphin jumped out of the water and splashed us.",
+   "zh": "海豚跳出水面，把我們濺溼了。"
+  },
+  "5-8-20-stingray": {
+   "en": "A stingray glided past the glass like a bird.",
+   "zh": "一隻魟魚像鳥一樣滑過玻璃前面。"
+  },
+  "5-9-01-parasol": {
+   "en": "Let's sit under the parasol. The sun is too hot.",
+   "zh": "我們坐到大遮陽傘下吧，太陽太大了。"
+  },
+  "5-9-02-sun-lounger": {
+   "en": "I took a nap on a sun lounger by the pool.",
+   "zh": "我在泳池邊的戶外躺椅上睡了個午覺。"
+  },
+  "5-9-03-wave-pool": {
+   "en": "The waves in the wave pool are bigger every hour.",
+   "zh": "造浪池的浪每個小時都會變大一次。"
+  },
+  "5-9-04-bumper-boat": {
+   "en": "We laughed so hard on the bumper boats.",
+   "zh": "我們坐碰碰船時笑得好開心。"
+  },
+  "5-9-05-changing-room": {
+   "en": "Let's put on our swimsuits in the changing room.",
+   "zh": "我們去更衣室換泳衣吧。"
+  },
+  "5-9-06-locker": {
+   "en": "I put my phone and wallet in a locker.",
+   "zh": "我把手機和錢包放進置物櫃。"
+  },
+  "5-9-07-ticket-booth": {
+   "en": "We bought two tickets at the ticket booth.",
+   "zh": "我們在售票亭買了兩張票。"
+  },
+  "5-9-08-park-entrance-exit": {
+   "en": "Let's meet at the park entrance at five.",
+   "zh": "我們五點在樂園入口見面吧。"
+  },
+  "5-9-09-fountain-show": {
+   "en": "The fountain show starts at seven with music.",
+   "zh": "水舞表演七點開始，還有音樂。"
+  },
+  "5-9-10-water-coaster": {
+   "en": "The water coaster went down fast and we all got wet.",
+   "zh": "滑水飛車衝下來很快，我們全身都溼了。"
+  },
+  "5-9-11-spray-ground": {
+   "en": "The little kids played at the spray ground all day.",
+   "zh": "小朋友整天都在戲水區玩。"
+  },
+  "5-9-12-log-flume-ride": {
+   "en": "We screamed all the way down the log flume.",
+   "zh": "我們坐木舟急流一路尖叫到底。"
+  },
+  "5-9-13-waterslide": {
+   "en": "This waterslide is so long and twisty!",
+   "zh": "這條滑水道好長又好彎！"
+  },
+  "5-9-14-lazy-river": {
+   "en": "We floated down the lazy river on big rings.",
+   "zh": "我們坐在大泳圈上順著漂漂河漂流。"
+  },
+  "5-10-01-ferris-wheel": {
+   "en": "At the top of the Ferris wheel, we could see the whole city.",
+   "zh": "在摩天輪的最高點，我們可以看到整座城市。"
+  },
+  "5-10-02-bumper-car": {
+   "en": "My dad kept hitting my bumper car on purpose.",
+   "zh": "我爸一直故意撞我的碰碰車。"
+  },
+  "5-10-03-go-kart": {
+   "en": "My go-kart was faster than my brother's.",
+   "zh": "我的賽車比我弟弟的快。"
+  },
+  "5-10-04-roller-coaster": {
+   "en": "I closed my eyes on the roller coaster.",
+   "zh": "坐雲霄飛車時，我閉上了眼睛。"
+  },
+  "5-10-05-drop-tower": {
+   "en": "The drop tower goes up slowly and then falls very fast.",
+   "zh": "自由落體慢慢升上去，然後很快地掉下來。"
+  },
+  "5-10-06-swing-ride": {
+   "en": "On the swing ride, I felt like I was flying.",
+   "zh": "坐旋轉鞦韆時，我覺得自己在飛。"
+  },
+  "5-10-07-swinging-ship-ride": {
+   "en": "The swinging ship ride made my stomach feel funny.",
+   "zh": "海盜船讓我的肚子怪怪的。"
+  },
+  "5-10-08-round-up": {
+   "en": "The Round Up spins so fast that you stick to the wall.",
+   "zh": "旋轉飛碟轉得好快，人都會貼在牆上。"
+  },
+  "5-10-09-merry-go-round": {
+   "en": "My little sister chose a white horse on the merry-go-round.",
+   "zh": "我妹妹在旋轉木馬上選了一匹白馬。"
+  },
+  "5-10-10-teacup-ride": {
+   "en": "We turned the wheel fast on the teacup ride.",
+   "zh": "我們坐咖啡杯時把轉盤轉得飛快。"
+  },
+  "5-10-11-mechanical-bull": {
+   "en": "Nobody could stay on the mechanical bull for long.",
+   "zh": "沒有人能在機器牛上待很久。"
+  },
+  "5-10-12-river-rapids-ride": {
+   "en": "We got soaked on the river rapids ride.",
+   "zh": "我們坐急流泛舟全身溼透了。"
+  },
+  "5-10-13-pendulum-ride": {
+   "en": "The pendulum ride swings higher and higher.",
+   "zh": "大擺錘越盪越高。"
+  },
+  "d-29-safari": {
+   "en": "We saw lions and giraffes on our safari in Africa.",
+   "zh": "我們在非洲觀賞野生動物時看到了獅子和長頸鹿。"
+  },
+  "d-30-studio": {
+   "en": "My friend teaches dance at a small studio.",
+   "zh": "我朋友在一間小舞蹈教室教跳舞。"
+  },
+  "d-31-capacity": {
+   "en": "The theater has a capacity of five hundred people.",
+   "zh": "這間劇院可以容納五百人。"
+  },
+  "d-32-launchpad": {
+   "en": "The rocket stood on the launchpad, ready to go.",
+   "zh": "火箭立在發射台上，準備出發。"
+  },
+  "d-33-jupiter": {
+   "en": "Jupiter is the biggest planet in our solar system.",
+   "zh": "木星是我們太陽系裡最大的行星。"
+  },
+  "d-34-crystal": {
+   "en": "She drank water from a beautiful crystal glass.",
+   "zh": "她用一個漂亮的水晶杯喝水。"
+  },
+  "d-35-palace": {
+   "en": "The king and queen lived in a huge palace.",
+   "zh": "國王和皇后住在一座巨大的宮殿裡。"
+  },
+  "5-11-01-hot-dog-eating-contest": {
+   "en": "The winner of the hot dog eating contest ate twenty hot dogs!",
+   "zh": "吃熱狗大賽的冠軍吃了二十根熱狗！"
+  },
+  "5-11-02-inflatable-slide": {
+   "en": "The kids climbed up the inflatable slide again and again.",
+   "zh": "孩子們一次又一次爬上充氣溜滑梯。"
+  },
+  "5-11-03-hot-air-balloon": {
+   "en": "We watched a hot air balloon float over the fair.",
+   "zh": "我們看著一顆熱氣球飄過園遊會上空。"
+  },
+  "5-11-04-bungee-trampoline": {
+   "en": "On the bungee trampoline, she jumped really high.",
+   "zh": "她在彈跳蹦床上跳得好高。"
+  },
+  "5-11-05-haunted-house": {
+   "en": "I held my friend's hand the whole time in the haunted house.",
+   "zh": "在鬼屋裡，我一直牽著朋友的手。"
+  },
+  "5-11-06-pretzel": {
+   "en": "I bought a warm pretzel with salt on top.",
+   "zh": "我買了一個上面撒了鹽的熱椒鹽捲餅。"
+  },
+  "5-11-07-churro": {
+   "en": "Dip your churro in the chocolate sauce.",
+   "zh": "把妳的吉拿棒沾巧克力醬吃。"
+  },
+  "5-11-08-soft-serve": {
+   "en": "Let's get a vanilla soft serve. It's so hot today.",
+   "zh": "我們去買香草霜淇淋吧，今天好熱。"
+  },
+  "5-11-09-popcorn": {
+   "en": "The smell of popcorn was everywhere at the fair.",
+   "zh": "園遊會到處都是爆米花的香味。"
+  },
+  "5-11-10-cotton-candy": {
+   "en": "The cotton candy melted on my tongue.",
+   "zh": "棉花糖在我的舌頭上融化了。"
+  },
+  "5-11-11-fried-dough": {
+   "en": "The fried dough was hot and covered with sugar.",
+   "zh": "炸甜麵糰熱熱的，上面撒滿了糖。"
+  },
+  "5-11-12-bake-sale": {
+   "en": "The school bake sale raised money for new books.",
+   "zh": "學校的手工糕餅義賣幫忙籌錢買新書。"
+  },
+  "5-11-13-produce": {
+   "en": "The farmers sell fresh produce every Saturday.",
+   "zh": "農夫們每週六都會賣新鮮的農產品。"
+  },
+  "5-11-14-ticket-seller": {
+   "en": "The ticket seller gave us a map with our tickets.",
+   "zh": "售票員給我們票的時候還附了一張地圖。"
+  },
+  "5-11-15-balloon-dart": {
+   "en": "I popped three balloons in the balloon dart game.",
+   "zh": "我在射氣球遊戲裡射破了三顆氣球。"
+  },
+  "5-11-16-shooting-gallery": {
+   "en": "He won a big teddy bear at the shooting gallery.",
+   "zh": "他在射擊遊戲贏了一隻大泰迪熊。"
+  },
+  "5-11-17-ring-toss": {
+   "en": "Ring toss looks easy, but it's really hard.",
+   "zh": "套圈圈看起來很簡單，其實很難。"
+  },
+  "5-11-18-basketball-shooting-game": {
+   "en": "My brother got the high score on the basketball shooting game.",
+   "zh": "我弟弟在投籃機拿到最高分。"
+  },
+  "5-11-19-pony-ride": {
+   "en": "The pony ride costs three dollars for each child.",
+   "zh": "每個小朋友騎一次小馬要三元。"
+  },
+  "5-11-20-handicrafts": {
+   "en": "She sells her handicrafts, like knitted scarves and bags.",
+   "zh": "她賣自己做的手工藝品，像是針織圍巾和包包。"
   }
  },
  "dialogues": [
@@ -1179,6 +2241,250 @@
      "en": "Place your knife and fork parallel on your plate. That's the signal.",
      "zh": "把刀叉平行放在盤子上，這就是吃完的暗號。",
      "blank": "parallel"
+    }
+   ]
+  },
+  {
+   "unit": "d3",
+   "title": "Bags and a Boarding Pass",
+   "titleZh": "行李和登機證",
+   "lines": [
+    {
+     "who": "Agent",
+     "en": "Good morning! Can I see your passport, please?",
+     "zh": "早安！可以看一下您的護照嗎？",
+     "blank": null
+    },
+    {
+     "who": "Lara",
+     "en": "Sure, here you go. I have one suitcase to check.",
+     "zh": "好的，給你。我有一個行李箱要託運。",
+     "blank": null
+    },
+    {
+     "who": "Agent",
+     "en": "Thanks. Is there anything in it from this list? We prohibit these items in checked bags.",
+     "zh": "謝謝。裡面有這張清單上的東西嗎？這些物品禁止放在託運行李裡。",
+     "blank": "prohibit"
+    },
+    {
+     "who": "Lara",
+     "en": "Oh, I have a spare battery for my camera.",
+     "zh": "喔，我有一顆相機的備用電池。",
+     "blank": "spare"
+    },
+    {
+     "who": "Agent",
+     "en": "Please keep that in your carry-on. Now, let's weigh your suitcase.",
+     "zh": "那個請放在隨身行李裡。現在來秤一下您的行李箱。",
+     "blank": null
+    },
+    {
+     "who": "Agent",
+     "en": "Hmm, the maximum is 23 kilograms, and yours is 25.",
+     "zh": "嗯，最大重量是二十三公斤，您的是二十五公斤。",
+     "blank": "maximum"
+    },
+    {
+     "who": "Lara",
+     "en": "Oh no! How much is the fee for an overweight bag?",
+     "zh": "糟了！行李超重要付多少錢？",
+     "blank": "overweight"
+    },
+    {
+     "who": "Agent",
+     "en": "It's fifteen dollars. Or you can move a few things to your carry-on.",
+     "zh": "十五元。或者您可以把一些東西移到隨身行李。",
+     "blank": null
+    },
+    {
+     "who": "Lara",
+     "en": "I'll move these. I bought too many souvenirs for my family!",
+     "zh": "我把這些拿出來。我幫家人買了太多紀念品了！",
+     "blank": "souvenir"
+    },
+    {
+     "who": "Agent",
+     "en": "Perfect. Here's your boarding pass. Have a nice flight!",
+     "zh": "好了。這是您的登機證，祝您旅途愉快！",
+     "blank": null
+    }
+   ]
+  },
+  {
+   "unit": "d4",
+   "title": "One More Night",
+   "titleZh": "再多住一晚",
+   "lines": [
+    {
+     "who": "Clerk",
+     "en": "Welcome! How can I help you today?",
+     "zh": "歡迎光臨！今天有什麼需要幫忙的嗎？",
+     "blank": null
+    },
+    {
+     "who": "Lara",
+     "en": "Hi, I have a room under Lara. I'd like to check in.",
+     "zh": "你好，我用 Lara 的名字訂了房，我想辦理入住。",
+     "blank": null
+    },
+    {
+     "who": "Clerk",
+     "en": "Let me see. You initially booked two nights, right?",
+     "zh": "我看一下。您一開始訂的是兩晚，對嗎？",
+     "blank": "initially"
+    },
+    {
+     "who": "Lara",
+     "en": "Yes, but I love this city. Can I extend my stay by one night?",
+     "zh": "對，但我很喜歡這座城市。可以多住一晚嗎？",
+     "blank": "extend"
+    },
+    {
+     "who": "Clerk",
+     "en": "Please hold on a second. Yes, we have a vacancy on Friday.",
+     "zh": "請稍候。有的，我們星期五有空房。",
+     "blank": "vacancy"
+    },
+    {
+     "who": "Lara",
+     "en": "Great! And what time is checkout?",
+     "zh": "太好了！那退房時間是幾點？",
+     "blank": "checkout"
+    },
+    {
+     "who": "Clerk",
+     "en": "It's at eleven. Here is your key card. Enjoy your stay!",
+     "zh": "十一點。這是您的房卡，祝您住得愉快！",
+     "blank": null
+    }
+   ]
+  },
+  {
+   "unit": "d5",
+   "title": "A Weekend on the Farm",
+   "titleZh": "農場週末",
+   "lines": [
+    {
+     "who": "Owner",
+     "en": "Hello, Green Hill Leisure Farm. How can I help you?",
+     "zh": "您好，綠丘休閒農場。有什麼可以幫您的嗎？",
+     "blank": "leisure"
+    },
+    {
+     "who": "Lara",
+     "en": "Hi! Do you have a room for two people this weekend?",
+     "zh": "你好！這個週末有兩個人住的房間嗎？",
+     "blank": null
+    },
+    {
+     "who": "Owner",
+     "en": "Yes, we do. Would you like one big bed or two small beds?",
+     "zh": "有的。您想要一張大床還是兩張小床？",
+     "blank": null
+    },
+    {
+     "who": "Lara",
+     "en": "Two beds would be preferable. I'm going with my friend.",
+     "zh": "兩張床比較好，我要跟朋友一起去。",
+     "blank": "preferable"
+    },
+    {
+     "who": "Owner",
+     "en": "No problem. The room comes with a complimentary breakfast.",
+     "zh": "沒問題。房間有附免費早餐。",
+     "blank": "complimentary"
+    },
+    {
+     "who": "Lara",
+     "en": "Nice! Do we have access to the pool, too?",
+     "zh": "真好！我們也可以使用游泳池嗎？",
+     "blank": "access"
+    },
+    {
+     "who": "Owner",
+     "en": "Of course. You can also help us pick vegetables on our organic farm.",
+     "zh": "當然。您也可以來我們的有機農場幫忙採蔬菜。",
+     "blank": "organic"
+    },
+    {
+     "who": "Lara",
+     "en": "That sounds fun. I want to feel in harmony with nature.",
+     "zh": "聽起來好好玩。我想感受和大自然和諧共處的感覺。",
+     "blank": "harmony"
+    },
+    {
+     "who": "Owner",
+     "en": "You're in luck. The weather will be sunny all weekend!",
+     "zh": "您運氣真好，整個週末都會是晴天喔！",
+     "blank": null
+    }
+   ]
+  },
+  {
+   "unit": "d6",
+   "title": "A Day at the Theme Park",
+   "titleZh": "主題樂園的一天",
+   "lines": [
+    {
+     "who": "Staff",
+     "en": "Welcome to Star Land! Is this your first time here?",
+     "zh": "歡迎來到星星樂園！這是您第一次來嗎？",
+     "blank": null
+    },
+    {
+     "who": "Lara",
+     "en": "Yes! Which areas do you have?",
+     "zh": "對！你們有哪些園區？",
+     "blank": null
+    },
+    {
+     "who": "Staff",
+     "en": "We have Safari World, Movie Studio, and Space Town.",
+     "zh": "我們有野生動物世界、電影工作室和太空小鎮。",
+     "blank": "safari"
+    },
+    {
+     "who": "Lara",
+     "en": "I love movies. Let's start at the studio!",
+     "zh": "我喜歡電影，我們從電影工作室開始吧！",
+     "blank": "studio"
+    },
+    {
+     "who": "Staff",
+     "en": "Good idea. Space Town gets busy, and we have a limited capacity.",
+     "zh": "好主意。太空小鎮人很多，我們有人數限制。",
+     "blank": "capacity"
+    },
+    {
+     "who": "Lara",
+     "en": "Got it. How do we get to the rocket launchpad?",
+     "zh": "了解。火箭發射台要怎麼走？",
+     "blank": "launchpad"
+    },
+    {
+     "who": "Staff",
+     "en": "Go straight and make a right at the big Jupiter statue.",
+     "zh": "直走，到大木星雕像那裡右轉。",
+     "blank": "Jupiter"
+    },
+    {
+     "who": "Lara",
+     "en": "Is there a place to stop for a bite to eat?",
+     "zh": "有地方可以停下來吃點東西嗎？",
+     "blank": null
+    },
+    {
+     "who": "Staff",
+     "en": "Try the cafe on the second floor of the Crystal Palace.",
+     "zh": "可以去水晶宮二樓的咖啡廳。",
+     "blank": "crystal"
+    },
+    {
+     "who": "Lara",
+     "en": "A palace with a cafe? That sounds amazing. Thank you!",
+     "zh": "有咖啡廳的宮殿？聽起來好棒，謝謝你！",
+     "blank": "palace"
     }
    ]
   }

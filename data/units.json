@@ -7,189 +7,227 @@
    {
     "f": "1-1-01-bruschetta",
     "en": "bruschetta",
-    "zh": "普切塔（烤過的大蒜麵包）"
+    "zh": "普切塔（烤過的大蒜麵包）",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-02-paella",
     "en": "paella",
-    "zh": "西班牙海鮮燉飯"
+    "zh": "西班牙海鮮燉飯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-03-risotto",
     "en": "risotto",
-    "zh": "燉飯"
+    "zh": "燉飯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-04-grilled-vegetables",
     "en": "grilled vegetables",
-    "zh": "烤時蔬"
+    "zh": "烤時蔬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-05-roasted-salmon-steak",
     "en": "roasted salmon steak",
-    "zh": "烤鮭魚排"
+    "zh": "烤鮭魚排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-06-duck-confit",
     "en": "duck confit",
-    "zh": "油封鴨"
+    "zh": "油封鴨",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-07-focaccia",
     "en": "focaccia",
-    "zh": "佛卡夏（麵包）"
+    "zh": "佛卡夏（麵包）",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-08-calamari",
     "en": "calamari",
-    "zh": "炸魷魚圈"
+    "zh": "炸魷魚圈",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-09-lamb-shank",
     "en": "lamb shank",
-    "zh": "燉羊膝"
+    "zh": "燉羊膝",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-10-prosciutto-and-melon",
     "en": "prosciutto and melon",
-    "zh": "蜜瓜火腿"
+    "zh": "蜜瓜火腿",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-11-rack-of-lamb",
     "en": "rack of lamb",
-    "zh": "烤羊排"
+    "zh": "烤羊排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-12-beef-wellington",
     "en": "beef Wellington",
-    "zh": "威靈頓牛排"
+    "zh": "威靈頓牛排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-13-t-bone",
     "en": "T-bone",
-    "zh": "丁骨牛排"
+    "zh": "丁骨牛排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-14-new-york-strip",
     "en": "New York strip",
-    "zh": "紐約客牛排"
+    "zh": "紐約客牛排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-15-filet-mignon",
     "en": "filet mignon",
-    "zh": "菲力牛排"
+    "zh": "菲力牛排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-16-porterhouse",
     "en": "porterhouse",
-    "zh": "紅屋牛排"
+    "zh": "紅屋牛排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-17-tomahawk-steak",
     "en": "tomahawk steak",
-    "zh": "戰斧牛排"
+    "zh": "戰斧牛排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-18-rib-eye",
     "en": "rib eye",
-    "zh": "肋眼牛排"
+    "zh": "肋眼牛排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-19-tiramisu",
     "en": "tiramisu",
-    "zh": "提拉米蘇"
+    "zh": "提拉米蘇",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-20-souffle",
     "en": "soufflé",
-    "zh": "舒芙蕾"
+    "zh": "舒芙蕾",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-21-sundae",
     "en": "sundae",
-    "zh": "聖代"
+    "zh": "聖代",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-22-brownie",
     "en": "brownie",
-    "zh": "（巧克力）布朗尼"
+    "zh": "（巧克力）布朗尼",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-23-cheek",
     "en": "cheek",
-    "zh": "牛頰"
+    "zh": "牛頰",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-24-neck",
     "en": "neck",
-    "zh": "牛頸"
+    "zh": "牛頸",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-25-chuck",
     "en": "chuck",
-    "zh": "牛肩胛肉"
+    "zh": "牛肩胛肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-26-brisket",
     "en": "brisket",
-    "zh": "前胸肉"
+    "zh": "前胸肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-27-shank",
     "en": "shank",
-    "zh": "牛腱肉"
+    "zh": "牛腱肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-28-rib",
     "en": "rib",
-    "zh": "帶骨牛肋排；肋排"
+    "zh": "帶骨牛肋排；肋排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-29-plate",
     "en": "plate",
-    "zh": "牛腹肉"
+    "zh": "牛腹肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-30-short-loin",
     "en": "short loin",
-    "zh": "前腰脊肉"
+    "zh": "前腰脊肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-31-flank",
     "en": "flank",
-    "zh": "牛腹脅肉"
+    "zh": "牛腹脅肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-32-sirloin",
     "en": "sirloin",
-    "zh": "後腰脊肉；沙朗"
+    "zh": "後腰脊肉；沙朗",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-33-tenderloin",
     "en": "tenderloin",
-    "zh": "嫩腰肉；菲力"
+    "zh": "嫩腰肉；菲力",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-34-top-sirloin",
     "en": "top sirloin",
-    "zh": "上後腰脊肉"
+    "zh": "上後腰脊肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-35-bottom-sirloin",
     "en": "bottom sirloin",
-    "zh": "下後腰脊肉"
+    "zh": "下後腰脊肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-36-rump",
     "en": "rump",
-    "zh": "牛臀肉"
+    "zh": "牛臀肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-1-37-round",
     "en": "round",
-    "zh": "後腿肉"
+    "zh": "後腿肉",
+    "pos": "n. 名詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "1-2",
@@ -199,144 +237,173 @@
    {
     "f": "1-2-01-fish-and-chips",
     "en": "fish and chips",
-    "zh": "炸魚薯條"
+    "zh": "炸魚薯條",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-02-toad-in-the-hole",
     "en": "toad-in-the-hole",
-    "zh": "蟾蜍在洞"
+    "zh": "蟾蜍在洞",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-03-lancashire-hot-pot",
     "en": "Lancashire hot pot",
-    "zh": "蘭開夏燉羊肉"
+    "zh": "蘭開夏燉羊肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-04-shepherds-pie",
     "en": "shepherd's pie",
-    "zh": "牧羊人派"
+    "zh": "牧羊人派",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-05-cornish-pasty",
     "en": "Cornish pasty",
-    "zh": "康沃爾餡餅"
+    "zh": "康沃爾餡餅",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-06-bangers-and-mash",
     "en": "bangers and mash",
-    "zh": "香腸佐薯泥"
+    "zh": "香腸佐薯泥",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-07-biryani",
     "en": "biryani",
-    "zh": "印度香飯"
+    "zh": "印度香飯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-08-tandoori-chicken",
     "en": "tandoori chicken",
-    "zh": "印度烤雞"
+    "zh": "印度烤雞",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-09-pakora",
     "en": "pakora",
-    "zh": "帕可拉（炸蔬菜小吃）"
+    "zh": "帕可拉（炸蔬菜小吃）",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-10-masala-dosa",
     "en": "masala dosa",
-    "zh": "印度瑪撒拉香料捲餅"
+    "zh": "印度瑪撒拉香料捲餅",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-11-paratha",
     "en": "paratha",
-    "zh": "印度抓餅"
+    "zh": "印度抓餅",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-12-naan",
     "en": "naan",
-    "zh": "南餅、印度烤餅"
+    "zh": "南餅、印度烤餅",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-13-roti",
     "en": "roti",
-    "zh": "印度薄餅"
+    "zh": "印度薄餅",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-14-ratatouille",
     "en": "ratatouille",
-    "zh": "普羅旺斯雜燴"
+    "zh": "普羅旺斯雜燴",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-15-escargot",
     "en": "escargot",
-    "zh": "法國蝸牛；田螺"
+    "zh": "法國蝸牛；田螺",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-16-pot-au-feu",
     "en": "pot-au-feu",
-    "zh": "火上鍋；蔬菜牛肉鍋"
+    "zh": "火上鍋；蔬菜牛肉鍋",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-17-coq-au-vin",
     "en": "coq au vin",
-    "zh": "紅酒燉雞"
+    "zh": "紅酒燉雞",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-18-foie-gras",
     "en": "foie gras",
-    "zh": "鵝肝"
+    "zh": "鵝肝",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-19-beef-bourguignon",
     "en": "beef bourguignon",
-    "zh": "紅酒燉牛肉"
+    "zh": "紅酒燉牛肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-20-philly-cheesesteak",
     "en": "Philly cheesesteak",
-    "zh": "費城牛肉起司三明治"
+    "zh": "費城牛肉起司三明治",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-21-meat-loaf",
     "en": "meat loaf",
-    "zh": "肉卷"
+    "zh": "肉卷",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-22-apple-pie",
     "en": "apple pie",
-    "zh": "蘋果派"
+    "zh": "蘋果派",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-23-biscuits-and-gravy",
     "en": "biscuits and gravy",
-    "zh": "肉汁比司吉"
+    "zh": "肉汁比司吉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-24-buffalo-wings",
     "en": "Buffalo wings",
-    "zh": "水牛城辣雞翅"
+    "zh": "水牛城辣雞翅",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-25-doner-kebab",
     "en": "doner kebab",
-    "zh": "土耳其旋轉烤肉"
+    "zh": "土耳其旋轉烤肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-26-kebab",
     "en": "kebab",
-    "zh": "卡博串；中東烤肉"
+    "zh": "卡博串；中東烤肉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-27-baklava",
     "en": "baklava",
-    "zh": "果仁蜜餅；巴拉瓦餅"
+    "zh": "果仁蜜餅；巴拉瓦餅",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-2-28-dolma",
     "en": "dolma",
-    "zh": "蔬菜鑲肉"
+    "zh": "蔬菜鑲肉",
+    "pos": "n. 名詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "1-3",
@@ -346,134 +413,161 @@
    {
     "f": "1-3-01-bolognese-sauce",
     "en": "Bolognese sauce",
-    "zh": "波隆納肉醬；番茄肉醬"
+    "zh": "波隆納肉醬；番茄肉醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-02-lasagna",
     "en": "lasagna",
-    "zh": "千層麵"
+    "zh": "千層麵",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-03-lasagna-sheet",
     "en": "lasagna sheet",
-    "zh": "千層麵片"
+    "zh": "千層麵片",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-04-spaghetti",
     "en": "spaghetti",
-    "zh": "長直麵"
+    "zh": "長直麵",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-05-farfalle",
     "en": "farfalle",
-    "zh": "蝴蝶麵"
+    "zh": "蝴蝶麵",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-06-pesto-sauce",
     "en": "pesto sauce",
-    "zh": "青醬"
+    "zh": "青醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-07-carbonara",
     "en": "carbonara",
-    "zh": "起司培根蛋（麵）"
+    "zh": "起司培根蛋（麵）",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-08-pumpkin-sauce",
     "en": "pumpkin sauce",
-    "zh": "南瓜醬"
+    "zh": "南瓜醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-09-conchiglie",
     "en": "conchiglie",
-    "zh": "貝殼麵"
+    "zh": "貝殼麵",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-10-macaroni",
     "en": "macaroni",
-    "zh": "通心粉"
+    "zh": "通心粉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-11-linguine",
     "en": "linguine",
-    "zh": "義大利細扁麵"
+    "zh": "義大利細扁麵",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-12-smoked-salmon",
     "en": "smoked salmon",
-    "zh": "煙燻鮭魚"
+    "zh": "煙燻鮭魚",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-13-alfredo-sauce",
     "en": "Alfredo sauce",
-    "zh": "義式白醬；奶油白醬"
+    "zh": "義式白醬；奶油白醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-14-marinara",
     "en": "marinara",
-    "zh": "番茄紅醬；義式番茄醬"
+    "zh": "番茄紅醬；義式番茄醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-15-ravioli",
     "en": "ravioli",
-    "zh": "義大利方餃"
+    "zh": "義大利方餃",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-16-penne",
     "en": "penne",
-    "zh": "斜管麵、筆尖麵"
+    "zh": "斜管麵、筆尖麵",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-17-creamy-mushroom-and-bacon",
     "en": "creamy mushroom and bacon",
-    "zh": "奶油蘑菇培根（麵）"
+    "zh": "奶油蘑菇培根（麵）",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-18-basil",
     "en": "basil",
-    "zh": "羅勒"
+    "zh": "羅勒",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-19-cheese",
     "en": "cheese",
-    "zh": "起司"
+    "zh": "起司",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-20-tomato",
     "en": "tomato",
-    "zh": "番茄"
+    "zh": "番茄",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-21-margherita-pizza",
     "en": "margherita pizza",
-    "zh": "瑪格麗塔披薩"
+    "zh": "瑪格麗塔披薩",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-22-supreme-pizza",
     "en": "supreme pizza",
-    "zh": "總匯披薩"
+    "zh": "總匯披薩",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-23-hawaiian-pizza",
     "en": "Hawaiian pizza",
-    "zh": "夏威夷披薩"
+    "zh": "夏威夷披薩",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-24-pepperoni-pizza",
     "en": "pepperoni pizza",
-    "zh": "辣味香腸披薩"
+    "zh": "辣味香腸披薩",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-25-veggie-pizza",
     "en": "veggie pizza",
-    "zh": "蔬食披薩"
+    "zh": "蔬食披薩",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-3-26-seafood-pizza",
     "en": "seafood pizza",
-    "zh": "海鮮披薩"
+    "zh": "海鮮披薩",
+    "pos": "n. 名詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "1-4",
@@ -483,164 +577,197 @@
    {
     "f": "1-4-01-chafing-dish",
     "en": "chafing dish",
-    "zh": "（食物保溫用）餐鍋"
+    "zh": "（食物保溫用）餐鍋",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-02-bread-basket",
     "en": "bread basket",
-    "zh": "麵包籃"
+    "zh": "麵包籃",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-03-tongs",
     "en": "tongs",
-    "zh": "夾子（複數形）"
+    "zh": "夾子（複數形）",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-04-salad-bar",
     "en": "salad bar",
-    "zh": "沙拉吧"
+    "zh": "沙拉吧",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-05-sashimi",
     "en": "sashimi",
-    "zh": "生魚片；刺身"
+    "zh": "生魚片；刺身",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-06-tuna",
     "en": "tuna",
-    "zh": "鮪魚"
+    "zh": "鮪魚",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-07-salmon",
     "en": "salmon",
-    "zh": "鮭魚"
+    "zh": "鮭魚",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-08-mussel",
     "en": "mussel",
-    "zh": "淡菜；貽貝"
+    "zh": "淡菜；貽貝",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-09-shrimp",
     "en": "shrimp",
-    "zh": "蝦子"
+    "zh": "蝦子",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-10-salad-dressing",
     "en": "salad dressing",
-    "zh": "沙拉醬；沙拉調料"
+    "zh": "沙拉醬；沙拉調料",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-11-thousand-island-dressing",
     "en": "thousand island dressing",
-    "zh": "千島醬"
+    "zh": "千島醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-12-wafu-dressing",
     "en": "Japanese-style/Wafu dressing",
-    "zh": "和風醬"
+    "zh": "和風醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-13-caesar-dressing",
     "en": "Caesar dressing",
-    "zh": "凱薩醬"
+    "zh": "凱薩醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-14-charcuterie-board",
     "en": "charcuterie board",
-    "zh": "熟食冷肉盤"
+    "zh": "熟食冷肉盤",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-15-assorted-cheese-platter",
     "en": "assorted cheese platter",
-    "zh": "綜合起司盤"
+    "zh": "綜合起司盤",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-16-dim-sum",
     "en": "dim sum",
-    "zh": "港式點心"
+    "zh": "港式點心",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-17-fried-rice",
     "en": "fried rice",
-    "zh": "炒飯"
+    "zh": "炒飯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-18-fried-noodles",
     "en": "fried noodles",
-    "zh": "炒麵"
+    "zh": "炒麵",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-19-chef",
     "en": "chef",
-    "zh": "廚師"
+    "zh": "廚師",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-20-prime-rib",
     "en": "prime rib",
-    "zh": "牛肋排"
+    "zh": "牛肋排",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-21-carving-station",
     "en": "carving station",
-    "zh": "現切台；切肉台"
+    "zh": "現切台；切肉台",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-22-beverage-station",
     "en": "beverage station",
-    "zh": "飲料台"
+    "zh": "飲料台",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-23-ice-cream-freezer",
     "en": "ice cream freezer",
-    "zh": "冰淇淋櫃"
+    "zh": "冰淇淋櫃",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-24-chocolate-fountain",
     "en": "chocolate fountain",
-    "zh": "巧克力噴泉"
+    "zh": "巧克力噴泉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-25-bread-and-dessert",
     "en": "bread and dessert",
-    "zh": "麵包與甜點"
+    "zh": "麵包與甜點",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-26-doughnut",
     "en": "doughnut/donut",
-    "zh": "甜甜圈"
+    "zh": "甜甜圈",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-27-baguette",
     "en": "baguette",
-    "zh": "長棍麵包"
+    "zh": "長棍麵包",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-28-multigrain-bread",
     "en": "multigrain bread",
-    "zh": "雜糧麵包"
+    "zh": "雜糧麵包",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-29-bagel",
     "en": "bagel",
-    "zh": "貝果"
+    "zh": "貝果",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-30-strawberry-cake",
     "en": "strawberry cake",
-    "zh": "草莓蛋糕"
+    "zh": "草莓蛋糕",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-31-creme-brulee",
     "en": "crème brûlée",
-    "zh": "焦糖烤布蕾"
+    "zh": "焦糖烤布蕾",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-4-32-panna-cotta",
     "en": "panna cotta",
-    "zh": "奶酪"
+    "zh": "奶酪",
+    "pos": "n. 名詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "1-5",
@@ -650,199 +777,239 @@
    {
     "f": "1-5-01-sunflower-seed",
     "en": "sunflower seed",
-    "zh": "葵花籽"
+    "zh": "葵花籽",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-02-almond",
     "en": "almond",
-    "zh": "杏仁果"
+    "zh": "杏仁果",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-03-butterhead",
     "en": "butterhead",
-    "zh": "奶油萵苣"
+    "zh": "奶油萵苣",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-04-chestnut",
     "en": "chestnut",
-    "zh": "栗子"
+    "zh": "栗子",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-05-feta-cheese",
     "en": "feta cheese",
-    "zh": "菲達起司"
+    "zh": "菲達起司",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-06-baby-carrot",
     "en": "baby carrot",
-    "zh": "小紅蘿蔔"
+    "zh": "小紅蘿蔔",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-07-sliced-radish",
     "en": "sliced radish",
-    "zh": "小蘿蔔切片"
+    "zh": "小蘿蔔切片",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-08-cherry-tomato",
     "en": "cherry tomato",
-    "zh": "小番茄"
+    "zh": "小番茄",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-09-pea",
     "en": "pea",
-    "zh": "豌豆"
+    "zh": "豌豆",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-10-peanut",
     "en": "peanut",
-    "zh": "花生"
+    "zh": "花生",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-11-cashew",
     "en": "cashew",
-    "zh": "腰果"
+    "zh": "腰果",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-12-pine-nut",
     "en": "pine nut",
-    "zh": "松子"
+    "zh": "松子",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-13-alfalfa-seed",
     "en": "alfalfa seed",
-    "zh": "苜蓿籽"
+    "zh": "苜蓿籽",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-14-walnut",
     "en": "walnut",
-    "zh": "核桃"
+    "zh": "核桃",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-15-brazil-nut",
     "en": "Brazil nut",
-    "zh": "巴西堅果"
+    "zh": "巴西堅果",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-16-hazelnut",
     "en": "hazelnut",
-    "zh": "榛果"
+    "zh": "榛果",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-17-pecan",
     "en": "pecan",
-    "zh": "胡桃、山核桃"
+    "zh": "胡桃、山核桃",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-18-chickpea",
     "en": "chickpea",
-    "zh": "鷹嘴豆"
+    "zh": "鷹嘴豆",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-19-pumpkin-seed",
     "en": "pumpkin seed",
-    "zh": "南瓜籽"
+    "zh": "南瓜籽",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-20-italian",
     "en": "Italian",
-    "zh": "義式沙拉醬"
+    "zh": "義式沙拉醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-21-ranch",
     "en": "ranch",
-    "zh": "田園醬"
+    "zh": "田園醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-22-honey-mustard",
     "en": "honey mustard",
-    "zh": "蜂蜜芥末醬"
+    "zh": "蜂蜜芥末醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-23-french",
     "en": "French",
-    "zh": "法式醬"
+    "zh": "法式醬",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-24-iceberg",
     "en": "iceberg",
-    "zh": "結球萵苣；美生菜"
+    "zh": "結球萵苣；美生菜",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-25-radicchio",
     "en": "radicchio",
-    "zh": "義大利紫菊苣"
+    "zh": "義大利紫菊苣",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-26-leaf-lettuce",
     "en": "leaf lettuce",
-    "zh": "散葉萵苣"
+    "zh": "散葉萵苣",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-27-escarole",
     "en": "escarole",
-    "zh": "闊葉苦苣、菊苣"
+    "zh": "闊葉苦苣、菊苣",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-28-mizuna",
     "en": "mizuna",
-    "zh": "日本蕪菁；水菜"
+    "zh": "日本蕪菁；水菜",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-29-tatsoi",
     "en": "tatsoi",
-    "zh": "榻棵菜"
+    "zh": "榻棵菜",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-30-chard",
     "en": "chard",
-    "zh": "莙薘菜；葉用甜菜"
+    "zh": "莙薘菜；葉用甜菜",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-31-belgian-endive",
     "en": "Belgian endive",
-    "zh": "比利時苦苣"
+    "zh": "比利時苦苣",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-32-romaine",
     "en": "romaine",
-    "zh": "蘿蔓；蘿蔓心"
+    "zh": "蘿蔓；蘿蔓心",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-33-kale",
     "en": "kale",
-    "zh": "羽衣甘藍"
+    "zh": "羽衣甘藍",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-34-arugula",
     "en": "arugula",
-    "zh": "芝麻葉"
+    "zh": "芝麻葉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-35-beet-greens",
     "en": "beet greens",
-    "zh": "甜菜葉"
+    "zh": "甜菜葉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-36-bell-pepper",
     "en": "bell/sweet pepper",
-    "zh": "甜椒"
+    "zh": "甜椒",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-37-cranberry",
     "en": "cranberry",
-    "zh": "蔓越莓"
+    "zh": "蔓越莓",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-38-blueberry",
     "en": "blueberry",
-    "zh": "藍莓"
+    "zh": "藍莓",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-5-39-avocado",
     "en": "avocado",
-    "zh": "酪梨"
+    "zh": "酪梨",
+    "pos": "n. 名詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "1-6",
@@ -852,109 +1019,131 @@
    {
     "f": "1-6-01-caprese-salad",
     "en": "caprese salad",
-    "zh": "卡布里沙拉"
+    "zh": "卡布里沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-02-cobb-salad",
     "en": "Cobb salad",
-    "zh": "柯布沙拉"
+    "zh": "柯布沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-03-greek-salad",
     "en": "Greek salad",
-    "zh": "希臘沙拉"
+    "zh": "希臘沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-04-poke-bowl",
     "en": "poke bowl",
-    "zh": "夏威夷生魚飯沙拉"
+    "zh": "夏威夷生魚飯沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-05-caesar-salad",
     "en": "Caesar salad",
-    "zh": "凱薩沙拉"
+    "zh": "凱薩沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-06-fruit-salad",
     "en": "fruit salad",
-    "zh": "水果沙拉"
+    "zh": "水果沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-07-egg-salad",
     "en": "egg salad",
-    "zh": "蛋沙拉"
+    "zh": "蛋沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-08-potato-salad",
     "en": "potato salad",
-    "zh": "馬鈴薯沙拉"
+    "zh": "馬鈴薯沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-09-chefs-salad",
     "en": "chef's salad",
-    "zh": "主廚沙拉"
+    "zh": "主廚沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-10-garden-salad",
     "en": "garden salad",
-    "zh": "田園沙拉"
+    "zh": "田園沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-11-green-papaya-salad",
     "en": "green papaya salad",
-    "zh": "青木瓜沙拉"
+    "zh": "青木瓜沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-12-salade-nicoise",
     "en": "salade Niçoise",
-    "zh": "尼斯沙拉"
+    "zh": "尼斯沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-13-tabbouleh",
     "en": "tabbouleh",
-    "zh": "塔布勒沙拉"
+    "zh": "塔布勒沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-14-waldorf-salad",
     "en": "Waldorf salad",
-    "zh": "華爾道夫沙拉"
+    "zh": "華爾道夫沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-15-tuna-salad",
     "en": "tuna salad",
-    "zh": "鮪魚沙拉"
+    "zh": "鮪魚沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-16-olivier",
     "en": "Olivier",
-    "zh": "奧列夫沙拉"
+    "zh": "奧列夫沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-17-shirazi-salad",
     "en": "shirazi salad",
-    "zh": "設拉子沙拉"
+    "zh": "設拉子沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-18-pasta-salad",
     "en": "pasta salad",
-    "zh": "義大利麵沙拉"
+    "zh": "義大利麵沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-19-fattoush",
     "en": "fattoush",
-    "zh": "阿拉伯蔬菜沙拉"
+    "zh": "阿拉伯蔬菜沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-20-salade-lyonnaise",
     "en": "salade Lyonnaise",
-    "zh": "里昂沙拉"
+    "zh": "里昂沙拉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-6-21-coleslaw",
     "en": "coleslaw",
-    "zh": "涼拌捲心菜絲"
+    "zh": "涼拌捲心菜絲",
+    "pos": "n. 名詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "1-7",
@@ -964,134 +1153,161 @@
    {
     "f": "1-7-01-host-hostess",
     "en": "host/hostess",
-    "zh": "接待員／女接待員"
+    "zh": "接待員／女接待員",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-7-02-seat-a-customer",
     "en": "seat a customer",
-    "zh": "帶客人入座"
+    "zh": "帶客人入座",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-03-serve-a-meal",
     "en": "serve a meal",
-    "zh": "上菜"
+    "zh": "上菜",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-04-patron",
     "en": "patron",
-    "zh": "顧客、主顧"
+    "zh": "顧客、主顧",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-7-05-place-setting",
     "en": "place setting",
-    "zh": "（供一人使用的）一副餐具"
+    "zh": "（供一人使用的）一副餐具",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-7-06-set-a-table",
     "en": "set a table",
-    "zh": "布置餐桌"
+    "zh": "布置餐桌",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-07-take-an-order",
     "en": "take an order",
-    "zh": "點餐"
+    "zh": "點餐",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-08-marinate-meat",
     "en": "marinate meat",
-    "zh": "醃肉"
+    "zh": "醃肉",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-09-scramble-eggs",
     "en": "scramble eggs",
-    "zh": "打蛋"
+    "zh": "打蛋",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-10-peel-carrots",
     "en": "peel carrots",
-    "zh": "削紅蘿蔔皮"
+    "zh": "削紅蘿蔔皮",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-11-chop-spinach",
     "en": "chop spinach",
-    "zh": "切菠菜"
+    "zh": "切菠菜",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-12-do-the-dishes",
     "en": "do the dishes",
-    "zh": "洗碗"
+    "zh": "洗碗",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-13-stir-fry-vegetables",
     "en": "stir-fry vegetables",
-    "zh": "炒菜"
+    "zh": "炒菜",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-14-blanch-broccoli",
     "en": "blanch broccoli",
-    "zh": "燙青花菜"
+    "zh": "燙青花菜",
+    "pos": "v. 動詞片語"
    },
    {
     "f": "1-7-15-dice",
     "en": "dice",
-    "zh": "切丁"
+    "zh": "切丁",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-16-slice",
     "en": "slice",
-    "zh": "切片"
+    "zh": "切片",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-17-grate",
     "en": "grate",
-    "zh": "刨"
+    "zh": "刨",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-18-season",
     "en": "season",
-    "zh": "調味"
+    "zh": "調味",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-19-sift",
     "en": "sift",
-    "zh": "篩"
+    "zh": "篩",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-20-grind",
     "en": "grind",
-    "zh": "磨"
+    "zh": "磨",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-21-stew",
     "en": "stew",
-    "zh": "燉"
+    "zh": "燉",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-22-deep-fry",
     "en": "deep-fry",
-    "zh": "油炸"
+    "zh": "油炸",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-23-fry",
     "en": "fry",
-    "zh": "煎"
+    "zh": "煎",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-24-grill",
     "en": "grill",
-    "zh": "（在烤架上）燒烤"
+    "zh": "（在烤架上）燒烤",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-25-roast",
     "en": "roast",
-    "zh": "（在烤箱）烘烤"
+    "zh": "（在烤箱）烘烤",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-7-26-toss",
     "en": "toss",
-    "zh": "攪拌"
+    "zh": "攪拌",
+    "pos": "v. 動詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "d1",
@@ -1101,34 +1317,41 @@
    {
     "f": "d-01-diner",
     "en": "diner",
-    "zh": "小餐館；用餐者"
+    "zh": "小餐館；用餐者",
+    "pos": "n. 名詞"
    },
    {
     "f": "d-02-reservation",
     "en": "reservation",
-    "zh": "預訂；保留"
+    "zh": "預訂；保留",
+    "pos": "n. 名詞"
    },
    {
     "f": "d-03-recommendation",
     "en": "recommendation",
-    "zh": "推薦；建議"
+    "zh": "推薦；建議",
+    "pos": "n. 名詞"
    },
    {
     "f": "d-04-recommend",
     "en": "recommend",
-    "zh": "推薦（動詞）"
+    "zh": "推薦（動詞）",
+    "pos": "v. 動詞"
    },
    {
     "f": "d-05-specialty",
     "en": "specialty",
-    "zh": "招牌菜、特色食品；特產；專長"
+    "zh": "招牌菜、特色食品；特產；專長",
+    "pos": "n. 名詞"
    },
    {
     "f": "d-06-refill",
     "en": "refill",
-    "zh": "重新注滿；再裝滿"
+    "zh": "重新注滿；再裝滿",
+    "pos": "n. 名詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "1-8",
@@ -1138,199 +1361,239 @@
    {
     "f": "1-8-01-pepper-shaker",
     "en": "pepper shaker",
-    "zh": "胡椒罐"
+    "zh": "胡椒罐",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-02-salt-shaker",
     "en": "salt shaker",
-    "zh": "鹽罐"
+    "zh": "鹽罐",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-03-bread-plate",
     "en": "bread plate",
-    "zh": "麵包盤"
+    "zh": "麵包盤",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-04-butter-knife",
     "en": "butter knife",
-    "zh": "奶油刀"
+    "zh": "奶油刀",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-05-dessert-spoon",
     "en": "dessert spoon",
-    "zh": "甜點匙"
+    "zh": "甜點匙",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-06-champagne-flute",
     "en": "champagne flute",
-    "zh": "香檳酒杯"
+    "zh": "香檳酒杯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-07-wine-glass",
     "en": "wine glass",
-    "zh": "葡萄酒杯"
+    "zh": "葡萄酒杯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-08-water-goblet",
     "en": "water goblet/glass",
-    "zh": "水杯"
+    "zh": "水杯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-09-dessert-fork",
     "en": "dessert fork",
-    "zh": "甜點叉"
+    "zh": "甜點叉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-10-soup-spoon",
     "en": "soup spoon",
-    "zh": "湯匙"
+    "zh": "湯匙",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-11-teacup",
     "en": "teacup",
-    "zh": "茶杯"
+    "zh": "茶杯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-12-soup-bowl",
     "en": "soup bowl",
-    "zh": "湯碗"
+    "zh": "湯碗",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-13-salad-fork",
     "en": "salad fork",
-    "zh": "沙拉叉"
+    "zh": "沙拉叉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-14-napkin",
     "en": "napkin",
-    "zh": "餐巾"
+    "zh": "餐巾",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-15-dinner-fork",
     "en": "dinner fork",
-    "zh": "晚餐叉"
+    "zh": "晚餐叉",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-16-salad-plate",
     "en": "salad plate",
-    "zh": "沙拉盤"
+    "zh": "沙拉盤",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-17-charger-plate",
     "en": "service/charger plate",
-    "zh": "服務盤"
+    "zh": "服務盤",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-18-dinner-knife",
     "en": "dinner knife",
-    "zh": "晚餐刀"
+    "zh": "晚餐刀",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-19-saucer",
     "en": "saucer",
-    "zh": "茶杯碟"
+    "zh": "茶杯碟",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-20-teaspoon",
     "en": "teaspoon",
-    "zh": "茶匙"
+    "zh": "茶匙",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-21-teapot",
     "en": "teapot",
-    "zh": "茶壺"
+    "zh": "茶壺",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-22-mug",
     "en": "mug",
-    "zh": "馬克杯"
+    "zh": "馬克杯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-23-egg-cup",
     "en": "egg cup",
-    "zh": "蛋杯"
+    "zh": "蛋杯",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-24-pitcher",
     "en": "pitcher/jug",
-    "zh": "水壺"
+    "zh": "水壺",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-25-serving-spoon",
     "en": "serving spoon",
-    "zh": "分菜匙、母匙"
+    "zh": "分菜匙、母匙",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-26-salad-servers",
     "en": "salad servers",
-    "zh": "沙拉叉匙"
+    "zh": "沙拉叉匙",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-27-platter",
     "en": "platter",
-    "zh": "大淺盤"
+    "zh": "大淺盤",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-28-baking-dish",
     "en": "baking dish",
-    "zh": "烤盤"
+    "zh": "烤盤",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-29-trivet",
     "en": "trivet",
-    "zh": "隔熱架"
+    "zh": "隔熱架",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-30-coaster",
     "en": "coaster",
-    "zh": "杯墊"
+    "zh": "杯墊",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-31-place-mat",
     "en": "place mat",
-    "zh": "餐具墊"
+    "zh": "餐具墊",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-32-dipping-dish",
     "en": "dipping dish/bowl",
-    "zh": "沾醬碟、沾醬碗"
+    "zh": "沾醬碟、沾醬碗",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-33-start",
     "en": "start",
-    "zh": "準備開始用餐"
+    "zh": "準備開始用餐",
+    "pos": "v. 動詞"
    },
    {
     "f": "1-8-34-next-dish",
     "en": "next dish",
-    "zh": "等待下一道菜"
+    "zh": "等待下一道菜",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-35-excellent",
     "en": "excellent",
-    "zh": "喜歡這道菜"
+    "zh": "喜歡這道菜",
+    "pos": "adj. 形容詞"
    },
    {
     "f": "1-8-36-bad",
     "en": "bad",
-    "zh": "不喜歡這道菜"
+    "zh": "不喜歡這道菜",
+    "pos": "adj. 形容詞"
    },
    {
     "f": "1-8-37-break",
     "en": "break",
-    "zh": "稍作休息"
+    "zh": "稍作休息",
+    "pos": "n. 名詞"
    },
    {
     "f": "1-8-38-service-was-bad",
     "en": "service was bad",
-    "zh": "服務不佳"
+    "zh": "服務不佳",
+    "pos": "phr. 片語"
    },
    {
     "f": "1-8-39-finished",
     "en": "finished",
-    "zh": "用餐完畢"
+    "zh": "用餐完畢",
+    "pos": "adj. 形容詞"
    }
-  ]
+  ],
+  "ch": 1
  },
  {
   "id": "d2",
@@ -1340,37 +1603,1755 @@
    {
     "f": "d-07-etiquette",
     "en": "etiquette",
-    "zh": "禮節、禮儀；行為規範"
+    "zh": "禮節、禮儀；行為規範",
+    "pos": "n. 名詞"
    },
    {
     "f": "d-08-elegant",
     "en": "elegant",
-    "zh": "雅緻的、優雅的"
+    "zh": "雅緻的、優雅的",
+    "pos": "adj. 形容詞"
    },
    {
     "f": "d-09-embarrass",
     "en": "embarrass",
-    "zh": "使尷尬、使窘迫"
+    "zh": "使尷尬、使窘迫",
+    "pos": "v. 動詞"
    },
    {
     "f": "d-10-utensil",
     "en": "utensil",
-    "zh": "器具、器皿"
+    "zh": "器具、器皿",
+    "pos": "n. 名詞"
    },
    {
     "f": "d-11-placement",
     "en": "placement",
-    "zh": "擺放位置、放置、布置"
+    "zh": "擺放位置、放置、布置",
+    "pos": "n. 名詞"
    },
    {
     "f": "d-12-invert",
     "en": "invert",
-    "zh": "使倒置、使顛倒"
+    "zh": "使倒置、使顛倒",
+    "pos": "v. 動詞"
    },
    {
     "f": "d-13-parallel",
     "en": "parallel",
-    "zh": "平行的；類似的"
+    "zh": "平行的；類似的",
+    "pos": "adj. 形容詞"
+   }
+  ],
+  "ch": 1
+ },
+ {
+  "id": "5-1",
+  "zh": "機場",
+  "en": "At the Airport",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-1-01-runway",
+    "en": "runway",
+    "zh": "（飛機）跑道",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-02-terminal",
+    "en": "terminal",
+    "zh": "航廈",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-03-air-bridge",
+    "en": "air bridge",
+    "zh": "空橋、登機橋",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-04-control-tower",
+    "en": "control tower",
+    "zh": "（管制）塔臺",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-05-apron",
+    "en": "apron",
+    "zh": "停機坪",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-06-departure-hall",
+    "en": "departure hall",
+    "zh": "出境大廳",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-07-flight-information-board",
+    "en": "flight information board",
+    "zh": "航班資訊（表）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-08-luggage-scale",
+    "en": "luggage scale",
+    "zh": "（機場）行李秤",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-09-check-in-counter",
+    "en": "check-in counter",
+    "zh": "報到櫃檯",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-10-baggage-tag",
+    "en": "baggage tag",
+    "zh": "託運行李標籤",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-11-security-checkpoint",
+    "en": "security checkpoint",
+    "zh": "安全檢查站",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-12-passport-control",
+    "en": "passport control",
+    "zh": "護照查驗",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-13-boarding-gate",
+    "en": "boarding gate",
+    "zh": "登機門",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-14-duty-free-shop",
+    "en": "duty-free shop",
+    "zh": "免稅商店",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-15-arrival-hall",
+    "en": "arrival hall",
+    "zh": "入境大廳",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-16-immigration-control",
+    "en": "immigration control",
+    "zh": "入境審查處",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-17-customs",
+    "en": "customs",
+    "zh": "海關",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-18-baggage-carousel",
+    "en": "baggage carousel",
+    "zh": "行李轉盤",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-19-baggage-claim",
+    "en": "baggage claim",
+    "zh": "行李提領處",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-20-cockpit",
+    "en": "cockpit",
+    "zh": "駕駛艙",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-21-business-class",
+    "en": "business class",
+    "zh": "商務艙",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-22-window-shade",
+    "en": "window shade",
+    "zh": "遮陽板",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-23-food-trolley",
+    "en": "food trolley",
+    "zh": "手推餐車",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-24-flight-attendant",
+    "en": "flight attendant",
+    "zh": "空服員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-25-lavatory",
+    "en": "lavatory",
+    "zh": "（機上）盥洗室",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-26-economy-class",
+    "en": "economy class",
+    "zh": "經濟艙",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-27-overhead-compartment-bin",
+    "en": "overhead compartment/overhead bin",
+    "zh": "機艙上方置物櫃",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-1-28-aisle",
+    "en": "aisle",
+    "zh": "走道",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-2",
+  "zh": "登機流程",
+  "en": "The Boarding Process",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-2-01-passenger",
+    "en": "passenger",
+    "zh": "乘客",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-02-ground-staff",
+    "en": "ground staff",
+    "zh": "地勤人員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-03-baggage-luggage-trolley-cart",
+    "en": "baggage trolley/luggage cart",
+    "zh": "行李推車",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-04-carry-on",
+    "en": "carry-on",
+    "zh": "隨身行李",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-05-suitcase",
+    "en": "suitcase",
+    "zh": "行李箱",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-06-self-check-in-kiosk",
+    "en": "self check-in kiosk",
+    "zh": "自助報到機",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-07-cabin-crew",
+    "en": "cabin crew",
+    "zh": "機組人員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-08-baggage-scanner",
+    "en": "baggage scanner",
+    "zh": "行李掃描機",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-09-status",
+    "en": "status",
+    "zh": "航班狀態",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-10-flight-number",
+    "en": "flight number",
+    "zh": "班機編號",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-11-destination",
+    "en": "destination",
+    "zh": "目的地",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-12-gate",
+    "en": "gate",
+    "zh": "登機門",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-13-final-call",
+    "en": "final call",
+    "zh": "登機最後呼叫",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-14-gate-closing",
+    "en": "gate closing",
+    "zh": "登機門即將關閉",
+    "pos": "phr. 片語"
+   },
+   {
+    "f": "5-2-15-boarding",
+    "en": "boarding",
+    "zh": "登機",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-16-departed",
+    "en": "departed",
+    "zh": "已飛",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "5-2-17-on-time",
+    "en": "on time",
+    "zh": "準時",
+    "pos": "phr. 片語"
+   },
+   {
+    "f": "5-2-18-delayed",
+    "en": "delayed",
+    "zh": "延誤",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "5-2-19-canceled",
+    "en": "canceled",
+    "zh": "取消",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "5-2-20-arrived",
+    "en": "arrived",
+    "zh": "已抵達",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "5-2-21-gate-change",
+    "en": "gate change",
+    "zh": "登機門更改",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-22-passport",
+    "en": "passport",
+    "zh": "護照",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-23-baggage-claim-ticket",
+    "en": "baggage claim ticket",
+    "zh": "託運行李收據",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-24-visa",
+    "en": "visa",
+    "zh": "簽證",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-25-lithium-battery",
+    "en": "lithium battery",
+    "zh": "鋰電池",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-26-portable-charger",
+    "en": "portable charger",
+    "zh": "行動電源（亦稱為 (mobile) power bank）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-27-liquids",
+    "en": "liquids",
+    "zh": "液態物品（個人用品）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-28-personal-electronic-devices",
+    "en": "personal electronic devices",
+    "zh": "個人電子用品",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-29-smartphone",
+    "en": "smartphone",
+    "zh": "智慧型手機",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-30-laptop",
+    "en": "laptop",
+    "zh": "筆記型電腦",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-31-tablet",
+    "en": "tablet",
+    "zh": "平板",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-32-baseball-bat",
+    "en": "baseball bat",
+    "zh": "棒球棒",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-33-pepper-spray",
+    "en": "pepper spray",
+    "zh": "辣椒噴霧",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-34-swiss-army-knife",
+    "en": "Swiss Army knife",
+    "zh": "瑞士刀",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-35-scissors",
+    "en": "scissors",
+    "zh": "剪刀",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-36-utility-knife",
+    "en": "utility knife",
+    "zh": "美工刀",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-37-explosives",
+    "en": "explosives",
+    "zh": "爆裂物",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-38-boarding-pass",
+    "en": "boarding pass",
+    "zh": "登機證",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-39-passenger-name",
+    "en": "passenger name",
+    "zh": "乘客姓名",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-40-departure-date",
+    "en": "departure date",
+    "zh": "出發日期",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-41-departure-time",
+    "en": "departure time",
+    "zh": "出發時間",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-42-gate-number",
+    "en": "gate number",
+    "zh": "登機門編號",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-43-class",
+    "en": "class",
+    "zh": "艙等",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-44-boarding-time",
+    "en": "boarding time",
+    "zh": "登機時間",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-2-45-seat-number",
+    "en": "seat number",
+    "zh": "座位號碼",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "d3",
+  "zh": "在機場報到",
+  "en": "Checking In at the Airport",
+  "ch": 5,
+  "words": [
+   {
+    "f": "d-14-prohibit",
+    "en": "prohibit",
+    "zh": "禁止",
+    "pos": "v. 動詞"
+   },
+   {
+    "f": "d-15-spare",
+    "en": "spare",
+    "zh": "備用的；多餘的",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "d-16-maximum",
+    "en": "maximum",
+    "zh": "最大的；最高的；最大限度",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "d-17-overweight",
+    "en": "overweight",
+    "zh": "超重的",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "d-18-souvenir",
+    "en": "souvenir",
+    "zh": "紀念品、伴手禮",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-3",
+  "zh": "飯店大廳",
+  "en": "In a Hotel Lobby",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-3-01-elevator",
+    "en": "elevator",
+    "zh": "電梯",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-02-travel-brochure",
+    "en": "travel brochure",
+    "zh": "旅遊手冊",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-03-lobby",
+    "en": "lobby",
+    "zh": "大廳",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-04-tour-guide",
+    "en": "tour guide",
+    "zh": "導遊",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-05-revolving-door",
+    "en": "revolving door",
+    "zh": "旋轉門",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-06-doorman",
+    "en": "doorman",
+    "zh": "門房",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-07-valet",
+    "en": "valet",
+    "zh": "泊車人員（也可唸成 [ˋvælɪt]）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-08-security-guard",
+    "en": "security guard",
+    "zh": "保全人員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-09-gift-shop",
+    "en": "gift shop",
+    "zh": "禮品店",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-10-lounge-area",
+    "en": "lounge area",
+    "zh": "休息區",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-11-bellhop-bellboy-porter",
+    "en": "bellhop/bellboy/porter",
+    "zh": "飯店行李員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-12-concierge",
+    "en": "concierge",
+    "zh": "禮賓接待人員（負責安排規劃行程、訂位等服務的旅館職員）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-13-front-desk",
+    "en": "front desk",
+    "zh": "飯店櫃臺",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-14-receptionist",
+    "en": "receptionist",
+    "zh": "櫃臺接待員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-3-15-key-card",
+    "en": "key card",
+    "zh": "房卡",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-4",
+  "zh": "飯店客房與設施",
+  "en": "Hotel Rooms and Facilities",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-4-01-electric-kettle",
+    "en": "electric kettle",
+    "zh": "快煮壺",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-02-safe",
+    "en": "safe",
+    "zh": "保險櫃",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-03-hair-dryer",
+    "en": "hair dryer",
+    "zh": "吹風機（亦稱為 blow-dryer）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-04-slippers",
+    "en": "slippers",
+    "zh": "拖鞋",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-05-single-room",
+    "en": "single room",
+    "zh": "一張單人床房",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-06-twin-room",
+    "en": "twin room",
+    "zh": "兩張單人床房",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-07-suite",
+    "en": "suite",
+    "zh": "套房（deluxe suite 豪華套房）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-08-presidential-suite",
+    "en": "presidential suite",
+    "zh": "總統套房",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-09-double-room",
+    "en": "double room",
+    "zh": "一張雙人床雙人房",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-10-toiletries",
+    "en": "toiletries",
+    "zh": "盥洗用具（常用複數形）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-11-bathrobe",
+    "en": "bathrobe",
+    "zh": "浴袍",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-12-wardrobe",
+    "en": "wardrobe",
+    "zh": "衣櫥",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-13-hanger",
+    "en": "hanger",
+    "zh": "衣架",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-14-room-service",
+    "en": "room service",
+    "zh": "客房服務",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-15-hallway",
+    "en": "hallway",
+    "zh": "走廊",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-16-housekeeping-cart",
+    "en": "housekeeping cart",
+    "zh": "清潔工作推車",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-17-minibar",
+    "en": "minibar",
+    "zh": "（旅館客房內的）冰箱酒櫃",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-18-bedside-lamp",
+    "en": "bedside lamp",
+    "zh": "床頭燈",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-19-nightstand",
+    "en": "nightstand",
+    "zh": "床頭櫃（亦稱為 bedside table）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-20-housekeeper",
+    "en": "housekeeper",
+    "zh": "房務員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-21-bed-sheet",
+    "en": "bed sheet",
+    "zh": "床單",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-22-sauna",
+    "en": "sauna",
+    "zh": "三溫暖、蒸汽浴",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-23-towel",
+    "en": "towel",
+    "zh": "浴巾",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-24-jacuzzi",
+    "en": "jacuzzi",
+    "zh": "按摩浴缸",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-25-spa",
+    "en": "spa",
+    "zh": "水療中心",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-26-essential-oil",
+    "en": "essential oil",
+    "zh": "精油",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-27-masseuse",
+    "en": "masseuse",
+    "zh": "女按摩師（男按摩師 masseur [mæˋsɝ]）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-28-fitness-room",
+    "en": "fitness room",
+    "zh": "健身房",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-29-buffet",
+    "en": "buffet",
+    "zh": "自助餐餐廳",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-4-30-business-center",
+    "en": "business center",
+    "zh": "商務中心",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "d4",
+  "zh": "辦理入住飯店手續",
+  "en": "Checking Into a Hotel",
+  "ch": 5,
+  "words": [
+   {
+    "f": "d-19-initially",
+    "en": "initially",
+    "zh": "起初、開始",
+    "pos": "adv. 副詞"
+   },
+   {
+    "f": "d-20-extend",
+    "en": "extend",
+    "zh": "延伸、擴展",
+    "pos": "v. 動詞"
+   },
+   {
+    "f": "d-21-vacancy",
+    "en": "vacancy",
+    "zh": "空房；（職缺）空缺",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-22-checkout",
+    "en": "checkout",
+    "zh": "結帳退房",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-5",
+  "zh": "郵輪",
+  "en": "On a Cruise",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-5-01-deck",
+    "en": "deck",
+    "zh": "甲板、艙面",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-02-radar",
+    "en": "radar",
+    "zh": "雷達",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-03-deck-chair",
+    "en": "deck chair",
+    "zh": "躺椅、折疊椅",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-04-basketball-court",
+    "en": "basketball court",
+    "zh": "籃球場",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-05-outdoor-swimming-pool",
+    "en": "outdoor swimming pool",
+    "zh": "戶外游泳池",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-06-hot-tub",
+    "en": "hot tub",
+    "zh": "熱水浴缸",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-07-rock-climbing-wall",
+    "en": "rock climbing wall",
+    "zh": "攀岩牆",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-08-cabin",
+    "en": "cabin",
+    "zh": "客艙",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-09-balcony",
+    "en": "balcony",
+    "zh": "陽台",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-10-lifeboat",
+    "en": "lifeboat",
+    "zh": "救生艇",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-11-nightclub",
+    "en": "nightclub",
+    "zh": "俱樂部；夜店",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-12-beauty-salon",
+    "en": "beauty salon",
+    "zh": "美容院",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-13-bar",
+    "en": "bar",
+    "zh": "酒吧",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-14-video-arcade",
+    "en": "video arcade",
+    "zh": "電子遊樂場",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-15-fitness-center",
+    "en": "fitness center",
+    "zh": "健身中心",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-5-16-casino",
+    "en": "casino",
+    "zh": "賭場",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-6",
+  "zh": "休閒農場民宿",
+  "en": "At a B and B Farm",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-6-01-vegetable-garden",
+    "en": "vegetable garden",
+    "zh": "菜園",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-02-hay-roll",
+    "en": "hay roll",
+    "zh": "乾草卷",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-03-barn",
+    "en": "barn",
+    "zh": "穀倉",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-04-apple-orchard",
+    "en": "apple orchard",
+    "zh": "蘋果園",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-05-cornfield",
+    "en": "cornfield",
+    "zh": "玉米田",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-06-fence",
+    "en": "fence",
+    "zh": "籬笆、圍欄",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-07-holiday-cottage",
+    "en": "holiday cottage",
+    "zh": "度假屋",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-08-cowshed",
+    "en": "cowshed",
+    "zh": "牛舍、牛棚",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-09-dairy-cow",
+    "en": "dairy cow",
+    "zh": "乳牛",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-10-pony",
+    "en": "pony",
+    "zh": "小馬",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-11-lamb",
+    "en": "lamb",
+    "zh": "小羊、羔羊",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-12-piglet",
+    "en": "piglet",
+    "zh": "小豬",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-13-chick",
+    "en": "chick",
+    "zh": "小雞",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-14-duckling",
+    "en": "duckling",
+    "zh": "小鴨",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-6-15-milk-a-cow",
+    "en": "milk a cow",
+    "zh": "擠牛奶",
+    "pos": "v. 動詞片語"
+   },
+   {
+    "f": "5-6-16-shear-a-sheep",
+    "en": "shear a sheep",
+    "zh": "剪羊毛",
+    "pos": "v. 動詞片語"
+   },
+   {
+    "f": "5-6-17-collect-eggs",
+    "en": "collect eggs",
+    "zh": "採集雞蛋",
+    "pos": "v. 動詞片語"
+   },
+   {
+    "f": "5-6-18-pick-apples",
+    "en": "pick apples",
+    "zh": "採蘋果",
+    "pos": "v. 動詞片語"
+   },
+   {
+    "f": "5-6-19-feed-a-goat",
+    "en": "feed a goat",
+    "zh": "餵食山羊",
+    "pos": "v. 動詞片語"
+   },
+   {
+    "f": "5-6-20-go-hayriding",
+    "en": "go hayriding",
+    "zh": "乘坐乾草車出遊",
+    "pos": "v. 動詞片語"
+   },
+   {
+    "f": "5-6-21-go-horseback-riding",
+    "en": "go horseback riding",
+    "zh": "騎馬",
+    "pos": "v. 動詞片語"
+   },
+   {
+    "f": "5-6-22-go-grass-sliding",
+    "en": "go grass sliding",
+    "zh": "滑草",
+    "pos": "v. 動詞片語"
+   }
+  ]
+ },
+ {
+  "id": "d5",
+  "zh": "農場民宿訂房",
+  "en": "Making a Reservation at a B and B Farm",
+  "ch": 5,
+  "words": [
+   {
+    "f": "d-23-leisure",
+    "en": "leisure",
+    "zh": "閒暇；空閒時間",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-24-preferable",
+    "en": "preferable",
+    "zh": "較合適的；更可取的",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "d-25-complimentary",
+    "en": "complimentary",
+    "zh": "免費贈送的",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "d-26-access",
+    "en": "access",
+    "zh": "（使用某物的）權利；接近的機會（通常接 to N.）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-27-organic",
+    "en": "organic",
+    "zh": "有機的",
+    "pos": "adj. 形容詞"
+   },
+   {
+    "f": "d-28-harmony",
+    "en": "harmony",
+    "zh": "和諧、和睦（in harmony with 與……和諧共存）",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-7",
+  "zh": "動物園",
+  "en": "At the Zoo",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-7-01-first-aid-station",
+    "en": "first-aid station",
+    "zh": "救護站",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-02-giant-panda",
+    "en": "giant panda",
+    "zh": "貓熊",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-03-drinking-fountain",
+    "en": "drinking fountain",
+    "zh": "噴泉式飲水器",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-04-souvenir-shop",
+    "en": "souvenir shop",
+    "zh": "紀念品專賣店",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-05-refreshment-kiosk",
+    "en": "refreshment kiosk",
+    "zh": "點心攤",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-06-aviary",
+    "en": "aviary",
+    "zh": "鳥園",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-07-ostrich",
+    "en": "ostrich",
+    "zh": "鴕鳥",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-08-condor",
+    "en": "condor",
+    "zh": "禿鷹",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-09-peacock",
+    "en": "peacock",
+    "zh": "孔雀",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-10-turnstile",
+    "en": "turnstile",
+    "zh": "旋轉閘門",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-11-kangaroo",
+    "en": "kangaroo",
+    "zh": "袋鼠",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-12-rhinoceros",
+    "en": "rhinoceros",
+    "zh": "犀牛（簡稱 rhino [ˋraɪno]）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-13-chimpanzee",
+    "en": "chimpanzee",
+    "zh": "黑猩猩",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-14-antelope",
+    "en": "antelope",
+    "zh": "羚羊",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-15-amphibian-and-reptile-enclosure",
+    "en": "amphibian and reptile enclosure",
+    "zh": "兩棲爬蟲類館",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-16-leopard",
+    "en": "leopard",
+    "zh": "豹",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-17-lizard",
+    "en": "lizard",
+    "zh": "蜥蜴",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-18-crocodile",
+    "en": "crocodile",
+    "zh": "鱷魚",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-19-python",
+    "en": "python",
+    "zh": "大蟒蛇",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-7-20-shuttle-train-terminal",
+    "en": "shuttle train terminal",
+    "zh": "遊園車總站",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-8",
+  "zh": "在水族館",
+  "en": "At an Aquarium",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-8-01-life-size-model",
+    "en": "life-size model",
+    "zh": "實體大小的模型",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-02-jellyfish",
+    "en": "jellyfish",
+    "zh": "水母",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-03-sea-horse",
+    "en": "sea horse",
+    "zh": "海馬",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-04-seaweed",
+    "en": "seaweed",
+    "zh": "海藻、海草",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-05-tropical-fish-room",
+    "en": "tropical fish room",
+    "zh": "熱帶魚區",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-06-coral-reef",
+    "en": "coral reef",
+    "zh": "珊瑚礁",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-07-clown-fish",
+    "en": "clown fish",
+    "zh": "小丑魚",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-08-penguin",
+    "en": "penguin",
+    "zh": "企鵝",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-09-underwater-tunnel",
+    "en": "underwater tunnel",
+    "zh": "海底隧道",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-10-dugong",
+    "en": "dugong",
+    "zh": "儒艮（形似海牛，俗稱「美人魚」）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-11-touch-pool",
+    "en": "touch pool",
+    "zh": "觸摸池",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-12-starfish",
+    "en": "starfish",
+    "zh": "海星",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-13-sea-cucumber",
+    "en": "sea cucumber",
+    "zh": "海參",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-14-sea-urchin",
+    "en": "sea urchin",
+    "zh": "海膽",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-15-open-sea-gallery",
+    "en": "open sea gallery",
+    "zh": "海洋館",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-16-diver",
+    "en": "diver",
+    "zh": "潛水員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-17-white-whale",
+    "en": "white whale",
+    "zh": "白鯨",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-18-whale-shark",
+    "en": "whale shark",
+    "zh": "鯨鯊",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-19-dolphin",
+    "en": "dolphin",
+    "zh": "海豚",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-8-20-stingray",
+    "en": "stingray",
+    "zh": "魟魚",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-9",
+  "zh": "水上樂園",
+  "en": "At the Water Park",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-9-01-parasol",
+    "en": "parasol",
+    "zh": "大遮陽傘",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-02-sun-lounger",
+    "en": "sun lounger",
+    "zh": "戶外躺椅",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-03-wave-pool",
+    "en": "wave pool",
+    "zh": "造浪池",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-04-bumper-boat",
+    "en": "bumper boat",
+    "zh": "碰碰船",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-05-changing-room",
+    "en": "changing room",
+    "zh": "更衣室",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-06-locker",
+    "en": "locker",
+    "zh": "置物櫃",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-07-ticket-booth",
+    "en": "ticket booth",
+    "zh": "售票亭",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-08-park-entrance-exit",
+    "en": "park entrance/park exit",
+    "zh": "遊樂園入口、出口",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-09-fountain-show",
+    "en": "fountain show",
+    "zh": "水舞表演",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-10-water-coaster",
+    "en": "water coaster",
+    "zh": "滑水飛車",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-11-spray-ground",
+    "en": "spray ground",
+    "zh": "戲水區",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-12-log-flume-ride",
+    "en": "log flume/log ride",
+    "zh": "木舟急流",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-13-waterslide",
+    "en": "waterslide",
+    "zh": "滑水道",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-9-14-lazy-river",
+    "en": "lazy river",
+    "zh": "漂漂河",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-10",
+  "zh": "主題樂園",
+  "en": "At a Theme Park",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-10-01-ferris-wheel",
+    "en": "Ferris wheel",
+    "zh": "摩天輪",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-02-bumper-car",
+    "en": "bumper car",
+    "zh": "碰碰車",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-03-go-kart",
+    "en": "go-kart",
+    "zh": "賽車",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-04-roller-coaster",
+    "en": "roller coaster",
+    "zh": "雲霄飛車",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-05-drop-tower",
+    "en": "drop tower",
+    "zh": "自由落體",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-06-swing-ride",
+    "en": "swing ride",
+    "zh": "旋轉鞦韆",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-07-swinging-ship-ride",
+    "en": "swinging ship ride",
+    "zh": "海盜船",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-08-round-up",
+    "en": "Round Up",
+    "zh": "旋轉飛碟",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-09-merry-go-round",
+    "en": "merry-go-round",
+    "zh": "旋轉木馬（亦稱為 carousel [ˏkærəˋsɛl]）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-10-teacup-ride",
+    "en": "teacup ride",
+    "zh": "咖啡杯",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-11-mechanical-bull",
+    "en": "mechanical bull",
+    "zh": "機器牛",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-12-river-rapids-ride",
+    "en": "river rapids ride",
+    "zh": "急流泛舟",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-10-13-pendulum-ride",
+    "en": "pendulum ride",
+    "zh": "大擺錘",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "d6",
+  "zh": "主題樂園之旅",
+  "en": "A Trip to the Theme Park",
+  "ch": 5,
+  "words": [
+   {
+    "f": "d-29-safari",
+    "en": "safari",
+    "zh": "（尤指在非洲的）觀賞野生動物旅行、狩獵旅行",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-30-studio",
+    "en": "studio",
+    "zh": "工作室；（舞蹈）練習室；攝影棚、錄音室",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-31-capacity",
+    "en": "capacity",
+    "zh": "可容納人數；容量、容積（不可數）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-32-launchpad",
+    "en": "launchpad",
+    "zh": "發射台",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-33-jupiter",
+    "en": "Jupiter",
+    "zh": "木星（Europa [jʊˋropə] 木衛二）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-34-crystal",
+    "en": "crystal",
+    "zh": "水晶（玻璃）",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "d-35-palace",
+    "en": "palace",
+    "zh": "皇宮、宮殿",
+    "pos": "n. 名詞"
+   }
+  ]
+ },
+ {
+  "id": "5-11",
+  "zh": "園遊會",
+  "en": "At the Town Fair",
+  "ch": 5,
+  "words": [
+   {
+    "f": "5-11-01-hot-dog-eating-contest",
+    "en": "hot dog eating contest",
+    "zh": "吃熱狗大賽",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-02-inflatable-slide",
+    "en": "inflatable slide",
+    "zh": "充氣溜滑梯",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-03-hot-air-balloon",
+    "en": "hot air balloon",
+    "zh": "熱氣球",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-04-bungee-trampoline",
+    "en": "bungee trampoline",
+    "zh": "彈跳蹦床",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-05-haunted-house",
+    "en": "haunted house",
+    "zh": "鬼屋",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-06-pretzel",
+    "en": "pretzel",
+    "zh": "椒鹽捲餅；蝴蝶餅",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-07-churro",
+    "en": "churro",
+    "zh": "吉拿棒",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-08-soft-serve",
+    "en": "soft serve",
+    "zh": "霜淇淋",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-09-popcorn",
+    "en": "popcorn",
+    "zh": "爆米花",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-10-cotton-candy",
+    "en": "cotton candy",
+    "zh": "棉花糖",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-11-fried-dough",
+    "en": "fried dough",
+    "zh": "炸甜麵糰",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-12-bake-sale",
+    "en": "bake sale",
+    "zh": "手工糕餅義賣",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-13-produce",
+    "en": "produce",
+    "zh": "農產品",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-14-ticket-seller",
+    "en": "ticket seller",
+    "zh": "售票員",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-15-balloon-dart",
+    "en": "balloon dart",
+    "zh": "射氣球",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-16-shooting-gallery",
+    "en": "shooting gallery",
+    "zh": "射擊遊戲",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-17-ring-toss",
+    "en": "ring toss",
+    "zh": "套圈圈遊戲",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-18-basketball-shooting-game",
+    "en": "basketball shooting game",
+    "zh": "投籃機",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-19-pony-ride",
+    "en": "pony ride",
+    "zh": "騎馬體驗",
+    "pos": "n. 名詞"
+   },
+   {
+    "f": "5-11-20-handicrafts",
+    "en": "handicrafts",
+    "zh": "手工藝品",
+    "pos": "n. 名詞"
    }
   ]
  }

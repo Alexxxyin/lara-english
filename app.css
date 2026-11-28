@@ -345,6 +345,9 @@ h1, h2, h3, p { margin: 0; }
 
 /* KK 音標（用支援音標符號的字型） */
 .kk { font-family: 'Lucida Grande', 'Segoe UI', 'Arial Unicode MS', sans-serif; font-size: 17px; color: var(--muted); text-align: center; margin-top: -4px; letter-spacing: 0.3px; }
+.pos-tag { display: inline-block; vertical-align: 2px; margin-left: 8px; font-family: 'Nunito', 'Noto Sans TC', -apple-system, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: 0; color: var(--primary-ink); background: var(--primary-soft); padding: 2px 9px; border-radius: 999px; }
+.nb-pos { display: inline-block; font-size: 11px; font-weight: 900; padding: 1px 7px; margin-right: 6px; border-radius: 999px; background: rgba(255,255,255,.7); }
+.spell-pos { margin: -4px 0 0; }
 .kk-s { font-style: normal; font-family: 'Lucida Grande', 'Segoe UI', 'Arial Unicode MS', sans-serif; font-size: 10px; color: var(--faint); line-height: 1.2; word-break: break-word; }
 
 .review-tabs button { background: #FFFFFF; border: 2px solid transparent; border-radius: 16px; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
@@ -475,3 +478,12 @@ h1, h2, h3, p { margin: 0; }
 .wish-row.no { background: #FAF6F8; }
 .wish-wait.no { color: #8E7A84; background: #EFE6EA; }
 .wish-cloud:empty { display: none; }
+
+/* 章節切換（單元頁上方） */
+.ch-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ch-tab { background: #FFFFFF; border: 2px solid var(--line); border-radius: 18px; padding: 10px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; box-shadow: 0 3px 0 #F3DCE5; }
+.ch-tab b { font-size: 13px; font-weight: 900; color: var(--faint); }
+.ch-tab span { font-size: 16px; font-weight: 900; color: var(--ink); }
+.ch-tab.on { border-color: var(--primary); background: var(--primary-soft); box-shadow: 0 3px 0 var(--primary-line); }
+.ch-tab.on b { color: var(--primary-ink); }
+.collect-ch { font-size: 17px; font-weight: 900; margin: 6px 2px -2px; }

@@ -1042,5 +1042,1065 @@
 "d-13-parallel": {
 "kk": "[ˋpɛrəˏlɛl]",
 "src": "book"
+},
+"5-1-01-runway": {
+"kk": "[ˋrʌnˏwe]",
+"src": "book"
+},
+"5-1-02-terminal": {
+"kk": "[ˋtɝmənl̩]",
+"src": "book"
+},
+"5-1-03-air-bridge": {
+"kk": "[ɛr] [brɪdʒ]",
+"src": "book"
+},
+"5-1-04-control-tower": {
+"kk": "[kənˋtrol] [ˋtaʊɚ]",
+"src": "book"
+},
+"5-1-05-apron": {
+"kk": "[ˋeprən]",
+"src": "book"
+},
+"5-1-06-departure-hall": {
+"kk": "[dɪˋpɑrtʃɚ] [hɔl]",
+"src": "book"
+},
+"5-1-07-flight-information-board": {
+"kk": "[flaɪt] [ˏɪnfɚˋmeʃən] [bord]",
+"src": "book"
+},
+"5-1-08-luggage-scale": {
+"kk": "[ˋlʌgɪdʒ] [skel]",
+"src": "book"
+},
+"5-1-09-check-in-counter": {
+"kk": "[ˋtʃɛkˏɪn] [ˋkaʊntɚ]",
+"src": "book"
+},
+"5-1-10-baggage-tag": {
+"kk": "[ˋbægɪdʒ] [tæg]",
+"src": "book"
+},
+"5-1-11-security-checkpoint": {
+"kk": "[sɪˋkjʊrətɪ] [ˋtʃɛkˏpɔɪnt]",
+"src": "book"
+},
+"5-1-12-passport-control": {
+"kk": "[ˋpæsˏport] [kənˋtrol]",
+"src": "book"
+},
+"5-1-13-boarding-gate": {
+"kk": "[ˋbordɪŋ] [get]",
+"src": "book"
+},
+"5-1-14-duty-free-shop": {
+"kk": "[ˏdjutɪˋfri] [ʃɑp]",
+"src": "book"
+},
+"5-1-15-arrival-hall": {
+"kk": "[əˋraɪvl̩] [hɔl]",
+"src": "book"
+},
+"5-1-16-immigration-control": {
+"kk": "[ˏɪməˋgreʃən] [kənˋtrol]",
+"src": "book"
+},
+"5-1-17-customs": {
+"kk": "[ˋkʌstəmz]",
+"src": "book"
+},
+"5-1-18-baggage-carousel": {
+"kk": "[ˋbægɪdʒ] [ˏkærəˋsɛl]",
+"src": "book"
+},
+"5-1-19-baggage-claim": {
+"kk": "[ˋbægɪdʒ] [klem]",
+"src": "book"
+},
+"5-1-20-cockpit": {
+"kk": "[ˋkɑkˏpɪt]",
+"src": "book"
+},
+"5-1-21-business-class": {
+"kk": "[ˋbɪznɪs] [klæs]",
+"src": "book"
+},
+"5-1-22-window-shade": {
+"kk": "[ˋwɪndo] [ʃed]",
+"src": "book"
+},
+"5-1-23-food-trolley": {
+"kk": "[fud] [ˋtrɑlɪ]",
+"src": "book"
+},
+"5-1-24-flight-attendant": {
+"kk": "[flaɪt] [əˋtɛndənt]",
+"src": "book"
+},
+"5-1-25-lavatory": {
+"kk": "[ˋlævəˏtorɪ]",
+"src": "book"
+},
+"5-1-26-economy-class": {
+"kk": "[ɪˋkɑnəmɪ] [klæs]",
+"src": "book"
+},
+"5-1-27-overhead-compartment-bin": {
+"kk": "[ˏovɚˋhɛd] [kəmˋpɑrtmənt] [bɪn]",
+"src": "book"
+},
+"5-1-28-aisle": {
+"kk": "[aɪl]",
+"src": "book"
+},
+"5-2-01-passenger": {
+"kk": "[ˋpæsn̩dʒɚ]",
+"src": "book"
+},
+"5-2-02-ground-staff": {
+"kk": "[graʊnd] [stæf]",
+"src": "book"
+},
+"5-2-03-baggage-luggage-trolley-cart": {
+"kk": "[ˋbægɪdʒ] [ˋlʌgɪdʒ] [ˋtrɑlɪ] [kɑrt]",
+"src": "book"
+},
+"5-2-04-carry-on": {
+"kk": "[ˋkærɪˏɑn]",
+"src": "book"
+},
+"5-2-05-suitcase": {
+"kk": "[ˋsutˏkes]",
+"src": "book"
+},
+"5-2-06-self-check-in-kiosk": {
+"kk": "[sɛlf] [ˋtʃɛkˏɪn] [ˋkiɑsk]",
+"src": "book"
+},
+"5-2-07-cabin-crew": {
+"kk": "[ˋkæbɪn] [kru]",
+"src": "book"
+},
+"5-2-08-baggage-scanner": {
+"kk": "[ˋbægɪdʒ] [ˋskænɚ]",
+"src": "book"
+},
+"5-2-09-status": {
+"kk": "[ˋstetəs]",
+"src": "book"
+},
+"5-2-10-flight-number": {
+"kk": "[flaɪt] [ˋnʌmbɚ]",
+"src": "book"
+},
+"5-2-11-destination": {
+"kk": "[ˏdɛstəˋneʃən]",
+"src": "book"
+},
+"5-2-12-gate": {
+"kk": "[get]",
+"src": "book"
+},
+"5-2-13-final-call": {
+"kk": "[ˋfaɪnl̩] [kɔl]",
+"src": "book"
+},
+"5-2-14-gate-closing": {
+"kk": "[get] [ˋklozɪŋ]",
+"src": "book"
+},
+"5-2-15-boarding": {
+"kk": "[ˋbordɪŋ]",
+"src": "book"
+},
+"5-2-16-departed": {
+"kk": "[dɪˋpɑrtɪd]",
+"src": "book"
+},
+"5-2-17-on-time": {
+"kk": "[ɑn] [taɪm]",
+"src": "book"
+},
+"5-2-18-delayed": {
+"kk": "[dɪˋled]",
+"src": "book"
+},
+"5-2-19-canceled": {
+"kk": "[ˋkænsl̩d]",
+"src": "book"
+},
+"5-2-20-arrived": {
+"kk": "[əˋraɪvd]",
+"src": "book"
+},
+"5-2-21-gate-change": {
+"kk": "[get] [tʃendʒ]",
+"src": "book"
+},
+"5-2-22-passport": {
+"kk": "[ˋpæsˏport]",
+"src": "book"
+},
+"5-2-23-baggage-claim-ticket": {
+"kk": "[ˋbægɪdʒ] [klem] [ˋtɪkɪt]",
+"src": "book"
+},
+"5-2-24-visa": {
+"kk": "[ˋvizə]",
+"src": "book"
+},
+"5-2-25-lithium-battery": {
+"kk": "[ˋlɪθɪəm] [ˋbætərɪ]",
+"src": "book"
+},
+"5-2-26-portable-charger": {
+"kk": "[ˋportəbl̩] [ˋtʃɑrdʒɚ]",
+"src": "book"
+},
+"5-2-27-liquids": {
+"kk": "[ˋlɪkwɪdz]",
+"src": "book"
+},
+"5-2-28-personal-electronic-devices": {
+"kk": "[ˋpɝsənl̩] [ɪˏlɛkˋtrɑnɪk] [dɪˋvaɪsɪz]",
+"src": "book"
+},
+"5-2-29-smartphone": {
+"kk": "[ˋsmɑrtˏfon]",
+"src": "book"
+},
+"5-2-30-laptop": {
+"kk": "[ˋlæpˏtɑp]",
+"src": "book"
+},
+"5-2-31-tablet": {
+"kk": "[ˋtæblɪt]",
+"src": "book"
+},
+"5-2-32-baseball-bat": {
+"kk": "[ˋbesˏbɔl] [bæt]",
+"src": "book"
+},
+"5-2-33-pepper-spray": {
+"kk": "[ˋpɛpɚ] [spre]",
+"src": "book"
+},
+"5-2-34-swiss-army-knife": {
+"kk": "[swɪs] [ˋɑrmɪ] [naɪf]",
+"src": "book"
+},
+"5-2-35-scissors": {
+"kk": "[ˋsɪzɚz]",
+"src": "book"
+},
+"5-2-36-utility-knife": {
+"kk": "[juˋtɪlətɪ] [naɪf]",
+"src": "book"
+},
+"5-2-37-explosives": {
+"kk": "[ɪkˋsplosɪvz]",
+"src": "book"
+},
+"5-2-38-boarding-pass": {
+"kk": "[ˋbordɪŋ] [pæs]",
+"src": "book"
+},
+"5-2-39-passenger-name": {
+"kk": "[ˋpæsn̩dʒɚ] [nem]",
+"src": "book"
+},
+"5-2-40-departure-date": {
+"kk": "[dɪˋpɑrtʃɚ] [det]",
+"src": "book"
+},
+"5-2-41-departure-time": {
+"kk": "[dɪˋpɑrtʃɚ] [taɪm]",
+"src": "book"
+},
+"5-2-42-gate-number": {
+"kk": "[get] [ˋnʌmbɚ]",
+"src": "book"
+},
+"5-2-43-class": {
+"kk": "[klæs]",
+"src": "book"
+},
+"5-2-44-boarding-time": {
+"kk": "[ˋbordɪŋ] [taɪm]",
+"src": "book"
+},
+"5-2-45-seat-number": {
+"kk": "[sit] [ˋnʌmbɚ]",
+"src": "book"
+},
+"d-14-prohibit": {
+"kk": "[proˋhɪbɪt]",
+"src": "book"
+},
+"d-15-spare": {
+"kk": "[spɛr]",
+"src": "book"
+},
+"d-16-maximum": {
+"kk": "[ˋmæksəməm]",
+"src": "book"
+},
+"d-17-overweight": {
+"kk": "[ˋovɚˏwet]",
+"src": "book"
+},
+"d-18-souvenir": {
+"kk": "[ˏsuvəˋnɪr]",
+"src": "book"
+},
+"5-3-01-elevator": {
+"kk": "[ˋɛləˏvetɚ]",
+"src": "book"
+},
+"5-3-02-travel-brochure": {
+"kk": "[ˋtrævl̩] [broˋʃʊr]",
+"src": "book"
+},
+"5-3-03-lobby": {
+"kk": "[ˋlɑbɪ]",
+"src": "book"
+},
+"5-3-04-tour-guide": {
+"kk": "[tʊr] [gaɪd]",
+"src": "book"
+},
+"5-3-05-revolving-door": {
+"kk": "[rɪˋvɑlvɪŋ] [dor]",
+"src": "book"
+},
+"5-3-06-doorman": {
+"kk": "[ˋdorˏmæn]",
+"src": "book"
+},
+"5-3-07-valet": {
+"kk": "[væˋle]",
+"src": "book"
+},
+"5-3-08-security-guard": {
+"kk": "[sɪˋkjʊrətɪ] [gɑrd]",
+"src": "book"
+},
+"5-3-09-gift-shop": {
+"kk": "[gɪft] [ʃɑp]",
+"src": "book"
+},
+"5-3-10-lounge-area": {
+"kk": "[laʊndʒ] [ˋɛrɪə]",
+"src": "book"
+},
+"5-3-11-bellhop-bellboy-porter": {
+"kk": "[ˋbɛlˏhɑp] [ˋbɛlˏbɔɪ] [ˋportɚ]",
+"src": "book"
+},
+"5-3-12-concierge": {
+"kk": "[ˏkɑnsɪˋɛrʒ]",
+"src": "book"
+},
+"5-3-13-front-desk": {
+"kk": "[frʌnt] [dɛsk]",
+"src": "book"
+},
+"5-3-14-receptionist": {
+"kk": "[rɪˋsɛpʃənɪst]",
+"src": "book"
+},
+"5-3-15-key-card": {
+"kk": "[ki] [kɑrd]",
+"src": "book"
+},
+"5-4-01-electric-kettle": {
+"kk": "[ɪˋlɛktrɪk] [ˋkɛtl̩]",
+"src": "book"
+},
+"5-4-02-safe": {
+"kk": "[sef]",
+"src": "book"
+},
+"5-4-03-hair-dryer": {
+"kk": "[hɛr] [ˋdraɪɚ]",
+"src": "book"
+},
+"5-4-04-slippers": {
+"kk": "[ˋslɪpɚz]",
+"src": "book"
+},
+"5-4-05-single-room": {
+"kk": "[ˋsɪŋgl̩] [rum]",
+"src": "book"
+},
+"5-4-06-twin-room": {
+"kk": "[twɪn] [rum]",
+"src": "book"
+},
+"5-4-07-suite": {
+"kk": "[swit]",
+"src": "book"
+},
+"5-4-08-presidential-suite": {
+"kk": "[ˏprɛzəˋdɛnʃəl] [swit]",
+"src": "book"
+},
+"5-4-09-double-room": {
+"kk": "[ˋdʌbl̩] [rum]",
+"src": "book"
+},
+"5-4-10-toiletries": {
+"kk": "[ˋtɔɪlɪtrɪz]",
+"src": "book"
+},
+"5-4-11-bathrobe": {
+"kk": "[ˋbæθˏrob]",
+"src": "book"
+},
+"5-4-12-wardrobe": {
+"kk": "[ˋwɔrˏdrob]",
+"src": "book"
+},
+"5-4-13-hanger": {
+"kk": "[ˋhæŋɚ]",
+"src": "book"
+},
+"5-4-14-room-service": {
+"kk": "[rum] [ˋsɝvɪs]",
+"src": "book"
+},
+"5-4-15-hallway": {
+"kk": "[ˋhɔlˏwe]",
+"src": "book"
+},
+"5-4-16-housekeeping-cart": {
+"kk": "[ˋhaʊsˏkipɪŋ] [kɑrt]",
+"src": "book"
+},
+"5-4-17-minibar": {
+"kk": "[ˋmɪnɪˏbɑr]",
+"src": "book"
+},
+"5-4-18-bedside-lamp": {
+"kk": "[ˋbɛdˏsaɪd] [læmp]",
+"src": "book"
+},
+"5-4-19-nightstand": {
+"kk": "[ˋnaɪtˏstænd]",
+"src": "book"
+},
+"5-4-20-housekeeper": {
+"kk": "[ˋhaʊsˏkipɚ]",
+"src": "book"
+},
+"5-4-21-bed-sheet": {
+"kk": "[bɛd] [ʃit]",
+"src": "book"
+},
+"5-4-22-sauna": {
+"kk": "[ˋsaʊnə]",
+"src": "book"
+},
+"5-4-23-towel": {
+"kk": "[ˋtaʊəl]",
+"src": "book"
+},
+"5-4-24-jacuzzi": {
+"kk": "[dʒəˋkuzɪ]",
+"src": "book"
+},
+"5-4-25-spa": {
+"kk": "[spɑ]",
+"src": "book"
+},
+"5-4-26-essential-oil": {
+"kk": "[ɪˋsɛnʃəl] [ɔɪl]",
+"src": "book"
+},
+"5-4-27-masseuse": {
+"kk": "[mæˋsuz]",
+"src": "book"
+},
+"5-4-28-fitness-room": {
+"kk": "[ˋfɪtnɪs] [rum]",
+"src": "book"
+},
+"5-4-29-buffet": {
+"kk": "[bəˋfe]",
+"src": "book"
+},
+"5-4-30-business-center": {
+"kk": "[ˋbɪznɪs] [ˋsɛntɚ]",
+"src": "book"
+},
+"d-19-initially": {
+"kk": "[ɪˋnɪʃəlɪ]",
+"src": "book"
+},
+"d-20-extend": {
+"kk": "[ɪkˋstɛnd]",
+"src": "book"
+},
+"d-21-vacancy": {
+"kk": "[ˋvekənsɪ]",
+"src": "book"
+},
+"d-22-checkout": {
+"kk": "[ˋtʃɛkˏaʊt]",
+"src": "book"
+},
+"5-5-01-deck": {
+"kk": "[dɛk]",
+"src": "book"
+},
+"5-5-02-radar": {
+"kk": "[ˋreˏdɑr]",
+"src": "book"
+},
+"5-5-03-deck-chair": {
+"kk": "[dɛk] [tʃɛr]",
+"src": "book"
+},
+"5-5-04-basketball-court": {
+"kk": "[ˋbæskɪtˏbɔl] [kort]",
+"src": "book"
+},
+"5-5-05-outdoor-swimming-pool": {
+"kk": "[ˋaʊtˏdor] [ˋswɪmɪŋ] [pul]",
+"src": "book"
+},
+"5-5-06-hot-tub": {
+"kk": "[hɑt] [tʌb]",
+"src": "book"
+},
+"5-5-07-rock-climbing-wall": {
+"kk": "[rɑk] [ˋklaɪmɪŋ] [wɔl]",
+"src": "book"
+},
+"5-5-08-cabin": {
+"kk": "[ˋkæbɪn]",
+"src": "book"
+},
+"5-5-09-balcony": {
+"kk": "[ˋbælkənɪ]",
+"src": "book"
+},
+"5-5-10-lifeboat": {
+"kk": "[ˋlaɪfˏbot]",
+"src": "book"
+},
+"5-5-11-nightclub": {
+"kk": "[ˋnaɪtˏklʌb]",
+"src": "book"
+},
+"5-5-12-beauty-salon": {
+"kk": "[ˋbjutɪ] [səˋlɑn]",
+"src": "book"
+},
+"5-5-13-bar": {
+"kk": "[bɑr]",
+"src": "book"
+},
+"5-5-14-video-arcade": {
+"kk": "[ˋvɪdɪˏo] [ɑrˋked]",
+"src": "book"
+},
+"5-5-15-fitness-center": {
+"kk": "[ˋfɪtnɪs] [ˋsɛntɚ]",
+"src": "book"
+},
+"5-5-16-casino": {
+"kk": "[kəˋsino]",
+"src": "book"
+},
+"5-6-01-vegetable-garden": {
+"kk": "[ˋvɛdʒtəbl̩] [ˋgɑrdn̩]",
+"src": "book"
+},
+"5-6-02-hay-roll": {
+"kk": "[he] [rol]",
+"src": "book"
+},
+"5-6-03-barn": {
+"kk": "[bɑrn]",
+"src": "book"
+},
+"5-6-04-apple-orchard": {
+"kk": "[ˋæpl̩] [ˋɔrtʃɚd]",
+"src": "book"
+},
+"5-6-05-cornfield": {
+"kk": "[ˋkɔrnˏfild]",
+"src": "book"
+},
+"5-6-06-fence": {
+"kk": "[fɛns]",
+"src": "book"
+},
+"5-6-07-holiday-cottage": {
+"kk": "[ˋhɑləˏde] [ˋkɑtɪdʒ]",
+"src": "book"
+},
+"5-6-08-cowshed": {
+"kk": "[ˋkaʊˏʃɛd]",
+"src": "book"
+},
+"5-6-09-dairy-cow": {
+"kk": "[ˋdɛrɪ] [kaʊ]",
+"src": "book"
+},
+"5-6-10-pony": {
+"kk": "[ˋponɪ]",
+"src": "book"
+},
+"5-6-11-lamb": {
+"kk": "[læm]",
+"src": "book"
+},
+"5-6-12-piglet": {
+"kk": "[ˋpɪglɪt]",
+"src": "book"
+},
+"5-6-13-chick": {
+"kk": "[tʃɪk]",
+"src": "book"
+},
+"5-6-14-duckling": {
+"kk": "[ˋdʌklɪŋ]",
+"src": "book"
+},
+"5-6-15-milk-a-cow": {
+"kk": "[mɪlk] [kaʊ]",
+"src": "book"
+},
+"5-6-16-shear-a-sheep": {
+"kk": "[ʃɪr] [ʃip]",
+"src": "book"
+},
+"5-6-17-collect-eggs": {
+"kk": "[kəˋlɛkt] [ɛgz]",
+"src": "book"
+},
+"5-6-18-pick-apples": {
+"kk": "[pɪk] [ˋæpl̩z]",
+"src": "book"
+},
+"5-6-19-feed-a-goat": {
+"kk": "[fid] [got]",
+"src": "book"
+},
+"5-6-20-go-hayriding": {
+"kk": "[go] [ˋheˏraɪdɪŋ]",
+"src": "book"
+},
+"5-6-21-go-horseback-riding": {
+"kk": "[ˋhɔrsˏbæk] [ˋraɪdɪŋ]",
+"src": "book"
+},
+"5-6-22-go-grass-sliding": {
+"kk": "[græs] [ˋslaɪdɪŋ]",
+"src": "book"
+},
+"d-23-leisure": {
+"kk": "[ˋliʒɚ]",
+"src": "book"
+},
+"d-24-preferable": {
+"kk": "[ˋprɛfərəbl̩]",
+"src": "book"
+},
+"d-25-complimentary": {
+"kk": "[ˏkɑmpləˋmɛntərɪ]",
+"src": "book"
+},
+"d-26-access": {
+"kk": "[ˋæksɛs]",
+"src": "book"
+},
+"d-27-organic": {
+"kk": "[ɔrˋgænɪk]",
+"src": "book"
+},
+"d-28-harmony": {
+"kk": "[ˋhɑrmənɪ]",
+"src": "book"
+},
+"5-7-01-first-aid-station": {
+"kk": "[ˋfɝstˋed] [ˋsteʃən]",
+"src": "book"
+},
+"5-7-02-giant-panda": {
+"kk": "[ˋdʒaɪənt] [ˋpændə]",
+"src": "book"
+},
+"5-7-03-drinking-fountain": {
+"kk": "[ˋdrɪŋkɪŋ] [ˋfaʊntn̩]",
+"src": "book"
+},
+"5-7-04-souvenir-shop": {
+"kk": "[ˋsuvəˏnɪr] [ʃɑp]",
+"src": "book"
+},
+"5-7-05-refreshment-kiosk": {
+"kk": "[rɪˋfrɛʃmənt] [ˋkiɑsk]",
+"src": "book"
+},
+"5-7-06-aviary": {
+"kk": "[ˋevɪˏɛrɪ]",
+"src": "book"
+},
+"5-7-07-ostrich": {
+"kk": "[ˋɑstrɪtʃ]",
+"src": "book"
+},
+"5-7-08-condor": {
+"kk": "[ˋkɑndɚ]",
+"src": "book"
+},
+"5-7-09-peacock": {
+"kk": "[ˋpiˏkɑk]",
+"src": "book"
+},
+"5-7-10-turnstile": {
+"kk": "[ˋtɝnˏstaɪl]",
+"src": "book"
+},
+"5-7-11-kangaroo": {
+"kk": "[ˏkæŋgəˋru]",
+"src": "book"
+},
+"5-7-12-rhinoceros": {
+"kk": "[raɪˋnɑsərəs]",
+"src": "book"
+},
+"5-7-13-chimpanzee": {
+"kk": "[ˏtʃɪmpænˋzi]",
+"src": "book"
+},
+"5-7-14-antelope": {
+"kk": "[ˋæntl̩ˏop]",
+"src": "book"
+},
+"5-7-15-amphibian-and-reptile-enclosure": {
+"kk": "[æmˋfɪbɪən] [ænd] [ˋrɛptaɪl] [ɪnˋkloʒɚ]",
+"src": "book"
+},
+"5-7-16-leopard": {
+"kk": "[ˋlɛpɚd]",
+"src": "book"
+},
+"5-7-17-lizard": {
+"kk": "[ˋlɪzɚd]",
+"src": "book"
+},
+"5-7-18-crocodile": {
+"kk": "[ˋkrɑkəˏdaɪl]",
+"src": "book"
+},
+"5-7-19-python": {
+"kk": "[ˋpaɪθɑn]",
+"src": "book"
+},
+"5-7-20-shuttle-train-terminal": {
+"kk": "[ˋʃʌtl̩] [tren] [ˋtɝmənl̩]",
+"src": "book"
+},
+"5-8-01-life-size-model": {
+"kk": "[ˋlaɪfˋsaɪz] [ˋmɑdl̩]",
+"src": "book"
+},
+"5-8-02-jellyfish": {
+"kk": "[ˋdʒɛlɪˏfɪʃ]",
+"src": "book"
+},
+"5-8-03-sea-horse": {
+"kk": "[si] [hɔrs]",
+"src": "book"
+},
+"5-8-04-seaweed": {
+"kk": "[ˋsiˏwid]",
+"src": "book"
+},
+"5-8-05-tropical-fish-room": {
+"kk": "[ˋtrɑpɪkl̩] [fɪʃ] [rum]",
+"src": "book"
+},
+"5-8-06-coral-reef": {
+"kk": "[ˋkɔrəl] [rif]",
+"src": "book"
+},
+"5-8-07-clown-fish": {
+"kk": "[klaʊn]",
+"src": "book"
+},
+"5-8-08-penguin": {
+"kk": "[ˋpɛngwɪn]",
+"src": "book"
+},
+"5-8-09-underwater-tunnel": {
+"kk": "[ˋʌndɚˏwɔtɚ] [ˋtʌnl̩]",
+"src": "book"
+},
+"5-8-10-dugong": {
+"kk": "[ˋdugɑŋ]",
+"src": "book"
+},
+"5-8-11-touch-pool": {
+"kk": "[tʌtʃ] [pul]",
+"src": "book"
+},
+"5-8-12-starfish": {
+"kk": "[ˋstɑrˏfɪʃ]",
+"src": "book"
+},
+"5-8-13-sea-cucumber": {
+"kk": "[ˋkjukʌmbɚ]",
+"src": "book"
+},
+"5-8-14-sea-urchin": {
+"kk": "[ˋɝtʃɪn]",
+"src": "book"
+},
+"5-8-15-open-sea-gallery": {
+"kk": "[ˋopən] [si] [ˋgælərɪ]",
+"src": "book"
+},
+"5-8-16-diver": {
+"kk": "[ˋdaɪvɚ]",
+"src": "book"
+},
+"5-8-17-white-whale": {
+"kk": "[hwaɪt] [hwel]",
+"src": "book"
+},
+"5-8-18-whale-shark": {
+"kk": "[hwel] [ʃɑrk]",
+"src": "book"
+},
+"5-8-19-dolphin": {
+"kk": "[ˋdɑlfɪn]",
+"src": "book"
+},
+"5-8-20-stingray": {
+"kk": "[ˋstɪŋˏre]",
+"src": "book"
+},
+"5-9-01-parasol": {
+"kk": "[ˋpærəˏsɔl]",
+"src": "book"
+},
+"5-9-02-sun-lounger": {
+"kk": "[sʌn] [ˋlaʊndʒɚ]",
+"src": "book"
+},
+"5-9-03-wave-pool": {
+"kk": "[wev] [pul]",
+"src": "book"
+},
+"5-9-04-bumper-boat": {
+"kk": "[ˋbʌmpɚ] [bot]",
+"src": "book"
+},
+"5-9-05-changing-room": {
+"kk": "[ˋtʃendʒɪŋ] [rum]",
+"src": "book"
+},
+"5-9-06-locker": {
+"kk": "[ˋlɑkɚ]",
+"src": "book"
+},
+"5-9-07-ticket-booth": {
+"kk": "[ˋtɪkɪt] [buθ]",
+"src": "book"
+},
+"5-9-08-park-entrance-exit": {
+"kk": "[pɑrk] [ˋɛntrəns] [ˋɛgzɪt]",
+"src": "book"
+},
+"5-9-09-fountain-show": {
+"kk": "[ˋfaʊntn̩] [ʃo]",
+"src": "book"
+},
+"5-9-10-water-coaster": {
+"kk": "[ˋwɔtɚ] [ˋkostɚ]",
+"src": "book"
+},
+"5-9-11-spray-ground": {
+"kk": "[spre] [graʊnd]",
+"src": "book"
+},
+"5-9-12-log-flume-ride": {
+"kk": "[lɔg] [flum] [raɪd]",
+"src": "book"
+},
+"5-9-13-waterslide": {
+"kk": "[ˋwɔtɚˏslaɪd]",
+"src": "book"
+},
+"5-9-14-lazy-river": {
+"kk": "[ˋlezɪ] [ˋrɪvɚ]",
+"src": "book"
+},
+"5-10-01-ferris-wheel": {
+"kk": "[ˋfɛrɪs] [hwil]",
+"src": "book"
+},
+"5-10-02-bumper-car": {
+"kk": "[ˋbʌmpɚ] [kɑr]",
+"src": "book"
+},
+"5-10-03-go-kart": {
+"kk": "[ˋgoˏkɑrt]",
+"src": "book"
+},
+"5-10-04-roller-coaster": {
+"kk": "[ˋrolɚ] [ˋkostɚ]",
+"src": "book"
+},
+"5-10-05-drop-tower": {
+"kk": "[drɑp] [ˋtaʊɚ]",
+"src": "book"
+},
+"5-10-06-swing-ride": {
+"kk": "[swɪŋ] [raɪd]",
+"src": "book"
+},
+"5-10-07-swinging-ship-ride": {
+"kk": "[ˋswɪŋɪŋ] [ʃɪp] [raɪd]",
+"src": "book"
+},
+"5-10-08-round-up": {
+"kk": "[raʊnd] [ʌp]",
+"src": "book"
+},
+"5-10-09-merry-go-round": {
+"kk": "[ˋmɛrɪgoˏraʊnd]",
+"src": "book"
+},
+"5-10-10-teacup-ride": {
+"kk": "[ˋtiˏkʌp] [raɪd]",
+"src": "book"
+},
+"5-10-11-mechanical-bull": {
+"kk": "[məˋkænɪkl̩] [bʊl]",
+"src": "book"
+},
+"5-10-12-river-rapids-ride": {
+"kk": "[ˋrɪvɚ] [ˋræpɪdz] [raɪd]",
+"src": "book"
+},
+"5-10-13-pendulum-ride": {
+"kk": "[ˋpɛndʒələm] [raɪd]",
+"src": "book"
+},
+"d-29-safari": {
+"kk": "[səˋfɑrɪ]",
+"src": "book"
+},
+"d-30-studio": {
+"kk": "[ˋstjudɪˏo]",
+"src": "book"
+},
+"d-31-capacity": {
+"kk": "[kəˋpæsətɪ]",
+"src": "book"
+},
+"d-32-launchpad": {
+"kk": "[ˋlɔntʃˏpæd]",
+"src": "book"
+},
+"d-33-jupiter": {
+"kk": "[ˋdʒupətɚ]",
+"src": "book"
+},
+"d-34-crystal": {
+"kk": "[ˋkrɪstl̩]",
+"src": "book"
+},
+"d-35-palace": {
+"kk": "[ˋpælɪs]",
+"src": "book"
+},
+"5-11-01-hot-dog-eating-contest": {
+"kk": "[hɑt] [dɔg] [ˋitɪŋ] [ˋkɑntɛst]",
+"src": "book"
+},
+"5-11-02-inflatable-slide": {
+"kk": "[ɪnˋfletəbl̩] [slaɪd]",
+"src": "book"
+},
+"5-11-03-hot-air-balloon": {
+"kk": "[hɑt] [ɛr] [bəˋlun]",
+"src": "book"
+},
+"5-11-04-bungee-trampoline": {
+"kk": "[ˋbʌndʒɪ] [ˏtræmpəˋlin]",
+"src": "book"
+},
+"5-11-05-haunted-house": {
+"kk": "[ˋhɔntɪd] [haʊs]",
+"src": "book"
+},
+"5-11-06-pretzel": {
+"kk": "[ˋprɛtsl̩]",
+"src": "book"
+},
+"5-11-07-churro": {
+"kk": "[ˋtʃʊro]",
+"src": "book"
+},
+"5-11-08-soft-serve": {
+"kk": "[sɔft] [sɝv]",
+"src": "book"
+},
+"5-11-09-popcorn": {
+"kk": "[ˋpɑpˏkɔrn]",
+"src": "book"
+},
+"5-11-10-cotton-candy": {
+"kk": "[ˋkɑtn̩] [ˋkændɪ]",
+"src": "book"
+},
+"5-11-11-fried-dough": {
+"kk": "[fraɪd] [do]",
+"src": "book"
+},
+"5-11-12-bake-sale": {
+"kk": "[bek] [sel]",
+"src": "book"
+},
+"5-11-13-produce": {
+"kk": "[ˋprodjus]",
+"src": "book"
+},
+"5-11-14-ticket-seller": {
+"kk": "[ˋtɪkɪt] [ˋsɛlɚ]",
+"src": "book"
+},
+"5-11-15-balloon-dart": {
+"kk": "[bəˋlun] [dɑrt]",
+"src": "book"
+},
+"5-11-16-shooting-gallery": {
+"kk": "[ˋʃutɪŋ] [ˋgælərɪ]",
+"src": "book"
+},
+"5-11-17-ring-toss": {
+"kk": "[rɪŋ] [tɔs]",
+"src": "book"
+},
+"5-11-18-basketball-shooting-game": {
+"kk": "[ˋbæskɪtˏbɔl] [ˋʃutɪŋ] [gem]",
+"src": "book"
+},
+"5-11-19-pony-ride": {
+"kk": "[ˋponɪ] [raɪd]",
+"src": "book"
+},
+"5-11-20-handicrafts": {
+"kk": "[ˋhændɪˏkræfts]",
+"src": "book"
 }
 }

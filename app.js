@@ -3,7 +3,7 @@
   'use strict';
   const KEY = 'lara-english-v1';
   // 網站版本：每次更新要同時改這裡和 version.json（數字一樣），手機才會自動換新版
-  const APP_VERSION = 46;
+  const APP_VERSION = 48;
   const DAY = 86400000;
   const INTERVAL = [0, 1, 2, 4, 7, 15]; // 答對後隔幾天再出現（依熟練程度）
   const ROUND = 10;
@@ -106,9 +106,23 @@
   function unitOf(id) { return UNITS.find(u => u.id === id); }
   function knownCount(u) { return u.words.filter(w => S.words[w.f] && S.words[w.f].known).length; }
   function unitDone(u) { return knownCount(u) === u.words.length; }
-  function currentUnit() { return UNITS.find(u => !unitDone(u)) || UNITS[UNITS.length - 1]; }
-  function unitLabel(u) { return u.id[0] === 'd' ? '情境對話' + (u.id === 'd1' ? '①' : '②') : u.id; }
+  // 章節：照書本的章（第 1 章餐廳美食、第 5 章觀光旅遊）；units.json 每個單元有 ch
+  const CHAPTERS = [
+    { no: 1, zh: '餐廳美食', talk: '在餐廳說說看' },
+    { no: 5, zh: '觀光旅遊', talk: '旅行時說說看' }
+  ];
+  function chOf(u) { return u.ch || 1; }
+  function chUnits(no) { return UNITS.filter(u => chOf(u) === no); }
+  function chInfo(no) { return CHAPTERS.find(c => c.no === no) || CHAPTERS[0]; }
+  function curCh() { const c = S.chapter || 1; return CHAPTERS.some(x => x.no === c) && chUnits(c).length ? c : 1; }
+  function currentUnit() { const L = chUnits(curCh()); return L.find(u => !unitDone(u)) || L[L.length - 1]; }
   function isDlg(u) { return u.id[0] === 'd'; }
+  function unitLabel(u) {
+    if (!isDlg(u)) return u.id;
+    const i = chUnits(chOf(u)).filter(isDlg).indexOf(u);
+    return '情境對話' + ('①②③④⑤⑥⑦⑧⑨'[i] || '');
+  }
+  function talkText(u) { return chInfo(chOf(u)).talk; }
 
   // 檢查單元是否剛完成，完成就發獎勵
   function checkUnitDone(u, el) {
@@ -167,7 +181,7 @@
     if (f && WORDS[f]) {
       const w = WORDS[f];
       head = w.en; kkTxt = kk(f) || d.kk || ''; zh = w.zh; speak = answers(f)[0];
-      pos = w.en.trim().includes(' ') ? '片語' : (d.pos || ''); note = '這張卡的單字'; pic = img(f);
+      pos = w.pos || (w.en.trim().includes(' ') ? '片語' : (d.pos || '')); note = '這張卡的單字'; pic = img(f);
     } else {
       // 標題顯示點到的那個字本身（點 best 就顯示 best），原形寫在說明裡
       head = (d.w && d.w.toLowerCase() === key) ? d.w : (el ? el.textContent : key); kkTxt = d.kk || ''; pos = d.pos || ''; zh = d.zh || '（字典裡還沒有這個字）'; speak = key;
@@ -415,7 +429,7 @@
   // ---------- 首頁 ----------
   function pageHome() {
     const u = currentUnit(), k = knownCount(u), n = u.words.length;
-    const doneN = UNITS.filter(unitDone).length;
+    const chL = chUnits(curCh()), doneN = chL.filter(unitDone).length, allN = chL.length;
     const due = dueList().length, st = streakNow();
     const fillName = isDlg(u) ? '情境對話' : '例句填空';
     render(`
@@ -439,9 +453,9 @@
       <div class="card prog">
         <div class="ring">${ringSvg(k, n)}<div class="c"><b>${k}<small>/${n}</small></b><span>這個單元</span></div></div>
         <div style="flex-grow:1;display:flex;flex-direction:column;gap:8px">
-          <b style="font-size:15px;font-weight:900">第 1 章進度</b>
-          <div class="bar" style="height:10px"><div style="width:${doneN * 10}%"></div></div>
-          <span style="font-size:12px;font-weight:800;color:var(--primary-ink)">學完 ${doneN} / 10 個單元${doneN < 10 ? '，慢慢來就好' : '，太厲害了'}</span>
+          <b style="font-size:15px;font-weight:900">第 ${curCh()} 章進度</b>
+          <div class="bar" style="height:10px"><div style="width:${Math.round(doneN / allN * 100)}%"></div></div>
+          <span style="font-size:12px;font-weight:800;color:var(--primary-ink)">學完 ${doneN} / ${allN} 個單元${doneN < allN ? '，慢慢來就好' : '，太厲害了'}</span>
         </div>
       </div>
       <h3 style="font-size:17px;font-weight:900">練習方式</h3>
@@ -451,7 +465,7 @@
         <button class="tile" style="background:#FFEEDD" data-go="#listen/${u.id}"><b>聽音測驗</b><span>聽聲音選圖</span></button>
         <button class="tile" style="background:#E2F5EC" data-go="#spell/${u.id}"><b>拼字測驗</b><span>自己打出來</span></button>
         <button class="tile" style="background:#FCE6EE" data-go="#speak/${u.id}"><b>口說跟讀</b><span>唸給手機聽</span></button>
-        <button class="tile" style="background:#FFF4CC" data-go="#fill/${u.id}"><b>${fillName}</b><span>${isDlg(u) ? '在餐廳說說看' : '把字放進句子'}</span></button>
+        <button class="tile" style="background:#FFF4CC" data-go="#fill/${u.id}"><b>${fillName}</b><span>${isDlg(u) ? talkText(u) : '把字放進句子'}</span></button>
       </div>
       ${cloudNewer ? `<div class="card backup-card">
         <div><b>雲端有妳之前的進度</b><p>雲端備份裡有 ${cloudNewer.known} 個學會的字、${cloudNewer.fish} 隻小魚乾，比這支手機多。要拿回來的話，到「設定 → 雲端備份」按「從雲端拿回進度」。</p></div>
@@ -492,11 +506,13 @@
 
   // ---------- 單元清單 ----------
   function pageUnits() {
-    const cur = currentUnit();
+    const cur = currentUnit(), ch = curCh(), L = chUnits(ch);
+    const nW = L.reduce((a, u) => a + u.words.length, 0);
     render(`
-      <div><h1 style="font-size:24px;font-weight:900">第 1 章 餐廳美食</h1><p class="muted" style="font-size:13px;margin-top:2px">照書本順序・10 個單元・261 個字・照自己的步調學</p></div>
+      <div class="ch-tabs">${CHAPTERS.filter(c => chUnits(c.no).length).map(c => `<button class="ch-tab ${c.no === ch ? 'on' : ''}" data-ch="${c.no}"><b>第 ${c.no} 章</b><span>${esc(c.zh)}</span></button>`).join('')}</div>
+      <div><h1 style="font-size:24px;font-weight:900">第 ${ch} 章 ${esc(chInfo(ch).zh)}</h1><p class="muted" style="font-size:13px;margin-top:2px">照書本順序・${L.length} 個單元・${nW} 個字・照自己的步調學</p></div>
       <div class="list">
-        ${UNITS.map(u => {
+        ${L.map(u => {
           const k = knownCount(u), n = u.words.length, done = k === n, now = u === cur;
           const cls = done ? 'done' : now ? 'now' : '';
           const st = done ? '學完了' : k ? `${k} / ${n}` : '還沒開始';
@@ -505,6 +521,8 @@
       </div>
     `, 'units');
     bindGo();
+    // 切換章節：首頁的「繼續學習」也會跟著換到這一章
+    view.querySelectorAll('[data-ch]').forEach(b => b.onclick = () => { S.chapter = +b.dataset.ch; save(); pageUnits(); window.scrollTo(0, 0); });
   }
 
   // ---------- 單元內頁 ----------
@@ -520,7 +538,7 @@
         <button class="tile" style="background:#FFEEDD" data-go="#listen/${u.id}"><b>聽音測驗</b><span>聽聲音選圖</span></button>
         <button class="tile" style="background:#E2F5EC" data-go="#spell/${u.id}"><b>拼字測驗</b><span>自己打出來</span></button>
         <button class="tile" style="background:#FCE6EE" data-go="#speak/${u.id}"><b>口說跟讀</b><span>唸給手機聽</span></button>
-        <button class="tile" style="background:#FFF4CC" data-go="#fill/${u.id}"><b>${isDlg(u) ? '情境對話' : '例句填空'}</b><span>${isDlg(u) ? '在餐廳說說看' : '把字放進句子'}</span></button>
+        <button class="tile" style="background:#FFF4CC" data-go="#fill/${u.id}"><b>${isDlg(u) ? '情境對話' : '例句填空'}</b><span>${isDlg(u) ? talkText(u) : '把字放進句子'}</span></button>
       </div>
       <div class="words">
         ${u.words.map(w => `<button class="word ${S.words[w.f] && S.words[w.f].known ? 'known' : ''}" data-say="${esc(w.f)}"><img class="wimg" src="${img(w.f)}" alt="" loading="lazy"><b>${esc(w.en)}</b>${kk(w.f) ? `<i class="kk-s">${esc(kk(w.f))}</i>` : ''}<span>${esc(w.zh)}</span></button>`).join('')}
@@ -550,7 +568,7 @@
         <div class="card fc" id="fc">
           <img class="wimg" src="${img(f)}" alt="">
           <div class="word-big">${esc(w.en)}</div>
-          ${kk(f) ? `<div class="kk">${esc(kk(f))}</div>` : ''}
+          ${kk(f) || w.pos ? `<div class="kk">${esc(kk(f))}${w.pos ? `<span class="pos-tag">${esc(w.pos)}</span>` : ''}</div>` : ''}
           <div class="play-row"><button class="btn" id="p1" data-own-sound>播放</button><button class="btn ghost" id="p2" data-own-sound>慢速</button></div>
           <div style="border-top:1px dashed #F6DDE7;padding-top:12px;display:flex;flex-direction:column;gap:10px;align-items:center">
             ${flipped ? `<div class="zh-big">${esc(w.zh)}</div>${s ? `<div class="sent-box"><span class="e">${tapWords(s.en, f)}</span><span class="z">${esc(s.zh)}</span><div class="sent-tools"><span>點單字看意思</span><button class="play-pill" id="ps" data-own-sound>播放例句</button></div></div>` : ''}<button class="btn soft small" id="unflip">翻回正面</button>`
@@ -620,7 +638,7 @@
         if (ok) earn(1);
         const w = WORDS[f];
         // 答對／答錯和「下一題」合成一顆按鈕，整題放得進一個畫面
-        view.querySelector('#fb').innerHTML = `<button class="next-btn ${ok ? 'ok' : 'no'}" id="next"><span class="nb-t"><b>${ok ? '答對了' : '答案是'}：${esc(w.en)}</b><small>${esc(w.zh)}</small></span><span class="nb-go">下一題 ›</span></button>`;
+        view.querySelector('#fb').innerHTML = `<button class="next-btn ${ok ? 'ok' : 'no'}" id="next"><span class="nb-t"><b>${ok ? '答對了' : '答案是'}：${esc(w.en)}</b><small>${w.pos ? `<span class="nb-pos">${esc(w.pos)}</span>` : ''}${esc(w.zh)}</small></span><span class="nb-go">下一題 ›</span></button>`;
         const nb = view.querySelector('#next'); const r = nb.getBoundingClientRect();
         if (r.bottom > window.innerHeight) nb.scrollIntoView({ block: 'end', behavior: 'smooth' });
         say(w.en);
@@ -697,6 +715,7 @@
         <div class="card q-card" id="qc">
           <img class="wimg" src="${img(f)}" alt="" style="width:52%">
           <div class="q-prompt">${esc(w.zh)}</div>
+          ${w.pos ? `<span class="pos-tag spell-pos">${esc(w.pos)}</span>` : ''}
           <div class="hint">${hint}</div>
           <div class="play-row"><button class="btn small" id="p1">聽發音</button><button class="btn soft small" id="more">多給一個字母</button></div>
         </div>
@@ -751,7 +770,7 @@
         <div class="card q-card" id="qc">
           <img class="wimg" src="${img(f)}" alt="" style="width:50%">
           <div class="word-big">${esc(w.en)}</div>
-          ${kk(f) ? `<div class="kk">${esc(kk(f))}</div>` : ''}
+          ${kk(f) || w.pos ? `<div class="kk">${esc(kk(f))}${w.pos ? `<span class="pos-tag">${esc(w.pos)}</span>` : ''}</div>` : ''}
           <span class="muted">${esc(w.zh)}</span>
           <div class="play-row"><button class="btn small" id="p1">先聽一次</button><button class="btn ghost small" id="p2">慢速</button></div>
         </div>
@@ -1237,7 +1256,7 @@
         ${redeemedHtml()}`;
     } else if (collectTab === 'words') {
       body = `<div class="collect-head"><b>已收集 ${k} / ${Object.keys(WORDS).length}</b><span>學會的字會亮起來，點一下可以聽發音</span></div>
-        ${UNITS.map(u => { const n = knownCount(u); return `
+        ${UNITS.map((u, i) => { const n = knownCount(u); return `${i === 0 || chOf(UNITS[i - 1]) !== chOf(u) ? `<div class="collect-ch">第 ${chOf(u)} 章 ${esc(chInfo(chOf(u)).zh)}</div>` : ''}
           <div class="card"><div class="collect-unit"><b>${esc(unitLabel(u))} ${esc(u.zh)}</b><span>${n} / ${u.words.length}</span></div>
           <div class="dex">${u.words.map(w => { const on = S.words[w.f] && S.words[w.f].known; return on
             ? `<button class="dex-card on" data-say="${esc(w.f)}"><img src="${img(w.f)}" alt="" loading="lazy"><span>${esc(w.en)}</span><small>${esc(w.zh)}</small></button>`
@@ -1294,6 +1313,13 @@
   // ---------- 更新日誌 ----------
   // 每次更新網站，在最上面加一筆（id 要比上一筆大），用白話寫給 Lara 看
   const CHANGELOG = [
+    { id: 20, date: '11/28', items: [
+      '新的一章來了：第 5 章「觀光旅遊」！機場、飯店、郵輪、農場、動物園、水族館、水上樂園、主題樂園、園遊會，一共 265 個字，每個字都有新的圖、例句和發音。',
+      '到「單元」上面點「第 5 章」就能切換；切過去之後，首頁的「繼續學習」也會跟著換成第 5 章。想回去複習第 1 章，再點「第 1 章」就好。',
+      '第 5 章有 4 段新的情境對話：機場報到、飯店入住、農場民宿訂房、主題樂園。',
+      '收藏裡的單字圖鑑也分成第 1 章和第 5 章了。',
+      '每個單字都標上詞性了，像 prefer 是「v. 動詞」、preferable 是「adj. 形容詞」。單字卡、口說跟讀的音標旁邊看得到；翻字測驗、聽音測驗答完之後，答案下面也會一起顯示中文和詞性；拼字測驗的中文旁邊也有，可以當提示，知道要拼名詞還是動詞。'
+    ] },
     { id: 19, date: '11/27', items: [
       '妳許願或兌換兌換券的時候，Alex 會馬上收到通知，不用再特地跟他說喔！'
     ] },
@@ -1572,13 +1598,13 @@
     checkUpdate();
     load(); syncSound();
     try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
-    UNITS = await fetch('data/units.json').then(r => r.json());
+    UNITS = await fetch('data/units.json?v=' + APP_VERSION).then(r => r.json());
     UNITS.forEach(u => u.words.forEach(w => { WORDS[w.f] = w; }));
-    try { const k = await fetch('data/kk.json?v=1').then(r => r.ok ? r.json() : null); if (k) KK = k; } catch (e) {}
-    try { const d = await fetch('data/dict.json?v=1').then(r => r.ok ? r.json() : null); if (d) DICT = d; } catch (e) {}
+    try { const k = await fetch('data/kk.json?v=' + APP_VERSION).then(r => r.ok ? r.json() : null); if (k) KK = k; } catch (e) {}
+    try { const d = await fetch('data/dict.json?v=' + APP_VERSION).then(r => r.ok ? r.json() : null); if (d) DICT = d; } catch (e) {}
     try { const a = await fetch('audio/index.json?v=' + APP_VERSION).then(r => r.ok ? r.json() : null); if (a) AUDIO = a; } catch (e) {}
     try {
-      const s = await fetch('data/sentences.json').then(r => r.ok ? r.json() : null);
+      const s = await fetch('data/sentences.json?v=' + APP_VERSION).then(r => r.ok ? r.json() : null);
       if (s) { SENT = s.sentences || {}; DIALOGUES = s.dialogues || []; }
     } catch (e) {}
     window.addEventListener('hashchange', route);
